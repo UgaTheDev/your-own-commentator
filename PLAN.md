@@ -1,5 +1,7 @@
 # Your Own Commentator: Build Plan
 
+> **2026-09-26:** EXECUTION-PLAN.md is the approved step-by-step plan and wins where the two conflict. It drops DynamoDB, Lambda, the QR companion and live mode, and adds pre-rendered audio tracks and the Why button first.
+
 **Deadline: Oct 23, 2026, 12:00 PM PT (3:00 PM ET). Internal target: submit Oct 22.**
 This is built in parallel with ../NVIDIA (Waze for Floods, due Oct 30). This one is due
 first, so it gets priority through Oct 22.

@@ -13,3 +13,7 @@ build/
 data/raw/
 *.mp4
 *.mov
+
+# pipeline cache (Bedrock/Polly responses) and rendered media
+data/.cache/
+data/*/render/

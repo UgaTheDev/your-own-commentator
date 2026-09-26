@@ -1,7 +1,7 @@
 # Your Own Commentator (Amazon Developer Hackathon, Fire TV track)
 
 Read **CONTEXT.md** (rules, judging, requirements, idea, existence check) and **PLAN.md**
-(architecture, schedule, video script, risks) before doing anything here.
+(architecture, schedule, video script, risks), then **EXECUTION-PLAN.md** (approved build plan, wins on conflicts) before doing anything here.
 
 Hard constraints:
 - Deadline **Oct 23, 2026 12:00 PM PT**; internal submit target Oct 22. This project has

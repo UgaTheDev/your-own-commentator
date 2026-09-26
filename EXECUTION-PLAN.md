@@ -88,7 +88,7 @@ README.md ATTRIBUTION.md FRICTION-LOG.md
 ## Verification
 - `pytest pipeline/tests`: state math (score, fouls, fantasy, and-one, the `final_score` assertion) and grounding check cases (an invented digit, a wrong jersey, a digit in a Spanish or Mandarin line must be rejected; the judge prompt gets a separate spot-check for names).
 - App: `npm test` covers cue lookup (before the first cue, exactly on t, after the last cue, empty list).
-- `python pipeline/eval.py data/<clip>`: precision/recall table plus faithfulness (`0 unsupported / N lines` is the target), with 20 lines spot-checked by hand.
+- `python pipeline/eval.py <clip>`: precision/recall table plus faithfulness (`0 unsupported / N lines` is the target), with 20 lines spot-checked by hand.
 - On the VVD: `vega virtual-device start` → `vega run-app build/aarch64-release/*.vpkg`. Walk through the demo script with only the D-pad. Voice sync is built into the mixed audio and can't drift. Check that the overlays driven by `timeupdate` (rule cards, fantasy ticks) stay within 0.5 s of their event over the full clip, persona switching works mid-play, Why pauses and answers about *that* play, and fantasy points change after a made 3.
 - Before submitting: check against CONTEXT.md's submission checklist; confirm the video has no third-party marks or music; confirm the repo is public with Apache-2.0 and no secrets (`git log -p | grep -iE 'aws_secret|AKIA'` returns nothing).
 

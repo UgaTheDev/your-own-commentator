@@ -3,7 +3,7 @@
 ## Context
 The repo holds only planning docs (CONTEXT.md, PLAN.md, FRICTION-LOG.md, LICENSE). We have to ship a demo-ready Vega OS app plus a demo video under 3 minutes by **Oct 22** (hard deadline Oct 23, 12:00 PM PT), with code freeze on the night of **Oct 20**. This plan turns PLAN.md's architecture into build steps, using facts verified on 2026-09-26 and your answers:
 - **Simulator only.** The Vega Virtual Device (VVD) on your Mac. The rules accept simulator footage.
-- **Footage not booked yet.** Build everything on a CC-BY clip now and swap in our own BU game when it's filmed (target Oct 10).
+- **No filming (decided 2026-09-26).** Build on licensed online footage (CC-BY/BY-SA, CC0 or US-gov public domain), recorded in SOURCES.md. Dev clip so far: a 30 s public-domain U.S. Navy video.
 - **Why button first.** Add an MCP server only if time is left after Oct 17. Spend 2 hours checking Alexa+ access in week 1.
 - **No AWS account.** Account setup happens on day 1.
 
@@ -24,7 +24,7 @@ The repo holds only planning docs (CONTEXT.md, PLAN.md, FRICTION-LOG.md, LICENSE
 4. **Fantasy commentary doesn't depend on the roster.** The voice covers the fantasy points of the players in each play. The on-screen panel highlights *your* roster and is computed on the device from the game state. That means no rendering per user.
 5. **"Why?" answers are pre-generated.** Each teachable event (foul, travel, turnover, and-one) gets up to 3 suggested questions, and each question gets an answer per track. Pressing Why pauses the video and shows an answer card. The answer audio plays in a second player if spike S2 shows two players can run at once. Otherwise it's a text card only.
 6. **The grounding rule is enforced in code.** The writer's allowed facts are `event + game state + rules.json entry`. The rules file is a rules knowledge base we write by hand, so Rookie's rule explanations count as grounded input and don't break the rule in CLAUDE.md. The writer is told to write numbers as digits. A check then rejects any line containing a digit sequence that isn't in the allowed facts. That catches invented scores and jerseys in every language. Invented names and claims, and numbers spelled out as words (like "tres"), can't be caught by a regex across languages, so a second Bedrock call judges them. The two checks together make the gate. Failed lines are regenerated once and dropped after that.
-7. **Players are named only with consent.** `clip.json`'s `roster` maps jersey numbers to the first names the players agreed to. Signed consent forms stay **out of the repo**.
+7. **Players are referred to by jersey number and team color.** We don't know the names of players in found footage, so `clip.json`'s `roster` stays empty unless a source credits them.
 8. **Models and region:** Nova 2 Lite for event extraction, and Nova for writing (it counts as Amazon ecosystem depth). Everything runs in `us-east-1`, where Polly's generative voices exist; Nova 2 availability there gets checked during S0. Model IDs sit in one constant and are checked in the Bedrock console, not taken from memory.
 9. **Clip metadata is entered by hand** in `data/<clip>/clip.json`: `start_score` (clips start mid-game), `final_score`, teams and a license/attribution line. `state.py` **asserts** that the computed final score equals `final_score`, so a basket missed in review fails loudly instead of the commentary stating a wrong score.
 10. **Dropped from PLAN.md:** the DynamoDB profile, Lambda and QR companion. The persona defaults to Rookie on launch, and the fantasy roster is picked on the TV from the clip's roster list. The AWS Builder stack is Bedrock (Nova) + Polly + S3 + CloudFront.
@@ -49,7 +49,7 @@ app/                      Vega RN app (from `vega` CLI template)
   src/manifest.ts         types + fetch + cue lookup (binary search on sorted t) + one jest test for the lookup
   src/FocusableElement.tsx  adapted from vega-video-sample
 data/<clip>/              raw media gitignored; small reviewed JSON committed
-README.md ATTRIBUTION.md FRICTION-LOG.md
+README.md SOURCES.md FRICTION-LOG.md
 ```
 
 **Manifest (the single contract between pipeline and app):**
@@ -60,12 +60,12 @@ README.md ATTRIBUTION.md FRICTION-LOG.md
 ## Schedule (NVIDIA work stays in the background)
 | Dates | Work | Exit criterion |
 |---|---|---|
-| **Sep 27 (Sun)** | **S0 setup:** create the AWS account, turn on MFA, create an IAM user limited to Bedrock, Polly, S3 and CloudFront, set a $20 budget alarm, **request the $150 credits**, enable Bedrock model access. Write the consent form and message the BU intramural/club contacts. Ask the BU rec center for permission to film at the venue. Find the CC-BY basketball clip and record its license in ATTRIBUTION.md. | Credits requested; a `bedrock converse` hello works from the CLI |
+| **Sep 27 (Sun)** | **S0 setup:** create the AWS account, turn on MFA, create an IAM user limited to Bedrock, Polly, S3 and CloudFront, set a $20 budget alarm, **request the $150 credits**, enable Bedrock model access. Pick 2-3 licensed footage candidates and record them in SOURCES.md. | Credits requested; a `bedrock converse` hello works from the CLI |
 | **Sep 28 (Mon)** | **S1:** install the Vega tools (prerequisites: Rosetta 2, Java 21+, Node 18–20, latest SDK, since older builds had Apple Silicon VVD crashes) and run the `vega` template on the VVD. Check that the VVD can reach an HTTP server on the host Mac. If it can't, use S3 + CloudFront from day 1. **Test recording the VVD with audio** (macOS screen capture, plus BlackHole if system audio isn't captured) so Oct 21 isn't the first try. **S2 audio spike:** test options 2a, 2b and 2c, and whether two players can run at once. Update PLAN.md's decisions table (basketball, Vega, AWS Builder, Why button, live mode cut). | Video plays on the VVD; S2 result written into PLAN.md |
 | Sep 29–Oct 1 | **S3:** extract.py on the CC-BY clip plus a rough review.py. **S4:** 2-hour Alexa+ for Builders access check, logged in the friction log. | `events.proposed.json` for a 2-minute clip; first precision/recall numbers |
 | Oct 2–3 | state.py plus tests; rules.json for all event types; personas.json | `pytest pipeline/tests` passes |
 | **Oct 4–7** | write.py with grounding check plus judge; voice.py; mix.py; publish.py (a local `python -m http.server` stands in for CloudFront during development) | **End-to-end on one clip:** `rookie-en` and `kid-en` play synced on the VVD |
-| Oct 8–10 | Player: rule-card overlay, quick switch, Home picker, 10-foot styling. **Film the BU game** (players' consent and venue permission in hand) and run it through the pipeline plus review. Record a 30-second rehearsal of the video. | Three MVP tracks on our own footage |
+| Oct 8–10 | Player: rule-card overlay, quick switch, Home picker, 10-foot styling. Run the chosen licensed demo clip (2-5 min) through the pipeline plus review. Record a 30-second rehearsal of the video. | Three MVP tracks on the demo clip |
 | Oct 11–14 | Why button: questions in write.py, answer card and audio. Fantasy panel plus `fantasy-en`. | Demo script sections 0:15–1:35 can be performed end to end |
 | Oct 15–17 | `rookie-hi` and `rookie-zh`; eval.py run on the final clip; switch to S3 + CloudFront with OAC; README with an "Amazon services used, where, why" table | Numbers in eval/results.md; app loads the manifest from CloudFront |
 | Oct 18–20 | Stretch, only if everything above is green: an MCP server exposing `get_current_play`, `explain_play` and `fantasy_impact`, reading manifest.json. Otherwise polish. **Freeze the night of Oct 20.** | Tagged `v1.0` |
@@ -80,8 +80,8 @@ README.md ATTRIBUTION.md FRICTION-LOG.md
 - **Two plays close together.** A line is placed at `t+0.4s`. A lower-priority event's line gets dropped if it would overlap a higher one (priority: score > foul/violation > rest).
 - **Translation drift.** Lines are generated directly in the target language from the same allowed facts. The grounding check compares numerals and jerseys across languages.
 - **Rebuffer on switch (option 2c).** The UI shows the persona label during the ~1 s gap and saves `currentTime` before the swap.
-- **Filming slips past Oct 10.** Ship on the CC-BY clip with attribution. That's already the development path, so nothing breaks.
-- **Security.** No keys in the repo (`.env` is gitignored, and the pipeline uses the AWS profile). The S3 bucket stays private and CloudFront reads it through OAC, serving only `published/`. Consent forms and full player names stay out of git. review.py binds to 127.0.0.1 only.
+- **No good licensed clip.** Fall back to stitching several short public-domain DVIDS clips, or switch sport, per CONTEXT.md.
+- **Security.** No keys in the repo (`.env` is gitignored, and the pipeline uses the AWS profile). The S3 bucket stays private and CloudFront reads it through OAC, serving only `published/`. review.py binds to 127.0.0.1 only.
 - **Cost.** The content-hash cache means an unchanged input never re-calls Bedrock or Polly. The budget alarm is $20.
 - **Friction log.** Every snag gets logged the day it happens (the VVD, S2 and Alexa+ access are the likely ones).
 

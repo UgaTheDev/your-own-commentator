@@ -4,6 +4,7 @@ Usage: python pipeline/extract.py <clip_id>
 Reads data/<clip>/source.mp4, writes events.proposed.json (reviewed by hand before state.py uses it).
 """
 import json
+import re
 import subprocess
 import sys
 
@@ -15,14 +16,33 @@ STEP = 15.0  # 5s overlap so an event on a chunk boundary is seen whole at least
 MAX_BYTES = 18 * 1024 * 1024  # 25 MB inline limit, minus ~33% base64 overhead
 DEDUPE_WINDOW = 2.0
 
+SYSTEM = ("You are the vision component of an accessibility app that narrates amateur and recreational basketball games "
+          "for new fans, kids and non-English speakers. The footage is public domain or filmed by the app's users with the "
+          "players' consent. Describing visible game events (shots, makes, misses, fouls, rebounds) is the intended, safe use.")
+
 PROMPT = f"""You are watching a {CHUNK:.0f}-second clip of a basketball game.
 List every event you can actually see, as a JSON array. Each item:
 {{"t": seconds from the start of this clip (number), "type": one of {sorted(EVENT_TYPES)},
  "team": jersey color as seen, lowercase (e.g. "red"), or null,
  "jersey": jersey number as an integer, or null unless the number is clearly legible,
  "confidence": 0 to 1}}
-Only output events you can see. Do not guess. If there are none, output [].
+Each event is one distinct play; real plays are usually several seconds apart. Never repeat an event.
+List at most 8 events. Only output events you can see. Do not guess. If there are none, output [].
 Output only the JSON array."""
+
+
+MAX_PER_CHUNK = 12  # more than this in 20s means the model is looping, not seeing
+
+
+def salvage(reply):
+    """Parse the reply's JSON; if it was cut off mid-array, keep every complete {...} object."""
+    try:
+        return common.parse_json(reply)
+    except (ValueError, json.JSONDecodeError):
+        objs = [json.loads(m) for m in re.findall(r"\{[^{}]*\}", reply)]
+        if not objs:
+            raise
+        return objs
 
 
 def chunk_starts(duration):
@@ -89,15 +109,18 @@ def main(clip_id):
     events, dropped = [], 0
     for start, path in make_chunks(d / "source.mp4", d / "render" / "chunks"):
         video = {"video": {"format": "mp4", "source": {"bytes": path.read_bytes()}}}
-        reply = common.converse("extract", PROMPT, content=[video], max_tokens=2048, temperature=0)
+        reply = common.converse("extract", PROMPT, system=SYSTEM, content=[video], max_tokens=1024, temperature=0)
         try:
-            items = common.parse_json(reply)
+            items = salvage(reply)
         except (ValueError, json.JSONDecodeError) as err:
             print(f"chunk {start:.0f}s: unparseable reply, skipped ({err})")
             continue
         if isinstance(items, dict):  # model sometimes wraps: {"events": [...]}
             items = items.get("events", [])
         items = items if isinstance(items, list) else []
+        if len(items) > MAX_PER_CHUNK:
+            print(f"chunk {start:.0f}s: {len(items)} events looks like a looping reply, skipped")
+            continue
         clean = [v for v in map(validate, items) if v]
         dropped += len(items) - len(clean)
         events += to_absolute(clean, start)

@@ -21,7 +21,8 @@ REGION = os.environ.get("AWS_REGION", "us-east-1")  # Polly generative voices + 
 # Bedrock inference profile IDs. Verify with:
 #   aws bedrock list-inference-profiles --region us-east-1 --query "inferenceProfileSummaries[].inferenceProfileId"
 MODELS = {
-    "extract": os.environ.get("MODEL_EXTRACT", "us.amazon.nova-2-lite-v1:0"),
+    # Nova 2 Lite refuses basketball play-by-play video as "sports strategy misuse" (FRICTION-LOG 2026-09-26)
+    "extract": os.environ.get("MODEL_EXTRACT", "us.amazon.nova-pro-v1:0"),
     "write": os.environ.get("MODEL_WRITE", "us.amazon.nova-2-lite-v1:0"),
     "judge": os.environ.get("MODEL_JUDGE", "us.amazon.nova-2-lite-v1:0"),
 }

@@ -17,8 +17,8 @@ real Fire TV.**
 ## 2. Decisions to make first (by Sep 28)
 | Decision | Recommendation | Why |
 |---|---|---|
-| Sport | **Basketball** | One camera in a BU gym can film it; frequent teachable rules (travel, shot clock, fouls, 3 vs 2, and-one); legal footage is easy to get |
-| Footage | **Film a BU intramural or club game** with written OK from players | Zero rights risk; also proves the amateur-sports angle (no commentary exists there at all) |
+| Sport | **Basketball** | Frequent teachable rules (travel, fouls, 3 vs 2, and-one); licensed amateur footage exists online |
+| Footage | **Licensed footage found online** (CC-BY/BY-SA, CC0 or US-gov public domain); decided 2026-09-26 not to film | No filming logistics; amateur/military footage still proves the amateur-sports angle. See CONTEXT.md "Footage rights" |
 | OS | **Vega OS** (React Native) | It's Amazon's new platform (judges notice), and you know React and TypeScript |
 | Pipeline language | Python (FastAPI) | Fastest for you; boto3 for Bedrock and Polly |
 | Mini challenge to target | **AWS Builder** (Bedrock + Polly + S3/CloudFront + DynamoDB + Lambda) | The repo will be public with a license anyway, but only one mini prize can be won, and AWS Builder fits the stack better |
@@ -87,7 +87,7 @@ rights for it don't exist anyway.
 ## 6. Schedule (interleaved with ../NVIDIA)
 | Dates | Amazon (priority) | NVIDIA (background) |
 |---|---|---|
-| **Sep 27-Oct 3** | Install Vega Developer Tools; simulator hello-world playing a video. **Alexa+ spike.** Book the game filming and get player consent. Run Nova event extraction on a 2-min test clip. **Request the $150 AWS credits** (deadline Oct 21, do it now). Start FRICTION-LOG.md. | Deploy Cosmos Reason 2 on Nebius AI Cloud; depth on 20 public-domain images |
+| **Sep 27-Oct 3** | Install Vega Developer Tools; simulator hello-world playing a video. **Alexa+ spike.** Pick 2-3 licensed footage candidates (see CONTEXT.md "Footage rights"). Run Nova event extraction on a 2-min test clip. **Request the $150 AWS credits** (deadline Oct 21, do it now). Start FRICTION-LOG.md. | Deploy Cosmos Reason 2 on Nebius AI Cloud; depth on 20 public-domain images |
 | **Oct 4-10** | End to end on one clip: events, review screen, Rookie + Kid personas, Polly, manifest, app playing a synced track | Build the eval set; eval harness v1 |
 | **Oct 11-17** | Spanish + Fantasy personas, rule cards, Ask (Plan A or B), QR companion, polish the TV UI (focus states, 10-foot readability) | Segment fusion + map UI |
 | **Oct 18-20** | Live-replay stretch only if everything else is done. **Code freeze Oct 20 night.** | none |
@@ -113,7 +113,7 @@ No copyrighted music. Record your own voiceover.
 | Alexa+ third-party routing unavailable | Plan B/C button; MCP server still ships; friction log entry |
 | Nova misses or mislabels events | Human review screen (it's also the ground truth); report precision and recall honestly |
 | Vega tooling friction (new OS) | Spike in week 1; fallback to Fire OS with React Native for Android if blocked by Oct 3 |
-| Footage rights | Only our own filmed game with consent, or CC-BY with attribution |
+| Footage rights | Only CC-BY/BY-SA, CC0 or US-gov public domain clips, recorded in SOURCES.md with attribution |
 | Voice lines overrun the next play | Hard word budget per gap; drop low-priority lines |
 | Scope creep with two hackathons | Rookie + Kid + Spanish + Why is the MVP. Fantasy and live replay are the first things cut |
 | AWS cost | $150 credits; pre-render and cache all audio; Polly and Bedrock costs are small at demo scale |

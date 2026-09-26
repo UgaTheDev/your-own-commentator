@@ -94,13 +94,22 @@ is what "genuine ecosystem understanding" rewards.
 
 ## Footage rights: the constraint that shapes the demo
 The rules forbid third-party copyrighted material and trademarks in the video. **No NFL, NBA
-or ESPN footage, logos or team marks.** Options, best first:
-1. **Film a real game ourselves** with the players' permission: BU intramural or club
-   basketball or soccer. It's real, it's ours, and it shows a real use case (amateur and
-   college sports have no commentary at all, which strengthens Impact).
-2. **Creative Commons footage** (CC-BY on Wikimedia Commons or YouTube's CC filter), with
-   attribution in the description.
-3. Public-domain US government footage (such as military academy games), only if clearly
-   public domain.
+or ESPN footage, logos or team marks.**
+
+**Decision (2026-09-26): we will not film a game.** We use licensed footage found online.
+- **License must allow reuse and modification** (we overlay audio and graphics): CC-BY or
+  CC-BY-SA (attribute in the video description), CC0, or US-government public domain
+  (e.g. DVIDS / DoD works). Not ND or NC, not the standard YouTube license, and no fair-use
+  reasoning.
+- **Avoid visible trademarks:** NBA/NCAA/pro team logos, sponsor boards, broadcast graphics.
+  Amateur, pickup, rec-league or military footage is ideal. It also backs the Impact story:
+  amateur games have no commentary at all.
+- **2 to 5 minutes of continuous play** with teachable moments (fouls, travels, 3s, free
+  throws). Basketball is the default; switch sport only if the only good licensed footage is
+  another sport.
+- **Where to look:** Wikimedia Commons video categories, YouTube with the Creative Commons
+  filter, the Internet Archive (check the license field), DVIDS.
+- Every clip gets its source URL, license, uploader and attribution string in SOURCES.md.
+  Raw downloads go in data/raw/ (gitignored).
 
 The play-by-play data and rules knowledge are ours to generate, so there's no rights problem there.

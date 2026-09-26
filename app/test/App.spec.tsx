@@ -4,17 +4,12 @@ import * as React from 'react';
 
 import {App} from '../src/App';
 
-describe('App', () => {
-  it('matches snapshot', () => {
-    const screen = render(<App />);
-    expect(screen).toMatchSnapshot();
-  });
+jest.mock('@amazon-devices/react-native-w3cmedia', () => ({}));
 
-  it('renders all tiles', () => {
+describe('App', () => {
+  it('renders the home title while the manifest loads', () => {
+    global.fetch = jest.fn(() => new Promise(() => {})) as jest.Mock;
     const screen = render(<App />);
-    expect(screen.getByTestId('tile-home')).toBeTruthy();
-    expect(screen.getByTestId('tile-get-started')).toBeTruthy();
-    expect(screen.getByTestId('tile-debug')).toBeTruthy();
-    expect(screen.getByTestId('tile-learn-more')).toBeTruthy();
+    expect(screen.getByText('Your Own Commentator')).toBeTruthy();
   });
 });

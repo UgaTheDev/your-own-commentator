@@ -19,3 +19,4 @@ data/.cache/
 data/*/render/
 .playwright-mcp/
 data/ambience/
+.vercel/

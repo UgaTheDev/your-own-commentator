@@ -75,6 +75,7 @@ export const Player = ({manifest, initial, onBack}: Props) => {
 
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      log('back');
       onBack();
       return true;
     });

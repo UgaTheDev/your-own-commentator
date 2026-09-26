@@ -17,8 +17,14 @@ export const FocusButton = ({
   const [focused, setFocused] = useState(false);
   return (
     <Pressable
-      onPress={onPress}
-      onFocus={() => setFocused(true)}
+      onPress={() => {
+        console.warn(`YOC: press ${label}`);
+        onPress();
+      }}
+      onFocus={() => {
+        console.warn(`YOC: focus ${label}`);
+        setFocused(true);
+      }}
       onBlur={() => setFocused(false)}
       hasTVPreferredFocus={hasTVPreferredFocus}
       accessibilityRole="button"

@@ -23,3 +23,10 @@ def test_single_track_and_silent_track():
     args = build_mix_args("in.mp4", {"kid-en": []}, "out.mp4")
     assert args.count("-map") == 2 and args.count("-i") == 1
     assert "sidechaincompress" not in args[args.index("-filter_complex") + 1]
+
+
+def test_bed_replaces_game_audio_and_is_trimmed():
+    args = build_mix_args("v.mp4", {"rookie-en": [(1.0, "a.mp3")]}, "out.mp4", bed="crowd.flac", duration=42.5)
+    assert args[args.index("crowd.flac") - 3:args.index("crowd.flac")] == ["-stream_loop", "-1", "-i"]
+    graph = args[args.index("-filter_complex") + 1]
+    assert "atrim=duration=42.5" in graph and "[0:a]" not in graph and "[2:a]adelay" in graph

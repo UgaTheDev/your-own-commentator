@@ -20,6 +20,13 @@ The repo holds only planning docs (CONTEXT.md, PLAN.md, FRICTION-LOG.md, LICENSE
    a. one MP4 with N audio tracks, switched through `audioTracks[i].enabled`
    b. HLS with alternate audio renditions through Shaka
    c. **fallback that always works:** one MP4 per track, switched by setting `src` and seeking to the saved `currentTime` (about a 1 s rebuffer, which reads as a channel change)
+
+   **S2 result (2026-09-26, measured on the VVD with `app/src/S2Spike.tsx`): use 2c.**
+   - 2a fails: the native player finds both audio streams, but `audioTracks` stays empty in JS in URL mode (w3cmedia 2.3.2).
+   - 2c works: `playing` returns about 1–1.5 s after the `src` change, and the seek lands about 3–3.5 s after it (position error up to 0.09 s). Keep the "switching" label up until `seeked`, not `playing`.
+   - A second `AudioPlayer` plays while the video is paused (starts in 343 ms) or playing, so spoken "Why?" answers work.
+   - **The media player accepts only HTTPS.** `http://` fails with a blank code 4 (device log: `isUriSchemeSecure ... insecure protocol/scheme http`). App media must come from CloudFront (or presigned S3 during development), never a local HTTP server.
+   - 2b (HLS via Shaka) was not tested.
 3. **Track matrix (MVP):** `rookie-en`, `kid-en`, `rookie-es`. Stretch: `fantasy-en`, `rookie-hi`, `rookie-zh`. Languages apply to Rookie only. Five personas × five languages would be 25 tracks for the same demo value.
 4. **Fantasy commentary doesn't depend on the roster.** The voice covers the fantasy points of the players in each play. The on-screen panel highlights *your* roster and is computed on the device from the game state. That means no rendering per user.
 5. **"Why?" answers are pre-generated.** Each teachable event (foul, travel, turnover, and-one) gets up to 3 suggested questions, and each question gets an answer per track. Pressing Why pauses the video and shows an answer card. The answer audio plays in a second player if spike S2 shows two players can run at once. Otherwise it's a text card only.
@@ -64,7 +71,7 @@ README.md SOURCES.md FRICTION-LOG.md
 | **Sep 28 (Mon)** | **S1:** install the Vega tools (prerequisites: Rosetta 2, Java 21+, Node 18–20, latest SDK, since older builds had Apple Silicon VVD crashes) and run the `vega` template on the VVD. Check that the VVD can reach an HTTP server on the host Mac. If it can't, use S3 + CloudFront from day 1. **Test recording the VVD with audio** (macOS screen capture, plus BlackHole if system audio isn't captured) so Oct 21 isn't the first try. **S2 audio spike:** test options 2a, 2b and 2c, and whether two players can run at once. Update PLAN.md's decisions table (basketball, Vega, AWS Builder, Why button, live mode cut). | Video plays on the VVD; S2 result written into PLAN.md |
 | Sep 29–Oct 1 | **S3:** extract.py on the CC-BY clip plus a rough review.py. **S4:** 2-hour Alexa+ for Builders access check, logged in the friction log. | `events.proposed.json` for a 2-minute clip; first precision/recall numbers |
 | Oct 2–3 | state.py plus tests; rules.json for all event types; personas.json | `pytest pipeline/tests` passes |
-| **Oct 4–7** | write.py with grounding check plus judge; voice.py; mix.py; publish.py (a local `python -m http.server` stands in for CloudFront during development) | **End-to-end on one clip:** `rookie-en` and `kid-en` play synced on the VVD |
+| **Oct 4–7** | write.py with grounding check plus judge; voice.py; mix.py; publish.py (media must be HTTPS, so CloudFront, or presigned S3 URLs during development; a local HTTP server doesn't work) | **End-to-end on one clip:** `rookie-en` and `kid-en` play synced on the VVD |
 | Oct 8–10 | Player: rule-card overlay, quick switch, Home picker, 10-foot styling. Run the chosen licensed demo clip (2-5 min) through the pipeline plus review. Record a 30-second rehearsal of the video. | Three MVP tracks on the demo clip |
 | Oct 11–14 | Why button: questions in write.py, answer card and audio. Fantasy panel plus `fantasy-en`. | Demo script sections 0:15–1:35 can be performed end to end |
 | Oct 15–17 | `rookie-hi` and `rookie-zh`; eval.py run on the final clip; switch to S3 + CloudFront with OAC; README with an "Amazon services used, where, why" table | Numbers in eval/results.md; app loads the manifest from CloudFront |

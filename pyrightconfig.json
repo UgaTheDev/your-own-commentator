@@ -1,3 +1,5 @@
 {
-  "extraPaths": ["pipeline"]
+  "extraPaths": ["pipeline"],
+  "venvPath": ".",
+  "venv": ".venv"
 }

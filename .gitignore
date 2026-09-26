@@ -17,3 +17,4 @@ data/raw/
 # pipeline cache (Bedrock/Polly responses) and rendered media
 data/.cache/
 data/*/render/
+.playwright-mcp/

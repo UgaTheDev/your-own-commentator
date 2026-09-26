@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Event Review</title>
+<style>
+  body { font: 14px system-ui, sans-serif; margin: 0 auto; max-width: 1100px; padding: 12px 16px; background: #fafafa; color: #222; }
+  video { width: 100%; max-height: 55vh; background: #000; }
+  #bar { display: flex; gap: 24px; align-items: center; margin: 8px 0; flex-wrap: wrap; }
+  #score { font-size: 20px; font-weight: 600; }
+  #status.err { color: #b00020; } #status.warn { color: #a05a00; } #status.ok { color: #2e7d32; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 3px 6px; border-bottom: 1px solid #ddd; text-align: left; }
+  tr { cursor: pointer; }
+  tr.sel { background: #dbe9ff; }
+  tr.accepted td.st { color: #2e7d32; font-weight: 600; }
+  input.j { width: 4em; }
+  kbd { border: 1px solid #bbb; border-radius: 3px; padding: 0 4px; background: #fff; }
+  #help { color: #666; }
+</style>
+</head>
+<body>
+<video id="v" src="/video" controls preload="auto"></video>
+<div id="bar">
+  <span id="score"></span>
+  <span id="final"></span>
+  <span id="status"></span>
+</div>
+<div id="help"><kbd>A</kbd> accept <kbd>D</kbd> delete <kbd>N</kbd> new at current time <kbd>J</kbd>/<kbd>K</kbd> next/prev <kbd>Space</kbd> play/pause <kbd>S</kbd> save</div>
+<table>
+  <thead><tr><th>time</th><th>type</th><th>team</th><th>jersey</th><th>conf</th><th>status</th></tr></thead>
+  <tbody id="rows"></tbody>
+</table>
+<script>
+// ponytail: mirrors state.EVENT_TYPES; the server rejects anything else on save
+const TYPES = ["made_2", "made_3", "missed_shot", "ft_made", "ft_missed", "rebound", "steal", "block", "turnover", "foul", "travel", "timeout"];
+const POINTS = { made_2: 2, made_3: 3, ft_made: 1 };
+const v = document.getElementById("v"), rows = document.getElementById("rows"), statusEl = document.getElementById("status");
+let clip, events = [], sel = 0, lastType = "made_2", timer = null;
+
+const fmt = t => `${String(Math.floor(t / 60)).padStart(2, "0")}:${(t % 60).toFixed(1).padStart(4, "0")}`;
+const scoreStr = s => clip.teams.map(t => `${t} ${s[t]}`).join(" – ");
+const setStatus = (text, cls) => { statusEl.textContent = text; statusEl.className = cls; };
+
+function opt(value, label, cur) {
+  const o = document.createElement("option");
+  o.value = value; o.textContent = label; o.selected = value === cur;
+  return o;
+}
+
+function render() {
+  events.sort((a, b) => a.t - b.t);
+  sel = Math.max(0, Math.min(sel, events.length - 1));
+  rows.replaceChildren(...events.map((e, i) => {
+    const tr = document.createElement("tr");
+    tr.className = (i === sel ? "sel " : "") + (e.status === "accepted" ? "accepted" : "");
+    tr.onclick = ev => { sel = i; if (ev.target.tagName !== "SELECT" && ev.target.tagName !== "INPUT") v.currentTime = Math.max(0, e.t - 2); render(); };
+    const type = document.createElement("select");
+    TYPES.forEach(t => type.append(opt(t, t, e.type)));
+    type.onchange = () => { e.type = lastType = type.value; if (e.type === "timeout") e.team = null; changed(); };
+    const team = document.createElement("select");
+    team.append(opt("", "—", e.team ?? ""));
+    clip.teams.forEach(t => team.append(opt(t, t, e.team)));
+    team.onchange = () => { e.team = team.value || null; changed(); };
+    const jersey = document.createElement("input");
+    jersey.className = "j"; jersey.type = "number"; jersey.min = 0; jersey.value = e.jersey ?? "";
+    jersey.onchange = () => { e.jersey = jersey.value === "" ? null : parseInt(jersey.value, 10); changed(); };
+    const cells = [fmt(e.t), type, team, jersey, e.confidence ?? "", e.status === "accepted" ? "accepted" : "unreviewed"];
+    cells.forEach((c, k) => { const td = document.createElement("td"); if (k === 5) td.className = "st"; td.append(c); tr.append(td); });
+    return tr;
+  }));
+  rows.children[sel]?.scrollIntoView({ block: "nearest" });
+  updateScore();
+}
+
+function updateScore() {
+  if (!clip) return;
+  const s = { ...clip.start_score };
+  for (const e of events) if (e.t <= v.currentTime && POINTS[e.type] && e.team in s) s[e.team] += POINTS[e.type];
+  document.getElementById("score").textContent = `${fmt(v.currentTime)}  ${scoreStr(s)}`;
+}
+
+function changed() {
+  render();
+  setStatus("unsaved…", "");
+  clearTimeout(timer);
+  timer = setTimeout(save, 1000);
+}
+
+async function save() {
+  clearTimeout(timer);
+  setStatus("saving…", "");
+  try {
+    const r = await fetch("/events", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(events) });
+    const body = await r.json();
+    if (!r.ok) setStatus(`not saved: ${body.error}`, "err");
+    else if (body.warning) setStatus(`saved, warning: ${body.warning}`, "warn");
+    else setStatus("saved, final score matches", "ok");
+  } catch (err) { setStatus(`not saved: ${err}`, "err"); }
+}
+
+document.addEventListener("keydown", ev => {
+  if (ev.target.matches("input, select, textarea") || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+  const e = events[sel], k = ev.key.toLowerCase();
+  if (k === " ") v.paused ? v.play() : v.pause();
+  else if (k === "a" && e) { e.status = "accepted"; changed(); }
+  else if (k === "d" && e) { events.splice(sel, 1); changed(); }
+  else if (k === "n") {
+    const t = Math.round(v.currentTime * 10) / 10;
+    const ne = { id: `h${Date.now().toString(36)}`, t, type: lastType, team: lastType === "timeout" ? null : clip.teams[0], jersey: null, status: "accepted" };
+    events.push(ne);
+    events.sort((a, b) => a.t - b.t);
+    sel = events.indexOf(ne);
+    changed();
+  }
+  else if (k === "j") { sel++; render(); if (events[sel]) v.currentTime = Math.max(0, events[sel].t - 2); }
+  else if (k === "k") { sel--; render(); if (events[sel]) v.currentTime = Math.max(0, events[sel].t - 2); }
+  else if (k === "s") save();
+  else return;
+  ev.preventDefault();
+});
+v.addEventListener("timeupdate", updateScore);
+v.addEventListener("seeked", updateScore);
+
+(async () => {
+  [clip, events] = await Promise.all([fetch("/clip").then(r => r.json()), fetch("/events").then(r => r.json())]);
+  document.title = `Review ${clip.id ?? ""}`.trim();
+  document.getElementById("final").textContent = clip.final_score ? `final: ${scoreStr(clip.final_score)}` : "no final_score in clip.json";
+  render();
+})();
+</script>
+</body>
+</html>

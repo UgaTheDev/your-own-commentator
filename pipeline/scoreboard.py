@@ -67,13 +67,19 @@ def extract_scores(video, bug):
     frames = thumbnails(video, bug["crop"])
     # read 1s after the change so the graphic has finished animating
     points = [0] + [i + 1 for i in change_points(frames)[1:] if i + 1 < len(frames)]
-    timeline, last = [], None
+    timeline = []
     for i in points:
         s = read_score(video, i, bug["crop"], bug["labels"])
-        if s != last:  # the bug can change for non-score reasons (animations, period)
-            timeline.append((float(i), s))
-            last = s
+        if not timeline or plausible(timeline[-1][1], s):
+            if not timeline or s != timeline[-1][1]:
+                timeline.append((float(i), s))
     return timeline
+
+
+def plausible(last, s):
+    """Scores never go down, and one reading step adds at most one basket per team. Anything else is a misread
+    (Nova reads "17" as "7" when players pass behind the graphic) or an end-of-clip transition."""
+    return all(0 <= s[t] - last[t] <= 3 for t in last)
 
 
 def drop_periodic(events, min_run=3, jitter=0.3, max_gap=4.0):

@@ -10,6 +10,7 @@ import subprocess
 import sys
 
 import common
+import scoreboard
 from state import EVENT_TYPES
 
 CHUNK = 20.0
@@ -112,7 +113,8 @@ def ask(path, prompt):
 
 def main(clip_id):
     d = common.clip_dir(clip_id)
-    teams = common.load(d / "clip.json").get("teams") if (d / "clip.json").exists() else None
+    clip = common.load(d / "clip.json") if (d / "clip.json").exists() else {}
+    teams = clip.get("teams")
     prompt = PROMPT + (f'\nThe two teams wear {teams}. "team" must be exactly one of {teams}, or null.' if teams else "")
     chunks = make_chunks(d / "source.mp4", d / "render" / "chunks")
     with ThreadPoolExecutor(4) as pool:  # ponytail: 4 parallel Nova calls; raise if quotas allow
@@ -135,6 +137,11 @@ def main(clip_id):
             clean = [{**v, "team": v["team"] if v["team"] in teams else None} for v in clean]
         dropped += len(items) - len(clean)
         events += to_absolute(clean, start)
+    events = scoreboard.drop_periodic(events)
+    if clip.get("scoreBug"):  # the broadcast score graphic is authoritative for baskets
+        scored, warnings = scoreboard.score_events(scoreboard.extract_scores(d / "source.mp4", clip["scoreBug"]))
+        events = [e for e in events if e["type"] not in scoreboard.POINTS_TO_TYPE.values()] + scored
+        print(f"{len(scored)} scoring events from the score graphic", *warnings, sep="\n  ")
     events = dedupe(events)
     common.save(d / "events.proposed.json", events)
     print(f"{len(events)} events -> {d / 'events.proposed.json'} ({dropped} invalid items dropped)")

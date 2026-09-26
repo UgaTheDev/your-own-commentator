@@ -42,3 +42,12 @@ def test_drop_periodic_removes_model_loops_but_keeps_real_plays():
 def test_drop_periodic_needs_three_in_a_row_and_same_type():
     assert len(drop_periodic([ev(1.0), ev(3.1)])) == 2
     assert len(drop_periodic([ev(1.0), ev(3.0, "foul"), ev(5.0)])) == 3
+
+
+def test_plausible_rejects_misreads_and_jumps():
+    from scoreboard import plausible
+    last = {"pink": 17, "blue": 6}
+    assert plausible(last, {"pink": 17, "blue": 6})
+    assert plausible(last, {"pink": 20, "blue": 6})
+    assert not plausible(last, {"pink": 7, "blue": 6})    # "17" misread as "7"
+    assert not plausible(last, {"pink": 28, "blue": 35})  # garbage at a transition

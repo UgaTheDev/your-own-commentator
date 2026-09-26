@@ -81,6 +81,7 @@ def prompt_for(persona, facts, gap):
         f"You are a live basketball commentator. Style: {persona['style']}\n"
         f"Write ONE spoken line in language '{persona['lang']}' about this play, at most {n} {unit}.\n"
         "Hard rules: state only facts in FACTS. Never invent names, stats, times, streaks or anything not in FACTS. "
+        "Speak in the third person as the commentator, never as a player. "
         "Refer to players by jersey number (and name only if FACTS.player has one). Write all numbers as digits. "
         "Reply with the line only, no quotes.\n"
         f"FACTS: {json.dumps(facts, ensure_ascii=False)}"

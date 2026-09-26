@@ -2,7 +2,7 @@
 
 python pipeline/publish.py <clip_id> [--local] [--multitrack]
   --local       relative URLs; serve data/<clip>/ with `python -m http.server`
-  (default)     upload to s3://$YOC_BUCKET/published/<clip>/, URLs on https://$YOC_CDN/
+  (default)     upload to s3://$YOC_BUCKET/published/<clip>/, URLs on https://$YOC_CDN/<clip>/ (origin path /published)
   --multitrack  one multi.mp4 with audioTrackIndex per track (mix.py --mode multitrack)
 """
 import argparse
@@ -61,7 +61,7 @@ def main(clip_id, local, multitrack):
     else:
         if not os.environ.get("YOC_BUCKET") or not os.environ.get("YOC_CDN"):
             raise SystemExit("set YOC_BUCKET and YOC_CDN, or pass --local")
-        base = f"https://{os.environ['YOC_CDN']}/published/{clip_id}/"
+        base = f"https://{os.environ['YOC_CDN']}/{clip_id}/"  # the CloudFront origin path is /published
     m = build_manifest(clip_id, load(d / "clip.json"), load(d / "events.reviewed.json"), load(d / "state.json"),
                        load(d / "voiced.json"), load(rules_path) if rules_path.exists() else {},
                        load(questions_path) if questions_path.exists() else {}, base, multitrack)

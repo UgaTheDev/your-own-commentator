@@ -4,6 +4,7 @@ Usage: python pipeline/extract.py <clip_id>
 Reads data/<clip>/source.mp4, writes events.proposed.json (reviewed by hand before state.py uses it).
 """
 import json
+from concurrent.futures import ThreadPoolExecutor
 import re
 import subprocess
 import sys
@@ -104,12 +105,20 @@ def make_chunks(src, out_dir):
     return paths
 
 
+def ask(path, prompt):
+    video = {"video": {"format": "mp4", "source": {"bytes": path.read_bytes()}}}
+    return common.converse("extract", prompt, system=SYSTEM, content=[video], max_tokens=1024, temperature=0)
+
+
 def main(clip_id):
     d = common.clip_dir(clip_id)
+    teams = common.load(d / "clip.json").get("teams") if (d / "clip.json").exists() else None
+    prompt = PROMPT + (f'\nThe two teams wear {teams}. "team" must be exactly one of {teams}, or null.' if teams else "")
+    chunks = make_chunks(d / "source.mp4", d / "render" / "chunks")
+    with ThreadPoolExecutor(4) as pool:  # ponytail: 4 parallel Nova calls; raise if quotas allow
+        replies = list(pool.map(lambda c: ask(c[1], prompt), chunks))
     events, dropped = [], 0
-    for start, path in make_chunks(d / "source.mp4", d / "render" / "chunks"):
-        video = {"video": {"format": "mp4", "source": {"bytes": path.read_bytes()}}}
-        reply = common.converse("extract", PROMPT, system=SYSTEM, content=[video], max_tokens=1024, temperature=0)
+    for (start, _), reply in zip(chunks, replies):
         try:
             items = salvage(reply)
         except (ValueError, json.JSONDecodeError) as err:
@@ -122,6 +131,8 @@ def main(clip_id):
             print(f"chunk {start:.0f}s: {len(items)} events looks like a looping reply, skipped")
             continue
         clean = [v for v in map(validate, items) if v]
+        if teams:  # an unknown color becomes null for review to fix, instead of failing state.py later
+            clean = [{**v, "team": v["team"] if v["team"] in teams else None} for v in clean]
         dropped += len(items) - len(clean)
         events += to_absolute(clean, start)
     events = dedupe(events)

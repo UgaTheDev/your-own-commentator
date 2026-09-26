@@ -25,6 +25,7 @@ MVP_TRACKS = ["rookie-en", "kid-en", "rookie-es"]
 PRIORITY = {"made_2": 3, "made_3": 3, "ft_made": 3, "foul": 2, "travel": 2, "turnover": 2}  # rest: 1
 # ponytail: rough speech rates (units per second) to size the budget; voice.py measures real durations
 RATE = {"en": ("words", 2.5), "es": ("words", 2.5), "hi": ("words", 2.2), "zh": ("characters", 4.0)}
+MAX_LEN = {"words": 20, "characters": 35}  # TV commentary is short even when the next play is far away
 LAST_GAP = 6.0  # seconds of room after the final event
 
 
@@ -72,7 +73,7 @@ def build_facts(event, state, rules, roster):
 
 def budget(gap, lang):
     unit, rate = RATE[lang]
-    return max(3, int(gap * rate)), unit
+    return max(3, min(MAX_LEN[unit], int(gap * rate))), unit
 
 
 def prompt_for(persona, facts, gap):
@@ -82,7 +83,9 @@ def prompt_for(persona, facts, gap):
         f"Write ONE spoken line in language '{persona['lang']}' about this play, at most {n} {unit}.\n"
         "Hard rules: state only facts in FACTS. Never invent names, stats, times, streaks or anything not in FACTS. "
         "Speak in the third person as the commentator, never as a player. "
-        "Refer to players by jersey number (and name only if FACTS.player has one). Write all numbers as digits. "
+        "Refer to players by jersey number only if FACTS.event.jersey is set (and by name only if FACTS.player has one); "
+        "if the jersey is null, say 'a pink player' or similar, never 'number'. Write all numbers as digits. "
+        "Only state the score using FACTS.state.score exactly. "
         "Reply with the line only, no quotes.\n"
         f"FACTS: {json.dumps(facts, ensure_ascii=False)}"
     )
@@ -92,6 +95,8 @@ JUDGE = (
     "You check sports commentary for invented facts. FACTS is the only ground truth. "
     "A LINE is 'unsupported' if it states any name, number, statistic, event, time or claim not present in or directly "
     "implied by FACTS (general rule explanations from FACTS.rule are allowed; tone and excitement are fine). "
+    "Any statement about a team's score or points total (e.g. 'on the board with 1 point', 'leads by 5') must match "
+    "FACTS.state.score exactly, otherwise it is unsupported. "
     'Reply with JSON only: {"verdict": "supported" | "unsupported", "reason": "<short>"}\n'
 )
 

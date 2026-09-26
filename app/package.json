@@ -2,7 +2,9 @@
   "name": "@amazon-devices/commentator",
   "version": "0.0.1",
   "private": true,
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "clean": "rm -rf node_modules buildinfo.json dist build",
     "start": "react-native start",
@@ -15,11 +17,12 @@
     "build:app": "npm-run-all build:release",
     "build": "npm-run-all build:release",
     "release": "npm-run-all lint test build:app"
-    },
+  },
   "dependencies": {
     "@amazon-devices/react-native-kepler": "~4.0.0",
     "react": "19.2.0",
-    "react-native": "0.83.0"
+    "react-native": "0.83.0",
+    "@amazon-devices/react-native-w3cmedia": "~2.3.2"
   },
   "engines": {
     "node": ">=20"
@@ -51,6 +54,8 @@
   "kepler": {
     "projectType": "application",
     "appName": "commentator",
-    "targets": ["tv"]
+    "targets": [
+      "tv"
+    ]
   }
 }

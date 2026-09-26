@@ -58,8 +58,10 @@ def cache_path(kind, key, ext="json"):
 @cache
 def aws(service):
     import boto3  # lazy: tests of pure logic never need boto3 or credentials
+    from botocore.config import Config
 
-    return boto3.client(service, region_name=REGION)
+    # adaptive retries: new accounts have low Bedrock/Polly TPS quotas
+    return boto3.client(service, region_name=REGION, config=Config(retries={"mode": "adaptive", "max_attempts": 8}))
 
 
 def converse(model_key, prompt, system=None, content=None, max_tokens=1024, temperature=0.3):

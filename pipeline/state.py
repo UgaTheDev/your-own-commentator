@@ -1,12 +1,13 @@
 """Deterministic game state from reviewed events.
 
-Usage: python pipeline/state.py data/<clip>
+Usage: python pipeline/state.py <clip_id>
 Reads clip.json + events.reviewed.json, writes state.json (one entry per event).
 Every number the commentary may say comes from here, so it must be exact.
 """
 import json
 import sys
-from pathlib import Path
+
+import common
 
 POINTS = {"made_2": 2, "made_3": 3, "ft_made": 1}
 FANTASY = {"rebound": 1.2, "steal": 3, "block": 3, "turnover": -1}  # plus 1 per point
@@ -64,7 +65,7 @@ def _fouled_on_shot(events, i):
 
 
 if __name__ == "__main__":
-    clip_dir = Path(sys.argv[1])
+    clip_dir = common.clip_dir(sys.argv[1])
     clip = json.loads((clip_dir / "clip.json").read_text())
     events = json.loads((clip_dir / "events.reviewed.json").read_text())
     states = compute(clip, events)

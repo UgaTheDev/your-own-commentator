@@ -1,0 +1,15 @@
+{
+  "made_2": {"title": "Two-point basket", "body": "A shot made from inside the arc is worth 2 points."},
+  "made_3": {"title": "Three-pointer", "body": "A shot made with both feet behind the arc is worth 3 points instead of 2."},
+  "ft_made": {"title": "Free throw", "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. Each make is worth 1 point."},
+  "ft_missed": {"title": "Free throw", "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. A miss scores nothing and the ball is live for a rebound on the last attempt."},
+  "missed_shot": {"title": "Missed shot", "body": "When a shot misses, either team can grab the rebound and take possession."},
+  "foul": {"title": "Personal foul", "body": "Illegal contact, like pushing, holding or hitting a shooter's arm, is a foul. The other team gets the ball, or free throws if the player was shooting. Players who collect too many fouls must leave the game."},
+  "and_one": {"title": "And-one", "body": "If a player is fouled while making a shot, the basket still counts and they get 1 extra free throw."},
+  "travel": {"title": "Traveling", "body": "A player holding the ball can't take steps without dribbling. Moving the pivot foot or taking extra steps is a travel, and the other team gets the ball."},
+  "turnover": {"title": "Turnover", "body": "A turnover is losing the ball to the other team without taking a shot, for example a bad pass or stepping out of bounds."},
+  "steal": {"title": "Steal", "body": "A defender who takes the ball away from the offense, without a foul, gets credit for a steal."},
+  "block": {"title": "Block", "body": "A defender who legally deflects a shot on its way up gets credit for a block. Touching it on the way down toward the rim is goaltending, and the basket counts."},
+  "rebound": {"title": "Rebound", "body": "Grabbing the ball after a missed shot is a rebound. A defensive rebound ends the other team's possession; an offensive rebound gives your team another chance."},
+  "timeout": {"title": "Timeout", "body": "A team can stop the clock to rest, talk strategy or break the other team's momentum."}
+}

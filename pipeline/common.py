@@ -9,6 +9,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CACHE = DATA / ".cache"
+
+# ponytail: minimal .env loader (KEY=VALUE lines); real env vars win
+if (ROOT / ".env").exists():
+    for line in (ROOT / ".env").read_text().splitlines():
+        k, sep, v = line.partition("=")
+        if sep and not k.strip().startswith("#"):
+            os.environ.setdefault(k.strip(), v.strip())
 REGION = os.environ.get("AWS_REGION", "us-east-1")  # Polly generative voices + Nova live here
 
 # Bedrock inference profile IDs. Verify with:

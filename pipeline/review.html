@@ -37,7 +37,7 @@
     <option value="accepted">show: accepted</option>
   </select>
 </div>
-<div id="help"><kbd>A</kbd> accept <kbd>D</kbd> delete <kbd>N</kbd> new at current time <kbd>J</kbd>/<kbd>K</kbd> next/prev <kbd>Space</kbd> play/pause <kbd>S</kbd> save</div>
+<div id="help"><kbd>A</kbd> accept <kbd>Shift</kbd>+<kbd>A</kbd> accept all scoreboard <kbd>D</kbd> delete <kbd>N</kbd> new at current time <kbd>J</kbd>/<kbd>K</kbd> next/prev <kbd>Space</kbd> play/pause <kbd>S</kbd> save</div>
 <table>
   <thead><tr><th>time</th><th>type</th><th>team</th><th>jersey</th><th>conf</th><th>source</th><th>status</th></tr></thead>
   <tbody id="rows"></tbody>
@@ -56,6 +56,11 @@ const setStatus = (text, cls) => { statusEl.textContent = text; statusEl.classNa
 // ponytail: backward compat with pre-C1 files, treated as nova/proposed, never written back unless the row changes
 const srcOf = e => e.source || "nova";
 const statusOf = e => e.status || "proposed";
+
+// Scoreboard events are read off the broadcast graphic, so they're exact; accept them in one go. Pure (tested via node).
+function pendingScoreboard(events) {
+  return events.filter(e => (e.source || "nova") === "scoreboard" && (e.status || "proposed") !== "accepted");
+}
 
 function opt(value, label, cur) {
   const o = document.createElement("option");
@@ -126,6 +131,11 @@ document.addEventListener("keydown", ev => {
   if (ev.target.matches("input, select, textarea") || ev.metaKey || ev.ctrlKey || ev.altKey) return;
   const e = visible()[sel], k = ev.key.toLowerCase();
   if (k === " ") v.paused ? v.play() : v.pause();
+  else if (k === "a" && ev.shiftKey) {
+    const todo = pendingScoreboard(events);
+    if (!todo.length) setStatus("no proposed scoreboard events", "");
+    else if (confirm(`Accept all ${todo.length} proposed scoreboard events?`)) { todo.forEach(x => x.status = "accepted"); changed(); }
+  }
   else if (k === "a" && e) { e.status = "accepted"; changed(); }
   else if (k === "d" && e) { events.splice(events.indexOf(e), 1); changed(); }
   else if (k === "n") {

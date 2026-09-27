@@ -1,6 +1,10 @@
-"""Stream A, Sprint 1: detect + track + team + court position -> tracks.json (contract C2).
+"""Stream A: detect + track + team + court position -> tracks.json (contract C2).
 
-    ~/.venvs/yoc-cv/bin/python cv/track.py lake-region --t0 30 --t1 90
+    ~/.venvs/yoc-cv/bin/python cv/track.py lake-region            # whole clip
+    ~/.venvs/yoc-cv/bin/python cv/track.py lake-region --detect-only
+
+The slow detection pass is cached under data/<clip>/render/cv-raw-*; re-running without
+--redetect only redoes homography, stitching (post.py) and ball filtering.
 
 RF-DETR Medium (Apache-2.0) on COCO person/sports ball, ByteTrack via supervision,
 team by torso colour, court position via a hand-calibrated keyframe homography chained
@@ -157,47 +161,45 @@ def write_tracks(path, fps, court, frames):
     tmp.replace(path)
     return doc
 
-# ---------- main ----------
+# ---------- detection pass (slow, cached) ----------
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("clip")
-    ap.add_argument("--t0", type=float, default=30)
-    ap.add_argument("--t1", type=float, default=90)
-    ap.add_argument("--fps", type=float, default=10)
-    ap.add_argument("--model", default="medium", choices=["nano", "small", "medium", "large"])
-    a = ap.parse_args()
+def hist(crop):
+    """16x4 hue/sat histogram of a torso crop, L1-normalised (appearance term for stitching)."""
+    if crop is None or crop.size == 0:
+        return None
+    h = cv2.calcHist([cv2.cvtColor(crop, cv2.COLOR_BGR2HSV)], [0, 1], None, [16, 4], [0, 180, 0, 256]).ravel()
+    return [round(float(v), 4) for v in h / max(h.sum(), 1)]
 
+
+def detect(src, t0, t1, fps, model_name):
+    """RF-DETR + pan-compensated ByteTrack over [t0, t1]. Returns (raw, feats, W, H); raw
+    keeps every ball candidate and the pan transform C so the post pass can be re-run cheaply."""
     import rfdetr
     import supervision as sv
     model = {"nano": rfdetr.RFDETRNano, "small": rfdetr.RFDETRSmall,
-             "medium": rfdetr.RFDETRMedium, "large": rfdetr.RFDETRLarge}[a.model]()
-    tracker = sv.ByteTrack(track_activation_threshold=0.3, lost_track_buffer=90, frame_rate=int(a.fps))
-
-    d = DATA / a.clip
-    calib = json.loads((HERE / "calib" / f"{a.clip}.json").read_text())
-    court = calib["court"]
-    cap = cv2.VideoCapture(str(d / "source.mp4"))
+             "medium": rfdetr.RFDETRMedium, "large": rfdetr.RFDETRLarge}[model_name]()
+    tracker = sv.ByteTrack(track_activation_threshold=0.3, lost_track_buffer=90, frame_rate=int(fps))
+    cap = cv2.VideoCapture(str(src))
     src_fps = cap.get(cv2.CAP_PROP_FPS)
-    W, Hh = cap.get(cv2.CAP_PROP_FRAME_WIDTH), cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-    step = max(1, round(src_fps / a.fps))
-    cap.set(cv2.CAP_PROP_POS_FRAMES, round(a.t0 * src_fps))
-    fi = round(a.t0 * src_fps)
-
-    raw, feats, t_start, C = [], [], time.time(), np.eye(3)
-    while fi <= a.t1 * src_fps:
+    step = max(1, round(src_fps / fps))
+    f0 = round(t0 * src_fps)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, f0)
+    fi, raw, feats, C, t_start = f0, [], [], np.eye(3), time.time()
+    while fi <= t1 * src_fps:
+        if (fi - f0) % step:
+            fi += 1
+            if not cap.grab():
+                break
+            continue
         ok, frame = cap.read()
         if not ok:
             break
-        if (fi - round(a.t0 * src_fps)) % step:
-            fi += 1
-            continue
         t = round(fi / src_fps, 3)
         fi += 1
         det = model.predict(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), threshold=0.2)
         ppl = det[(det.class_id == PERSON) & (det.confidence >= 0.25)]
         gray = cv2.cvtColor(cv2.resize(frame, None, fx=.5, fy=.5), cv2.COLOR_BGR2GRAY)
-        feats.append(features(gray, ppl.xyxy, Hh, W))
+        feats.append(features(gray, ppl.xyxy, 0, 0))
         # camera-motion compensation: track in a pan-stable pixel frame so ByteTrack's
         # IoU matching survives pans (C maps current px -> first-frame px)
         M = match(feats[-2], feats[-1])[0] if len(feats) > 1 else None
@@ -208,48 +210,106 @@ def main():
             ppl.xyxy = stable_boxes(C, ppl.xyxy)
         ppl = tracker.update_with_detections(ppl)
         balls = det[det.class_id == BALL]
-        ball = balls.xyxy[int(np.argmax(balls.confidence))].tolist() if len(balls) else None
-        players = [{"id": int(tid), "xyxy": xy.tolist(), "team": team_of(torso(frame, xy))}
-                   for xy, tid in zip(ppl.data["orig"], ppl.tracker_id)]
-        raw.append({"t": t, "players": players, "ball": ball, "n_det": int((det.class_id == PERSON).sum()),
-                    "ball_conf": float(balls.confidence.max()) if len(balls) else None})
-        if len(raw) % 100 == 0:
-            print(f"{len(raw)} frames, {time.time() - t_start:.0f}s", file=sys.stderr)
-    det_s = time.time() - t_start
+        raw.append({"t": t, "C": C.tolist(), "n_det": int((det.class_id == PERSON).sum()),
+                    "players": [{"id": int(tid), "xyxy": [round(float(v), 1) for v in xy],
+                                 "team": team_of(torso(frame, xy)), "hist": hist(torso(frame, xy))}
+                                for xy, tid in zip(ppl.data["orig"], ppl.tracker_id)],
+                    "balls": [[round(float(v), 1) for v in xy] + [round(float(c), 3)]
+                              for xy, c in zip(balls.xyxy, balls.confidence)]})
+        if len(raw) % 200 == 0:
+            print(f"{len(raw)} frames, t={t:.0f}, {time.time() - t_start:.0f}s", file=sys.stderr, flush=True)
+    return raw, feats, float(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), float(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
-    # homography: keyframes -> nearest sampled index, chained forward and backward
+
+def save_cache(stem, raw, feats, W, H):
+    """raw -> JSON, ORB features -> one npz of concatenated arrays + offsets."""
+    Path(str(stem) + ".json").write_text(json.dumps({"W": W, "H": H, "raw": raw}, separators=(",", ":")))
+    off = np.cumsum([0] + [len(p) for p, _ in feats])
+    des = [d if d is not None else np.zeros((0, 32), np.uint8) for _, d in feats]
+    np.savez(str(stem) + ".npz", off=off, pts=np.concatenate([p for p, _ in feats]), des=np.concatenate(des))
+
+
+def load_cache(stem):
+    doc = json.loads(Path(str(stem) + ".json").read_text())
+    z = np.load(str(stem) + ".npz")
+    off, pts, des = z["off"], z["pts"], z["des"]
+    feats = [(pts[a:b], des[a:b] if b > a else None) for a, b in zip(off, off[1:])]
+    for r in doc["raw"]:
+        r["C"] = np.array(r["C"])
+    return doc["raw"], feats, doc["W"], doc["H"]
+
+# ---------- post pass (fast) ----------
+
+def homographies(raw, feats, calib, anchor_every=3):
+    """Per-frame image->court G: keyframes, direct re-anchoring to the nearest-in-time
+    matching keyframe on every `anchor_every`-th frame, then chained forward and backward."""
+    ts = [r["t"] for r in raw]
     kf = {}
     for k in calib["keyframes"]:
-        i = min(range(len(raw)), key=lambda j: abs(raw[j]["t"] - k["t"]))
+        i = min(range(len(raw)), key=lambda j: abs(ts[j] - k["t"]))
+        if abs(ts[i] - k["t"]) > 0.2:
+            continue  # keyframe outside this run
         img = np.float32([p["px"] for p in k["points"]])
         crt = np.float32([p["court"] for p in k["points"]])
-        kf[i] = cv2.findHomography(img, crt, 0)[0]
-    n = len(raw)
-    # re-anchor: any frame that matches a keyframe directly gets a drift-free G
+        kf[i] = cv2.findHomography(img, crt, 0)[0]  # least squares over all landmarks
     anchors = dict(kf)
-    for i in range(n):
+    for i in range(0, len(raw), anchor_every):
         if i in kf:
             continue
-        for k, G in kf.items():
+        for k in sorted(kf, key=lambda k: abs(k - i)):
             M, _ = match(feats[k], feats[i], min_inl=100, min_ratio=0.4)
             if M is not None:
-                anchors[i] = compose(G, M)
+                anchors[i] = compose(kf[k], M)
                 break
-    kf = anchors
-    fwd = chain(feats, kf)
-    bwd = chain(feats[::-1], {n - 1 - i: G for i, G in kf.items()})[::-1]
-    Gs = best_of(fwd, bwd)
+    n = len(raw)
+    fwd = chain(feats, anchors)
+    bwd = chain(feats[::-1], {n - 1 - i: G for i, G in anchors.items()})[::-1]
+    return best_of(fwd, bwd), len(anchors)
 
-    # team per track by majority vote over its frames
-    per = {}
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("clip")
+    ap.add_argument("--t0", type=float, default=0)
+    ap.add_argument("--t1", type=float, default=1e9)
+    ap.add_argument("--fps", type=float, default=10)
+    ap.add_argument("--model", default="medium", choices=["nano", "small", "medium", "large"])
+    ap.add_argument("--redetect", action="store_true", help="ignore the cached detection pass")
+    ap.add_argument("--detect-only", action="store_true")
+    ap.add_argument("--ball-conf", type=float, default=0.5)
+    a = ap.parse_args()
+
+    d = DATA / a.clip
+    (d / "render").mkdir(exist_ok=True)
+    stem = d / "render" / f"cv-raw-{a.t0:g}-{a.t1:g}"
+    t_start = time.time()
+    if Path(str(stem) + ".npz").exists() and not a.redetect:
+        raw, feats, W, Hh = load_cache(stem)
+    else:
+        raw, feats, W, Hh = detect(d / "source.mp4", a.t0, a.t1, a.fps, a.model)
+        save_cache(stem, raw, feats, W, Hh)
+        for r in raw:
+            r["C"] = np.array(r["C"])
+    det_s = time.time() - t_start
+    if a.detect_only:
+        print(f"cached {len(raw)} frames in {det_s:.0f}s -> {stem}")
+        return
+
+    import post
+    calib = json.loads((HERE / "calib" / f"{a.clip}.json").read_text())
+    court = calib["court"]
+    Gs, n_anchor = homographies(raw, feats, calib)
+    n = len(raw)
+
+    # 1. keep plausible on-court people, with court xy and pan-stable feet px
+    team_raw = {}
     for r in raw:
         for p in r["players"]:
-            per.setdefault(p["id"], []).append(p["team"])
-    team = {tid: vote(v) for tid, v in per.items()}
-
-    frames = []
+            team_raw.setdefault(p["id"], []).append(p["team"])
+    team = {tid: vote(v) for tid, v in team_raw.items()}
+    kept = []
     for r, G in zip(raw, Gs):
-        players = []
+        ps = []
         for p in r["players"]:
             x1, y1, x2, y2 = p["xyxy"]
             if y2 - y1 < 1.5 * (x2 - x1):
@@ -259,35 +319,56 @@ def main():
                 continue  # fans, bench, table crew
             if G is None and team[p["id"]] is None:
                 continue  # can't tell a referee from a fan without the court
-            players.append({"id": p["id"], "team": team[p["id"]], "jersey": None,
-                            "box": norm_box(p["xyxy"], W, Hh),
-                            "court": xy})
+            ps.append({**p, "court": xy, "spx": apply_h(r["C"], [((x1 + x2) / 2, y2)])[0].tolist()})
+        kept.append(ps)
+
+    # 2. stitch fragments into longer IDs (same team, close in time, space and colour)
+    ts = [r["t"] for r in raw]
+    before = post.track_lengths([(t, [p["id"] for p in ps]) for t, ps in zip(ts, kept)])
+    remap = post.stitch(post.fragments(list(zip(ts, kept)), team))
+    sid = lambda tid: remap.get(tid, tid)  # noqa: E731
+    after = post.track_lengths([(t, [sid(p["id"]) for p in ps]) for t, ps in zip(ts, kept)])
+    team_s = {}
+    for ps in kept:
+        for p in ps:
+            team_s.setdefault(sid(p["id"]), []).append(team[p["id"]])
+    team_s = {k: vote(v) for k, v in team_s.items()}
+
+    # 3. ball: confident, physically consistent, short gaps filled, court only near the floor
+    cands = [[list(stable_boxes(r["C"], [b[:4]])[0]) + [b[4]] for b in r["balls"]] for r in raw]
+    ball_s = post.filter_ball(ts, cands, min_conf=a.ball_conf)
+
+    frames = []
+    for i, (r, G, ps) in enumerate(zip(raw, Gs, kept)):
+        players = [{"id": sid(p["id"]), "team": team_s[sid(p["id"])], "jersey": None,
+                    "box": norm_box(p["xyxy"], W, Hh), "court": p["court"]} for p in ps]
         ball = None
-        if r["ball"]:
-            x1, y1, x2, y2 = r["ball"]
-            # ponytail: floor projection of the ball's bottom; wrong while airborne
-            bxy = apply_h(G, [((x1 + x2) / 2, y2)])[0].round(2).tolist() if G is not None else None
-            ball = {"box": norm_box(r["ball"], W, Hh),
-                    "court": bxy}
+        if ball_s[i] is not None:
+            bx = stable_boxes(np.linalg.inv(r["C"]), [ball_s[i]])[0]
+            floor = post.ball_on_floor(bx, [p["xyxy"] for p in ps])
+            # the floor projection is only right when the ball is on the floor
+            bxy = apply_h(G, [((bx[0] + bx[2]) / 2, bx[3])])[0].round(2).tolist() if G is not None and floor else None
+            ball = {"box": norm_box(bx, W, Hh), "court": bxy}
         frames.append({"t": r["t"], "players": players, "ball": ball})
 
     out = d / "tracks.json"
     write_tracks(out, a.fps, court, frames)
-    # debug sidecar for render_debug.py: image->court H per frame (not part of C2)
-    (d / "render").mkdir(exist_ok=True)
+    # debug sidecar for render_debug.py / replay.py (not part of C2): image->court H and pan C
     (d / "render" / "cv-homography.json").write_text(json.dumps(
-        [{"t": r["t"], "H": G.tolist() if G is not None else None} for r, G in zip(raw, Gs)]))
+        [{"t": r["t"], "H": G.tolist() if G is not None else None, "C": r["C"].tolist()} for r, G in zip(raw, Gs)]))
     nd = [r["n_det"] for r in raw]
     stats = {
-        "frames": n, "detect_s": round(det_s, 1), "total_s": round(time.time() - t_start, 1),
+        "frames": n, "t": [ts[0], ts[-1]], "detect_or_load_s": round(det_s, 1),
+        "total_s": round(time.time() - t_start, 1),
         "person_dets_per_frame": [min(nd), round(float(np.mean(nd)), 1), max(nd)],
         "players_kept_per_frame": round(float(np.mean([len(f["players"]) for f in frames])), 1),
         "homography_valid_pct": round(100 * sum(G is not None for G in Gs) / n, 1),
-        "anchored_to_keyframe_pct": round(100 * len(kf) / n, 1),
-        "ball_conf_median": round(float(np.median(bc)), 2) if (bc := [r["ball_conf"] for r in raw if r["ball"]]) else None,
+        "anchored_frames": n_anchor,
+        "ball_raw_frames_pct": round(100 * sum(bool(r["balls"]) for r in raw) / n, 1),
         "ball_frames_pct": round(100 * sum(f["ball"] is not None for f in frames) / n, 1),
-        "track_ids": len(per),
-        "teams": Counter(team.values()),
+        "ball_court_pct": round(100 * sum(bool(f["ball"] and f["ball"]["court"]) for f in frames) / n, 1),
+        "before": before, "after": after,
+        "teams": Counter(team_s.values()),
     }
     print(json.dumps(stats, default=str))
     print(out)

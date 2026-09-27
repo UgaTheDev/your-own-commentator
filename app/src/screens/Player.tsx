@@ -8,6 +8,7 @@ import {
 import {FocusButton} from '../components/FocusButton';
 import {AUTOPILOT, TALK_WS_URL} from '../config';
 import {TalkAnswer, connectTalk} from '../talk';
+import {PartyView} from './Home';
 import {
   Manifest,
   Question,
@@ -45,15 +46,19 @@ const once = (v: Media, type: string, fn: () => void) => {
 type Overlay =
   | {kind: 'why'; eventId: string; questions: Question[]; answer?: string}
   | {kind: 'recap'; text: string}
-  | {kind: 'answer'; text: string}; // C4 talk-back answer, shown as an ANALYST caption
+  | {kind: 'answer'; text: string} // C4 talk-back answer, shown as an ANALYST caption
+  | {kind: 'predict'}; // C6: next basket, Pink or Blue (the game keeps playing)
 
 interface Props {
   manifest: Manifest;
   initial: Track;
+  party: PartyView | null;
   onBack: () => void;
 }
 
-export const Player = ({manifest, initial, onBack}: Props) => {
+export const Player = ({manifest, initial, party, onBack}: Props) => {
+  const partyRef = useRef(party);
+  partyRef.current = party;
   const player = useRef<VideoPlayer | null>(null);
   const audio = useRef<AudioPlayer | null>(null);
   const speakId = useRef(0);
@@ -72,6 +77,11 @@ export const Player = ({manifest, initial, onBack}: Props) => {
   const [code, setCode] = useState<string | null>(null);
   // Once a Why/recap card has closed, D-pad focus goes back to "Why?".
   const [refocusWhy, setRefocusWhy] = useState(false);
+  // Bumped to remount "Why?" so it takes focus when the focused Replay button disappears.
+  const [whyKey, setWhyKey] = useState(0);
+  const replayFocused = useRef(false);
+  // A talk answer that arrives mid-replay waits here until the replay ends.
+  const pendingAnswer = useRef<TalkAnswer | null>(null);
   const [switching, setSwitching] = useState<string | null>(null);
   const [overlay, setOverlayState] = useState<Overlay | null>(null);
   const overlayRef = useRef<Overlay | null>(null);
@@ -336,6 +346,12 @@ export const Player = ({manifest, initial, onBack}: Props) => {
         loadSrc(back.src, saved, `replay back ${back.id}`, () => {
           replayingRef.current = false;
           setReplaying(false);
+          const a = pendingAnswer.current;
+          if (a) {
+            pendingAnswer.current = null;
+            log('talk answer released after replay');
+            api.current.hear(a);
+          }
         });
       }, r.duration * 1000),
     );
@@ -345,6 +361,11 @@ export const Player = ({manifest, initial, onBack}: Props) => {
   const hear = (a: TalkAnswer) => {
     const v = player.current;
     if (!v) {
+      return;
+    }
+    if (replayingRef.current) {
+      pendingAnswer.current = a;
+      log(`talk answer queued until replay ends "${a.text}"`);
       return;
     }
     // ponytail: pause rather than duck, same as recap
@@ -369,6 +390,34 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       }),
     [manifest],
   );
+
+  // C6: the TV's playhead settles the room's predictions.
+  useEffect(() => {
+    const tick = setInterval(
+      () =>
+        partyRef.current?.send({
+          type: 'playhead',
+          t: Math.max(0, tRef.current),
+          trackId: trackRef.current.id,
+          paused: player.current?.paused ?? true,
+        }),
+      1000,
+    );
+    return () => clearInterval(tick);
+  }, []);
+
+  const openPredict = () => {
+    if (!overlayRef.current) {
+      setOverlay({kind: 'predict'});
+      log(`predict open t=${tRef.current.toFixed(2)}`);
+    }
+  };
+  const predict = (value: 'pink' | 'blue') => {
+    party?.send({type: 'predict', kind: 'next_score_team', value});
+    log(`predict ${value} t=${tRef.current.toFixed(2)}`);
+    closeOverlay('predict');
+    showToast(`You called ${value === 'pink' ? 'Pink' : 'Blue'}`);
+  };
 
   // Autopilot calls through a ref so it always sees the latest render's state.
   const api = useRef({why, pick, catchUp, switchTo, replay, hear, seek});
@@ -452,6 +501,12 @@ export const Player = ({manifest, initial, onBack}: Props) => {
   }, [frame?.t]);
   useEffect(() => {
     log(`replay control ${replayHere ? 'shown' : 'hidden'} t=${t.toFixed(2)}`);
+    if (!replayHere && replayFocused.current) {
+      replayFocused.current = false;
+      setRefocusWhy(true);
+      setWhyKey((k) => k + 1);
+      log('replay gone while focused, focus back to Why?');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [replayHere]);
 
@@ -495,6 +550,19 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       {code && (
         <View style={styles.badge}>
           <Text style={styles.badgeText}>Ask on your phone: {code}</Text>
+        </View>
+      )}
+      {party && (
+        <View style={styles.party}>
+          <Text style={styles.badgeText}>
+            Party {party.code}:{' '}
+            {party.members.map((m) => `${m.name} ${m.points}`).join(' · ')}
+          </Text>
+        </View>
+      )}
+      {party?.banner && (
+        <View style={styles.banner}>
+          <Text style={styles.switchingText}>{party.banner}</Text>
         </View>
       )}
       {frame && (
@@ -554,9 +622,22 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       {overlay && overlay.kind !== 'answer' && (
         <View style={styles.panel}>
           <Text style={styles.cardTitle}>
-            {overlay.kind === 'why' ? 'Why?' : 'Catch me up'}
+            {overlay.kind === 'why'
+              ? 'Why?'
+              : overlay.kind === 'predict'
+              ? 'Next basket:'
+              : 'Catch me up'}
           </Text>
-          {overlay.kind === 'why' && !overlay.answer ? (
+          {overlay.kind === 'predict' ? (
+            <View style={styles.row}>
+              <FocusButton
+                label="Pink"
+                onPress={() => predict('pink')}
+                hasTVPreferredFocus
+              />
+              <FocusButton label="Blue" onPress={() => predict('blue')} />
+            </View>
+          ) : overlay.kind === 'why' && !overlay.answer ? (
             overlay.questions.map((q, i) => (
               <FocusButton
                 key={q.q}
@@ -592,11 +673,13 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       {/* next: fantasy panel */}
       <View style={styles.bar}>
         <FocusButton
+          key={`why${whyKey}`}
           label="Why?"
           onPress={why}
           hasTVPreferredFocus={refocusWhy && !panelOpen}
         />
         <FocusButton label="Catch me up" onPress={catchUp} />
+        {party && <FocusButton label="Predict" onPress={openPredict} />}
         {manifest.tracks.map((tr) => (
           <FocusButton
             key={tr.id}
@@ -618,6 +701,9 @@ export const Player = ({manifest, initial, onBack}: Props) => {
           <FocusButton
             label={replaying ? 'Replaying…' : 'Replay'}
             onPress={replay}
+            onFocusChange={(f) => {
+              replayFocused.current = f;
+            }}
           />
         )}
       </View>
@@ -667,6 +753,25 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: 'rgba(0,0,0,0.75)',
   },
+  party: {
+    position: 'absolute',
+    top: '21%',
+    left: '5%',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  banner: {
+    position: 'absolute',
+    top: '30%',
+    alignSelf: 'center',
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    borderRadius: 16,
+    backgroundColor: 'rgba(214,36,122,0.92)',
+  },
+  row: {flexDirection: 'row', marginTop: 16},
   badgeText: {color: '#FFFFFF', fontSize: 26, fontWeight: '600'},
   map: {
     position: 'absolute',

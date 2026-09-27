@@ -66,7 +66,18 @@ Only events a human accepted in review are spoken (`write.speakable()`), and pub
 | Computer vision (RF-DETR + ByteTrack, 60 s) | 95% of frames with court homography; team colour ~80–85%; ball 42% of frames |
 | Vega | WebSocket works; media must be HTTPS; switching commentators by source swap + seek ≈ 1–1.5 s to playing |
 
-Event precision/recall against human-reviewed ground truth is computed by `pipeline/eval.py` once review of the demo clip is complete.
+**Event extraction vs reviewed ground truth** (`pipeline/eval.py lake-region`, full table in `eval/lake-region.md`):
+
+| Proposer | Correct | False | Precision | Recall |
+|---|---|---|---|---|
+| Score-graphic reader (Nova Pro on the broadcast graphic) | 7 | 0 | **1.00** | **1.00** |
+| Nova Pro video-only (fouls, rebounds, steals, timeouts…) | 1 | 34 | 0.03 | 0.50 |
+
+This is why the product anchors facts to the broadcast graphic and a review step instead of
+trusting raw video understanding on amateur footage. Ground truth was produced by an AI reviewer
+(Claude) looking at frames around every proposal, with every decision explained in
+`data/lake-region/review-notes.md`, and the computed final score checked against the broadcast
+(20–6). Human spot-checks are welcome; nothing is spoken unless it is in the reviewed file.
 
 ## Repo map
 - `app/`: Vega OS Fire TV app (Home, Player, Why card, Catch me up, booth captions, pairing code, replays, minimap, watch party)

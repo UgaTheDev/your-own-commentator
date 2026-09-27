@@ -3,22 +3,201 @@
   "$id": "messages.schema.json",
   "title": "C4-C6 WebSocket text messages",
   "oneOf": [
-    {"properties": {"type": {"const": "hello"}, "clipId": {"type": "string"}}, "required": ["type", "clipId"]},
-    {"properties": {"type": {"const": "session"}, "code": {"type": "string", "pattern": "^[A-Z2-7]{6}$"}}, "required": ["type", "code"]},
-    {"properties": {"type": {"const": "playhead"}, "t": {"type": "number", "minimum": 0}, "trackId": {"type": "string"},
-                    "paused": {"type": "boolean"}}, "required": ["type", "t", "trackId", "paused"]},
-    {"properties": {"type": {"const": "answer"}, "id": {"type": "string"}, "t": {"type": "number"}, "text": {"type": "string"},
-                    "audioUrl": {"type": "string", "pattern": "^https://"}, "voice": {"type": "string"}},
-     "required": ["type", "text", "audioUrl"]},
-    {"properties": {"type": {"const": "join"}, "code": {"type": "string", "pattern": "^[A-Z2-7]{6}$"}, "name": {"type": "string", "maxLength": 32},
-                    "trackId": {"type": "string"}}, "required": ["type", "code"]},
-    {"properties": {"type": {"const": "start"}}, "required": ["type"]},
-    {"properties": {"type": {"const": "stop"}}, "required": ["type"]},
-    {"properties": {"type": {"const": "transcript"}, "text": {"type": "string"}}, "required": ["type", "text"]},
-    {"properties": {"type": {"const": "predict"}, "kind": {"enum": ["next_score_team"]}, "value": {"type": "string"}},
-     "required": ["type", "kind", "value"]},
-    {"properties": {"type": {"const": "resolve"}, "predictionId": {"type": "string"}, "correct": {"type": "boolean"},
-                    "eventId": {"type": "string"}}, "required": ["type", "predictionId", "correct", "eventId"]},
-    {"properties": {"type": {"const": "state"}, "members": {"type": "array"}}, "required": ["type", "members"]}
+    {
+      "properties": {
+        "type": {
+          "const": "hello"
+        },
+        "clipId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "clipId"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "session"
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z2-7]{6}$"
+        }
+      },
+      "required": [
+        "type",
+        "code"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "playhead"
+        },
+        "t": {
+          "type": "number",
+          "minimum": 0
+        },
+        "trackId": {
+          "type": "string"
+        },
+        "paused": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "t",
+        "trackId",
+        "paused"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "answer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "t": {
+          "type": "number"
+        },
+        "text": {
+          "type": "string"
+        },
+        "audioUrl": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "voice": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "text",
+        "audioUrl"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "join"
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^[A-Z2-7]{6}$"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 32
+        },
+        "trackId": {
+          "type": "string"
+        },
+        "clipId": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"
+        }
+      },
+      "required": [
+        "type",
+        "code"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "start"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "stop"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "transcript"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "text"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "predict"
+        },
+        "kind": {
+          "enum": [
+            "next_score_team"
+          ]
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "kind",
+        "value"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "resolve"
+        },
+        "predictionId": {
+          "type": "string"
+        },
+        "correct": {
+          "type": "boolean"
+        },
+        "eventId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "predictionId",
+        "correct",
+        "eventId"
+      ]
+    },
+    {
+      "properties": {
+        "type": {
+          "const": "state"
+        },
+        "members": {
+          "type": "array"
+        }
+      },
+      "required": [
+        "type",
+        "members"
+      ]
+    }
   ]
 }

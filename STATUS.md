@@ -26,7 +26,7 @@
 | B Ingest/events | agent, worktree `stream/ingest` | sprint 1 merged (87 tests) | sprint 2: import CV events into review; live replay (sprint 3) |
 | C Writer/booth/voice | agent, worktree `stream/writer` | running (sprint 1) | Why questions, booth dialogue, recaps, manifest v2 |
 | D Talk-back | agent, worktree `stream/talk` | running (sprint 1) | local relay: WAV → Nova Sonic ASR → answer() → Polly, latency |
-| E Watch party | agent, worktree `stream/party` | running (sprint 1) | CloudFormation + Lambda handlers + tests (no deploy) |
+| E Watch party | agent, worktree `stream/party` | sprint 1 merged (22 tests, template validated) | sprint 2: use join.clipId, deploy after Kush approves |
 | F Vega app | agent, worktree `stream/app` | running (sprint 1) | Why button + second AudioPlayer, recap, booth, WebSocket spike |
 
 ## Blockers (not Kush)

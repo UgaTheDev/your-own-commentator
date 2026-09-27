@@ -58,7 +58,7 @@ A superset of v1 (`pipeline/publish.py build_manifest`), so the v1 app keeps wor
 - Limits: 20 questions per session; audio is never stored.
 
 ## C6 Watch party (WebSocket)
-- client -> `{"type": "join", "code", "name", "trackId"}`
+- client -> `{"type": "join", "code", "name", "trackId", "clipId"}`. `clipId` (added 2026-09-27) tells the room which manifest settles predictions; the first joiner's clipId wins.
 - client -> `{"type": "predict", "kind": "next_score_team", "value": "pink"}`
 - server -> `{"type": "resolve", "predictionId", "correct", "eventId"}`: only from an **accepted** event
   after the prediction's playhead.

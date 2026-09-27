@@ -20,3 +20,5 @@ data/*/render/
 .playwright-mcp/
 data/ambience/
 .claude/worktrees/
+services/party/.aws-sam/
+services/party/schemas/

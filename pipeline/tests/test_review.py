@@ -123,3 +123,27 @@ def test_no_path_traversal(srv, path):
 def test_bad_clip_id_rejected(srv):
     with pytest.raises(ValueError):
         review.make_server("../game1", 0)
+
+
+def test_events_without_source_or_status_are_backward_compatible(srv):
+    """Old files (pre-C1) have no source/status; review must still accept and round-trip them."""
+    d, port = srv
+    events = [ev(1, 3, "made_2")]  # no source, no status
+    status, _, body = post(port, events)
+    assert status == 200 and json.loads(body) == {"ok": True, "warning": None}
+    saved = common.load(d / "events.reviewed.json")
+    assert saved[0].get("source") is None and saved[0].get("status") is None
+
+
+def test_post_rejected_when_event_fails_schema(srv):
+    """confidence out of [0,1] is invalid per schemas/event.schema.json, on top of the existing checks."""
+    d, port = srv
+    status, _, body = post(port, [{**ev(1, 3, "made_2"), "confidence": 5}])
+    assert status == 400 and json.loads(body)["error"]
+    assert not (d / "events.reviewed.json").exists()
+
+
+def test_human_added_event_accepted(srv):
+    d, port = srv
+    status, _, body = post(port, [{**ev(1, 3, "made_2"), "source": "human", "status": "accepted"}])
+    assert status == 200 and json.loads(body) == {"ok": True, "warning": None}

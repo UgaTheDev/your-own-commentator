@@ -70,7 +70,7 @@ def validate(item):
     if jersey is not None and (isinstance(jersey, bool) or not isinstance(jersey, int)):
         return None
     return {"t": float(t), "type": item["type"], "team": team.strip().lower() if team else None,
-            "jersey": jersey, "confidence": float(conf)}
+            "jersey": jersey, "confidence": float(conf), "source": "nova", "status": "proposed"}
 
 
 def to_absolute(events, chunk_start):

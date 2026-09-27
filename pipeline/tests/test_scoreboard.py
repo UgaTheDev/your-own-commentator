@@ -19,7 +19,7 @@ def test_score_events_from_deltas():
     ev, warn = score_events(tl)
     assert [(e["t"], e["type"], e["team"]) for e in ev] == [
         (28.5, "ft_made", "blue"), (48.5, "made_3", "blue"), (88.5, "made_2", "pink")]
-    assert warn == [] and all(e["source"] == "scoreboard" for e in ev)
+    assert warn == [] and all(e["source"] == "scoreboard" and e["status"] == "proposed" for e in ev)
 
 
 def test_implausible_jumps_warn_instead_of_inventing_events():

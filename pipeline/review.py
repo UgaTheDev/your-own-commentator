@@ -12,10 +12,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
+import jsonschema
+
 import common
 from state import EVENT_TYPES, compute
 
 HTML = Path(__file__).with_name("review.html")
+EVENT_SCHEMA = json.loads((Path(__file__).resolve().parent.parent / "schemas" / "event.schema.json").read_text())
 MAX_BODY = 1 << 20
 RANGE = re.compile(r"^bytes=(\d*)-(\d*)$")
 
@@ -39,6 +42,10 @@ def validate(clip, events):
         j = e.get("jersey")
         if j is not None and (isinstance(j, bool) or not isinstance(j, int)):
             raise ValueError(f"event {e['id']}: jersey must be an integer or null")
+        try:
+            jsonschema.validate(e, EVENT_SCHEMA)
+        except jsonschema.ValidationError as err:
+            raise ValueError(f"event {e['id']}: {err.message}") from err
     if len({e["id"] for e in events}) != len(events):
         raise ValueError("duplicate event ids")
 

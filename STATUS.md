@@ -2,7 +2,7 @@
 
 <!-- Worker-owned. Update at every checkpoint, blocker, or decision. The orchestrator reads this file; keep the headings exactly. -->
 
-**Updated:** 2026-09-27 12:45  ·  **Stage:** building  ·  **Health:** 🟢 on track
+**Updated:** 2026-09-27 14:10  ·  **Stage:** building  ·  **Health:** 🟢 on track
 
 ## Needs Kush
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
@@ -24,8 +24,8 @@
 |---|---|---|---|
 | A CV engine | agent, worktree `stream/cv` | running (sprint 1) | detection + ByteTrack + team colors + homography on 60 s |
 | B Ingest/events | agent, worktree `stream/ingest` | sprint 1 merged (87 tests) | sprint 2: import CV events into review; live replay (sprint 3) |
-| C Writer/booth/voice | agent, worktree `stream/writer` | running (sprint 1) | Why questions, booth dialogue, recaps, manifest v2 |
-| D Talk-back | agent, worktree `stream/talk` | running (sprint 1) | local relay: WAV → Nova Sonic ASR → answer() → Polly, latency |
+| C Writer/booth/voice | agent, worktree `stream/writer` | sprint 1 merged: live manifest v2 (booth, 10 Why events, 9 recaps) | sprint 2: fantasy, hi/zh, booth reacts to viewer questions |
+| D Talk-back | agent, worktree `stream/talk` | sprint 1 merged: question→answer 2.9 s mean, 0 fallbacks, exact transcripts | sprint 2: Fargate WSS deploy (needs Kush), phone page |
 | E Watch party | agent, worktree `stream/party` | sprint 1 merged (22 tests, template validated) | sprint 2: use join.clipId, deploy after Kush approves |
 | F Vega app | agent, worktree `stream/app` | running (sprint 1) | Why button + second AudioPlayer, recap, booth, WebSocket spike |
 

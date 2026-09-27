@@ -1,10 +1,12 @@
 const MANIFESTS = {
+  // the demo: speaks only reviewed events
+  lakeRegion: 'https://d2og06dnam3owj.cloudfront.net/lake-region/manifest.json',
   fixture: 'https://d2og06dnam3owj.cloudfront.net/fixture-v2/manifest.json',
   lakeRegionDev:
     'https://d2og06dnam3owj.cloudfront.net/lake-region-dev/manifest.json',
 };
 // The one switch between the v2 fixture and the real clip.
-export const MANIFEST_URL = MANIFESTS.lakeRegionDev;
+export const MANIFEST_URL = MANIFESTS.lakeRegion;
 
 // Dev only: drive Why / Catch me up / booth by script and log `YOC:` lines,
 // since the VVD can't be screenshotted or D-padded from the CLI.

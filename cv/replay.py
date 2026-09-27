@@ -53,7 +53,7 @@ def nearest_to_ball(frames, t0, t1, W, H, k=2, max_px=300, min_seen=2):
     return [i for _, i in best[:k]]
 
 
-def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None):
+def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None, highlight=True):
     te = ev["t"]
     t0, t1 = te - PRE, te + POST
     fr = [f for f in tracks["frames"] if t0 - 0.5 <= f["t"] <= t1 + 0.5]
@@ -74,7 +74,8 @@ def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None):
     # it in which the tracks show the ball
     seen = [f["t"] for f in fr if f["ball"] and t0 <= f["t"] <= te]
     tb = te if not seen or seen[-1] >= te - 1.0 else seen[-1]
-    hi = nearest_to_ball(fr, tb - 1.0, tb, W, H)
+    # ponytail: rings follow the (weak) ball track; --no-highlight keeps only the reliable team ellipses
+    hi = nearest_to_ball(fr, tb - 1.0, tb, W, H) if highlight else []
 
     cap = cv2.VideoCapture(str(src))
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -139,6 +140,7 @@ def main():
     ap.add_argument("--stills", nargs="*", default=[])
     ap.add_argument("--stills-dir", default=str(HERE.parent / ".playwright-mcp"))
     ap.add_argument("--only", nargs="*")
+    ap.add_argument("--no-highlight", action="store_true", help="team ellipses only (ball-based rings can point at the wrong player)")
     a = ap.parse_args()
     tracks = json.loads((DATA / a.track_clip / "tracks.json").read_text())
     Cs = {round(x["t"], 3): np.array(x["C"]) for x in
@@ -156,7 +158,7 @@ def main():
             continue
         still = Path(a.stills_dir) / f"replay-{e['id']}.jpg" if e["id"] in a.stills else None
         r = render(e, tracks, Cs, DATA / a.track_clip / "source.mp4", out_dir / f"{e['id']}.mp4",
-                   audio=audio if audio.exists() else None, stills=still)
+                   audio=audio if audio.exists() else None, stills=still, highlight=not a.no_highlight)
         rows.append(r)
         print(json.dumps(r), still or "")
     (out_dir / "index.json").write_text(json.dumps(rows))

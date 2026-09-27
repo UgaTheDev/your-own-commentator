@@ -132,6 +132,14 @@ def best_of(fwd, bwd):
     return [(a if a[1] <= b[1] else b)[0] for a, b in zip(fwd, bwd)]
 
 
+def stable_boxes(C, xyxy):
+    """Map boxes through homography C, returning axis-aligned xyxy of the warped corners."""
+    x1, y1, x2, y2 = np.asarray(xyxy, float).T
+    pts = apply_h(C, np.stack([np.c_[x1, y1], np.c_[x2, y1], np.c_[x1, y2], np.c_[x2, y2]], 1).reshape(-1, 2))
+    pts = pts.reshape(-1, 4, 2)
+    return np.c_[pts[:, :, 0].min(1), pts[:, :, 1].min(1), pts[:, :, 0].max(1), pts[:, :, 1].max(1)]
+
+
 def on_court(xy, court, mx=1.5, my=0.6):
     return xy is not None and -mx <= xy[0] <= court["w"] + mx and -my <= xy[1] <= court["h"] + my
 
@@ -164,7 +172,7 @@ def main():
     import supervision as sv
     model = {"nano": rfdetr.RFDETRNano, "small": rfdetr.RFDETRSmall,
              "medium": rfdetr.RFDETRMedium, "large": rfdetr.RFDETRLarge}[a.model]()
-    tracker = sv.ByteTrack(track_activation_threshold=0.3, frame_rate=int(a.fps))
+    tracker = sv.ByteTrack(track_activation_threshold=0.3, lost_track_buffer=90, frame_rate=int(a.fps))
 
     d = DATA / a.clip
     calib = json.loads((HERE / "calib" / f"{a.clip}.json").read_text())
@@ -176,7 +184,7 @@ def main():
     cap.set(cv2.CAP_PROP_POS_FRAMES, round(a.t0 * src_fps))
     fi = round(a.t0 * src_fps)
 
-    raw, feats, t_start = [], [], time.time()
+    raw, feats, t_start, C = [], [], time.time(), np.eye(3)
     while fi <= a.t1 * src_fps:
         ok, frame = cap.read()
         if not ok:
@@ -188,15 +196,23 @@ def main():
         fi += 1
         det = model.predict(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), threshold=0.2)
         ppl = det[(det.class_id == PERSON) & (det.confidence >= 0.25)]
+        gray = cv2.cvtColor(cv2.resize(frame, None, fx=.5, fy=.5), cv2.COLOR_BGR2GRAY)
+        feats.append(features(gray, ppl.xyxy, Hh, W))
+        # camera-motion compensation: track in a pan-stable pixel frame so ByteTrack's
+        # IoU matching survives pans (C maps current px -> first-frame px)
+        M = match(feats[-2], feats[-1])[0] if len(feats) > 1 else None
+        if M is not None:
+            C = C @ np.linalg.inv(M)  # ponytail: a failed match holds C; small jump for one frame
+        ppl.data["orig"] = ppl.xyxy.copy()
+        if len(ppl):
+            ppl.xyxy = stable_boxes(C, ppl.xyxy)
         ppl = tracker.update_with_detections(ppl)
         balls = det[det.class_id == BALL]
         ball = balls.xyxy[int(np.argmax(balls.confidence))].tolist() if len(balls) else None
         players = [{"id": int(tid), "xyxy": xy.tolist(), "team": team_of(torso(frame, xy))}
-                   for xy, tid in zip(ppl.xyxy, ppl.tracker_id)]
+                   for xy, tid in zip(ppl.data["orig"], ppl.tracker_id)]
         raw.append({"t": t, "players": players, "ball": ball, "n_det": int((det.class_id == PERSON).sum()),
                     "ball_conf": float(balls.confidence.max()) if len(balls) else None})
-        gray = cv2.cvtColor(cv2.resize(frame, None, fx=.5, fy=.5), cv2.COLOR_BGR2GRAY)
-        feats.append(features(gray, [p["xyxy"] for p in players], Hh, W))
         if len(raw) % 100 == 0:
             print(f"{len(raw)} frames, {time.time() - t_start:.0f}s", file=sys.stderr)
     det_s = time.time() - t_start

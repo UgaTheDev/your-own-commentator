@@ -24,10 +24,10 @@
 |---|---|---|---|
 | A CV engine | agent, worktree `stream/cv` | running (sprint 1) | detection + ByteTrack + team colors + homography on 60 s |
 | B Ingest/events | agent, worktree `stream/ingest` | sprint 1 merged (87 tests) | sprint 2: import CV events into review; live replay (sprint 3) |
-| C Writer/booth/voice | agent, worktree `stream/writer` | sprint 1 merged: live manifest v2 (booth, 10 Why events, 9 recaps) | sprint 2: fantasy, hi/zh, booth reacts to viewer questions |
-| D Talk-back | agent, worktree `stream/talk` | sprint 1 merged: question→answer 2.9 s mean, 0 fallbacks, exact transcripts | sprint 2: Fargate WSS deploy (needs Kush), phone page |
+| C Writer/booth/voice | agent, worktree `stream/writer-2` | sprint 2 running | play-word gate (spot check found 2 invented plays), judge A/B, fantasy, hi/zh |
+| D Talk-back | agent, worktree `stream/talk-2` | sprint 2 prep running (no deploy) | Dockerfile, CFN, phone push-to-talk page; deploy after Kush approves |
 | E Watch party | agent, worktree `stream/party` | sprint 1 merged (22 tests, template validated) | sprint 2: use join.clipId, deploy after Kush approves |
-| F Vega app | agent, worktree `stream/app` | running (sprint 1) | Why button + second AudioPlayer, recap, booth, WebSocket spike |
+| F Vega app | agent, worktree `stream/app` | sprint 1 merged: Why card, Catch me up, booth captions on VVD; WebSocket WORKS on Vega | sprint 2: pairing + playhead + talk-back playback, replays, minimap |
 
 ## Blockers (not Kush)
 - none

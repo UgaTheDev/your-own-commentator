@@ -34,3 +34,13 @@ def test_faithfulness_section_only_with_lines():
              {"grounded": False, "judge": "supported"}]
     assert "2 unsupported / 3 lines" in report("x", [], [], lines)
     assert "Faithfulness" not in report("x", [], [])
+
+
+def test_by_source_uses_wider_scoreboard_window():
+    from eval import by_source
+    proposed = [{"t": 34.5, "type": "ft_made", "source": "scoreboard"}, {"t": 10.0, "type": "rebound", "source": "nova"},
+                {"t": 50.0, "type": "missed_shot", "source": "nova"}]
+    reviewed = [{"t": 31.0, "type": "ft_made", "source": "scoreboard"}, {"t": 50.5, "type": "missed_shot", "source": "nova"}]
+    rows = by_source(proposed, reviewed)
+    assert rows["scoreboard"][:3] == (1, 0, 0)  # 3.5 s apart: a miss at 2 s, a hit at 6 s
+    assert rows["nova"][:3] == (1, 1, 0)

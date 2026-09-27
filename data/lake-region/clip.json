@@ -1,0 +1,32 @@
+{
+  "teams": [
+    "pink",
+    "blue"
+  ],
+  "start_score": {
+    "pink": 11,
+    "blue": 2
+  },
+  "final_score": {
+    "pink": 20,
+    "blue": 6
+  },
+  "roster": [],
+  "audioBed": "data/ambience/crowd.flac",
+  "source": "Hazen vs Lake Region girls varsity, Feb 11 2026, segment 25:00-35:02 of the Commons file",
+  "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons",
+  "notes": "pink = Hazen (home; inferred from the pink-out crowd and bench, verified by the final_score assertion: pink +9, blue +4)",
+  "scoreBug": {
+    "crop": "iw*0.2:ih*0.1:0:ih*0.9",
+    "labels": {
+      "Hazen": "pink",
+      "Guest": "blue"
+    }
+  },
+  "talk": {
+    "wsUrl": "wss://d38etaw7xiqv3j.cloudfront.net"
+  },
+  "party": {
+    "wsUrl": "wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev"
+  }
+}

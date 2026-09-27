@@ -1,0 +1,345 @@
+[
+  {
+    "id": "e1",
+    "t": 0.0,
+    "type": "timeout",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e2",
+    "t": 34.5,
+    "type": "ft_made",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e3",
+    "t": 63.5,
+    "type": "made_3",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e4",
+    "t": 90.0,
+    "type": "steal",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e5",
+    "t": 90.1,
+    "type": "turnover",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e6",
+    "t": 103.5,
+    "type": "made_2",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e7",
+    "t": 124.9,
+    "type": "timeout",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e8",
+    "t": 130.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e9",
+    "t": 131.5,
+    "type": "ft_made",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e10",
+    "t": 151.0,
+    "type": "steal",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.8
+  },
+  {
+    "id": "e11",
+    "t": 227.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e12",
+    "t": 240.1,
+    "type": "rebound",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e13",
+    "t": 257.5,
+    "type": "made_2",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e14",
+    "t": 258.1,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e15",
+    "t": 260.2,
+    "type": "rebound",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e16",
+    "t": 262.3,
+    "type": "missed_shot",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e17",
+    "t": 264.4,
+    "type": "rebound",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e18",
+    "t": 266.5,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e19",
+    "t": 268.6,
+    "type": "rebound",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e20",
+    "t": 270.7,
+    "type": "missed_shot",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e21",
+    "t": 272.8,
+    "type": "rebound",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e22",
+    "t": 295.0,
+    "type": "timeout",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e23",
+    "t": 298.6,
+    "type": "timeout",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e24",
+    "t": 303.1,
+    "type": "steal",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.8
+  },
+  {
+    "id": "e25",
+    "t": 303.2,
+    "type": "turnover",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.8
+  },
+  {
+    "id": "e26",
+    "t": 304.9,
+    "type": "timeout",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e27",
+    "t": 316.0,
+    "type": "missed_shot",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e28",
+    "t": 316.1,
+    "type": "rebound",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e29",
+    "t": 346.0,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e30",
+    "t": 346.1,
+    "type": "rebound",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e31",
+    "t": 385.2,
+    "type": "travel",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e32",
+    "t": 423.1,
+    "type": "travel",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e33",
+    "t": 425.2,
+    "type": "travel",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e34",
+    "t": 474.5,
+    "type": "ft_made",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  },
+  {
+    "id": "e35",
+    "t": 495.0,
+    "type": "steal",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.5
+  },
+  {
+    "id": "e36",
+    "t": 513.1,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e37",
+    "t": 521.5,
+    "type": "missed_shot",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e38",
+    "t": 525.7,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e39",
+    "t": 530.0,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.8
+  },
+  {
+    "id": "e40",
+    "t": 555.0,
+    "type": "timeout",
+    "team": "blue",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e41",
+    "t": 573.1,
+    "type": "missed_shot",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 0.9
+  },
+  {
+    "id": "e42",
+    "t": 580.5,
+    "type": "made_3",
+    "team": "pink",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard"
+  }
+]

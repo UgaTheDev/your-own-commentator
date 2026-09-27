@@ -16,7 +16,7 @@ const URLS: Record<string, string> = {
   'a880.mp4': 'https://REPLACE/a880.mp4',
   'why.mp3': 'https://REPLACE/why.mp3',
 };
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 const t0 = Date.now();
 
 type Player = VideoPlayer | AudioPlayer;
@@ -79,7 +79,8 @@ export const S2Spike = () => {
         await sleep(500);
         log(`Q1 poll audio=${v.audioTracks.length} video=${v.videoTracks?.length} t=${v.currentTime.toFixed(3)}`);
       }
-      const tracks = v.audioTracks;
+      // ponytail: AudioTrackList typings lack an index signature
+      const tracks = v.audioTracks as any;
       log(`Q1 audioTracks exists=${!!tracks} length=${tracks?.length}`);
       const dump = () => {
         const out = [];

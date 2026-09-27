@@ -8,7 +8,8 @@ jest.mock('@amazon-devices/react-native-w3cmedia', () => ({}));
 
 describe('App', () => {
   it('renders the home title while the manifest loads', () => {
-    global.fetch = jest.fn(() => new Promise(() => {})) as jest.Mock;
+    // eslint-disable-next-line no-undef
+    globalThis.fetch = jest.fn(() => new Promise(() => {})) as jest.Mock;
     const screen = render(<App />);
     expect(screen.getByText('Your Own Commentator')).toBeTruthy();
   });

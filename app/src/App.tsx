@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {MANIFEST_URL} from './config';
+import {AUTOPILOT, MANIFEST_URL, WS_ECHO_URL, WS_SPIKE} from './config';
 import {Manifest, Track, fetchManifest, trackName} from './manifest';
 import {Home} from './screens/Home';
 import {Player} from './screens/Player';
@@ -25,11 +25,39 @@ export const App = () => {
             .join('|')} events=${m.events.length}`,
         );
         setManifest(m);
+        if (AUTOPILOT) {
+          setTrack(m.tracks[0]);
+        }
       })
       .catch((e) => {
         console.warn(`YOC: manifest error ${e}`);
         setError(String(e));
       });
+  }, []);
+
+  // Spike: does RN WebSocket work on Vega? Waits past the ~12 s of suppressed launch logs.
+  useEffect(() => {
+    if (!WS_SPIKE) {
+      return;
+    }
+    const timer = setTimeout(() => {
+      const started = Date.now();
+      const ws = new WebSocket(WS_ECHO_URL);
+      ws.onopen = () => {
+        console.warn(`YOC: ws open after ${Date.now() - started}ms`);
+        ws.send('yoc-ping');
+      };
+      ws.onmessage = (e) => {
+        console.warn(
+          `YOC: ws WORKS echo="${e.data}" after ${Date.now() - started}ms`,
+        );
+        ws.close();
+      };
+      ws.onerror = (e) =>
+        console.warn(`YOC: ws FAILS error ${JSON.stringify(e)}`);
+      ws.onclose = (e) => console.warn(`YOC: ws close code=${e.code}`);
+    }, 14000);
+    return () => clearTimeout(timer);
   }, []);
 
   return manifest && track ? (

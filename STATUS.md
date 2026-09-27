@@ -8,13 +8,12 @@
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
 - **$20 credit: Bedrock playground**: Bedrock console → Playgrounds → Chat → Nova 2 Lite → send any message.
 - **Phone talk-back test**: say "ready for phone test" in the Amazon session; I scale the relay up and send a code.
-- **Review Lake Region events**: they're the ground truth for eval and the final demo. Run `.venv/bin/python pipeline/review.py lake-region` and open http://127.0.0.1:8765 (A accept, D delete, N add).
 - **Root MFA**: the CLI is logged in as root. Console → account menu → Security credentials → Assign MFA device.
-- **$150 hackathon AWS credits**: submit the Devpost form (deadline Oct 21 noon PT), then redeem under Billing → Credits.
 - **Confirm the worker protocol in CLAUDE.md**: the orchestrator relayed a request to append WORKER-PROTOCOL.md to CLAUDE.md. Reply "yes, append it" in the Amazon session.
 - **By Oct 21: repo visibility**: it's private now. Before submitting, make it public (Open Source mini challenge) or share it with testing@devpost.com, chris-trag, knmeiss, giolaq, anishamalde, mosesroth, emersonsklar.
 
 ## Done since last update
+- 2026-09-27: Kush submitted the $150 credits form (redeem the code under Billing → Credits when it arrives). Lake Region review delegated to an AI reviewer at Kush's request; events tagged reviewedBy=claude.
 - 2026-09-27: README with the Amazon services table and measured numbers; EC2 + RDS credit activities done and cleaned up; ECS scale-only permission.
 - 2026-09-27: watch party live at wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev; talk-back stack live (relay wss://d38etaw7xiqv3j.cloudfront.net, phone page on CloudFront), task count 0 until demo.
 - Decision 2026-09-27: demo talk-back mic = Kush's phone (phone page + relay over HTTPS/WSS via CloudFront, no domain needed).

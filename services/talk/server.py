@@ -1,6 +1,6 @@
 """Talk-back relay server: C4 (TV session + playhead) and C5 (phone push-to-talk), one asyncio WebSocket port.
 
-python services/talk/server.py [--host 127.0.0.1] [--port 8765]
+python services/talk/server.py [--host 127.0.0.1] [--port 8765] [--proxy-hops 2] [--fake] [--fake]
 
 TV:    hello{clipId} -> session{code}; playhead{t, trackId, paused} every 1 s; receives answer{id, t, text, audioUrl, voice}
 Phone: join{code}; per question start, binary 16 kHz mono s16le PCM (<= 15 s), stop -> transcript{text}, answer{text, audioUrl}
@@ -76,8 +76,9 @@ class Relay:
     """`asr(chunks) -> str` consumes an async iterator of PCM bytes; `respond(text, t, clip, track) -> dict` returns
     {text, audioUrl, voice}. Both are injected so tests run on fakes."""
 
-    def __init__(self, asr, respond, clock=time.time):
+    def __init__(self, asr, respond, clock=time.time, proxy_hops=0):
         self.asr, self.respond, self.clock = asr, respond, clock
+        self.proxy_hops = proxy_hops  # 0 = use the socket peer. Only set when the port is reachable via proxies only
         self.sessions = {}
         self.join_fails = {}  # ip -> [timestamps]
 
@@ -139,8 +140,18 @@ class Relay:
             if s.tv is ws:
                 s.tv = None
 
+    def client_ip(self, ws):
+        """Each proxy APPENDS its peer to X-Forwarded-For, and anything before that is whatever the client sent, so
+        the leftmost entry is forgeable. Behind CloudFront -> ALB (proxy_hops=2) the header ends
+        '<viewer>, <cloudfront edge>': the viewer is the proxy_hops-th entry from the right."""
+        if self.proxy_hops:
+            xff = [a.strip() for a in ws.request.headers.get("X-Forwarded-For", "").split(",") if a.strip()]
+            if len(xff) >= self.proxy_hops:
+                return xff[-self.proxy_hops]
+        return (ws.remote_address or ("?",))[0]
+
     async def phone(self, ws, join):
-        ip = (ws.remote_address or ("?",))[0]  # ponytail: behind a load balancer use X-Forwarded-For instead
+        ip = self.client_ip(ws)
         fails = [f for f in self.join_fails.get(ip, []) if self.clock() - f < JOIN_WINDOW_S]
         if len(fails) >= MAX_JOIN_FAILS:
             raise Reject("too many bad codes, wait")
@@ -220,13 +231,32 @@ def real_respond(text, t, clip, track):
             "fallback": r["fallback"]}
 
 
-async def main(host, port):
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
-    import sonic_asr
-    if not (os.environ.get("YOC_BUCKET") and os.environ.get("YOC_CDN")):
-        raise SystemExit("set YOC_BUCKET and YOC_CDN (answer audio must be HTTPS for the TV)")
-    r = Relay(sonic_asr.transcribe, real_respond)
-    async with serve(r.handler, host, port, max_size=MAX_FRAME, max_queue=64):
+def healthz(conn, request):
+    """ALB target health check: plain GET /healthz -> 200. Everything else goes on to the WebSocket handshake."""
+    return conn.respond(200, "ok\n") if request.path == "/healthz" else None
+
+
+async def fake_asr(chunks):
+    n = 0
+    async for c in chunks:
+        n += len(c)
+    return f"fake transcript of {n / 32000:.1f} s of audio" if n else ""
+
+
+def fake_respond(text, t, clip, track):
+    return {"text": f"Fake answer at {t:.1f} s.", "audioUrl": "https://example.invalid/fake.mp3", "voice": "none"}
+
+
+async def main(host, port, proxy_hops=0, fake=False):
+    if fake:  # smoke test (container start, phone page wiring): no AWS calls at all
+        r = Relay(fake_asr, fake_respond, proxy_hops=proxy_hops)
+    else:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import sonic_asr
+        if not (os.environ.get("YOC_BUCKET") and os.environ.get("YOC_CDN")):
+            raise SystemExit("set YOC_BUCKET and YOC_CDN (answer audio must be HTTPS for the TV)")
+        r = Relay(sonic_asr.transcribe, real_respond, proxy_hops=proxy_hops)
+    async with serve(r.handler, host, port, max_size=MAX_FRAME, max_queue=64, process_request=healthz):
         print(f"talk relay on ws://{host}:{port}")
         await asyncio.Future()
 
@@ -236,5 +266,8 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--host", default="127.0.0.1")
     p.add_argument("--port", type=int, default=8765)
+    p.add_argument("--proxy-hops", type=int, default=int(os.environ.get("YOC_PROXY_HOPS", "0")),
+                   help="proxies that append X-Forwarded-For (2 = CloudFront + ALB); 0 when the port is reachable directly")
+    p.add_argument("--fake", action="store_true", help="fake ASR and answer, no AWS (smoke tests only)")
     a = p.parse_args()
-    asyncio.run(main(a.host, a.port))
+    asyncio.run(main(a.host, a.port, a.proxy_hops, a.fake))

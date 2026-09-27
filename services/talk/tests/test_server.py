@@ -184,3 +184,27 @@ def test_join_guessing_rate_limited():
         tv, phone, _ = await pair(url)
         await ask(phone)
     run(s)
+
+
+def test_xff_trusted_only_behind_proxies():
+    async def lock_out(url, xff):
+        for _ in range(server.MAX_JOIN_FAILS):
+            ws = await connect(url, additional_headers={"X-Forwarded-For": xff})
+            await ws.send(json.dumps({"type": "join", "code": "AAAAAA"}))
+            assert "unknown" in await closed_with(ws)
+
+    async def s(url, relay, calls, clock):
+        relay.proxy_hops = 2  # CloudFront appends the viewer (1.1.1.1), the ALB appends the edge (130.176.0.1)
+        await lock_out(url, "6.6.6.6, 1.1.1.1, 130.176.0.1")  # 6.6.6.6 is client-supplied
+        assert set(relay.join_fails) == {"1.1.1.1"}
+        ws = await connect(url, additional_headers={"X-Forwarded-For": "7.7.7.7, 1.1.1.1, 130.176.0.2"})  # new forged prefix, new edge: still locked
+        await ws.send(json.dumps({"type": "join", "code": "AAAAAA"}))
+        assert "too many" in await closed_with(ws)
+        tv, phone, _ = await pair(url)  # no XFF: falls back to the socket peer, a different client
+        await ask(phone)
+    run(s)
+
+    async def untrusted(url, relay, calls, clock):  # default: XFF ignored, so it can't dodge the limit
+        await lock_out(url, "1.1.1.1")
+        assert set(relay.join_fails) == {"127.0.0.1"}
+    run(untrusted)

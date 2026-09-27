@@ -11,7 +11,23 @@
     "pink": 20,
     "blue": 6
   },
-  "roster": [],
+  "roster": [
+    {
+      "jersey": 5,
+      "team": "blue",
+      "name": null
+    },
+    {
+      "jersey": 3,
+      "team": "pink",
+      "name": null
+    },
+    {
+      "jersey": 11,
+      "team": "pink",
+      "name": null
+    }
+  ],
   "audioBed": "data/ambience/crowd.flac",
   "source": "Hazen vs Lake Region girls varsity, Feb 11 2026, segment 25:00-35:02 of the Commons file",
   "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons",

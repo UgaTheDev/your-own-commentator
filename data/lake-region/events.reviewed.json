@@ -4,11 +4,12 @@
     "t": 31.0,
     "type": "ft_made",
     "team": "blue",
-    "jersey": null,
+    "jersey": 5,
     "confidence": 1.0,
     "source": "scoreboard",
     "status": "accepted",
-    "reviewedBy": "claude"
+    "reviewedBy": "claude",
+    "jerseyEvidence": "claude-verified: t=30.2 (partial) and t=31.0 (clear) back number of the blue free-throw shooter, jersey/e2z.jpg"
   },
   {
     "id": "e3",
@@ -37,11 +38,12 @@
     "t": 131.5,
     "type": "ft_made",
     "team": "pink",
-    "jersey": null,
+    "jersey": 11,
     "confidence": 1.0,
     "source": "scoreboard",
     "status": "accepted",
-    "reviewedBy": "claude"
+    "reviewedBy": "claude",
+    "jerseyEvidence": "claude-verified: t=126.6 and t=126.9 back number during the pink free-throw release, t=128.8 front 'HAZEN 11' same player, jersey/e9z.jpg"
   },
   {
     "id": "e13",
@@ -81,11 +83,12 @@
     "t": 474.5,
     "type": "ft_made",
     "team": "pink",
-    "jersey": null,
+    "jersey": 3,
     "confidence": 1.0,
     "source": "scoreboard",
     "status": "accepted",
-    "reviewedBy": "claude"
+    "reviewedBy": "claude",
+    "jerseyEvidence": "claude-verified: t=469.0, 469.8, 470.4, 471.0 pink free-throw shooter holding the ball at the line, back number 3, jersey/e34z.jpg"
   },
   {
     "id": "e42",

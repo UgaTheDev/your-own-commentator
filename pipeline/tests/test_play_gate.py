@@ -92,3 +92,12 @@ def test_team_less_event_rejects_invented_team_but_allows_score():
     assert write.unsupported_plays("That timeout lets the pink team regroup.", facts)
     assert write.unsupported_plays("El equipo rosa pide tiempo muerto.", facts)
     assert write.unsupported_plays("Timeout on the floor, pink leads 14 to 6.", facts) == []
+
+
+def test_style_violations_spelled_jersey_and_pronouns():
+    # both found on stream J's fantasy lines
+    assert write.style_violations("Number five drains the free throw, adding 1 fantasy point to his total.")
+    assert write.style_violations("Number 3 makes the free throw.") == []
+    assert write.style_violations("The player adds 1 point to their fantasy total.") == []
+    assert write.style_violations("She hits it!")
+    assert write.style_violations("Ella anota.", "es") == []  # pronoun check is English-only for now

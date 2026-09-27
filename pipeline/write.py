@@ -215,7 +215,8 @@ def prompt_for(persona, facts, gap):
         "Hard rules: state only facts in FACTS. Never invent names, stats, times, streaks or anything not in FACTS. "
         "Speak in the third person as the commentator, never as a player. "
         "Refer to players by jersey number only if FACTS.event.jersey is set (and by name only if FACTS.player has one); "
-        "if the jersey is null, say 'a pink player' or similar, never 'number'. Write all numbers as digits. "
+        "if the jersey is null, say 'a pink player' or similar, never 'number'. Write all numbers, including jerseys, as digits "
+        "(e.g. 'number 5'). Never use he/his/she/her for players; say 'the player' or use the jersey. "
         "Only state the score using FACTS.state.score exactly. "
         "Reply with the line only, no quotes.\n"
         f"FACTS: {json.dumps(facts, ensure_ascii=False)}"
@@ -242,6 +243,23 @@ def judge(line, facts):
         return False, f"judge reply unparseable: {reply[:80]!r}"  # fail closed
 
 
+NUMBER_WORDS = ("zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|"
+                "sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty")
+SPELLED_JERSEY = re.compile(rf"\b(number|no\.?|#)\s*({NUMBER_WORDS})\b", re.I)
+PRONOUN = re.compile(r"\b(he|his|him|himself|she|her|hers|herself)\b", re.I)
+
+
+def style_violations(text, lang="en"):
+    """Deterministic checks the judge misses: a jersey spelled as a word slips past the digit gate (so an invented
+    'number five' would pass), and a player's gender is not a fact we have."""
+    bad = []
+    if SPELLED_JERSEY.search(text):
+        bad.append(f"jersey spelled as a word ({SPELLED_JERSEY.search(text).group()!r}); write it as a digit")
+    if lang == "en" and PRONOUN.search(text):
+        bad.append(f"gendered pronoun ({PRONOUN.search(text).group()!r}); say 'the player' or use the jersey")
+    return bad
+
+
 def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write a new one.",
          temperature=0.7, max_words=None, rule_words=False):
     """The grounding gate every spoken sentence passes: write, digit gate, play-word gate, judge; one regeneration.
@@ -254,7 +272,7 @@ def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write
         if bad:
             reason = f"numbers not in facts: {sorted(bad)}"
             continue
-        bad = unsupported_plays(text, facts, rule_words)
+        bad = style_violations(text) + unsupported_plays(text, facts, rule_words)
         if bad:
             reason = "; ".join(bad)
             continue

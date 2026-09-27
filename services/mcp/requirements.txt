@@ -1,0 +1,2 @@
+mcp==2.2.0  # official Python SDK; negotiates the 2025-11-25 initialize handshake Alexa+ uses (and 2026-07-28)
+-r ../../pipeline/requirements.txt

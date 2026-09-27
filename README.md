@@ -34,7 +34,7 @@ Built for the **Fire TV track** of the Amazon Developer Hackathon 2026, on **Veg
 licensed game video
   │  Nova Pro: events per 20 s window          scoreboard.py: score-graphic changes → Nova Pro reads digits
   ▼                                            (authoritative for baskets: +1 FT, +2, +3)
-proposed events ──► human review page (accept / fix / add) ──► verified events
+proposed events ──► review page (accept / fix / add) ──► verified events
                                                                   │  state.py: score, fouls, fantasy (deterministic,
                                                                   ▼  must equal the broadcast's final score)
                      Nova 2 Lite writer per persona × event ──► 3 grounding gates ──► Polly ──► ffmpeg mix
@@ -52,7 +52,7 @@ Every spoken line goes through `write.gate()`:
 2. **Play-word gate:** every play the line names (steal, foul, rebound, three, free throw…, in English and Spanish, with starter lists for Hindi and Mandarin) must match a play in the facts, credited to the right team. Team-less plays can't be given to a team.
 3. **Bedrock judge** (Nova 2 Lite) for names and claims. If both attempts fail, the line is dropped. Viewer answers fall back to a sentence built only from the facts, so they never invent anything.
 
-Only events a human accepted in review are spoken (`write.speakable()`), and published manifests contain only those.
+Only events accepted in review are spoken (`write.speakable()`), and published manifests contain only those.
 
 ## Measured so far (2026-09-27, 10-minute CC BY high-school game)
 

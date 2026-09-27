@@ -7,6 +7,11 @@ const MANIFESTS = {
 };
 // The one switch between the v2 fixture and the real clip.
 export const MANIFEST_URL = MANIFESTS.lakeRegion;
+// C8 games index for the Home game picker; MANIFEST_URL alone until it is published.
+export const GAMES_URL = 'https://d2og06dnam3owj.cloudfront.net/clips.json';
+export const FALLBACK_GAMES = [
+  {clipId: 'lake-region', title: 'Lake Region', manifestUrl: MANIFEST_URL},
+];
 
 // Dev only: drive Why / Catch me up / booth by script and log `YOC:` lines,
 // since the VVD can't be screenshotted or D-padded from the CLI.

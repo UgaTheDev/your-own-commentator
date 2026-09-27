@@ -60,6 +60,7 @@ export interface Manifest {
   recaps?: {t: number; src: string; text: string}[];
   talk?: {wsUrl: string};
   party?: {wsUrl: string};
+  highlights?: {src: string; duration: number; events?: string[]};
 }
 
 export const fetchManifest = async (url: string): Promise<Manifest> => {
@@ -121,6 +122,41 @@ export const replayAt = (m: Manifest, t: number) => {
       ? m.replays?.find((r) => r.eventId === ev.id)
       : undefined) ?? null
   );
+};
+
+// C8 games index (clips.json): one entry per reviewed clip.
+export interface Game {
+  clipId: string;
+  title: string;
+  manifestUrl: string;
+  attribution?: string;
+}
+
+// Entries the app can open (Vega media is HTTPS-only); throws on a malformed or empty index.
+export const parseGames = (index: unknown): Game[] => {
+  const clips = (index as {clips?: unknown} | null)?.clips;
+  if (!Array.isArray(clips)) {
+    throw new Error('games index has no clips');
+  }
+  const games = clips.filter(
+    (c): c is Game =>
+      typeof c?.clipId === 'string' &&
+      typeof c?.title === 'string' &&
+      typeof c?.manifestUrl === 'string' &&
+      c.manifestUrl.startsWith('https://'),
+  );
+  if (!games.length) {
+    throw new Error('games index is empty');
+  }
+  return games;
+};
+
+export const fetchGames = async (url: string): Promise<Game[]> => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`games index HTTP ${res.status}`);
+  }
+  return parseGames(await res.json());
 };
 
 // ponytail: the track's own answer, else any rendered one (the pipeline gates all of them)

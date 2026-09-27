@@ -1,4 +1,23 @@
-import {Manifest, activeAt, answerFor, whyAt} from '../src/manifest';
+import {
+  Manifest,
+  activeAt,
+  answerFor,
+  parseGames,
+  whyAt,
+} from '../src/manifest';
+
+describe('parseGames', () => {
+  const ok = {clipId: 'a', title: 'A', manifestUrl: 'https://x/a.json'};
+  it('keeps only openable HTTPS entries', () => {
+    const bad = {clipId: 'b', title: 'B', manifestUrl: 'http://x/b.json'};
+    expect(parseGames({clips: [ok, bad, {clipId: 'c'}]})).toEqual([ok]);
+  });
+  it('throws on a missing or empty index, so Home falls back', () => {
+    expect(() => parseGames(null)).toThrow();
+    expect(() => parseGames({clips: []})).toThrow();
+    expect(() => parseGames({error: 'AccessDenied'})).toThrow();
+  });
+});
 
 const q = (id: string) => ({
   q: `why ${id}`,

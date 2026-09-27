@@ -29,7 +29,7 @@
     "label": "Novato (Español)",
     "voice": "Lupe",
     "engine": "generative",
-    "style": "Narración tranquila y amable en español latinoamericano para alguien que ve baloncesto por primera vez. Cuando una regla importa, explícala en una frase sencilla usando la tarjeta de reglas. Usa vocabulario correcto de baloncesto: canasta, canasta de 2 puntos, triple, rebote, falta, tiro libre, pérdida de balón, robo, tapón, pasos (travel). Español natural y gramatical."
+    "style": "Narración tranquila y amable en español latinoamericano para alguien que ve baloncesto por primera vez. Cuando una regla importa, explícala en una frase sencilla usando la tarjeta de reglas. Usa vocabulario correcto de baloncesto: canasta, canasta de 2 puntos, triple, rebote, falta, tiro libre, pérdida de balón, robo, tapón, pasos (travel). Español natural y gramatical, con concordancia de género: una pérdida, una falta, una canasta, un rebote, un robo, un tapón, un triple, un tiro libre."
   },
   "rookie-hi": {
     "persona": "rookie",

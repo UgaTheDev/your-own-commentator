@@ -14,6 +14,7 @@ import shutil
 from pathlib import Path
 
 from common import ROOT, aws, clip_dir, load, save
+from mix import track_order
 
 
 def audio_key(path):
@@ -22,7 +23,7 @@ def audio_key(path):
 
 def build_manifest(clip_id, clip, events, states, voiced, rules, questions, base_url="", multitrack=False,
                    personas=None, recaps=None):
-    tids = sorted({x["trackId"] for x in voiced})  # same order as mix.py's audio streams
+    tids = track_order(x["trackId"] for x in voiced)  # same order as mix.py's audio streams; tracks[0] is videoUrl
     and_one = {s["eventId"] for s in states if s.get("andOne")}
     tracks = []
     for k, tid in enumerate(tids):

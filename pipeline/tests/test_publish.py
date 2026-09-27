@@ -19,8 +19,9 @@ CLIP = {"roster": [{"jersey": 23, "team": "red", "name": "Sam"}]}
 def test_pertrack_manifest():
     m = build_manifest("c1", CLIP, EVENTS, STATES, VOICED, RULES, {}, "https://cdn/published/c1/")
     assert set(m) == KEYS
-    assert [t["id"] for t in m["tracks"]] == ["kid-en", "rookie-en"]
-    assert m["tracks"][1] == {"id": "rookie-en", "persona": "rookie", "lang": "en", "label": "Rookie (EN)",
+    assert [t["id"] for t in m["tracks"]] == ["rookie-en", "kid-en"]  # Rookie opens the demo, not alphabetical
+    assert m["videoUrl"] == "https://cdn/published/c1/render/rookie-en.mp4"
+    assert m["tracks"][0] == {"id": "rookie-en", "persona": "rookie", "lang": "en", "label": "Rookie (EN)",
                               "src": "https://cdn/published/c1/render/rookie-en.mp4"}
     assert [c["t"] for c in m["cues"]["rookie-en"]] == [1.4, 9.4]
     assert [e["id"] for e in m["events"]] == ["e1", "e2"]

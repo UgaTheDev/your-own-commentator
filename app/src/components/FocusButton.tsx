@@ -6,6 +6,7 @@ interface Props {
   onPress: () => void;
   selected?: boolean;
   hasTVPreferredFocus?: boolean;
+  onFocusChange?: (focused: boolean) => void;
 }
 
 export const FocusButton = ({
@@ -13,6 +14,7 @@ export const FocusButton = ({
   onPress,
   selected,
   hasTVPreferredFocus,
+  onFocusChange,
 }: Props) => {
   const [focused, setFocused] = useState(false);
   return (
@@ -24,8 +26,12 @@ export const FocusButton = ({
       onFocus={() => {
         console.warn(`YOC: focus ${label}`);
         setFocused(true);
+        onFocusChange?.(true);
       }}
-      onBlur={() => setFocused(false)}
+      onBlur={() => {
+        setFocused(false);
+        onFocusChange?.(false);
+      }}
       hasTVPreferredFocus={hasTVPreferredFocus}
       accessibilityRole="button"
       accessibilityLabel={label}

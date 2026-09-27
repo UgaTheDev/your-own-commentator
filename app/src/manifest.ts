@@ -91,7 +91,11 @@ export const activeAt = <T extends {t: number}>(items: T[], t: number) => {
 const NAMES: Record<string, string> = {
   'rookie-en': 'Rookie',
   'kid-en': 'Kid',
+  'booth-en': 'Booth',
+  'fantasy-en': 'Fantasy',
   'rookie-es': 'Novato (Español)',
+  'rookie-hi': 'नौसिखिया (हिन्दी)',
+  'rookie-zh': '新手 (中文)',
 };
 export const trackName = (tr: Track) => NAMES[tr.id] ?? tr.label;
 

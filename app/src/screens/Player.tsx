@@ -395,7 +395,7 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       [2000, () => api.current.why()], // nothing within 10 s
       [3000, () => seek(121)],
       [3000, () => api.current.catchUp()], // recap t=120
-      [12000, () => seek(62)],
+      [12000, () => seek(64)],
       [4000, () => api.current.replay()], // e3 at 63.5 has the fixture replay
       [14000, () => setShowMap(true)],
       [6000, () => booth && api.current.switchTo(booth)],

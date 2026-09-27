@@ -1,5 +1,8 @@
 import http.client
 import json
+import re
+import shutil
+import subprocess
 import sys
 import threading
 from pathlib import Path
@@ -147,3 +150,46 @@ def test_human_added_event_accepted(srv):
     d, port = srv
     status, _, body = post(port, [{**ev(1, 3, "made_2"), "source": "human", "status": "accepted"}])
     assert status == 200 and json.loads(body) == {"ok": True, "warning": None}
+
+
+def cv(i, t, type, team="red"):
+    return {**ev(i, t, type, team), "confidence": 0.6, "source": "cv", "status": "accepted"}  # status is forced back
+
+
+def test_merge_cv_dedupes_by_type_team_and_time():
+    base = [ev(1, 10.0, "made_2"), ev(2, 30.0, "rebound", "blue")]
+    merged = review.merge_cv(base, [cv(1, 11.5, "made_2"),           # same play (dt 1.5 s): dropped
+                                    cv(9, 12.5, "made_2"),           # dt 2.5 s: kept
+                                    cv(8, 30.5, "rebound", "red"),   # other team: kept
+                                    cv(7, 30.5, "steal", "blue")])   # other type: kept
+    assert [(e["id"], e["t"]) for e in merged] == [("e1", 10.0), ("e9", 12.5), ("e2", 30.0), ("e8", 30.5), ("e7", 30.5)]
+    assert all(e["source"] == "cv" and e["status"] == "proposed" for e in merged if e["id"] in ("e7", "e8", "e9"))
+    assert base == [ev(1, 10.0, "made_2"), ev(2, 30.0, "rebound", "blue")]  # input untouched
+
+
+def test_merge_cv_renames_colliding_ids():
+    merged = review.merge_cv([ev(1, 10.0, "made_2")], [cv(1, 50.0, "steal"), cv(1, 60.0, "block")])
+    assert sorted(e["id"] for e in merged) == ["cv-cv-e1", "cv-e1", "e1"]
+
+
+def test_events_serve_cv_merged_without_writing(srv):
+    d, port = srv
+    common.save(d / "events.cv.json", [cv(5, 20.0, "steal")])
+    before = sorted(p.name for p in d.iterdir())
+    got = json.loads(req(port, "GET", "/events")[2])
+    assert [(e["id"], e.get("source"), e.get("status")) for e in got] == [("e1", None, None), ("e5", "cv", "proposed")]
+    assert sorted(p.name for p in d.iterdir()) == before  # nothing written until the human saves
+
+
+def test_accept_all_scoreboard_only_touches_proposed_scoreboard_events():
+    node = shutil.which("node")
+    if not node:
+        pytest.skip("node not installed")
+    html = Path(review.__file__).with_name("review.html").read_text()
+    fn = re.search(r"function pendingScoreboard\(events\) \{.*?\n\}", html, re.S).group(0)
+    events = [{"id": "a", "source": "scoreboard", "status": "proposed"}, {"id": "b", "source": "scoreboard", "status": "accepted"},
+              {"id": "c", "source": "cv", "status": "proposed"}, {"id": "d", "source": "nova"}, {"id": "e", "source": "scoreboard"}]
+    js = f"{fn}\nconsole.log(JSON.stringify(pendingScoreboard({json.dumps(events)}).map(e => e.id)))"
+    out = subprocess.run([node, "-e", js], capture_output=True, text=True, check=True).stdout
+    assert json.loads(out) == ["a", "e"]
+    assert 'k === "a" && ev.shiftKey' in html and "confirm(" in html  # the shortcut asks before accepting

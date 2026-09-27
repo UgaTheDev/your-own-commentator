@@ -20,6 +20,7 @@ from state import EVENT_TYPES, compute
 HTML = Path(__file__).with_name("review.html")
 EVENT_SCHEMA = json.loads((Path(__file__).resolve().parent.parent / "schemas" / "event.schema.json").read_text())
 MAX_BODY = 1 << 20
+CV_DEDUPE_S = 2.0  # a cv proposal within 2 s of an existing same-type, same-team event is the same play
 RANGE = re.compile(r"^bytes=(\d*)-(\d*)$")
 
 
@@ -50,6 +51,29 @@ def validate(clip, events):
         raise ValueError("duplicate event ids")
 
 
+def merge_cv(events, cv):
+    """Add cv proposals not already in `events` (same type and team within CV_DEDUPE_S). Pure: the merged list is
+    only served; nothing reaches disk until the human saves. Ids that collide get a cv- prefix."""
+    out, ids = list(events), {e.get("id") for e in events}
+    for c in cv:
+        if any(e.get("type") == c.get("type") and e.get("team") == c.get("team")
+               and abs(e.get("t", 0) - c.get("t", 0)) <= CV_DEDUPE_S for e in out):
+            continue
+        # ponytail: a cv proposal the human deleted comes back on reload; persist rejections if that gets annoying
+        c = {**c, "source": "cv", "status": "proposed"}  # a cv file can't pre-accept its own events
+        while c.get("id") in ids:
+            c["id"] = f"cv-{c.get('id')}"
+        ids.add(c["id"])
+        out.append(c)
+    return sorted(out, key=lambda e: e.get("t", 0))
+
+
+def load_events(d):
+    base = next((common.load(d / n) for n in ("events.reviewed.json", "events.proposed.json") if (d / n).exists()), [])
+    cv = d / "events.cv.json"
+    return merge_cv(base, common.load(cv)) if cv.exists() else base
+
+
 def save_events(d, events):
     """Validate, compute state, save atomically. Returns a warning string (final score mismatch) or None."""
     clip = common.load(d / "clip.json")
@@ -77,10 +101,7 @@ class Handler(BaseHTTPRequestHandler):
         elif path == "/clip":
             self._send(200, (self.d / "clip.json").read_bytes(), "application/json")
         elif path == "/events":
-            for name in ("events.reviewed.json", "events.proposed.json"):
-                if (self.d / name).exists():
-                    return self._send(200, (self.d / name).read_bytes(), "application/json")
-            self._send(200, b"[]", "application/json")
+            self._json(200, load_events(self.d))
         elif path == "/video":
             self._video()
         else:

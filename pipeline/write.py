@@ -126,13 +126,13 @@ COLOR_ES = {"pink": ("rosa", "rosado", "rosados"), "blue": ("azul", "azules")}  
 
 
 def team_plays(facts):
-    """{(type, team)} a team word may be attached to: every typed fact with its team."""
+    """{(type, team)} a team word may be attached to: every typed fact with its team (None = no team, so no word fits)."""
     pairs = set()
 
     def walk(x):
         if isinstance(x, dict):
-            if isinstance(x.get("type"), str) and x.get("team"):
-                pairs.add((x["type"], x["team"]))
+            if isinstance(x.get("type"), str) and "team" in x:
+                pairs.add((x["type"], x.get("team")))
             for v in x.values():
                 walk(v)
         elif isinstance(x, list):
@@ -146,7 +146,7 @@ def wrong_team(text, facts, named):
     """'A pink player turns over' on a blue turnover: a team word <= 2 words before a play word that team didn't make.
     Plays FACTS only imply (the turnover in a steal) carry no team, so they're not checked."""
     pairs = team_plays(facts)
-    teams = {t for _, t in pairs} | set(((facts.get("state") or {}).get("score") or {}))
+    teams = {t for _, t in pairs if t} | set(((facts.get("state") or {}).get("score") or {}))
     words = {w: t for t in teams for w in (t, *COLOR_ES.get(t, ()))}
     if not words or not pairs:
         return []
@@ -161,12 +161,27 @@ def wrong_team(text, facts, named):
     return bad
 
 
+AGENT = re.compile(r"\b(pink|blue|rosa|azul)\s+(players?|team)\b|\b(jugador|jugadora|equipo)\s+(rosa|azul)\b")
+
+
+def teamless_agent(text, facts, named):
+    """A play whose only fact has no team ('A pink player calls a timeout' on a team-less timeout): naming a team as
+    the actor invents it. Score phrases ('pink leads 14 to 6') aren't actor phrases, so they still pass."""
+    pairs = team_plays(facts)
+    orphan = {typ for typ, t in pairs if t is None} - {typ for typ, t in pairs if t}
+    if not any(ts & orphan for _, _, ts in named):
+        return []
+    m = AGENT.search(text.lower())
+    return [f"credits a team-less play to a team: {m.group()!r}"] if m else []
+
+
 def unsupported_plays(text, facts, rule_words=False):
     """Reasons `text` names a play FACTS don't have, credits it to the wrong team, or 'scores' a non-scoring play."""
     ok = fact_plays(facts, rule_words)
     named = plays_named(text)
     bad = [f"names a {'/'.join(sorted(ts))} not in facts: {text[s:e]!r}" for s, e, ts in named if not ts & ok]
     bad += wrong_team(text, facts, named)
+    bad += teamless_agent(text, facts, named)
     for v in SCORE_VERB.finditer(text.lower()):
         nxt = next(((s, e, ts) for s, e, ts in named if s >= v.end()), None)
         if nxt and len(text[v.end():nxt[0]].split()) <= 2 and not nxt[2] & SCORING:

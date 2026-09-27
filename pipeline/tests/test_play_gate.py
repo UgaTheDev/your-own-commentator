@@ -82,3 +82,13 @@ def test_gate_retries_on_play_word(monkeypatch):
     monkeypatch.setattr(write.common, "converse", lambda *a, **k: replies.pop(0))
     text, reason = write.gate("p", facts("turnover", "blue"))
     assert (text, reason) == ("Blue turns it over.", None)
+
+
+def test_team_less_event_rejects_invented_team_but_allows_score():
+    # found in the integrator's spot check: team-less timeouts credited to pink
+    facts = {"event": {"id": "e11", "t": 1, "type": "timeout", "team": None, "jersey": None},
+             "state": {"score": {"pink": 14, "blue": 6}}}
+    assert write.unsupported_plays("A pink player calls a timeout.", facts)
+    assert write.unsupported_plays("That timeout lets the pink team regroup.", facts)
+    assert write.unsupported_plays("El equipo rosa pide tiempo muerto.", facts)
+    assert write.unsupported_plays("Timeout on the floor, pink leads 14 to 6.", facts) == []

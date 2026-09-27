@@ -86,7 +86,7 @@ Resources:
             Statement:
               - Sid: SonicAsr
                 Effect: Allow
-                Action: bedrock:InvokeModelWithBidirectionalStream
+                Action: [bedrock:InvokeModelWithBidirectionalStream, bedrock:InvokeModel]  # IAM also checks InvokeModel for the Sonic stream (AccessDenied without it)
                 Resource: arn:aws:bedrock:us-east-1::foundation-model/amazon.nova-2-sonic-v1:0
               - Sid: Nova2LiteAnswerAndJudge  # Converse is authorized as InvokeModel; the us. profile routes to 3 regions
                 Effect: Allow

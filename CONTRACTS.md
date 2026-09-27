@@ -9,6 +9,10 @@ Machine-checked schemas are in `schemas/`; `pipeline/tests/test_contracts.py` va
 
 ## The grounding rule, in contract form
 - Only events with `status: "accepted"` may feed anything spoken.
+- **One exception: live replay** (`pipeline/live.py`). Events read from the broadcast's own score graphic may be
+  spoken without review, because the graphic is the verified record of the score. Live mode uses nothing else:
+  no Nova video events and no jerseys, and its cues are labeled "live replay". Measured: 7/7 scoreboard events correct
+  (precision 1.00) on the demo clip.
 - Everything spoken (track lines, booth lines, recaps, Why answers, talk-back answers,
   prediction results) goes through `write.write_line()` or `answer.answer()`, which run the
   digit gate and the Bedrock judge. Computer-vision output may drive visuals (minimap,

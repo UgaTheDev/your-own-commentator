@@ -5,6 +5,11 @@ Description: >-
   scale to 1 only for demos. Sessions live in memory, so never run more than 1.
 
 Parameters:
+  OriginSecret:
+    Type: String
+    NoEcho: true
+    MinLength: 32
+    Description: Random value CloudFront sends as X-Origin-Secret; the ALB forwards only requests carrying it (blocks other distributions). Generate at deploy time; never commit.
   VpcId:
     Type: AWS::EC2::VPC::Id
   SubnetIds:
@@ -148,6 +153,18 @@ Resources:
       Port: 80
       Protocol: HTTP  # CloudFront terminates TLS; this hop stays inside AWS's network
       DefaultActions:
+        - Type: fixed-response
+          FixedResponseConfig: {StatusCode: "403", ContentType: text/plain, MessageBody: forbidden}
+
+  OriginSecretRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !Ref Listener
+      Priority: 1
+      Conditions:
+        - Field: http-header
+          HttpHeaderConfig: {HttpHeaderName: X-Origin-Secret, Values: [!Ref OriginSecret]}
+      Actions:
         - {Type: forward, TargetGroupArn: !Ref TargetGroup}
 
   TaskDef:
@@ -188,6 +205,8 @@ Resources:
         Origins:
           - Id: alb
             DomainName: !GetAtt Alb.DNSName
+            OriginCustomHeaders:
+              - {HeaderName: X-Origin-Secret, HeaderValue: !Ref OriginSecret}
             CustomOriginConfig:
               OriginProtocolPolicy: http-only
               HTTPPort: 80

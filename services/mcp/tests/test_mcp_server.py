@@ -7,7 +7,7 @@ import pytest
 from mcp import Client
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import server  # noqa: E402
+import yoc_mcp as server  # noqa: E402  (module renamed: services/talk also has server.py)
 
 MAN = {
     "tracks": [{"id": "rookie-en", "label": "Rookie (EN)", "persona": "rookie", "lang": "en"},

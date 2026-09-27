@@ -1,4 +1,4 @@
-"""Live smoke run (not collected by pytest): the SDK client against a running `server.py --http`, real CDN + Bedrock.
+"""Live smoke run (not collected by pytest): the SDK client against a running `yoc_mcp.py --http`, real CDN + Bedrock.
 
 python services/mcp/tests/live_http.py [http://127.0.0.1:8790/mcp]
 mode="legacy" forces the initialize handshake, which negotiates 2025-11-25: the version Alexa+ supports.

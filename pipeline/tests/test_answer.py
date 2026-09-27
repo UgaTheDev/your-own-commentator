@@ -40,3 +40,12 @@ def test_two_failures_fall_back_to_facts_only_template(monkeypatch):
 
 def test_fallback_before_any_event_invents_nothing():
     assert answer.fallback(answer.facts_at(0.0, MANIFEST), "es") == "Solo puedo hablar de lo que pasó en la cancha."
+
+
+def test_fallback_for_team_less_play_never_says_question_mark():
+    m = {"events": [{"id": "e1", "t": 10.0, "type": "timeout", "team": None, "jersey": None, "ruleCardId": "timeout"}],
+         "state": [{"eventId": "e1", "t": 10.0, "score": {"pink": 16, "blue": 6}}],
+         "ruleCards": {"timeout": {"title": "Timeout", "body": "x"}}}
+    for lang in ("en", "es", "hi", "zh"):
+        text = answer.fallback(answer.facts_at(12.0, m), lang)
+        assert "?" not in text and "Timeout" in text

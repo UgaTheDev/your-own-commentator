@@ -1,6 +1,6 @@
 # MCP server: deploy plan (NOT deployed; Kush approves each step)
 
-Today it runs only locally: `python services/mcp/server.py` (stdio) or `--http` (http://127.0.0.1:8790/mcp).
+Today it runs only locally: `python services/mcp/yoc_mcp.py` (stdio) or `--http` (http://127.0.0.1:8790/mcp).
 Alexa+ needs a public HTTPS URL that speaks Streamable HTTP (see ALEXA.md).
 
 ## Recommended: Lambda + Lambda Web Adapter + function URL
@@ -34,7 +34,7 @@ concurrency to 1 for the demo hour only. `explain_play` is 1.6-2.4 s warm becaus
 pre-rendered `questions` when the question matches one, and only call `answer()` otherwise.
 
 ## Alternative: next to the talk relay (Fargate + ALB + CloudFront)
-Run `server.py --http` as a second process or container in the `yoc-talk` task. Add an ALB listener rule
+Run `yoc_mcp.py --http` as a second process or container in the `yoc-talk` task. Add an ALB listener rule
 `/mcp*` to it and a CloudFront behavior `/mcp*` (no caching, all methods, forward `MCP-Protocol-Version` and
 `Content-Type`). It reuses the existing stack, but it's only up while the relay is scaled to 1, and the ALB costs
 money even at 0 tasks. Use it if we'd rather have one stack than two.

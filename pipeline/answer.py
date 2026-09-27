@@ -45,6 +45,10 @@ TEMPLATES = {
 }
 
 
+NO_TEAM = {"en": "The last play was a {what}.", "es": "La última jugada fue {what}.",
+           "hi": "पिछला खेल {what} था।", "zh": "上一个回合是{what}。"}  # team-less plays (timeouts): never say "the ? team"
+
+
 def fallback(facts, lang):
     """Deterministic, built only from facts: can't invent anything."""
     play, score, none = TEMPLATES.get(lang, TEMPLATES["en"])
@@ -52,7 +56,8 @@ def fallback(facts, lang):
     if not ev:
         return none
     what = (facts.get("rule") or {}).get("title") or ev["type"].replace("_", " ")
-    parts = [play.format(what=what, team=ev.get("team") or "?")]
+    team = ev.get("team")
+    parts = [play.format(what=what, team=team) if team else NO_TEAM.get(lang, NO_TEAM["en"]).format(what=what)]
     if st and st.get("score"):
         parts.append(score.format(score=", ".join(f"{k} {v}" for k, v in st["score"].items())))
     return " ".join(parts)

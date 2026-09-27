@@ -14,6 +14,7 @@
 - **By Oct 21: repo visibility**: it's private now. Before submitting, make it public (Open Source mini challenge) or share it with testing@devpost.com, chris-trag, knmeiss, giolaq, anishamalde, mosesroth, emersonsklar.
 
 ## Done since last update
+- Decision 2026-09-27: demo talk-back mic = Kush's phone (phone page + relay over HTTPS/WSS via CloudFront, no domain needed).
 - v1 pipeline works on real CC BY footage: Nova Pro events, scoreboard-anchored scoring (7/7 exact), grounded writer, Polly, mix, S3 + CloudFront (HTTPS, OAC).
 - Vega player MVP on the virtual device: Home, commentator switching (src + seek), score bug, rule cards.
 - Spike S2: switch by src + seek; a second AudioPlayer works; media must be HTTPS.
@@ -28,9 +29,6 @@
 | D Talk-back | agent, worktree `stream/talk-2` | sprint 2 prep running (no deploy) | Dockerfile, CFN, phone push-to-talk page; deploy after Kush approves |
 | E Watch party | agent, worktree `stream/party` | sprint 1 merged (22 tests, template validated) | sprint 2: use join.clipId, deploy after Kush approves |
 | F Vega app | agent, worktree `stream/app` | sprint 1 merged: Why card, Catch me up, booth captions on VVD; WebSocket WORKS on Vega | sprint 2: pairing + playhead + talk-back playback, replays, minimap |
-
-## Decisions
-- 2026-09-27: demo talk-back mic = Kush's phone (phone page + relay over HTTPS/WSS via CloudFront).
 
 ## Blockers (not Kush)
 - none

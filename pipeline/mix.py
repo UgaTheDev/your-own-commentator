@@ -1,13 +1,13 @@
 """Mix each commentary track into the game audio, ducking the crowd under every line.
 
-python pipeline/mix.py <clip_id> [--mode pertrack|multitrack]
+python pipeline/mix.py <clip_id> [--mode pertrack|multitrack] [--tracks booth-en,...]
   pertrack   (default, always works) data/<clip>/render/<trackId>.mp4
   multitrack                         data/<clip>/render/multi.mp4, one audio stream per track
 """
 import argparse
 import subprocess
 
-from common import ROOT, clip_dir, load
+from common import DATA, clip_dir, load
 
 ISO639_2 = {"en": "eng", "es": "spa", "hi": "hin", "zh": "zho"}
 
@@ -81,7 +81,9 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("clip_id")
     ap.add_argument("--mode", choices=["pertrack", "multitrack"], default="pertrack")
+    ap.add_argument("--tracks", help="pertrack only: re-render just these (comma list); default all")
     a = ap.parse_args()
     d = clip_dir(a.clip_id)
-    bed = load(d / "clip.json").get("audioBed")  # path relative to repo root
-    mix(d / "source.mp4", load(d / "voiced.json"), d / "render", a.mode, ROOT / bed if bed else None)
+    bed = load(d / "clip.json").get("audioBed")  # "data/..." path: relative to the checkout that owns DATA
+    voiced = [x for x in load(d / "voiced.json") if not a.tracks or x["trackId"] in a.tracks.split(",")]
+    mix(d / "source.mp4", voiced, d / "render", a.mode, DATA.parent / bed if bed else None)

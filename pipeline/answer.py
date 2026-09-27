@@ -6,8 +6,8 @@ It never returns an ungated model sentence.
 """
 import json
 
-import common
-from write import judge, unsupported_digits
+import common  # noqa: F401  (tests patch common.converse through here)
+from write import gate
 
 WINDOW = 30.0  # seconds of recent verified events a viewer's question may refer to
 
@@ -57,17 +57,8 @@ def fallback(facts, lang):
 
 
 def answer(question, facts, persona):
-    base = prompt_for(question, facts, persona)
-    reason = ""
-    for attempt in range(2):
-        p = base if attempt == 0 else f"{base}\nYour previous answer was rejected ({reason}). Answer again."
-        text = common.converse("write", p, max_tokens=200, temperature=0.4).strip().strip('"')
-        bad = unsupported_digits(text, facts)
-        if bad:
-            reason = f"numbers not in facts: {sorted(bad)}"
-            continue
-        ok, why = judge(text, facts)
-        if ok:
-            return {"text": text, "gated": True, "fallback": False}
-        reason = f"judge: {why}"
+    text, reason = gate(prompt_for(question, facts, persona), facts,
+                        retry="Your previous answer was rejected ({reason}). Answer again.", temperature=0.4)
+    if not reason:
+        return {"text": text, "gated": True, "fallback": False}
     return {"text": fallback(facts, persona["lang"]), "gated": True, "fallback": True}

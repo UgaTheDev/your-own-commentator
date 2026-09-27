@@ -46,5 +46,23 @@
     "voice": "Zhiyu",
     "engine": "neural",
     "style": "为第一次看篮球的观众提供平静、友好的普通话解说。当规则重要时，用规则卡片中的内容一句话简单解释。"
+  },
+  "booth-en": {
+    "persona": "booth",
+    "lang": "en",
+    "label": "Booth",
+    "kind": "booth",
+    "pbp": {
+      "lang": "en",
+      "voice": "Matthew",
+      "engine": "neural",
+      "style": "Crisp play-by-play voice in a two-person booth. Call what just happened: who, what, the score. Leave the explaining to your analyst."
+    },
+    "analyst": {
+      "lang": "en",
+      "voice": "Ruth",
+      "engine": "generative",
+      "style": "Warm color analyst in a two-person booth, talking to a viewer new to basketball. React to your partner's call with the why: one plain rule explanation from the rule card, or what the play means for the score. Never repeat the call."
+    }
   }
 }

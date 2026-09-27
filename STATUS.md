@@ -2,7 +2,7 @@
 
 <!-- Worker-owned. Update at every checkpoint, blocker, or decision. The orchestrator reads this file; keep the headings exactly. -->
 
-**Updated:** 2026-09-27 12:30  ·  **Stage:** building  ·  **Health:** 🟢 on track
+**Updated:** 2026-09-27 12:45  ·  **Stage:** building  ·  **Health:** 🟢 on track
 
 ## Needs Kush
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
@@ -22,12 +22,12 @@
 ## In progress (streams)
 | Stream | Owner/worktree | State | Next |
 |---|---|---|---|
-| A CV engine | agent, worktree `stream/cv` | launching | detection + ByteTrack + team colors + homography on 60 s |
-| B Ingest/events | agent, worktree `stream/ingest` | launching | C1 fields (source/status), review UI source filter |
-| C Writer/booth/voice | agent, worktree `stream/writer` | launching | Why questions, booth dialogue, recaps, manifest v2 |
-| D Talk-back | agent, worktree `stream/talk` | launching | local relay: WAV → Nova Sonic ASR → answer() → Polly, latency |
-| E Watch party | agent, worktree `stream/party` | launching | CloudFormation + Lambda handlers + tests (no deploy) |
-| F Vega app | agent, worktree `stream/app` | launching | Why button + second AudioPlayer, recap, booth, WebSocket spike |
+| A CV engine | agent, worktree `stream/cv` | running (sprint 1) | detection + ByteTrack + team colors + homography on 60 s |
+| B Ingest/events | agent, worktree `stream/ingest` | running (sprint 1) | C1 fields (source/status), review UI source filter |
+| C Writer/booth/voice | agent, worktree `stream/writer` | running (sprint 1) | Why questions, booth dialogue, recaps, manifest v2 |
+| D Talk-back | agent, worktree `stream/talk` | running (sprint 1) | local relay: WAV → Nova Sonic ASR → answer() → Polly, latency |
+| E Watch party | agent, worktree `stream/party` | running (sprint 1) | CloudFormation + Lambda handlers + tests (no deploy) |
+| F Vega app | agent, worktree `stream/app` | running (sprint 1) | Why button + second AudioPlayer, recap, booth, WebSocket spike |
 
 ## Blockers (not Kush)
 - none

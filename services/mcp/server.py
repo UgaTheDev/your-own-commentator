@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any
 
 from mcp.server.mcpserver import MCPServer
+from mcp.server.mcpserver.exceptions import ToolError  # message reaches the client; other exceptions are masked
 from mcp.types import ToolAnnotations
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -51,17 +52,17 @@ def manifest(clip_id):
 
 def check_clip(clip_id):
     if not isinstance(clip_id, str) or not CLIP_ID.match(clip_id):
-        raise ValueError("Unknown game id. Ask for the list of games first.")
+        raise ToolError("Unknown game id. Ask for the list of games first.")
     try:
         return manifest(clip_id)
     except (urllib.error.URLError, ValueError, TimeoutError):
-        raise ValueError(f"I couldn't find the game {clip_id}.") from None
+        raise ToolError(f"I couldn't find the game {clip_id}.") from None
 
 
 def check_t(t):
     t = float(t)
     if not math.isfinite(t) or not 0 <= t <= MAX_T:
-        raise ValueError(f"The time must be between 0 and {int(MAX_T)} seconds into the game.")
+        raise ToolError(f"The time must be between 0 and {int(MAX_T)} seconds into the game.")
     return t
 
 
@@ -74,6 +75,16 @@ def score_text(score):
         return f"The {a} team has {sa}."
     b, sb = rest[0]
     return f"It's tied at {sa}." if sa == sb else f"The {a} team leads {sa} to {sb}."
+
+
+def play_text(facts):
+    """'Last play: three-pointer by the blue team.' from the accepted event and its rule card only
+    (answer.fallback says 'by the ? team' for team-less events like a timeout, which reads badly aloud)."""
+    ev = facts["event"]
+    if not ev:
+        return "Nothing has happened yet."
+    what = ((facts.get("rule") or {}).get("title") or ev["type"].replace("_", " ")).lower()
+    return f"Last play: {what}" + (f" by the {ev['team']} team." if ev.get("team") else ".")
 
 
 @mcp.tool(annotations=READ_ONLY, structured_output=True)
@@ -95,8 +106,8 @@ def get_current_play(clip_id: str, t: float) -> dict[str, Any]:
     Use for "what happened", "what was that", "what just happened", "catch me up on that play".
     clip_id: the game id from list_games (e.g. "lake-region"). t: seconds into the video at the playhead (0-7200)."""
     facts = answer_mod.facts_at(check_t(t), check_clip(clip_id))
-    return {"text": answer_mod.fallback(facts, "en"), "event": facts["event"],
-            "score": (facts["state"] or {}).get("score")}
+    score = (facts["state"] or {}).get("score")
+    return {"text": play_text(facts) + " " + score_text(score), "event": facts["event"], "score": score}
 
 
 @mcp.tool(annotations=READ_ONLY, structured_output=True)
@@ -121,9 +132,9 @@ def explain_play(clip_id: str, t: float, question: str, persona: str = "rookie-e
     rejected the model twice and a plain facts-only sentence was used instead)."""
     man, t = check_clip(clip_id), check_t(t)
     if not isinstance(question, str) or not question.strip() or len(question) > MAX_Q:
-        raise ValueError(f"The question must be 1 to {MAX_Q} characters.")
-    if persona not in PERSONAS:
-        raise ValueError("Unknown commentator. Ask for the list of commentators.")
+        raise ToolError(f"The question must be 1 to {MAX_Q} characters.")
+    if "style" not in PERSONAS.get(persona, {}):  # booth-en is a two-voice track, not an answer persona
+        raise ToolError("Unknown commentator. Ask for the list of commentators.")
     return answer_mod.answer(question.strip(), answer_mod.facts_at(t, man), PERSONAS[persona])
 
 

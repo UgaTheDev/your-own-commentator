@@ -53,7 +53,8 @@ def test_list_games_reads_clips_json(monkeypatch):
 def test_current_play_and_score_from_verified_state():
     _, out, _ = call("get_current_play", clip_id="lake-region", t=65)
     assert out["event"]["id"] == "e2" and out["score"] == {"pink": 3, "blue": 2}
-    assert out["text"] == "The last play was a three-pointer by the pink team. The score is pink 3, blue 2."
+    assert out["text"] == "Last play: a three-pointer by the pink team. The pink team leads 3 to 2."
+    assert call("get_current_play", clip_id="lake-region", t=5)[1]["text"] == "Nothing has happened yet. There is no score yet."
     assert call("whos_winning", clip_id="lake-region", t=65)[1]["text"] == "The pink team leads 3 to 2."
     assert call("whos_winning", clip_id="lake-region", t=5)[1]["text"] == "There is no score yet."
 
@@ -82,7 +83,8 @@ def test_commentators():
     ("explain_play", {"clip_id": "lake-region", "t": 1, "question": "x" * 301}),
     ("explain_play", {"clip_id": "lake-region", "t": 1, "question": "   "}),
     ("explain_play", {"clip_id": "lake-region", "t": 1, "question": "why", "persona": "nope"}),
+    ("explain_play", {"clip_id": "lake-region", "t": 1, "question": "why", "persona": "booth-en"}),
 ])
 def test_bad_input_is_a_tool_error(name, args, patched):
-    err, _, _ = call(name, **args)
-    assert err and not patched
+    err, _, text = call(name, **args)
+    assert err and not patched and text.startswith(f"Error executing tool {name}: ")  # our message kept, not masked

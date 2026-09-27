@@ -3,11 +3,12 @@ import hashlib
 import json
 import os
 import re
+import threading
 from functools import cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "data"
+DATA = Path(os.environ.get("YOC_DATA", ROOT / "data"))  # worktrees point this at the main checkout
 CACHE = DATA / ".cache"
 
 # ponytail: minimal .env loader (KEY=VALUE lines); real env vars win
@@ -45,7 +46,11 @@ def load(path):
 
 
 def save(path, obj):
-    Path(path).write_text(json.dumps(obj, indent=2, ensure_ascii=False))
+    """Atomic: parallel streams share one cache, so a reader must never see a half-written file."""
+    path = Path(path)
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")  # writers are threads too
+    tmp.write_text(json.dumps(obj, indent=2, ensure_ascii=False))
+    os.replace(tmp, path)
 
 
 def cache_path(kind, key, ext="json"):

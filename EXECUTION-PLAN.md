@@ -1,5 +1,7 @@
 # Execution plan: Your Own Commentator (Fire TV / Vega)
 
+> **2026-09-27:** superseded for new work by V2-PLAN.md (parallel streams) and CONTRACTS.md. This file is kept as the v1 record.
+
 ## Context
 The repo holds only planning docs (CONTEXT.md, PLAN.md, FRICTION-LOG.md, LICENSE). We have to ship a demo-ready Vega OS app plus a demo video under 3 minutes by **Oct 22** (hard deadline Oct 23, 12:00 PM PT), with code freeze on the night of **Oct 20**. This plan turns PLAN.md's architecture into build steps, using facts verified on 2026-09-26 and your answers:
 - **Simulator only.** The Vega Virtual Device (VVD) on your Mac. The rules accept simulator footage.

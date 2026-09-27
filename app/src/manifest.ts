@@ -7,6 +7,8 @@ export interface Track {
   lang: string;
   label: string;
   src: string;
+  kind?: 'single' | 'booth';
+  voices?: {role: 'pbp' | 'analyst'; voice: string}[];
 }
 
 export interface GameEvent {
@@ -14,7 +16,7 @@ export interface GameEvent {
   t: number;
   type: string;
   team: Team | null;
-  jersey: string | null;
+  jersey: number | null;
   ruleCardId: string | null;
 }
 
@@ -22,6 +24,7 @@ export interface Cue {
   t: number;
   eventId: string;
   text: string;
+  role?: 'pbp' | 'analyst';
 }
 
 export interface GameState {
@@ -40,6 +43,13 @@ export interface Manifest {
   cues: Record<string, Cue[]>;
   ruleCards: Record<string, {title: string; body: string}>;
   state: GameState[];
+  // v2 (CONTRACTS.md C3), all optional so v1 manifests still load
+  questions?: Record<string, {q: string; answers: Record<string, {text: string; audioUrl: string}>}[]>;
+  replays?: {eventId: string; src: string; duration: number}[];
+  minimap?: {hz: number; frames: {t: number; players: {id: number; team: Team; x: number; y: number}[]; ball: {x: number; y: number} | null}[]};
+  recaps?: {t: number; src: string; text: string}[];
+  talk?: {wsUrl: string};
+  party?: {wsUrl: string};
 }
 
 export const fetchManifest = async (url: string): Promise<Manifest> => {

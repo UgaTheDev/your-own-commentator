@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tracks.schema.json",
+  "title": "C2 Tracks",
+  "type": "object",
+  "required": ["fps", "court", "frames"],
+  "$defs": {
+    "box": {"type": "array", "items": {"type": "number", "minimum": 0, "maximum": 1}, "minItems": 4, "maxItems": 4},
+    "xy": {"type": ["array", "null"], "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+  },
+  "properties": {
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "court": {"type": "object", "required": ["w", "h"],
+              "properties": {"w": {"type": "number"}, "h": {"type": "number"}}},
+    "frames": {"type": "array", "items": {
+      "type": "object", "required": ["t", "players", "ball"],
+      "properties": {
+        "t": {"type": "number", "minimum": 0},
+        "players": {"type": "array", "items": {
+          "type": "object", "required": ["id", "team", "jersey", "box", "court"],
+          "properties": {
+            "id": {"type": "integer"},
+            "team": {"type": ["string", "null"]},
+            "jersey": {"type": ["integer", "null"]},
+            "box": {"$ref": "#/$defs/box"},
+            "court": {"$ref": "#/$defs/xy"}
+          }}},
+        "ball": {"oneOf": [{"type": "null"}, {"type": "object", "required": ["box", "court"],
+                 "properties": {"box": {"$ref": "#/$defs/box"}, "court": {"$ref": "#/$defs/xy"}}}]}
+      }}}
+  }
+}

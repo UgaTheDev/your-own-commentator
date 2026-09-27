@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "event.schema.json",
+  "title": "C1 Event",
+  "type": "object",
+  "required": ["id", "t", "type", "team", "jersey"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "t": {"type": "number", "minimum": 0},
+    "type": {"enum": ["made_2", "made_3", "ft_made", "ft_missed", "missed_shot", "foul", "travel",
+                      "turnover", "steal", "block", "rebound", "timeout"]},
+    "team": {"type": ["string", "null"]},
+    "jersey": {"type": ["integer", "null"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "source": {"enum": ["nova", "scoreboard", "cv", "human"]},
+    "status": {"enum": ["proposed", "accepted"]},
+    "trackIds": {"type": "array", "items": {"type": "integer"}},
+    "court": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+  }
+}

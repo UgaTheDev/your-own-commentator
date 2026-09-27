@@ -35,6 +35,16 @@ export interface GameState {
   andOne?: boolean;
 }
 
+export interface Answer {
+  text: string;
+  audioUrl: string;
+}
+
+export interface Question {
+  q: string;
+  answers: Record<string, Answer>;
+}
+
 export interface Manifest {
   clipId: string;
   videoUrl: string;
@@ -44,7 +54,7 @@ export interface Manifest {
   ruleCards: Record<string, {title: string; body: string}>;
   state: GameState[];
   // v2 (CONTRACTS.md C3), all optional so v1 manifests still load
-  questions?: Record<string, {q: string; answers: Record<string, {text: string; audioUrl: string}>}[]>;
+  questions?: Record<string, Question[]>;
   replays?: {eventId: string; src: string; duration: number}[];
   minimap?: {hz: number; frames: {t: number; players: {id: number; team: Team; x: number; y: number}[]; ball: {x: number; y: number} | null}[]};
   recaps?: {t: number; src: string; text: string}[];
@@ -84,3 +94,21 @@ const NAMES: Record<string, string> = {
   'rookie-es': 'Novato (Español)',
 };
 export const trackName = (tr: Track) => NAMES[tr.id] ?? tr.label;
+
+export const WHY_WINDOW_SECS = 10;
+
+// The latest event with questions, if it happened at most WHY_WINDOW_SECS ago.
+export const whyAt = (m: Manifest, t: number) => {
+  const qs = m.questions ?? {};
+  const ev = activeAt(
+    m.events.filter((e) => qs[e.id]?.length),
+    t,
+  );
+  return ev && t - ev.t <= WHY_WINDOW_SECS
+    ? {event: ev, questions: qs[ev.id].slice(0, 3)}
+    : null;
+};
+
+// ponytail: the track's own answer, else any rendered one (the pipeline gates all of them)
+export const answerFor = (q: Question, trackId: string): Answer | undefined =>
+  q.answers[trackId] ?? Object.values(q.answers)[0];

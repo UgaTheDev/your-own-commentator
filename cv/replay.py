@@ -5,7 +5,8 @@
 Per scoring event: 6 s of source ending 1 s after the event, every source frame written at
 half rate (60 fps -> 30 fps = 0.5x), 1080p H.264 +faststart with a quiet crowd bed. Draws only
 what tracks.json shows: a team-coloured ellipse under each tracked player, and a ring plus a
-1 s arrow trail on the 1-2 players nearest the ball in the second before the event. No jersey
+1 s arrow trail on the 1-2 players nearest the ball in the second before the event (or,
+since scoreboard events lag the shot, the last second before it with a tracked ball). No jersey
 numbers, names or text beyond "REPLAY". Upload/URLs: cv/publish_replays.py.
 """
 import argparse
@@ -17,7 +18,7 @@ import cv2
 import numpy as np
 
 import post
-from track import DATA, HERE, apply_h
+from track import DATA, HERE, apply_h, stable_boxes
 
 SCORING = ("made_2", "made_3", "ft_made")
 COL = {"pink": (180, 60, 255), "blue": (255, 150, 30), None: (210, 210, 210)}
@@ -36,9 +37,9 @@ def interp(samples, t, max_gap=0.35):
     return near[0][1] if near else None
 
 
-def nearest_to_ball(frames, t0, t1, W, H, k=2, max_px=260):
+def nearest_to_ball(frames, t0, t1, W, H, k=2, max_px=300, min_seen=2):
     """Ids of up to k players nearest the ball (box centre to ball centre, mean px) over tracks
-    frames in [t0, t1]; only players seen with the ball in >= 3 of those frames."""
+    frames in [t0, t1]; only players seen with the ball in >= min_seen of those frames."""
     d = {}
     for f in frames:
         if not (t0 <= f["t"] <= t1) or not f["ball"]:
@@ -48,7 +49,7 @@ def nearest_to_ball(frames, t0, t1, W, H, k=2, max_px=260):
         for p in f["players"]:
             x, y, w, h = p["box"]
             d.setdefault(p["id"], []).append(np.hypot(*(np.array([(x + w / 2) * W, (y + h / 2) * H]) - bc)))
-    best = sorted((np.mean(v), i) for i, v in d.items() if len(v) >= 3 and np.mean(v) <= max_px)
+    best = sorted((np.mean(v), i) for i, v in d.items() if len(v) >= min_seen and np.mean(v) <= max_px)
     return [i for _, i in best[:k]]
 
 
@@ -58,13 +59,22 @@ def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None):
     fr = [f for f in tracks["frames"] if t0 - 0.5 <= f["t"] <= t1 + 0.5]
     ts = np.array([f["t"] for f in fr])
     px = lambda b: np.array([b[0] * W, b[1] * H, (b[0] + b[2]) * W, (b[1] + b[3]) * H])  # noqa: E731
+    # boxes live in pan-stable px (C: frame px -> stable px) so 10 Hz samples interpolate
+    # correctly through camera pans; each output frame maps them back with its own C
+    Csamp = [(f["t"], Cs[round(f["t"], 3)]) for f in fr if round(f["t"], 3) in Cs]
+    Cd = dict(Csamp)
     per, team = {}, {}
     for f in fr:
-        for p in f["players"]:
-            per.setdefault(p["id"], []).append((f["t"], px(p["box"])))
-            team[p["id"]] = p["team"]
-    hi = nearest_to_ball(fr, te - 1.0, te, W, H)
-    Csamp = [(f["t"], Cs[round(f["t"], 3)]) for f in fr if round(f["t"], 3) in Cs]
+        if f["t"] in Cd:
+            for p in f["players"]:
+                b = px(p["box"])
+                per.setdefault(p["id"], []).append((f["t"], np.r_[stable_boxes(Cd[f["t"]], [b])[0], b]))
+                team[p["id"]] = p["team"]
+    # the second before the event, or (scoreboard events lag the shot) the last second before
+    # it in which the tracks show the ball
+    seen = [f["t"] for f in fr if f["ball"] and t0 <= f["t"] <= te]
+    tb = te if not seen or seen[-1] >= te - 1.0 else seen[-1]
+    hi = nearest_to_ball(fr, tb - 1.0, tb, W, H)
 
     cap = cv2.VideoCapture(str(src))
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -84,33 +94,42 @@ def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None):
             break
         t = t0 + k / fps
         C = interp(Csamp, t, max_gap=0.2)
-        for tid, s in per.items():
-            b = interp(s, t)
-            if b is None:
+        Cinv = np.linalg.inv(C) if C is not None else None
+        for tid, smp in per.items():
+            v = interp(smp, t)
+            if v is None:
                 continue
-            x1, y1, x2, y2 = b
+            rb = v[4:]
+            mb = stable_boxes(Cinv, [v[:4]])[0] if Cinv is not None else None
+            # guard: C accumulates from t=0 and can degenerate after a camera cut; then fall
+            # back to plain px interpolation (lags a little in fast pans, never explodes)
+            sane = mb is not None and 0.7 <= (mb[2] - mb[0]) / max(rb[2] - rb[0], 1) <= 1.4 and \
+                np.hypot(mb[0] - rb[0], mb[3] - rb[3]) <= 150
+            x1, y1, x2, y2 = mb if sane else rb
             cx, cy, w = int((x1 + x2) / 2), int(y2), x2 - x1
             if tid in hi:
                 cv2.ellipse(img, (cx, cy), (int(w * .85), int(w * .3)), 0, 0, 360, (255, 255, 255), 5, cv2.LINE_AA)
-                if C is not None:  # 1 s trail: past feet -> pan-stable px -> today's px
-                    Cinv = np.linalg.inv(C)
-                    pts = [apply_h(Cinv @ Cs[round(st, 3)], [((q[0] + q[2]) / 2, q[3])])[0]
-                           for st, q in s if t - 1.0 <= st < t and round(st, 3) in Cs] + [np.array([cx, cy])]
-                    pts = np.array(pts, np.int32)
-                    if len(pts) >= 3 and np.hypot(*(pts[-1] - pts[0])) > 12:
-                        cv2.polylines(img, [pts[:-1]], False, (255, 255, 255), 4, cv2.LINE_AA)
-                        cv2.arrowedLine(img, tuple(map(int, pts[-2])), tuple(map(int, pts[-1])), (255, 255, 255), 4,
-                                        cv2.LINE_AA, tipLength=0.6)
+                # 1 s trail of past feet, stable px -> this frame's px, arrow at the current spot
+                past = [((q[0] + q[2]) / 2, q[3]) if sane else ((q[4] + q[6]) / 2, q[7])
+                        for st, q in smp if t - 1.0 <= st < t]
+                if past and sane:
+                    past = list(apply_h(Cinv, past))
+                pts = np.array([*past, (cx, cy)], np.int32)
+                if len(pts) >= 3 and np.hypot(*(pts[-1] - pts[0])) > 12:
+                    cv2.polylines(img, [pts[:-1]], False, (255, 255, 255), 4, cv2.LINE_AA)
+                    cv2.arrowedLine(img, tuple(map(int, pts[-2])), tuple(map(int, pts[-1])), (255, 255, 255), 4,
+                                    cv2.LINE_AA, tipLength=0.6)
             cv2.ellipse(img, (cx, cy), (int(w * .6), int(w * .2)), 0, 0, 360, COL[team[tid]], 3, cv2.LINE_AA)
         cv2.rectangle(img, (32, 32), (212, 84), (20, 20, 20), -1)
         cv2.putText(img, "REPLAY", (46, 72), cv2.FONT_HERSHEY_DUPLEX, 1.2, (255, 255, 255), 2, cv2.LINE_AA)
-        if stills and k == round((PRE - 0.5) * fps):
+        if stills and k == round((tb - 0.3 - t0) * fps):  # inside the highlight second
             cv2.imwrite(str(stills), img, [cv2.IMWRITE_JPEG_QUALITY, 88])
         ff.stdin.write(img.tobytes())
     ff.stdin.close()
     if ff.wait():
         raise RuntimeError(f"ffmpeg failed for {ev['id']}")
-    return {"eventId": ev["id"], "frames": n, "duration": round(n / (fps * SLOW), 2), "highlighted": hi}
+    return {"eventId": ev["id"], "frames": n, "duration": round(n / (fps * SLOW), 2), "highlighted": hi,
+            "ball_window_end": tb}
 
 
 def main():

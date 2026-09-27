@@ -213,7 +213,8 @@ def detect(src, t0, t1, fps, model_name):
         raw.append({"t": t, "C": C.tolist(), "n_det": int((det.class_id == PERSON).sum()),
                     "players": [{"id": int(tid), "xyxy": [round(float(v), 1) for v in xy],
                                  "team": team_of(torso(frame, xy)), "hist": hist(torso(frame, xy))}
-                                for xy, tid in zip(ppl.data["orig"], ppl.tracker_id)],
+                                # an empty tracker result drops custom data keys
+                                for xy, tid in zip(ppl.data.get("orig", np.zeros((0, 4))), ppl.tracker_id)],
                     "balls": [[round(float(v), 1) for v in xy] + [round(float(c), 3)]
                               for xy, c in zip(balls.xyxy, balls.confidence)]})
         if len(raw) % 200 == 0:
@@ -276,7 +277,7 @@ def main():
     ap.add_argument("--model", default="medium", choices=["nano", "small", "medium", "large"])
     ap.add_argument("--redetect", action="store_true", help="ignore the cached detection pass")
     ap.add_argument("--detect-only", action="store_true")
-    ap.add_argument("--ball-conf", type=float, default=0.5)
+    ap.add_argument("--ball-conf", type=float, default=0.35)
     a = ap.parse_args()
 
     d = DATA / a.clip

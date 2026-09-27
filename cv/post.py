@@ -77,7 +77,7 @@ def track_lengths(frames):
     return {"ids": len(span), "median_s": round(float(np.median(lens)), 2) if lens else 0.0}
 
 
-def filter_ball(ts, cands, min_conf=0.5, vmax=1500.0, slack=40.0, min_run=3, max_gap=0.6):
+def filter_ball(ts, cands, min_conf=0.35, vmax=1500.0, slack=40.0, min_run=2, max_gap=0.6):
     """ts: frame times; cands[i]: [[x1, y1, x2, y2, conf], ...] in pan-stable px.
     Keeps the most confident candidate >= min_conf per frame, links consecutive picks into runs
     while the centre moves <= vmax px/s (+ slack) with gaps <= max_gap s, drops runs shorter

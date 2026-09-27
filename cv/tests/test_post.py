@@ -65,14 +65,15 @@ def test_filter_ball():
     cands[5] = []                                          # gap: filled
     cands[6] = [box(160, 300, 0.3)]                        # low confidence: dropped, filled
     cands[9] = [box(900, 900)]                              # isolated false positive ...
-    cands[10] = [box(900, 905)]                             # ... two frames only: dropped
+    cands[10] = [box(200, 300)]                             # ... one frame only: dropped
     cands[11] = [box(210, 300)]
     out = post.filter_ball(ts, cands)
     assert out[0] == [95, 295, 105, 305]
     assert out[3] is None or abs((out[3][0] + out[3][2]) / 2 - 130) < 1  # not the jump
     np.testing.assert_allclose(out[5], [145, 295, 155, 305])
     np.testing.assert_allclose(out[6], [155, 295, 165, 305])
-    assert out[9] is None and out[10] is None
+    np.testing.assert_allclose(out[9], [185, 295, 195, 305])  # FP dropped, gap filled
+    assert out[10] == [195, 295, 205, 305]
     assert all(o is None for o in post.filter_ball([0, 0.1], [[], []]))
 
 

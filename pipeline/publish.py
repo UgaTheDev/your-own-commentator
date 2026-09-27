@@ -7,6 +7,7 @@ python pipeline/publish.py <clip_id> [--local] [--multitrack]
   --local       relative URLs; serve data/<clip>/ with `python -m http.server`
   (default)     upload to s3://$YOC_BUCKET/published/<clip>/, URLs on https://$YOC_CDN/<clip>/ (origin path /published)
   --multitrack  one multi.mp4 with audioTrackIndex per track (mix.py --mode multitrack)
+  --allow-unreviewed  DEV ONLY: put unaccepted events in the manifest (default: accepted only, CONTRACTS.md C3)
 """
 import argparse
 import os
@@ -14,6 +15,8 @@ import shutil
 from pathlib import Path
 
 from common import ROOT, aws, clip_dir, load, save
+from mix import track_order
+from write import speakable
 
 
 def audio_key(path):
@@ -21,8 +24,10 @@ def audio_key(path):
 
 
 def build_manifest(clip_id, clip, events, states, voiced, rules, questions, base_url="", multitrack=False,
-                   personas=None, recaps=None):
-    tids = sorted({x["trackId"] for x in voiced})  # same order as mix.py's audio streams
+                   personas=None, recaps=None, allow_unreviewed=False):
+    """Only speakable events reach the manifest: the watch party settles predictions from them as accepted."""
+    events = speakable(events, allow_unreviewed)
+    tids = track_order(x["trackId"] for x in voiced)  # same order as mix.py's audio streams; tracks[0] is videoUrl
     and_one = {s["eventId"] for s in states if s.get("andOne")}
     tracks = []
     for k, tid in enumerate(tids):
@@ -93,7 +98,7 @@ def upload(clip_id, files):
         print(f"s3://{bucket}/{key}")
 
 
-def main(clip_id, local, multitrack):
+def main(clip_id, local, multitrack, allow_unreviewed=False):
     d = clip_dir(clip_id)
     rules_path = ROOT / "pipeline" / "rules.json"
     optional = {name: load(d / f"{name}.json") if (d / f"{name}.json").exists() else None for name in ("questions", "recaps")}
@@ -106,7 +111,7 @@ def main(clip_id, local, multitrack):
     m = build_manifest(clip_id, load(d / "clip.json"), load(d / "events.reviewed.json"), load(d / "state.json"),
                        load(d / "voiced.json"), load(rules_path) if rules_path.exists() else {},
                        optional["questions"] or {}, base, multitrack, load(ROOT / "pipeline" / "personas.json"),
-                       optional["recaps"])
+                       optional["recaps"], allow_unreviewed)
     renders = [d / "render/multi.mp4"] if multitrack else [d / f"render/{t['id']}.mp4" for t in m["tracks"]]
     missing = [str(p) for p in renders if not p.exists()]
     if missing:
@@ -127,5 +132,6 @@ if __name__ == "__main__":
     ap.add_argument("clip_id")
     ap.add_argument("--local", action="store_true")
     ap.add_argument("--multitrack", action="store_true")
+    ap.add_argument("--allow-unreviewed", action="store_true", help="DEV ONLY: publish events not yet accepted in review")
     a = ap.parse_args()
-    main(a.clip_id, a.local, a.multitrack)
+    main(a.clip_id, a.local, a.multitrack, a.allow_unreviewed)

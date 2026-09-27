@@ -12,6 +12,14 @@ from common import DATA, clip_dir, load
 ISO639_2 = {"en": "eng", "es": "spa", "hi": "hin", "zh": "zho"}
 
 
+DEFAULT_TRACK = "rookie-en"  # the demo opens on Rookie
+
+
+def track_order(track_ids):
+    """The default track first, then alphabetical: stream order here, track order and videoUrl in the manifest."""
+    return sorted(set(track_ids), key=lambda t: (t != DEFAULT_TRACK, t))
+
+
 def lang_of(track_id):
     return track_id.rsplit("-", 1)[-1]
 
@@ -67,7 +75,7 @@ def mix(video, voiced, render_dir, mode="pertrack", bed=None):
     tracks = {}
     for x in sorted(voiced, key=lambda x: x["start"]):
         tracks.setdefault(x["trackId"], []).append((x["start"], x["audio"]))
-    tracks = dict(sorted(tracks.items()))  # publish.py relies on this order for audioTrackIndex
+    tracks = {tid: tracks[tid] for tid in track_order(tracks)}  # publish.py relies on this order for audioTrackIndex
     render_dir.mkdir(parents=True, exist_ok=True)
     jobs = [({tid: clips}, render_dir / f"{tid}.mp4") for tid, clips in tracks.items()] if mode == "pertrack" \
         else [(tracks, render_dir / "multi.mp4")]

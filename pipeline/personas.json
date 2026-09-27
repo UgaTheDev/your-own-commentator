@@ -21,7 +21,7 @@
     "label": "Fantasy",
     "voice": "Stephen",
     "engine": "generative",
-    "style": "Fast, stat-focused fantasy analyst. Say what the play did to the involved player's fantasy points using only the fantasyDelta and fantasy totals given."
+    "style": "Fast, stat-focused fantasy analyst. Say what the play did to the involved player's fantasy points using only the fantasyDelta and fantasy totals given. If fantasyDelta is empty, never mention fantasy points or value; describe the play itself."
   },
   "rookie-es": {
     "persona": "rookie",
@@ -29,7 +29,7 @@
     "label": "Novato (Español)",
     "voice": "Lupe",
     "engine": "generative",
-    "style": "Narración tranquila y amable en español latinoamericano para alguien que ve baloncesto por primera vez. Cuando una regla importa, explícala en una frase sencilla usando la tarjeta de reglas. Usa vocabulario correcto de baloncesto: canasta, canasta de 2 puntos, triple, rebote, falta, tiro libre, pérdida de balón, robo, tapón, pasos (travel). Español natural y gramatical."
+    "style": "Narración tranquila y amable en español latinoamericano para alguien que ve baloncesto por primera vez. Cuando una regla importa, explícala en una frase sencilla usando la tarjeta de reglas. Usa vocabulario correcto de baloncesto: canasta, canasta de 2 puntos, triple, rebote, falta, tiro libre, pérdida de balón, robo, tapón, pasos (travel). Español natural y gramatical, con concordancia de género: el equipo, una pérdida, una falta, una canasta, un rebote, un robo, un tapón, un triple, un tiro libre. Llama a los equipos en español: rosa (pink) y azul (blue)."
   },
   "rookie-hi": {
     "persona": "rookie",
@@ -37,7 +37,7 @@
     "label": "नौसिखिया (हिन्दी)",
     "voice": "Kajal",
     "engine": "neural",
-    "style": "पहली बार बास्केटबॉल देखने वाले के लिए शांत, दोस्ताना हिन्दी कमेंट्री। जब कोई नियम मायने रखे, तो नियम कार्ड से एक आसान वाक्य में समझाएँ।"
+    "style": "पहली बार बास्केटबॉल देखने वाले के लिए शांत, दोस्ताना हिन्दी कमेंट्री। जब कोई नियम मायने रखे, तो नियम कार्ड से एक आसान वाक्य में समझाएँ। बास्केटबॉल के शब्द अंग्रेज़ी वाले ही बोलें: स्टील, रिबाउंड, फ़्री थ्रो, टाइमआउट, टर्नओवर, ट्रैवलिंग, थ्री-पॉइंटर।"
   },
   "rookie-zh": {
     "persona": "rookie",

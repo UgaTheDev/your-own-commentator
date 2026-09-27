@@ -55,7 +55,6 @@
       "Bash(npx tsc*)",
       "Bash(npx eslint*)",
       "Bash(npx prettier*)",
-      "Bash(curl -s*)",
       "Bash(gh pr view*)",
       "Bash(gh pr list*)",
       "Bash(gh run view*)",
@@ -107,7 +106,9 @@
       "Bash(aws iam *)",
       "Bash(aws s3 rm *)",
       "Bash(aws s3 rb *)",
-      "Bash(aws * delete*)"
+      "Bash(aws * delete*)",
+      "Bash(git push origin +*)",
+      "Bash(git push * +*)"
     ],
     "deny": [
       "Read(./.env)",

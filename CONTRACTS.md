@@ -49,6 +49,12 @@ manifest are only speakable events** (status accepted, or every event of a dev c
 - `recaps`: `[{t, src, text}]`: the voiced catch-up to play when the viewer returns at time >= `t`.
 - `questions`: `{eventId: [{q, answers: {trackId: {text, audioUrl}}}]}`: pre-rendered Why answers.
 - `talk`: `{wsUrl}`, `party`: `{wsUrl}`: present only when those services are deployed.
+- `highlights`: `{src, duration, events: [eventId]}` (added 2026-09-27): the auto highlight reel, with the replays stitched
+  together plus a grounded voice-over.
+
+## C8 Games index (`schemas/clips.schema.json`, added 2026-09-27)
+`https://d2og06dnam3owj.cloudfront.net/clips.json` = `{"clips": [{clipId, title, manifestUrl, attribution}]}`. The app's game
+picker reads it. Only clips whose events have been reviewed go in it; dev clips never do.
 
 ## C4 Session and playhead (TV <-> backend, WebSocket; JSON text frames)
 - TV -> `{"type": "hello", "clipId"}`; server -> `{"type": "session", "code": "K7Q2MX"}` (6-char base32, expires in 2 h).

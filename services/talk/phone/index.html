@@ -1,0 +1,144 @@
+<!doctype html>
+<!-- Push-to-talk phone page (C5). Serve over HTTPS (getUserMedia needs a secure context):
+     https://<cdn>/talk-phone/index.html?ws=wss://<relay>  (locally: http://localhost:8000/?ws=ws://127.0.0.1:8765) -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask the Commentator</title>
+<style>
+  :root { color-scheme: dark; --bg: #111; --fg: #eee; --dim: #999; --accent: #e8457a; --live: #3ad07a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; background: var(--bg); color: var(--fg); font: 18px/1.4 system-ui, sans-serif;
+         display: flex; flex-direction: column; gap: 16px; max-width: 480px; margin-inline: auto; min-height: 100dvh; }
+  h1 { font-size: 1.3rem; margin: 0; }
+  form { display: flex; gap: 8px; }
+  input { flex: 1; min-width: 0; font: inherit; font-size: 1.6rem; letter-spacing: .3em; text-transform: uppercase;
+          padding: 10px; border-radius: 8px; border: 1px solid #444; background: #1c1c1c; color: var(--fg); }
+  button { font: inherit; border: 0; border-radius: 8px; padding: 10px 16px; background: #333; color: var(--fg); }
+  #talk { flex: 1; min-height: 45dvh; border-radius: 24px; font-size: 1.5rem; font-weight: 700; background: var(--accent);
+          touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  #talk[aria-pressed="true"] { background: var(--live); color: #000; }
+  #talk:disabled { opacity: .35; }
+  #status, #timing { color: var(--dim); font-size: .9rem; min-height: 1.4em; }
+  .said { color: var(--dim); } .said:empty, .ans:empty { display: none; }
+  .ans { font-size: 1.15rem; }
+</style>
+</head>
+<body>
+<h1>Ask the commentator</h1>
+<form id="join">
+  <input id="code" autocomplete="off" autocapitalize="characters" maxlength="6" pattern="[A-Za-z2-7]{6}" required
+         placeholder="TV CODE" aria-label="6-character code shown on the TV">
+  <button>Join</button>
+</form>
+<div id="status" role="status">Enter the code on your TV.</div>
+<button id="talk" disabled aria-pressed="false">Hold to talk</button>
+<div class="said" id="said"></div>
+<div class="ans" id="ans" aria-live="polite"></div>
+<div id="timing"></div>
+<script>
+const WS = new URLSearchParams(location.search).get("ws");
+const MAX_MS = 14500;  // C5 caps a question at 15 s; stop a little early so the last frames fit
+const $ = id => document.getElementById(id);
+const status = t => { $("status").textContent = t; };
+const player = new Audio();
+let ws, ctx, node, recording = false, sending = false, stopTimer, tStop;
+
+// ponytail: box-filter downsample to 16 kHz (averages each output sample's input span), fine for speech ASR.
+const WORKLET = `
+class Down extends AudioWorkletProcessor {
+  constructor() { super(); this.step = sampleRate / 16000; this.reset();
+    this.port.onmessage = e => { if (e.data === "flush") { this.emit(); this.port.postMessage("flushed"); } else this.reset(); }; }
+  reset() { this.pos = 0; this.acc = 0; this.n = 0; this.out = new Int16Array(512); this.k = 0; }
+  emit() { if (this.k) this.port.postMessage(this.out.slice(0, this.k).buffer); this.out = new Int16Array(512); this.k = 0; }
+  process(inputs) {
+    const ch = inputs[0] && inputs[0][0];
+    if (!ch) return true;
+    for (let i = 0; i < ch.length; i++) {
+      this.acc += ch[i]; this.n++;
+      if (++this.pos >= this.step) {
+        this.pos -= this.step;
+        const v = this.acc / this.n; this.acc = 0; this.n = 0;
+        this.out[this.k++] = Math.max(-32768, Math.min(32767, Math.round(v * 32767)));
+        if (this.k === this.out.length) this.emit();  // 512 samples = 32 ms, 1 KB frames
+      }
+    }
+    return true;
+  }
+}
+registerProcessor("down", Down);`;
+
+async function mic() {
+  const stream = await navigator.mediaDevices.getUserMedia(
+    { audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+  ctx = new AudioContext();
+  await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([WORKLET], { type: "text/javascript" })));
+  node = new AudioWorkletNode(ctx, "down");
+  node.port.onmessage = e => {
+    if (!ws || ws.readyState !== 1) return;
+    if (e.data === "flushed") { sending = false; ws.send(JSON.stringify({ type: "stop" })); tStop = performance.now(); status("Thinking..."); }
+    else if (sending) ws.send(e.data);  // recording, or the last partial frame after release
+  };
+  ctx.createMediaStreamSource(stream).connect(node);  // not connected to the speakers: nothing is played back
+}
+
+$("join").onsubmit = async e => {
+  e.preventDefault();
+  const code = $("code").value.trim().toUpperCase();
+  if (!WS || !/^wss?:\/\//.test(WS)) return status("This page needs ?ws=wss://... in its address.");
+  try { if (!ctx) await mic(); } catch (err) { return status("Microphone blocked: " + err.message); }
+  await ctx.resume();
+  player.play().catch(() => {});  // unlocks audio playback on iOS inside this tap
+  if (ws) ws.close();
+  ws = new WebSocket(WS);
+  ws.binaryType = "arraybuffer";
+  ws.onopen = () => { ws.send(JSON.stringify({ type: "join", code })); $("talk").disabled = false; status("Joined " + code + ". Hold the button and ask."); };
+  ws.onclose = e => { $("talk").disabled = true; recording = sending = false; status("Disconnected" + (e.reason ? ": " + e.reason : "") + ". Join again."); };
+  ws.onmessage = e => {
+    const m = JSON.parse(e.data);
+    const ms = Math.round(performance.now() - tStop);
+    if (m.type === "transcript") {
+      $("said").textContent = m.text ? "You asked: " + m.text : "Didn't catch that, try again.";
+      $("timing").textContent = "transcript " + ms + " ms";
+      if (!m.text) status("Hold the button and ask.");
+    } else if (m.type === "answer") {
+      $("ans").textContent = m.text;
+      $("timing").textContent += ", answer " + ms + " ms";
+      status("Hold the button and ask.");
+      if (/^https:\/\//.test(m.audioUrl)) { player.src = m.audioUrl; player.play().catch(err => status("Tap to play: " + err.message)); }
+    }
+  };
+};
+
+player.onplaying = () => { if (tStop) $("timing").textContent += ", audio " + Math.round(performance.now() - tStop) + " ms"; tStop = 0; };
+
+function start(e) {
+  e.preventDefault();
+  if (recording || $("talk").disabled) return;
+  try { $("talk").setPointerCapture(e.pointerId); } catch {}  // keep pointerup if the thumb slides off (keys have no pointer)
+  player.pause();
+  recording = sending = true;
+  node.port.postMessage("reset");
+  ws.send(JSON.stringify({ type: "start" }));
+  $("talk").setAttribute("aria-pressed", "true"); $("talk").textContent = "Listening... release to send";
+  $("said").textContent = $("ans").textContent = $("timing").textContent = "";
+  status("Listening");
+  stopTimer = setTimeout(stop, MAX_MS);
+}
+function stop() {
+  if (!recording) return;
+  recording = false;
+  clearTimeout(stopTimer);
+  $("talk").setAttribute("aria-pressed", "false"); $("talk").textContent = "Hold to talk";
+  node.port.postMessage("flush");  // last partial frame, then the "flushed" reply sends stop
+}
+const talk = $("talk");
+talk.addEventListener("pointerdown", start);
+["pointerup", "pointercancel"].forEach(t => talk.addEventListener(t, stop));
+talk.addEventListener("contextmenu", e => e.preventDefault());
+talk.addEventListener("keydown", e => { if ((e.key === " " || e.key === "Enter") && !e.repeat) start(e); });
+talk.addEventListener("keyup", e => { if (e.key === " " || e.key === "Enter") stop(); });
+</script>
+</body>
+</html>

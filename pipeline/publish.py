@@ -98,6 +98,18 @@ def upload(clip_id, files):
         print(f"s3://{bucket}/{key}")
 
 
+def extras(d, clip):
+    """Optional v2 sections made by other streams: CV replays/minimap files and the deployed service URLs in clip.json."""
+    out = {name: load(d / f"{name}.json") for name in ("replays", "minimap") if (d / f"{name}.json").exists()}
+    out |= {k: clip[k] for k in ("talk", "party") if clip.get(k)}
+    return out
+
+
+def validate(m):
+    import jsonschema  # dev dependency; a manifest that breaks C3 must never go live
+    jsonschema.validate(m, load(ROOT / "schemas" / "manifest.schema.json"))
+
+
 def main(clip_id, local, multitrack, allow_unreviewed=False):
     d = clip_dir(clip_id)
     rules_path = ROOT / "pipeline" / "rules.json"
@@ -112,6 +124,9 @@ def main(clip_id, local, multitrack, allow_unreviewed=False):
                        load(d / "voiced.json"), load(rules_path) if rules_path.exists() else {},
                        optional["questions"] or {}, base, multitrack, load(ROOT / "pipeline" / "personas.json"),
                        optional["recaps"], allow_unreviewed)
+    m |= extras(d, load(d / "clip.json"))
+    if not local:
+        validate(m)
     renders = [d / "render/multi.mp4"] if multitrack else [d / f"render/{t['id']}.mp4" for t in m["tracks"]]
     missing = [str(p) for p in renders if not p.exists()]
     if missing:

@@ -71,3 +71,14 @@ def test_proposed_events_never_reach_the_manifest():
     assert [e["id"] for e in m["events"]] == ["e1", "e2"]
     dev = build_manifest("c1", CLIP, EVENTS, STATES, VOICED, RULES, {}, allow_unreviewed=True)
     assert [e["id"] for e in dev["events"]] == ["e1", "e9", "e2"]
+
+
+def test_extras_pick_up_cv_files_and_service_urls(tmp_path):
+    import json
+    from publish import extras
+    (tmp_path / "replays.json").write_text(json.dumps([{"eventId": "e3", "src": "https://x/r.mp4", "duration": 12.0}]))
+    clip = {"talk": {"wsUrl": "wss://t"}, "party": {"wsUrl": "wss://p"}, "teams": ["pink", "blue"]}
+    out = extras(tmp_path, clip)
+    assert out == {"replays": [{"eventId": "e3", "src": "https://x/r.mp4", "duration": 12.0}],
+                   "talk": {"wsUrl": "wss://t"}, "party": {"wsUrl": "wss://p"}}
+    assert extras(tmp_path / "nope", {}) == {}

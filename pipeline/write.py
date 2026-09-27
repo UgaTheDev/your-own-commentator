@@ -120,7 +120,7 @@ def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write
     reason = text = ""
     for attempt in range(2):
         p = prompt if attempt == 0 else f"{prompt}\n{retry.format(reason=reason)}"
-        text = common.converse("write", p, max_tokens=200, temperature=temperature).strip().strip('"')
+        text = common.converse("write", p, max_tokens=200, temperature=temperature).replace("*", "").strip().strip('"')
         bad = unsupported_digits(text, facts)
         if bad:
             reason = f"numbers not in facts: {sorted(bad)}"

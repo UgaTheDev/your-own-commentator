@@ -35,7 +35,8 @@ def prompt_for(persona, facts):
         f"spoken sentences, at most {MAX_WORDS} words total, on FACTS.plays (in order, oldest first) and the score. "
         "Hard rules: state only facts in FACTS. Never invent names, stats, times or streaks. Refer to a player by "
         "jersey only if it is set, otherwise by team. Write numbers as digits. Only state the score using "
-        "FACTS.state.score exactly. Reply with the recap only, no quotes.\n"
+        "FACTS.state.score exactly: it is the score NOW, and you know no earlier score, so never say who led before, "
+        "who is on a run or by how much anyone scored. Reply with the recap only, no quotes.\n"
         f"FACTS: {json.dumps(facts, ensure_ascii=False)}"
     )
 

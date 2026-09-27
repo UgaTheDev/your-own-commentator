@@ -125,7 +125,11 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     audio.current?.pause();
     setOverlay(null);
     player.current?.play();
-    log(`overlay closed (${how}), resume t=${player.current?.currentTime.toFixed(2)}`);
+    log(
+      `overlay closed (${how}), resume t=${player.current?.currentTime.toFixed(
+        2,
+      )}`,
+    );
   };
 
   // Play one clip in the second player; close the overlay when it ends.
@@ -137,10 +141,12 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     }
     const id = ++speakId.current;
     const started = Date.now();
-    once(a, 'playing', () => log(`${what} audio playing after ${Date.now() - started}ms`));
+    once(a, 'playing', () =>
+      log(`${what} audio playing after ${Date.now() - started}ms`),
+    );
     once(a, 'ended', () => {
       if (id === speakId.current) {
-        closeOverlay(`${what} ended`);
+        closeOverlay(`${what} ended after ${Date.now() - started}ms`);
       }
     });
     a.src = url;
@@ -166,7 +172,11 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     }
     v.pause();
     setOverlay({kind: 'why', eventId: hit.event.id, questions: hit.questions});
-    log(`why ${hit.event.id} at t=${now.toFixed(2)} questions=${hit.questions.length}`);
+    log(
+      `why ${hit.event.id} at t=${now.toFixed(2)} questions=${
+        hit.questions.length
+      }`,
+    );
   };
 
   const pick = (q: Question) => {
@@ -267,20 +277,22 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     };
     const booth = manifest.tracks.find((tr) => tr.kind === 'booth');
     const steps: [number, () => void][] = [
-      [15000, () => seek(30)],
-      [5000, () => api.current.why()], // e2 at 34.5
-      [2000, () => {
-        const o = overlayRef.current;
-        if (o?.kind === 'why') {
-          api.current.pick(o.questions[0]);
-        }
-      }],
+      [15000, () => seek(32)],
+      [8000, () => api.current.why()], // e2 at 34.5; seeks land ~3 s late
+      [
+        2000,
+        () => {
+          const o = overlayRef.current;
+          if (o?.kind === 'why') {
+            api.current.pick(o.questions[0]);
+          }
+        },
+      ],
       [10000, () => seek(50)],
       [2000, () => api.current.why()], // nothing within 10 s
       [3000, () => seek(121)],
       [3000, () => api.current.catchUp()], // recap t=120
       [12000, () => booth && api.current.switchTo(booth)],
-      [6000, () => seek(58)],
       [16000, () => log('auto done')],
     ];
     (async () => {

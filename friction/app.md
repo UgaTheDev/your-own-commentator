@@ -1,0 +1,7 @@
+# Stream F (Vega app) friction
+
+| Date | Tool / doc | What I was doing | What went wrong (exact error / link) | Time lost | Suggested fix |
+|---|---|---|---|---|---|
+| 2026-09-27 | Vega CLI `vega device` help, VVD | Testing D-pad flows (Why card, Back) on the VVD without a screen or remote | Nothing in `vega device --help` or `vega virtual-device --help` mentions remote-key injection, so I first built an in-app autopilot. The device does have `inputd-cli` (`vega device run-cmd -c 'inputd-cli button_press KEY_ENTER'` works; also `KEY_LEFT`, `KEY_BACK`), found only by listing `/usr/bin` on the device. | 20 min | Add `vega device send-key <KEY>` (or document `inputd-cli` in the VVD testing guide) |
+| 2026-09-27 | `vega device start-log-stream` | Reading `YOC:` console.warn lines from the app | Each JS console line shows up twice in the stream (same text, same second) (seen on the first launch after the VVD booted), so counting events from the log gives double. | 5 min | De-duplicate JS console forwarding, or tag each copy with its source (syslog vs JS bridge) |
+| 2026-09-27 | React Native `WebSocket` on the VVD (Vega SDK 0.24) | Spike: wss echo round trip to decide the C4 transport | It works (open about 0.5-0.9 s, echo back about 40-180 ms later), but after a client `ws.close()` the `onclose` event reports `code=1`, which isn't a valid close code (expected 1000 or 1005). | 5 min | Report the real close code from the native socket in `CloseEvent.code` |

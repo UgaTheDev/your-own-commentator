@@ -23,7 +23,7 @@ import common
 # t/ids are bookkeeping, not facts a commentator may say
 NOT_FACTS = {"t", "id", "eventId", "ruleCardId"}
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")  # \d matches any Unicode digit: ३, ３, etc.
-MVP_TRACKS = ["rookie-en", "kid-en", "rookie-es"]
+MVP_TRACKS = ["rookie-en", "kid-en", "rookie-es", "fantasy-en", "rookie-hi", "rookie-zh"]
 PRIORITY = {"made_2": 3, "made_3": 3, "ft_made": 3, "foul": 2, "travel": 2, "turnover": 2}  # rest: 1
 # ponytail: rough speech rates (units per second) to size the budget; voice.py measures real durations
 RATE = {"en": ("words", 2.5), "es": ("words", 2.5), "hi": ("words", 2.2), "zh": ("characters", 4.0)}
@@ -75,11 +75,19 @@ LEXICON = {
            (r"\btiros? libres?\b", FT), (r"\btiempos? (muertos?|fuera)\b", {"timeout"}),
            (r"\bpérdidas?\b|\bpierden? el balón\b|\bperdi(ó|eron) el balón\b", {"turnover"}),
            (r"\bfall(a|an|ó|aron)\b", MISS)],
-    "hi": [], "zh": [],  # TODO: Hindi and Chinese play words; until then only the judge checks plays there
+    # no \b: Python's \b splits Devanagari words at vowel signs, and Chinese has no spaces.
+    # TODO: hi/zh "scored" collocation, and native speakers to review these lists
+    "hi": [(r"स्टील|चुरा", {"steal"}), (r"फ़ाउल|फाउल", {"foul"}), (r"रिबाउंड", {"rebound"}), (r"ब्लॉक", {"block"}),
+           (r"ट्रैवल", {"travel"}), (r"थ्री[- ]?पॉइंटर|तीन[- ]पॉइंटर", {"made_3"}), (r"फ़्री थ्रो|फ्री थ्रो", FT),
+           (r"टाइमआउट|टाइम-आउट", {"timeout"}), (r"टर्नओवर", {"turnover"}), (r"मिस", MISS)],
+    "zh": [(r"抢断", {"steal"}), (r"(?<!走步)犯规", {"foul"}), (r"篮板", {"rebound"}), (r"盖帽", {"block"}),
+           (r"走步", {"travel"}), (r"三分", {"made_3"}), (r"罚球", FT), (r"暂停", {"timeout"}), (r"失误", {"turnover"}),
+           (r"未中|投丢|没进|不中", MISS)],
 }
 # ponytail: every lexicon runs on every line (a Spanish line can say "travel"); per-language when that misfires
 PLAY_WORDS = [(re.compile(p), types) for lex in LEXICON.values() for p, types in lex]
-IMPLIES = {"travel": {"turnover"}, "steal": {"turnover"}, "and_one": {"ft_made"}}  # true by definition
+IMPLIES = {"travel": {"turnover"}, "steal": {"turnover"}, "and_one": {"ft_made", "foul"}, "rebound": MISS,
+           "ft_made": {"foul"}, "ft_missed": {"foul"}}  # true by definition: a rebound follows a miss, free throws a foul
 SCORING = {"made_2", "made_3", "ft_made", "and_one"}
 SCORE_VERB = re.compile(r"\bscor(e|es|ed|ing)\b|\banot(a|an|ó|aron|ar)\b")
 NOT_A_PLAY = re.compile(r"\bteam fouls?\b|\bfaltas? (de|del) equipo\b")  # state.teamFouls is a count, not a play
@@ -91,8 +99,9 @@ def plays_named(text):
     return sorted((m.start(), m.end(), types) for rx, types in PLAY_WORDS for m in rx.finditer(text))
 
 
-def fact_plays(facts):
-    """Event types FACTS supports: every `type` (event, recent, recap plays), and-one, the rule card's own words."""
+def fact_plays(facts, rule_words=False):
+    """Event types FACTS supports: every `type` (event, recent, recap plays), and-one, and with rule_words the
+    plays the rule card text mentions (Why answers explain rules; a live call that says "rebound" on a miss invents one)."""
     found = set()
 
     def walk(x):
@@ -108,13 +117,14 @@ def fact_plays(facts):
     if (facts.get("state") or {}).get("andOne"):
         found.add("and_one")
     rule = facts.get("rule") or {}
-    found |= {t for _, _, ts in plays_named(f"{rule.get('title', '')} {rule.get('body', '')}") for t in ts}
+    if rule_words:
+        found |= {t for _, _, ts in plays_named(f"{rule.get('title', '')} {rule.get('body', '')}") for t in ts}
     return found | {i for t in list(found) for i in IMPLIES.get(t, ())}
 
 
-def unsupported_plays(text, facts):
+def unsupported_plays(text, facts, rule_words=False):
     """Reasons `text` names a play FACTS don't have, or 'scores' a non-scoring play. Empty = passes."""
-    ok = fact_plays(facts)
+    ok = fact_plays(facts, rule_words)
     named = plays_named(text)
     bad = [f"names a {'/'.join(sorted(ts))} not in facts: {text[s:e]!r}" for s, e, ts in named if not ts & ok]
     for v in SCORE_VERB.finditer(text.lower()):
@@ -178,7 +188,7 @@ def judge(line, facts):
 
 
 def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write a new one.",
-         temperature=0.7, max_words=None):
+         temperature=0.7, max_words=None, rule_words=False):
     """The grounding gate every spoken sentence passes: write, digit gate, play-word gate, judge; one regeneration.
     Returns (text, None) on success, else (last_text, reason)."""
     reason = text = ""
@@ -189,7 +199,7 @@ def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write
         if bad:
             reason = f"numbers not in facts: {sorted(bad)}"
             continue
-        bad = unsupported_plays(text, facts)
+        bad = unsupported_plays(text, facts, rule_words)
         if bad:
             reason = "; ".join(bad)
             continue
@@ -249,8 +259,9 @@ def gaps(events):
 
 def main(clip_id, tracks, allow_unreviewed=False):
     d, clip, events, by_id, rules, personas = inputs(clip_id)
+    spoken = gaps(speakable(events, allow_unreviewed))
     jobs = [(tid, personas[tid], e, build_facts(e, by_id[e["id"]], rules, clip.get("roster", [])), gap)
-            for tid in tracks for e, gap in gaps(speakable(events, allow_unreviewed))]
+            for tid in tracks for e, gap in spoken]
     with ThreadPoolExecutor(8) as pool:
         results = list(pool.map(lambda j: write_line(*j), jobs))
     lines = [r for r, _ in results if r]

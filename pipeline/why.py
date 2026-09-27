@@ -1,6 +1,6 @@
 """Pre-rendered "Why?" answers: per teachable event, up to 3 viewer questions, one voiced answer per track.
 
-python pipeline/why.py <clip_id> [--tracks rookie-en,kid-en,rookie-es,booth-en] [--allow-unreviewed]
+python pipeline/why.py <clip_id> [--tracks rookie-en,kid-en,rookie-es,booth-en,fantasy-en,rookie-hi,rookie-zh] [--allow-unreviewed]
   -> data/<clip>/questions.json  {eventId: [{q, answers: {trackId: {text, audio, fallback}}}]}
 publish.py turns `audio` (a local Polly cache file) into the C3 `audioUrl`.
 
@@ -24,7 +24,7 @@ QUESTIONS = {
     "ft_made": ["Why did they get a free shot?", "How much is a free throw worth?", "What's the score now?"],
     "and_one": ["What is an and-one?", "Why does the basket still count?", "What's the score now?"],
 }
-TRACKS = ["rookie-en", "kid-en", "rookie-es", "booth-en"]
+TRACKS = ["rookie-en", "kid-en", "rookie-es", "booth-en", "fantasy-en", "rookie-hi", "rookie-zh"]
 
 
 def persona_for(personas, track_id):

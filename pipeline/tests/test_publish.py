@@ -5,8 +5,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from publish import build_manifest  # noqa: E402
 
 KEYS = {"clipId", "videoUrl", "tracks", "events", "cues", "ruleCards", "state", "questions", "roster"}
-EVENTS = [{"id": "e2", "t": 9, "type": "foul", "team": "blue", "jersey": 5},
-          {"id": "e1", "t": 1, "type": "made_2", "team": "red", "jersey": 23}]
+EVENTS = [{"id": "e2", "t": 9, "type": "foul", "team": "blue", "jersey": 5, "status": "accepted"},
+          {"id": "e1", "t": 1, "type": "made_2", "team": "red", "jersey": 23, "status": "accepted"},
+          {"id": "e9", "t": 5, "type": "steal", "team": "red", "jersey": None, "status": "proposed"}]
 STATES = [{"eventId": "e2", "t": 9, "score": {"red": 2, "blue": 0}, "fantasy": {"23": 2}, "andOne": False},
           {"eventId": "e1", "t": 1, "score": {"red": 2, "blue": 0}, "fantasy": {"23": 2}, "andOne": True}]
 VOICED = [{"trackId": "rookie-en", "eventId": "e2", "start": 9.4, "duration": 1, "text": "Foul.", "audio": "x"},
@@ -63,3 +64,10 @@ def test_v2_booth_questions_recaps_validate_against_schema():
     assert [c["role"] for c in m["cues"]["booth-en"]] == ["pbp", "analyst"] and "role" not in m["cues"]["kid-en"][0]
     assert m["questions"]["e1"][0]["answers"]["rookie-en"] == {"text": "Inside the arc.", "audioUrl": base + "audio/ab.mp3"}
     assert m["recaps"] == [{"t": 120, "src": base + "audio/cd.mp3", "text": "Red scored 2."}]
+
+
+def test_proposed_events_never_reach_the_manifest():
+    m = build_manifest("c1", CLIP, EVENTS, STATES, VOICED, RULES, {})
+    assert [e["id"] for e in m["events"]] == ["e1", "e2"]
+    dev = build_manifest("c1", CLIP, EVENTS, STATES, VOICED, RULES, {}, allow_unreviewed=True)
+    assert [e["id"] for e in dev["events"]] == ["e1", "e9", "e2"]

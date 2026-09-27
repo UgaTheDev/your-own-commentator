@@ -40,6 +40,8 @@ def prompt_for(question, facts, persona):
 TEMPLATES = {
     "en": ("The last play was {what} by the {team} team.", "The score is {score}.", "I can only speak to what happened on the court."),
     "es": ("La última jugada fue {what} del equipo {team}.", "El marcador es {score}.", "Solo puedo hablar de lo que pasó en la cancha."),
+    "hi": ("पिछला खेल {team} टीम का {what} था।", "स्कोर {score} है।", "मैं केवल कोर्ट पर हुई बातों के बारे में बता सकता हूँ।"),
+    "zh": ("上一个回合是{team}队的{what}。", "比分是{score}。", "我只能谈论场上发生的事情。"),
 }
 
 
@@ -58,7 +60,8 @@ def fallback(facts, lang):
 
 def answer(question, facts, persona):
     text, reason = gate(prompt_for(question, facts, persona), facts,
-                        retry="Your previous answer was rejected ({reason}). Answer again.", temperature=0.4)
+                        retry="Your previous answer was rejected ({reason}). Answer again.", temperature=0.4,
+                        rule_words=True)  # answers explain the rule card, so its plays may be named
     if not reason:
         return {"text": text, "gated": True, "fallback": False}
     return {"text": fallback(facts, persona["lang"]), "gated": True, "fallback": True}

@@ -62,6 +62,11 @@ def test_edge_cases():
     assert write.unsupported_plays("And-one! The free throw counts too.", facts("made_2", "pink", and_one=True)) == []
     assert write.unsupported_plays("Un robo del equipo rosa.", facts("turnover", "blue"))
     assert write.unsupported_plays("El azul anota un rebote.", facts("rebound", "blue"))
+    # a live call may not name a play the rule card merely mentions; a Why answer explaining the rule may
+    assert write.unsupported_plays("Un rebote para los azules.", facts("missed_shot", "blue"))
+    assert write.unsupported_plays("Either team can grab the rebound.", facts("missed_shot", "blue"), rule_words=True) == []
+    assert write.unsupported_plays("पिंक टीम का रिबाउंड।", facts("missed_shot", "blue"))  # real rookie-hi line
+    assert write.unsupported_plays("蓝队球员走步犯规，球权转交粉队。", facts("travel", "blue")) == []
     # answer.facts_at: plays in `recent` count
     f = {"event": {"type": "turnover"}, "state": None, "rule": None, "recent": [{"type": "steal"}]}
     assert write.unsupported_plays("Pink stole it.", f) == []

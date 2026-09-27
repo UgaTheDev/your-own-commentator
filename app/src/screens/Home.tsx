@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {FocusButton} from '../components/FocusButton';
-import {Manifest, Track, trackName} from '../manifest';
+import {Game, Manifest, Track, trackName} from '../manifest';
 import {Member} from '../party';
 
 export interface PartyView {
@@ -15,16 +15,42 @@ interface Props {
   manifest: Manifest | null;
   error: string | null;
   party: PartyView | null;
+  games: Game[];
+  gameUrl: string;
+  onGame: (manifestUrl: string) => void;
+  onHighlights: () => void;
   onParty: () => void;
   onSelect: (track: Track) => void;
 }
 
-export const Home = ({manifest, error, party, onParty, onSelect}: Props) => (
+export const Home = ({
+  manifest,
+  error,
+  party,
+  games,
+  gameUrl,
+  onGame,
+  onHighlights,
+  onParty,
+  onSelect,
+}: Props) => (
   <View style={styles.root}>
     <Text style={styles.title}>Your Own Commentator</Text>
     <Text style={styles.subtitle}>
       Same game, your call. Pick who talks you through it.
     </Text>
+    {!!games.length && (
+      <View style={styles.games}>
+        {games.map((g) => (
+          <FocusButton
+            key={g.clipId}
+            label={g.title}
+            selected={g.manifestUrl === gameUrl}
+            onPress={() => onGame(g.manifestUrl)}
+          />
+        ))}
+      </View>
+    )}
     {error ? (
       <Text style={styles.subtitle}>Could not load the game: {error}</Text>
     ) : !manifest ? (
@@ -39,6 +65,9 @@ export const Home = ({manifest, error, party, onParty, onSelect}: Props) => (
             hasTVPreferredFocus={i === 0}
           />
         ))}
+        {manifest.highlights && (
+          <FocusButton label="Highlights" onPress={onHighlights} />
+        )}
         <FocusButton
           label={party ? `Watch party: ${party.code}` : 'Watch party'}
           selected={!!party}
@@ -66,6 +95,7 @@ const styles = StyleSheet.create({
   },
   title: {color: '#FFFFFF', fontSize: 72, fontWeight: '700'},
   subtitle: {color: '#C8CEDC', fontSize: 34, marginTop: 16},
+  games: {marginTop: 32, flexDirection: 'row', flexWrap: 'wrap'},
   list: {marginTop: 56, flexDirection: 'row', flexWrap: 'wrap'},
   party: {width: '100%'},
 });

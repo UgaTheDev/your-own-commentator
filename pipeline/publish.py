@@ -99,8 +99,9 @@ def upload(clip_id, files):
 
 
 def extras(d, clip):
-    """Optional v2 sections made by other streams: CV replays/minimap files and the deployed service URLs in clip.json."""
-    out = {name: load(d / f"{name}.json") for name in ("replays", "minimap") if (d / f"{name}.json").exists()}
+    """Optional v2 sections made by other streams: CV replays/minimap, the reel.py highlights and the deployed
+    service URLs in clip.json."""
+    out = {name: load(d / f"{name}.json") for name in ("replays", "minimap", "highlights") if (d / f"{name}.json").exists()}
     out |= {k: clip[k] for k in ("talk", "party") if clip.get(k)}
     return out
 

@@ -53,10 +53,17 @@ interface Props {
   manifest: Manifest;
   initial: Track;
   party: PartyView | null;
+  startHighlights?: boolean; // opened from Home's Highlights: play the reel, then go back
   onBack: () => void;
 }
 
-export const Player = ({manifest, initial, party, onBack}: Props) => {
+export const Player = ({
+  manifest,
+  initial,
+  party,
+  startHighlights,
+  onBack,
+}: Props) => {
   const partyRef = useRef(party);
   partyRef.current = party;
   const player = useRef<VideoPlayer | null>(null);
@@ -73,6 +80,7 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
   const pendingSeek = useRef<number | null>(null);
   const replayingRef = useRef(false);
   const [replaying, setReplaying] = useState(false);
+  const [reel, setReel] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [code, setCode] = useState<string | null>(null);
   // Once a Why/recap card has closed, D-pad focus goes back to "Why?".
@@ -112,9 +120,13 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
       v.addEventListener('error', () =>
         log(`error ${JSON.stringify(v.error)}`),
       );
-      v.src = initial.src;
-      v.play();
-      log(`play ${initial.id}`);
+      if (startHighlights && manifest.highlights) {
+        api.current.highlights(true);
+      } else {
+        v.src = initial.src;
+        v.play();
+        log(`play ${initial.id}`);
+      }
       // ponytail: poll instead of timeupdate, which may not fire reliably
       poll = setInterval(() => {
         if (!switchingNow.current && !replayingRef.current) {
@@ -142,6 +154,7 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
       a.pause();
       a.deinitialize().catch(() => {});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- startHighlights is read once, at mount
   }, [initial]);
 
   // Close the Why/recap card, stop its audio and resume the game.
@@ -367,6 +380,54 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
     );
   };
 
+  // C3 highlights: the reel full-screen through the same src swap, then back to the track at the saved time
+  // (or, opened from Home, back to Home).
+  const highlights = (exitAfter = false) => {
+    const v = player.current;
+    const h = manifest.highlights;
+    if (
+      !v ||
+      !h ||
+      overlayRef.current ||
+      replayingRef.current ||
+      switchingNow.current
+    ) {
+      return;
+    }
+    const saved = v.currentTime;
+    const started = Date.now();
+    replayingRef.current = true;
+    setReel(true);
+    log(`highlights at t=${saved.toFixed(2)} -> ${h.src}`);
+    loadSrc(h.src, 0, 'highlights', () => {
+      let done = false;
+      const finish = (how: string) => {
+        if (done) {
+          return;
+        }
+        done = true;
+        if (player.current !== v) {
+          return; // left the Player meanwhile
+        }
+        log(`highlights ${how} after ${Date.now() - started}ms`);
+        const release = () => {
+          replayingRef.current = false;
+          setReel(false);
+        };
+        if (exitAfter) {
+          release();
+          onBack();
+          return;
+        }
+        const back = trackRef.current;
+        loadSrc(back.src, saved, `highlights back ${back.id}`, release);
+      };
+      once(v, 'ended', () => finish('ended'));
+      // ponytail: in case 'ended' never fires on the VVD
+      setTimeout(() => finish('timeout'), (h.duration + 5) * 1000);
+    });
+  };
+
   // C4 answer from the phone: pause the game, caption it, voice it, then resume.
   const hear = (a: TalkAnswer) => {
     const v = player.current;
@@ -430,8 +491,17 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
   };
 
   // Autopilot calls through a ref so it always sees the latest render's state.
-  const api = useRef({why, pick, catchUp, switchTo, replay, hear, seek});
-  api.current = {why, pick, catchUp, switchTo, replay, hear, seek};
+  const api = useRef({
+    why,
+    pick,
+    catchUp,
+    switchTo,
+    replay,
+    hear,
+    seek,
+    highlights,
+  });
+  api.current = {why, pick, catchUp, switchTo, replay, hear, seek, highlights};
   useEffect(() => {
     if (!AUTOPILOT) {
       return;
@@ -605,9 +675,9 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
           )}
         </View>
       )}
-      {replaying && (
+      {(replaying || reel) && (
         <View style={styles.replayTag}>
-          <Text style={styles.role}>REPLAY</Text>
+          <Text style={styles.role}>{reel ? 'HIGHLIGHTS' : 'REPLAY'}</Text>
         </View>
       )}
       {card && !overlay && (
@@ -707,6 +777,12 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
               label="Map"
               selected={showMap}
               onPress={() => setShowMap((on) => !on)}
+            />
+          )}
+          {manifest.highlights && (
+            <FocusButton
+              label={reel ? 'Highlights…' : 'Highlights'}
+              onPress={() => highlights()}
             />
           )}
           {/* ponytail: last in the bar so showing/hiding it doesn't shift the others */}

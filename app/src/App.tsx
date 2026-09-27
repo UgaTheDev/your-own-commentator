@@ -1,12 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {
   AUTOPILOT,
+  FALLBACK_GAMES,
+  GAMES_URL,
   MANIFEST_URL,
   PARTY_WS_URL,
   WS_ECHO_URL,
   WS_SPIKE,
 } from './config';
-import {Manifest, Track, fetchManifest, trackName} from './manifest';
+import {
+  Game,
+  Manifest,
+  Track,
+  fetchGames,
+  fetchManifest,
+  trackName,
+} from './manifest';
 import {Member, Party, connectParty, gainers, newCode} from './party';
 import {Home} from './screens/Home';
 import {Player} from './screens/Player';
@@ -83,14 +92,53 @@ export const App = () => {
     send: party.send,
   };
 
+  // C8 game picker: the index when it's up, else the one demo manifest; retried each time Home shows.
+  const [games, setGames] = useState<Game[]>(FALLBACK_GAMES);
+  const [indexed, setIndexed] = useState(false);
+  const [gameUrl, setGameUrl] = useState(MANIFEST_URL);
+  const [reel, setReel] = useState(false);
   useEffect(() => {
-    fetchManifest(MANIFEST_URL)
+    if (track || indexed) {
+      return;
+    }
+    fetchGames(GAMES_URL)
+      .then((g) => {
+        log(`games ${g.map((x) => `${x.clipId}=${x.title}`).join('|')}`);
+        setGames(g);
+        setIndexed(true);
+        if (!g.some((x) => x.manifestUrl === gameUrl)) {
+          setGameUrl(g[0].manifestUrl);
+        }
+      })
+      .catch((e) => log(`games index unavailable (${e}), fallback lake-region`));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [track, indexed]);
+
+  const pickGame = (url: string) => {
+    if (url === gameUrl) {
+      return;
+    }
+    setParty(null); // a room settles predictions from one clip; the [party] effect stops the old one
+    setManifest(null);
+    setError(null);
+    setGameUrl(url);
+    log(`game ${url}`);
+  };
+
+  useEffect(() => {
+    let current = true; // a slower fetch for a game picked earlier must not win
+    fetchManifest(gameUrl)
       .then((m) => {
+        if (!current) {
+          return;
+        }
         m.tracks.sort((a, b) => rank(a) - rank(b));
         console.warn(
           `YOC: manifest ${m.clipId} tracks=${m.tracks
             .map(trackName)
-            .join('|')} events=${m.events.length}`,
+            .join('|')} events=${m.events.length} highlights=${
+            m.highlights ? `${m.highlights.duration}s` : 'none'
+          }`,
         );
         setManifest(m);
         if (AUTOPILOT) {
@@ -98,10 +146,15 @@ export const App = () => {
         }
       })
       .catch((e) => {
-        console.warn(`YOC: manifest error ${e}`);
-        setError(String(e));
+        if (current) {
+          console.warn(`YOC: manifest error ${e}`);
+          setError(String(e));
+        }
       });
-  }, []);
+    return () => {
+      current = false;
+    };
+  }, [gameUrl]);
 
   // Spike: does RN WebSocket work on Vega? Waits past the ~12 s of suppressed launch logs.
   useEffect(() => {
@@ -133,13 +186,26 @@ export const App = () => {
       manifest={manifest}
       initial={track}
       party={partyView}
-      onBack={() => setTrack(null)}
+      startHighlights={reel}
+      onBack={() => {
+        setReel(false);
+        setTrack(null);
+      }}
     />
   ) : (
     <Home
       manifest={manifest}
       error={error}
       party={partyView}
+      games={games}
+      gameUrl={gameUrl}
+      onGame={pickGame}
+      onHighlights={() => {
+        if (manifest?.highlights) {
+          setReel(true);
+          setTrack(manifest.tracks[0]);
+        }
+      }}
       onParty={startParty}
       onSelect={setTrack}
     />

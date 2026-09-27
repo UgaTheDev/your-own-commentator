@@ -254,7 +254,12 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
   }, [onBack]);
 
   // Option 2c from spike S2: new src, then seek to `at`. A seek made meanwhile is queued.
-  const loadSrc = (src: string, at: number, what: string, then?: () => void) => {
+  const loadSrc = (
+    src: string,
+    at: number,
+    what: string,
+    then?: () => void,
+  ) => {
     const v = player.current;
     if (!v) {
       return;
@@ -328,7 +333,12 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
   // Play the pre-rendered replay clip, then return to the main track at the saved time.
   const replay = () => {
     const v = player.current;
-    if (!v || overlayRef.current || replayingRef.current || switchingNow.current) {
+    if (
+      !v ||
+      overlayRef.current ||
+      replayingRef.current ||
+      switchingNow.current
+    ) {
       return;
     }
     const saved = v.currentTime;
@@ -484,7 +494,8 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
 
   const frame =
     showMap && manifest.minimap ? activeAt(manifest.minimap.frames, t) : null;
-  const replayHere = !!manifest.replays && (replaying || !!replayAt(manifest, t));
+  const replayHere =
+    !!manifest.replays && (replaying || !!replayAt(manifest, t));
   const panelOpen = !!overlay && overlay.kind !== 'answer';
 
   useEffect(() => {
@@ -671,42 +682,45 @@ export const Player = ({manifest, initial, party, onBack}: Props) => {
         </View>
       )}
       {/* next: fantasy panel */}
-      <View style={styles.bar}>
-        <FocusButton
-          key={`why${whyKey}`}
-          label="Why?"
-          onPress={why}
-          hasTVPreferredFocus={refocusWhy && !panelOpen}
-        />
-        <FocusButton label="Catch me up" onPress={catchUp} />
-        {party && <FocusButton label="Predict" onPress={openPredict} />}
-        {manifest.tracks.map((tr) => (
+      {/* ponytail: the bar unmounts while a panel is open, so D-pad focus can't leave the panel */}
+      {!panelOpen && (
+        <View style={styles.bar}>
           <FocusButton
-            key={tr.id}
-            label={trackName(tr)}
-            selected={tr.id === track.id}
-            onPress={() => switchTo(tr)}
-            hasTVPreferredFocus={!refocusWhy && tr.id === initial.id}
+            key={`why${whyKey}`}
+            label="Why?"
+            onPress={why}
+            hasTVPreferredFocus={refocusWhy && !panelOpen}
           />
-        ))}
-        {manifest.minimap && (
-          <FocusButton
-            label="Map"
-            selected={showMap}
-            onPress={() => setShowMap((on) => !on)}
-          />
-        )}
-        {/* ponytail: last in the bar so showing/hiding it doesn't shift the others */}
-        {replayHere && (
-          <FocusButton
-            label={replaying ? 'Replaying…' : 'Replay'}
-            onPress={replay}
-            onFocusChange={(f) => {
-              replayFocused.current = f;
-            }}
-          />
-        )}
-      </View>
+          <FocusButton label="Catch me up" onPress={catchUp} />
+          {party && <FocusButton label="Predict" onPress={openPredict} />}
+          {manifest.tracks.map((tr) => (
+            <FocusButton
+              key={tr.id}
+              label={trackName(tr)}
+              selected={tr.id === track.id}
+              onPress={() => switchTo(tr)}
+              hasTVPreferredFocus={!refocusWhy && tr.id === initial.id}
+            />
+          ))}
+          {manifest.minimap && (
+            <FocusButton
+              label="Map"
+              selected={showMap}
+              onPress={() => setShowMap((on) => !on)}
+            />
+          )}
+          {/* ponytail: last in the bar so showing/hiding it doesn't shift the others */}
+          {replayHere && (
+            <FocusButton
+              label={replaying ? 'Replaying…' : 'Replay'}
+              onPress={replay}
+              onFocusChange={(f) => {
+                replayFocused.current = f;
+              }}
+            />
+          )}
+        </View>
+      )}
     </View>
   );
 };

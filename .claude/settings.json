@@ -79,7 +79,12 @@
       "Bash(aws ec2 describe-*)",
       "Bash(aws rds describe-*)",
       "Bash(aws ecr describe-*)",
-      "Bash(pgrep *)"
+      "Bash(pgrep *)",
+      "Bash(aws ecs update-service --region us-east-1 --cluster yoc-talk --service yoc-talk --desired-count *)",
+      "Bash(aws ecs update-service --cluster yoc-talk --service yoc-talk --desired-count *)",
+      "Bash(aws ecs describe-*)",
+      "Bash(aws ecs wait *)",
+      "Bash(aws ecs list-*)"
     ],
     "ask": [
       "Bash(git push --force*)",
@@ -99,7 +104,6 @@
       "Bash(cdk destroy*)",
       "Bash(npx cdk deploy*)",
       "Bash(sam deploy*)",
-      "Bash(aws ecs *)",
       "Bash(aws elbv2 *)",
       "Bash(aws apigatewayv2 *)",
       "Bash(aws lambda *)",
@@ -108,7 +112,14 @@
       "Bash(aws s3 rb *)",
       "Bash(aws * delete*)",
       "Bash(git push origin +*)",
-      "Bash(git push * +*)"
+      "Bash(git push * +*)",
+      "Bash(aws ecs create-*)",
+      "Bash(aws ecs delete-*)",
+      "Bash(aws ecs register-*)",
+      "Bash(aws ecs deregister-*)",
+      "Bash(aws ecs run-task*)",
+      "Bash(aws ecs execute-command*)",
+      "Bash(aws ecs put-*)"
     ],
     "deny": [
       "Read(./.env)",

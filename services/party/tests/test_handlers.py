@@ -151,3 +151,18 @@ def test_join_after_room_expiry_starts_fresh_room():
     fresh = storage.get_room("K7Q2MX")
     assert "stale" not in fresh["members"]
     assert "c1" in fresh["members"]
+
+
+def test_lambda_handler_dispatches_on_route(monkeypatch):
+    calls = []
+    monkeypatch.setattr(handlers, "lambda_connect", lambda e, c: calls.append("connect") or {"statusCode": 200})
+    monkeypatch.setattr(handlers, "lambda_disconnect", lambda e, c: calls.append("disconnect") or {"statusCode": 200})
+    monkeypatch.setattr(handlers, "lambda_default", lambda e, c: calls.append("default") or {"statusCode": 200})
+    for route in ("$connect", "$disconnect", "$default"):
+        assert handlers.lambda_handler({"requestContext": {"routeKey": route}}, None)["statusCode"] == 200
+    assert calls == ["connect", "disconnect", "default"]
+
+
+def test_manifest_events_count_as_accepted_and_settle_predictions():
+    evs = handlers.manifest_events({"events": [{"id": "e2", "t": 34.5, "type": "ft_made", "team": "blue", "jersey": None}]})
+    assert evs[0]["status"] == "accepted"

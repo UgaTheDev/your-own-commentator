@@ -79,7 +79,7 @@ Resources:
     Properties:
       FunctionName: !Sub yoc-party-${StageName}
       Runtime: python3.12
-      Handler: handlers.lambda_default
+      Handler: handlers.lambda_handler
       CodeUri: .
       Role: !GetAtt LambdaExecutionRole.Arn
       Timeout: 10

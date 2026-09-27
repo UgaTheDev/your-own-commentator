@@ -48,7 +48,12 @@ def fetch_manifest_events(url=MANIFEST_URL):
     """Real fetch: stdlib only (no `requests` in this venv) — GET the manifest, return its events list."""
     with urllib.request.urlopen(url, timeout=5) as resp:
         manifest = json.load(resp)
-    return manifest.get("events", [])
+    return manifest_events(manifest)
+
+
+def manifest_events(manifest):
+    """A published manifest contains only speakable (accepted) events (CONTRACTS.md C3), so they settle predictions."""
+    return [{**e, "status": "accepted"} for e in manifest.get("events", [])]
 
 
 def broadcast(broadcaster, room, message):
@@ -237,3 +242,13 @@ def lambda_disconnect(event, context):
 
 def lambda_default(event, context):
     return handle_default(event, _real_storage(), _real_broadcaster(event))
+
+
+def lambda_handler(event, context):
+    """Single entrypoint for all routes (the template wires $connect, $disconnect and $default to one function)."""
+    route = event.get("requestContext", {}).get("routeKey")
+    if route == "$connect":
+        return lambda_connect(event, context)
+    if route == "$disconnect":
+        return lambda_disconnect(event, context)
+    return lambda_default(event, context)

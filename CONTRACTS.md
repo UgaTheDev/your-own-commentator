@@ -36,7 +36,9 @@ Machine-checked schemas are in `schemas/`; `pipeline/tests/test_contracts.py` va
 `box` is normalized `[x, y, w, h]` (top-left origin). `court` is null when that frame has no homography.
 
 ## C3 Manifest v2 (`schemas/manifest.schema.json`)
-A superset of v1 (`pipeline/publish.py build_manifest`), so the v1 app keeps working. New optional keys:
+A superset of v1 (`pipeline/publish.py build_manifest`), so the v1 app keeps working. **`events` in a published
+manifest are only speakable events** (status accepted, or every event of a dev clip published with
+`--allow-unreviewed`), so consumers like the watch party treat them as accepted. New optional keys:
 - `tracks[].kind`: `single` (default) or `booth`; `tracks[].voices`: `[{role: "pbp"|"analyst", voice}]`.
 - `replays`: `[{eventId, src, duration}]`: pre-rendered slow-motion telestration MP4s.
 - `minimap`: `{hz: 2, frames: [{t, players: [{id, team, x, y}], ball: {x, y} | null}]}`, in meters.

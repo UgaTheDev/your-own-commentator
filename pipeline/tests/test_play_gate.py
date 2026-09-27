@@ -67,6 +67,11 @@ def test_edge_cases():
     assert write.unsupported_plays("Either team can grab the rebound.", facts("missed_shot", "blue"), rule_words=True) == []
     assert write.unsupported_plays("पिंक टीम का रिबाउंड।", facts("missed_shot", "blue"))  # real rookie-hi line
     assert write.unsupported_plays("蓝队球员走步犯规，球权转交粉队。", facts("travel", "blue")) == []
+    # wrong team (real fantasy-en lines on blue plays)
+    assert write.unsupported_plays("A pink player turns over.", facts("turnover", "blue"))
+    assert write.unsupported_plays("A pink player misses, no fantasy change.", facts("missed_shot", "blue"))
+    assert write.unsupported_plays("El equipo rosa pierde el balón.", facts("turnover", "blue"))
+    assert write.unsupported_plays("Pink stole it, and blue turned it over.", facts("steal", "pink")) == []  # implied
     # answer.facts_at: plays in `recent` count
     f = {"event": {"type": "turnover"}, "state": None, "rule": None, "recent": [{"type": "steal"}]}
     assert write.unsupported_plays("Pink stole it.", f) == []

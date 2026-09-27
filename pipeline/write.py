@@ -122,11 +122,51 @@ def fact_plays(facts, rule_words=False):
     return found | {i for t in list(found) for i in IMPLIES.get(t, ())}
 
 
+COLOR_ES = {"pink": ("rosa", "rosado", "rosados"), "blue": ("azul", "azules")}  # ponytail: color-named teams only
+
+
+def team_plays(facts):
+    """{(type, team)} a team word may be attached to: every typed fact with its team."""
+    pairs = set()
+
+    def walk(x):
+        if isinstance(x, dict):
+            if isinstance(x.get("type"), str) and x.get("team"):
+                pairs.add((x["type"], x["team"]))
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(facts)
+    return pairs
+
+
+def wrong_team(text, facts, named):
+    """'A pink player turns over' on a blue turnover: a team word <= 2 words before a play word that team didn't make.
+    Plays FACTS only imply (the turnover in a steal) carry no team, so they're not checked."""
+    pairs = team_plays(facts)
+    teams = {t for _, t in pairs} | set(((facts.get("state") or {}).get("score") or {}))
+    words = {w: t for t in teams for w in (t, *COLOR_ES.get(t, ()))}
+    if not words or not pairs:
+        return []
+    low = text.lower()
+    marks = [(m.end(), words[m.group()]) for m in re.finditer(r"\b(" + "|".join(map(re.escape, words)) + r")\b", low)]
+    bad = []
+    for s, e, ts in named:
+        before = [(end, t) for end, t in marks if end <= s and len(low[end:s].split()) <= 2]
+        typed = {typ for typ, _ in pairs}
+        if before and ts & typed and not any((typ, before[-1][1]) in pairs for typ in ts):
+            bad.append(f"{before[-1][1]} didn't make that play: {text[before[-1][0] - len(before[-1][1]):e]!r}")
+    return bad
+
+
 def unsupported_plays(text, facts, rule_words=False):
-    """Reasons `text` names a play FACTS don't have, or 'scores' a non-scoring play. Empty = passes."""
+    """Reasons `text` names a play FACTS don't have, credits it to the wrong team, or 'scores' a non-scoring play."""
     ok = fact_plays(facts, rule_words)
     named = plays_named(text)
     bad = [f"names a {'/'.join(sorted(ts))} not in facts: {text[s:e]!r}" for s, e, ts in named if not ts & ok]
+    bad += wrong_team(text, facts, named)
     for v in SCORE_VERB.finditer(text.lower()):
         nxt = next(((s, e, ts) for s, e, ts in named if s >= v.end()), None)
         if nxt and len(text[v.end():nxt[0]].split()) <= 2 and not nxt[2] & SCORING:

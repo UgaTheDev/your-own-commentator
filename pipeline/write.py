@@ -1,6 +1,7 @@
 """Persona writer: one grounded commentary line per (track, event).
 
-Usage: python pipeline/write.py <clip_id> [--tracks rookie-en,kid-en,rookie-es]
+Usage: python pipeline/write.py <clip_id> [--tracks rookie-en,kid-en,rookie-es] [--allow-unreviewed]
+Only events with status "accepted" are spoken (CONTRACTS.md); --allow-unreviewed is a dev-only escape hatch.
 Reads clip.json, events.reviewed.json, state.json, rules.json, personas.json.
 Writes lines.json (lines that passed both gates, input to voice.py) and lines.rejected.json.
 
@@ -12,6 +13,7 @@ claims and spelled-out numbers ("tres", 三) are the Bedrock judge's job.
 import argparse
 import json
 import re
+import sys
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -111,47 +113,76 @@ def judge(line, facts):
         return False, f"judge reply unparseable: {reply[:80]!r}"  # fail closed
 
 
-def write_line(track_id, persona, event, facts, gap):
-    """Returns (line, None) if it passes both gates, else (None, rejection). One regeneration allowed."""
-    prompt = prompt_for(persona, facts, gap)
+def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write a new one.",
+         temperature=0.7, max_words=None):
+    """The grounding gate every spoken sentence passes: write, digit gate, judge; one regeneration.
+    Returns (text, None) on success, else (last_text, reason)."""
     reason = text = ""
     for attempt in range(2):
-        p = prompt if attempt == 0 else f"{prompt}\nYour previous line was rejected ({reason}). Write a new one."
-        text = common.converse("write", p, max_tokens=200, temperature=0.7).strip().strip('"')
+        p = prompt if attempt == 0 else f"{prompt}\n{retry.format(reason=reason)}"
+        text = common.converse("write", p, max_tokens=200, temperature=temperature).strip().strip('"')
         bad = unsupported_digits(text, facts)
         if bad:
             reason = f"numbers not in facts: {sorted(bad)}"
+            continue
+        if max_words and len(text.split()) > max_words:
+            reason = f"longer than {max_words} words"
             continue
         ok, why = judge(text, facts)
         if not ok:
             reason = f"judge: {why}"
             continue
-        return {
-            "trackId": track_id, "eventId": event["id"], "t": event["t"],
-            "priority": PRIORITY.get(event["type"], 1), "text": text, "lang": persona["lang"],
-            "voice": persona["voice"], "engine": persona["engine"], "grounded": True, "judge": "supported",
-        }, None
-    return None, {"trackId": track_id, "eventId": event["id"], "lastText": text, "reason": reason}
+        return text, None
+    return text, reason
 
 
-def main(clip_id, tracks):
+def make_line(track_id, persona, event, text, priority=None, **extra):
+    return {"trackId": track_id, "eventId": event["id"], "t": event["t"],
+            "priority": PRIORITY.get(event["type"], 1) if priority is None else priority, "text": text,
+            "lang": persona["lang"], "voice": persona["voice"], "engine": persona["engine"], "grounded": True,
+            "judge": "supported", **extra}
+
+
+def write_line(track_id, persona, event, facts, gap):
+    """Returns (line, None) if it passes both gates, else (None, rejection). One regeneration allowed."""
+    text, reason = gate(prompt_for(persona, facts, gap), facts)
+    if reason:
+        return None, {"trackId": track_id, "eventId": event["id"], "lastText": text, "reason": reason}
+    return make_line(track_id, persona, event, text), None
+
+
+def speakable(events, allow_unreviewed=False):
+    """Only accepted events may feed speech. allow_unreviewed is for dev clips of unreviewed proposals."""
+    if allow_unreviewed:
+        bar = "!" * 78
+        print(f"{bar}\n!! --allow-unreviewed: speaking UNREVIEWED events. Dev clips only, never a submission.\n{bar}",
+              file=sys.stderr)
+        return list(events)
+    return [e for e in events if e.get("status") == "accepted"]
+
+
+def inputs(clip_id):
+    """(dir, clip, events sorted by t, state by eventId, rules, personas) for one clip."""
     d = common.clip_dir(clip_id)
     here = Path(__file__).parent
     clip, events, states = (common.load(d / f) for f in ("clip.json", "events.reviewed.json", "state.json"))
-    rules, personas = common.load(here / "rules.json"), common.load(here / "personas.json")
     events = sorted(events, key=lambda e: e["t"])
     by_id = {s["eventId"]: s for s in states}
     missing = [e["id"] for e in events if e["id"] not in by_id]
     if missing:
         raise SystemExit(f"state.json is stale (no state for {missing[:5]}); rerun state.py")
+    return d, clip, events, by_id, common.load(here / "rules.json"), common.load(here / "personas.json")
 
-    jobs = []
-    for track_id in tracks:
-        for i, e in enumerate(events):
-            gap = events[i + 1]["t"] - e["t"] if i + 1 < len(events) else LAST_GAP
-            facts = build_facts(e, by_id[e["id"]], rules, clip.get("roster", []))
-            jobs.append((track_id, personas[track_id], e, facts, gap))
 
+def gaps(events):
+    """[(event, seconds until the next event)]."""
+    return [(e, events[i + 1]["t"] - e["t"] if i + 1 < len(events) else LAST_GAP) for i, e in enumerate(events)]
+
+
+def main(clip_id, tracks, allow_unreviewed=False):
+    d, clip, events, by_id, rules, personas = inputs(clip_id)
+    jobs = [(tid, personas[tid], e, build_facts(e, by_id[e["id"]], rules, clip.get("roster", [])), gap)
+            for tid in tracks for e, gap in gaps(speakable(events, allow_unreviewed))]
     with ThreadPoolExecutor(8) as pool:
         results = list(pool.map(lambda j: write_line(*j), jobs))
     lines = [r for r, _ in results if r]
@@ -165,5 +196,6 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("clip_id")
     ap.add_argument("--tracks", default=",".join(MVP_TRACKS))
+    ap.add_argument("--allow-unreviewed", action="store_true", help="DEV ONLY: speak events not yet accepted in review")
     a = ap.parse_args()
-    main(a.clip_id, a.tracks.split(","))
+    main(a.clip_id, a.tracks.split(","), a.allow_unreviewed)

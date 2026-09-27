@@ -39,3 +39,26 @@ def test_multitrack_local_and_no_rules():
 def test_empty():
     m = build_manifest("c1", {}, [], [], [], {}, {})
     assert set(m) == KEYS and m["tracks"] == [] and m["cues"] == {} and m["videoUrl"] is None
+
+
+def test_v2_booth_questions_recaps_validate_against_schema():
+    import json
+
+    import jsonschema
+
+    voiced = VOICED + [
+        {"trackId": "booth-en", "eventId": "e1", "start": 1.4, "duration": 1, "text": "Two!", "audio": "p", "role": "pbp"},
+        {"trackId": "booth-en", "eventId": "e1", "start": 2.6, "duration": 1, "text": "In.", "audio": "a", "role": "analyst"}]
+    personas = {"booth-en": {"kind": "booth", "pbp": {"voice": "Matthew"}, "analyst": {"voice": "Ruth"}}}
+    questions = {"e1": [{"q": "Why 2?", "answers": {"rookie-en": {"text": "Inside the arc.", "audio": "/c/polly/ab.mp3",
+                                                                   "fallback": False}}}]}
+    recaps = [{"t": 120, "text": "Red scored 2.", "audio": "/c/polly/cd.mp3"}]
+    base = "https://cdn.example/c1/"
+    m = build_manifest("c1", CLIP, EVENTS, STATES, voiced, RULES, questions, base, personas=personas, recaps=recaps)
+    schema = json.loads((Path(__file__).resolve().parents[2] / "schemas" / "manifest.schema.json").read_text())
+    jsonschema.validate(m, schema)
+    booth = next(t for t in m["tracks"] if t["id"] == "booth-en")
+    assert booth["kind"] == "booth" and [v["voice"] for v in booth["voices"]] == ["Matthew", "Ruth"]
+    assert [c["role"] for c in m["cues"]["booth-en"]] == ["pbp", "analyst"] and "role" not in m["cues"]["kid-en"][0]
+    assert m["questions"]["e1"][0]["answers"]["rookie-en"] == {"text": "Inside the arc.", "audioUrl": base + "audio/ab.mp3"}
+    assert m["recaps"] == [{"t": 120, "src": base + "audio/cd.mp3", "text": "Red scored 2."}]

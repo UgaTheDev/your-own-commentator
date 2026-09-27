@@ -43,3 +43,20 @@ def test_line_running_into_unvoiced_next_event_is_dropped():
 def test_tracks_are_independent():
     kept, _ = schedule([line("e1", 0, 3), line("e1", 0, 1, track="kid-en")], [0])
     assert [x["trackId"] for x in kept] == ["kid-en", "rookie-en"]
+
+
+def booth(event, t, dur, role, prio):
+    return {**line(event, t, dur, prio, track="booth-en"), "role": role}
+
+
+def test_analyst_follows_its_pbp_line_without_overlap():
+    kept, dropped = schedule([booth("e1", 0, 2.0, "analyst", 0), booth("e1", 0, 1.5, "pbp", 3)], [0, 10])
+    assert [(x["role"], x["start"]) for x in kept] == [("pbp", 0.4), ("analyst", 2.15)] and dropped == []
+
+
+def test_analyst_dropped_with_its_pbp_or_when_the_next_call_needs_the_air():
+    kept, _ = schedule([booth("e1", 0, 3, "pbp", 1), booth("e1", 0, 1, "analyst", 0), booth("e2", 2, 1, "pbp", 3)], [0, 2])
+    assert [(x["eventId"], x["role"]) for x in kept] == [("e2", "pbp")]  # e1 pbp loses, so its analyst goes too
+    kept, dropped = schedule([booth("e1", 0, 1, "pbp", 3), booth("e1", 0, 2, "analyst", 0), booth("e2", 2, 1, "pbp", 1)], [0, 2])
+    assert [(x["eventId"], x["role"]) for x in kept] == [("e1", "pbp"), ("e2", "pbp")]
+    assert [x["role"] for x in dropped] == ["analyst"]

@@ -1,0 +1,18 @@
+{
+  "note": "Hand-picked by eye from zoomed 1920x1080 frames of source.mp4 at time t. Court origin = corner at the left baseline / far sideline; x runs along the length toward the right basket, y runs across toward the camera side. Standard high-school court 84 x 50 ft (25.6 x 15.24 m); lane 12 ft wide (lane lines at y = 5.79 and 9.45 m); free-throw line 19 ft (5.79 m) from the baseline. The landmarks are the four corners of the painted lane at each end. Accuracy is roughly +-5 px. All four points in a keyframe sit around one lane, so positions far from it (the other half, the sidelines) extrapolate and are less accurate.",
+  "court": {"w": 25.6, "h": 15.24},
+  "keyframes": [
+    {"t": 30.0, "view": "left basket", "points": [
+      {"name": "left lane, near-side baseline corner", "px": [237, 637], "court": [0.0, 9.45]},
+      {"name": "left lane, far-side baseline corner", "px": [492, 577], "court": [0.0, 5.79]},
+      {"name": "left lane, near-side free-throw corner", "px": [869, 735], "court": [5.79, 9.45]},
+      {"name": "left lane, far-side free-throw corner", "px": [1087, 654], "court": [5.79, 5.79]}
+    ]},
+    {"t": 75.0, "view": "right basket", "points": [
+      {"name": "right lane, near-side free-throw corner", "px": [650, 701], "court": [19.81, 9.45]},
+      {"name": "right lane, far-side free-throw corner", "px": [429, 613], "court": [19.81, 5.79]},
+      {"name": "right lane, near-side baseline corner", "px": [1335, 593], "court": [25.6, 9.45]},
+      {"name": "right lane, far-side baseline corner", "px": [1015, 534], "court": [25.6, 5.79]}
+    ]}
+  ]
+}

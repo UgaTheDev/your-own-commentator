@@ -12,3 +12,6 @@ export const AUTOPILOT = false;
 // Dev only: spike whether RN WebSocket works on the VVD (decides C4 transport).
 export const WS_SPIKE = false;
 export const WS_ECHO_URL = 'wss://ws.postman-echo.com/raw';
+// C4 talk relay (services/talk/server.py). The manifest's talk.wsUrl wins when deployed.
+// Dev: the VVD reaches the Mac's 127.0.0.1:8765 through `vega device start-port-forwarding`.
+export const TALK_WS_URL = 'ws://127.0.0.1:8765';

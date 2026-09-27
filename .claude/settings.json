@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx tsc --noEmit *)",
+      "Bash(pdfinfo *)",
+      "Bash(vercel ls)",
+      "Bash(vercel ls *)",
+      "Bash(vercel env ls)",
+      "Bash(vercel env ls *)",
+      "Bash(vercel whoami)",
+      "Bash(ffprobe *)",
+      "Bash(vercel project ls)",
+      "Bash(vercel domains ls *)",
+      "Bash(vercel inspect *)",
+      "Bash(aws bedrock list-inference-profiles *)"
+    ]
+  }
+}

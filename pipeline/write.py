@@ -60,6 +60,70 @@ def unsupported_digits(text, facts):
     return _numbers(text) - allowed_numbers(facts)
 
 
+# Third gate: every play a line names must be a play in FACTS. {lang: [(regex, event types it names)]}
+FT, MISS = {"ft_made", "ft_missed"}, {"missed_shot", "ft_missed"}
+LEXICON = {
+    "en": [(r"\bst(eal|eals|ealing|ole|olen)\b", {"steal"}), (r"\bfoul(s|ed|ing)?\b", {"foul"}),
+           (r"\brebound(s|ed|ing)?\b", {"rebound"}), (r"\bblock(s|ed|ing)?\b", {"block"}),
+           (r"\btravel(s|ed|ing|led|ling)?\b", {"travel"}),
+           (r"\bthree\b|\b(3|three)[- ]pointers?\b|\btriples?\b", {"made_3"}), (r"\bfree[- ]throws?\b", FT),
+           (r"\btime[- ]?outs?\b", {"timeout"}),
+           (r"\bturnovers?\b|\bturn(s|ed|ing)? (it |the ball )?over\b", {"turnover"}),
+           (r"\bmiss(es|ed|ing)?\b", MISS)],
+    "es": [(r"\brob(o|os|a|an|ó|aron|ar)\b", {"steal"}), (r"\bfaltas?\b(?! de pasos)", {"foul"}), (r"\brebot(e|es|ea)\b", {"rebound"}),
+           (r"\btap(ón|ones)\b|\bbloque(o|a|ó)\b", {"block"}), (r"\bpasos\b|\bpaso de más\b", {"travel"}),
+           (r"\btiros? libres?\b", FT), (r"\btiempos? (muertos?|fuera)\b", {"timeout"}),
+           (r"\bpérdidas?\b|\bpierden? el balón\b|\bperdi(ó|eron) el balón\b", {"turnover"}),
+           (r"\bfall(a|an|ó|aron)\b", MISS)],
+    "hi": [], "zh": [],  # TODO: Hindi and Chinese play words; until then only the judge checks plays there
+}
+# ponytail: every lexicon runs on every line (a Spanish line can say "travel"); per-language when that misfires
+PLAY_WORDS = [(re.compile(p), types) for lex in LEXICON.values() for p, types in lex]
+IMPLIES = {"travel": {"turnover"}, "steal": {"turnover"}, "and_one": {"ft_made"}}  # true by definition
+SCORING = {"made_2", "made_3", "ft_made", "and_one"}
+SCORE_VERB = re.compile(r"\bscor(e|es|ed|ing)\b|\banot(a|an|ó|aron|ar)\b")
+NOT_A_PLAY = re.compile(r"\bteam fouls?\b|\bfaltas? (de|del) equipo\b")  # state.teamFouls is a count, not a play
+
+
+def plays_named(text):
+    """[(start, end, types)] for each play word in `text`."""
+    text = NOT_A_PLAY.sub(lambda m: " " * len(m.group()), text.lower())
+    return sorted((m.start(), m.end(), types) for rx, types in PLAY_WORDS for m in rx.finditer(text))
+
+
+def fact_plays(facts):
+    """Event types FACTS supports: every `type` (event, recent, recap plays), and-one, the rule card's own words."""
+    found = set()
+
+    def walk(x):
+        if isinstance(x, dict):
+            if isinstance(x.get("type"), str):
+                found.add(x["type"])
+            for v in x.values():
+                walk(v)
+        elif isinstance(x, list):
+            for v in x:
+                walk(v)
+    walk(facts)
+    if (facts.get("state") or {}).get("andOne"):
+        found.add("and_one")
+    rule = facts.get("rule") or {}
+    found |= {t for _, _, ts in plays_named(f"{rule.get('title', '')} {rule.get('body', '')}") for t in ts}
+    return found | {i for t in list(found) for i in IMPLIES.get(t, ())}
+
+
+def unsupported_plays(text, facts):
+    """Reasons `text` names a play FACTS don't have, or 'scores' a non-scoring play. Empty = passes."""
+    ok = fact_plays(facts)
+    named = plays_named(text)
+    bad = [f"names a {'/'.join(sorted(ts))} not in facts: {text[s:e]!r}" for s, e, ts in named if not ts & ok]
+    for v in SCORE_VERB.finditer(text.lower()):
+        nxt = next(((s, e, ts) for s, e, ts in named if s >= v.end()), None)
+        if nxt and len(text[v.end():nxt[0]].split()) <= 2 and not nxt[2] & SCORING:
+            bad.append(f"'{v.group()}' on a non-scoring play: {text[v.start():nxt[1]]!r}")
+    return bad
+
+
 def build_facts(event, state, rules, roster):
     """The only things a line may state. Review-only fields (confidence, status) are dropped."""
     ev = {k: event.get(k) for k in ("id", "t", "type", "team", "jersey")}
@@ -115,7 +179,7 @@ def judge(line, facts):
 
 def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write a new one.",
          temperature=0.7, max_words=None):
-    """The grounding gate every spoken sentence passes: write, digit gate, judge; one regeneration.
+    """The grounding gate every spoken sentence passes: write, digit gate, play-word gate, judge; one regeneration.
     Returns (text, None) on success, else (last_text, reason)."""
     reason = text = ""
     for attempt in range(2):
@@ -124,6 +188,10 @@ def gate(prompt, facts, retry="Your previous line was rejected ({reason}). Write
         bad = unsupported_digits(text, facts)
         if bad:
             reason = f"numbers not in facts: {sorted(bad)}"
+            continue
+        bad = unsupported_plays(text, facts)
+        if bad:
+            reason = "; ".join(bad)
             continue
         if max_words and len(text.split()) > max_words:
             reason = f"longer than {max_words} words"

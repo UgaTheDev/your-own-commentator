@@ -117,7 +117,10 @@ def upload(mp3, clip_id, name):
 
 def narrate(clip_id, event, facts, persona):
     """(cue, None) or (None, rejection reason). Nothing ungated is ever voiced."""
-    text, reason = write.gate(write.prompt_for(persona, facts, write.LAST_GAP), facts)
+    # live has one shot per play, so name the allowed numbers up front (the digit gate still decides)
+    prompt = (f"{write.prompt_for(persona, facts, write.LAST_GAP)}\n"
+              f"The only numbers you may say: {', '.join(sorted(write.allowed_numbers(facts)))}.")
+    text, reason = write.gate(prompt, facts)
     if reason:
         return None, reason
     mp3 = voice.synth(write.make_line(TRACK, persona, event, text))

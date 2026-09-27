@@ -23,7 +23,7 @@
 | Stream | Owner/worktree | State | Next |
 |---|---|---|---|
 | A CV engine | agent, worktree `stream/cv` | running (sprint 1) | detection + ByteTrack + team colors + homography on 60 s |
-| B Ingest/events | agent, worktree `stream/ingest` | running (sprint 1) | C1 fields (source/status), review UI source filter |
+| B Ingest/events | agent, worktree `stream/ingest` | sprint 1 merged (87 tests) | sprint 2: import CV events into review; live replay (sprint 3) |
 | C Writer/booth/voice | agent, worktree `stream/writer` | running (sprint 1) | Why questions, booth dialogue, recaps, manifest v2 |
 | D Talk-back | agent, worktree `stream/talk` | running (sprint 1) | local relay: WAV → Nova Sonic ASR → answer() → Polly, latency |
 | E Watch party | agent, worktree `stream/party` | running (sprint 1) | CloudFormation + Lambda handlers + tests (no deploy) |

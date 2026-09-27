@@ -10,7 +10,7 @@
 - **Root MFA**: the CLI is logged in as root. Console → account menu → Security credentials → Assign MFA device.
 - **$150 hackathon AWS credits**: submit the Devpost form (deadline Oct 21 noon PT), then redeem under Billing → Credits.
 - **Confirm the worker protocol in CLAUDE.md**: the orchestrator relayed a request to append WORKER-PROTOCOL.md to CLAUDE.md. Reply "yes, append it" in the Amazon session.
-- **Approve public deploys when asked** (~Oct 4–10): the Fargate talk-back relay (stream D) and the watch-party WebSocket API (stream E).
+- **Approve public deploys**: type `approve talk-back deploy` and/or `approve watch-party deploy` in the Amazon session, then click allow on the deploy command's permission prompt. Talk-back: Fargate relay behind CloudFront (no domain needed), scaled to 0 outside demos, ~$0.05–0.10/demo hour.
 - **By Oct 21: repo visibility**: it's private now. Before submitting, make it public (Open Source mini challenge) or share it with testing@devpost.com, chris-trag, knmeiss, giolaq, anishamalde, mosesroth, emersonsklar.
 
 ## Done since last update
@@ -28,6 +28,9 @@
 | D Talk-back | agent, worktree `stream/talk-2` | sprint 2 prep running (no deploy) | Dockerfile, CFN, phone push-to-talk page; deploy after Kush approves |
 | E Watch party | agent, worktree `stream/party` | sprint 1 merged (22 tests, template validated) | sprint 2: use join.clipId, deploy after Kush approves |
 | F Vega app | agent, worktree `stream/app` | sprint 1 merged: Why card, Catch me up, booth captions on VVD; WebSocket WORKS on Vega | sprint 2: pairing + playhead + talk-back playback, replays, minimap |
+
+## Decisions
+- 2026-09-27: demo talk-back mic = Kush's phone (phone page + relay over HTTPS/WSS via CloudFront).
 
 ## Blockers (not Kush)
 - none

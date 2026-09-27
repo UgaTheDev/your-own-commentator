@@ -1,0 +1,1 @@
+jsonschema  # boto3 is already in the Lambda python3.12 runtime; no need to bundle it

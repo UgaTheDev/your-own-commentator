@@ -21,6 +21,7 @@ CHUNK = 1024          # 32 ms of 16 kHz s16le, the frame size the Sonic docs use
 TAIL_SILENCE_S = 3.0  # silence after speech so Sonic's turn detection fires; we stop as soon as the transcript lands
 TIMEOUT_S = 20.0
 DEBUG = bool(os.environ.get("YOC_SONIC_DEBUG"))
+TAIL_PACE = float(os.environ.get("YOC_SONIC_TAIL_PACE", "0.25"))  # 4x real time: halves ASR latency vs 1
 
 
 class Boto3Credentials:
@@ -152,7 +153,7 @@ async def transcribe(chunks, timings=None):
             if done.done():
                 break
             await audio_in(silence)
-            await asyncio.sleep(CHUNK / (2 * RATE))
+            await asyncio.sleep(TAIL_PACE * CHUNK / (2 * RATE))
         text = await asyncio.wait_for(done, TIMEOUT_S)
         timings["asr_after_audio"] = time.perf_counter() - t0 - timings["audio_end"]
         return text

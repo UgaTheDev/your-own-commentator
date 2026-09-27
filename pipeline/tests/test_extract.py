@@ -1,8 +1,13 @@
+import json
 import sys
 from pathlib import Path
 
+import jsonschema
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from extract import chunk_starts, dedupe, salvage, to_absolute, validate  # noqa: E402
+
+SCHEMA = json.loads((Path(__file__).resolve().parents[2] / "schemas" / "event.schema.json").read_text())
 
 
 def ev(t, type="made_2", confidence=0.5):
@@ -33,7 +38,8 @@ def test_dedupe_keeps_different_types_and_far_events():
 
 def test_validate():
     assert validate({"t": 2, "type": "steal", "team": " Red ", "jersey": 7, "confidence": 0.8}) == {
-        "t": 2.0, "type": "steal", "team": "red", "jersey": 7, "confidence": 0.8}
+        "t": 2.0, "type": "steal", "team": "red", "jersey": 7, "confidence": 0.8,
+        "source": "nova", "status": "proposed"}
     assert validate({"t": 2, "type": "dunk", "confidence": 0.8}) is None
     assert validate({"t": "2", "type": "steal", "confidence": 0.8}) is None
     assert validate({"t": 2, "type": "steal", "jersey": "7", "confidence": 0.8}) is None
@@ -45,3 +51,12 @@ def test_salvage_keeps_complete_objects_from_truncated_reply():
     cut = '[{"t": 1.0, "type": "made_2"}, {"t": 4.0, "type": "foul"}, {"t": 5.5, "type": "made_'
     assert salvage(cut) == [{"t": 1.0, "type": "made_2"}, {"t": 4.0, "type": "foul"}]
     assert salvage('[{"t": 1.0, "type": "made_2"}]') == [{"t": 1.0, "type": "made_2"}]
+
+
+def test_extract_output_validates_against_event_schema():
+    raw = [{"t": 1.0, "type": "made_2", "team": "red", "jersey": 7, "confidence": 0.8},
+           {"t": 2.0, "type": "foul", "team": None, "confidence": 0.5}]
+    events = dedupe(to_absolute([validate(r) for r in raw], 0))
+    assert events  # sanity: something was produced
+    for e in events:
+        jsonschema.validate(e, SCHEMA)

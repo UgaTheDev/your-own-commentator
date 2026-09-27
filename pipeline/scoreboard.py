@@ -57,7 +57,7 @@ def score_events(timeline):
             d = s1[team] - s0[team]
             if d in POINTS_TO_TYPE:
                 events.append({"t": max(0.0, t1 - LAG), "type": POINTS_TO_TYPE[d], "team": team, "jersey": None,
-                               "confidence": 1.0, "source": "scoreboard"})
+                               "confidence": 1.0, "source": "scoreboard", "status": "proposed"})
             elif d:
                 warnings.append(f"{t1:.0f}s {team} {s0[team]}->{s1[team]}: not a single basket, check in review")
     return events, warnings

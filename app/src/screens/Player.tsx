@@ -6,13 +6,15 @@ import {
   VideoPlayer,
 } from '@amazon-devices/react-native-w3cmedia';
 import {FocusButton} from '../components/FocusButton';
-import {AUTOPILOT} from '../config';
+import {AUTOPILOT, TALK_WS_URL} from '../config';
+import {TalkAnswer, connectTalk} from '../talk';
 import {
   Manifest,
   Question,
   Track,
   activeAt,
   answerFor,
+  replayAt,
   trackName,
   whyAt,
 } from '../manifest';
@@ -22,6 +24,10 @@ const CARD_SECS = 6;
 const CAPTION_SECS = 6;
 const TOAST_MS = 2500;
 const ROLE = {pbp: 'PLAY-BY-PLAY', analyst: 'ANALYST'};
+const COURT = {w: 28.65, h: 15.24}; // meters, C3 minimap units
+const MAP_W = 330;
+const MAP_H = (MAP_W * COURT.h) / COURT.w;
+const TEAM_COLOR = {pink: '#ff4fa3', blue: '#4f8dff'};
 // console.warn: info level is suppressed for the first seconds after launch
 const log = (msg: string) => console.warn(`YOC: ${msg}`);
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
@@ -38,7 +44,8 @@ const once = (v: Media, type: string, fn: () => void) => {
 // What covers the game while the video is paused.
 type Overlay =
   | {kind: 'why'; eventId: string; questions: Question[]; answer?: string}
-  | {kind: 'recap'; text: string};
+  | {kind: 'recap'; text: string}
+  | {kind: 'answer'; text: string}; // C4 talk-back answer, shown as an ANALYST caption
 
 interface Props {
   manifest: Manifest;
@@ -53,7 +60,18 @@ export const Player = ({manifest, initial, onBack}: Props) => {
   const switchId = useRef(0);
   const switchingNow = useRef(false);
   const [track, setTrack] = useState(initial);
+  const trackRef = useRef(initial);
+  trackRef.current = track;
   const [t, setT] = useState(0);
+  const tRef = useRef(0);
+  tRef.current = t;
+  const pendingSeek = useRef<number | null>(null);
+  const replayingRef = useRef(false);
+  const [replaying, setReplaying] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [code, setCode] = useState<string | null>(null);
+  // Once a Why/recap card has closed, D-pad focus goes back to "Why?".
+  const [refocusWhy, setRefocusWhy] = useState(false);
   const [switching, setSwitching] = useState<string | null>(null);
   const [overlay, setOverlayState] = useState<Overlay | null>(null);
   const overlayRef = useRef<Overlay | null>(null);
@@ -89,7 +107,7 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       log(`play ${initial.id}`);
       // ponytail: poll instead of timeupdate, which may not fire reliably
       poll = setInterval(() => {
-        if (!switchingNow.current) {
+        if (!switchingNow.current && !replayingRef.current) {
           setT(v.currentTime);
         }
       }, 250);
@@ -123,6 +141,9 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     }
     speakId.current++;
     audio.current?.pause();
+    if (overlayRef.current.kind !== 'answer') {
+      setRefocusWhy(true);
+    }
     setOverlay(null);
     player.current?.play();
     log(
@@ -161,7 +182,7 @@ export const Player = ({manifest, initial, onBack}: Props) => {
 
   const why = () => {
     const v = player.current;
-    if (!v || overlayRef.current) {
+    if (!v || overlayRef.current || replayingRef.current) {
       return;
     }
     const now = v.currentTime;
@@ -192,7 +213,7 @@ export const Player = ({manifest, initial, onBack}: Props) => {
 
   const catchUp = () => {
     const v = player.current;
-    if (!v || overlayRef.current) {
+    if (!v || overlayRef.current || replayingRef.current) {
       return;
     }
     const now = v.currentTime;
@@ -222,14 +243,13 @@ export const Player = ({manifest, initial, onBack}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onBack]);
 
-  // Option 2c from spike S2: new src, then seek to the saved time.
-  const switchTo = (next: Track) => {
+  // Option 2c from spike S2: new src, then seek to `at`. A seek made meanwhile is queued.
+  const loadSrc = (src: string, at: number, what: string, then?: () => void) => {
     const v = player.current;
-    if (!v || next.id === track.id) {
+    if (!v) {
       return;
     }
     const id = ++switchId.current;
-    const saved = v.currentTime;
     const started = Date.now();
     const finish = (how: string) => {
       if (id !== switchId.current || !switchingNow.current) {
@@ -238,43 +258,126 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       switchingNow.current = false;
       setSwitching(null);
       log(
-        `${how} ${next.id} t=${v.currentTime.toFixed(2)} saved=${saved.toFixed(
+        `${how} ${what} t=${v.currentTime.toFixed(2)} at=${at.toFixed(
           2,
         )} after ${Date.now() - started}ms`,
       );
+      const q = pendingSeek.current;
+      if (q !== null) {
+        pendingSeek.current = null;
+        v.currentTime = q;
+        log(`queued seek ${q} applied`);
+      }
+      then?.();
     };
     switchingNow.current = true;
-    setTrack(next);
-    setSwitching(trackName(next));
-    log(`switch to ${next.id} at t=${saved.toFixed(2)}`);
     once(v, 'loadedmetadata', () => {
       if (id !== switchId.current) {
         return;
       }
-      once(v, 'seeked', () => finish('seeked'));
-      v.currentTime = saved;
+      // ponytail: seeking to 0 may never fire 'seeked', so a replay waits for 'playing'
+      once(v, at > 0 ? 'seeked' : 'playing', () =>
+        finish(at > 0 ? 'seeked' : 'playing'),
+      );
+      if (at > 0) {
+        v.currentTime = at;
+      }
       v.play();
     });
-    v.src = next.src;
+    v.src = src;
     // ponytail: drop the overlay if seeked never arrives
     setTimeout(() => finish('switch timeout'), 10000);
   };
 
+  const seek = (s: number) => {
+    const v = player.current;
+    if (!v) {
+      return;
+    }
+    if (switchingNow.current) {
+      pendingSeek.current = s;
+      log(`seek ${s} queued (switch in progress)`);
+      return;
+    }
+    v.currentTime = s;
+    log(`seek ${s}`);
+  };
+
+  const switchTo = (next: Track) => {
+    const v = player.current;
+    if (!v || next.id === track.id || replayingRef.current) {
+      return;
+    }
+    const saved = v.currentTime;
+    setTrack(next);
+    setSwitching(trackName(next));
+    log(`switch to ${next.id} at t=${saved.toFixed(2)}`);
+    loadSrc(next.src, saved, next.id);
+  };
+
+  // Play the pre-rendered replay clip, then return to the main track at the saved time.
+  const replay = () => {
+    const v = player.current;
+    if (!v || overlayRef.current || replayingRef.current || switchingNow.current) {
+      return;
+    }
+    const saved = v.currentTime;
+    const r = replayAt(manifest, saved);
+    if (!r) {
+      showToast('No replay here');
+      return;
+    }
+    replayingRef.current = true;
+    setReplaying(true);
+    log(`replay ${r.eventId} at t=${saved.toFixed(2)} -> ${r.src}`);
+    loadSrc(r.src, 0, `replay ${r.eventId}`, () =>
+      setTimeout(() => {
+        const back = trackRef.current;
+        loadSrc(back.src, saved, `replay back ${back.id}`, () => {
+          replayingRef.current = false;
+          setReplaying(false);
+        });
+      }, r.duration * 1000),
+    );
+  };
+
+  // C4 answer from the phone: pause the game, caption it, voice it, then resume.
+  const hear = (a: TalkAnswer) => {
+    const v = player.current;
+    if (!v) {
+      return;
+    }
+    // ponytail: pause rather than duck, same as recap
+    v.pause();
+    setOverlay({kind: 'answer', text: a.text});
+    speak(a.audioUrl, 'talk');
+  };
+
+  useEffect(
+    () =>
+      connectTalk({
+        url: manifest.talk?.wsUrl ?? TALK_WS_URL,
+        clipId: manifest.clipId,
+        playhead: () => ({
+          t: tRef.current,
+          trackId: trackRef.current.id,
+          paused: player.current?.paused ?? true,
+        }),
+        onCode: setCode,
+        onAnswer: (a) => api.current.hear(a),
+        log,
+      }),
+    [manifest],
+  );
+
   // Autopilot calls through a ref so it always sees the latest render's state.
-  const api = useRef({why, pick, catchUp, switchTo});
-  api.current = {why, pick, catchUp, switchTo};
+  const api = useRef({why, pick, catchUp, switchTo, replay, hear, seek});
+  api.current = {why, pick, catchUp, switchTo, replay, hear, seek};
   useEffect(() => {
     if (!AUTOPILOT) {
       return;
     }
     let alive = true;
-    const seek = (s: number) => {
-      const v = player.current;
-      if (v) {
-        v.currentTime = s;
-        log(`auto seek ${s}`);
-      }
-    };
     const booth = manifest.tracks.find((tr) => tr.kind === 'booth');
     const steps: [number, () => void][] = [
       [15000, () => seek(32)],
@@ -292,8 +395,13 @@ export const Player = ({manifest, initial, onBack}: Props) => {
       [2000, () => api.current.why()], // nothing within 10 s
       [3000, () => seek(121)],
       [3000, () => api.current.catchUp()], // recap t=120
-      [12000, () => booth && api.current.switchTo(booth)],
-      [16000, () => log('auto done')],
+      [12000, () => seek(62)],
+      [4000, () => api.current.replay()], // e3 at 63.5 has the fixture replay
+      [14000, () => setShowMap(true)],
+      [6000, () => booth && api.current.switchTo(booth)],
+      [300, () => seek(200)], // lands mid-switch: must be queued
+      [16000, () => setShowMap(false)],
+      [1000, () => log('auto done')],
     ];
     (async () => {
       for (const [ms, fn] of steps) {
@@ -324,6 +432,28 @@ export const Player = ({manifest, initial, onBack}: Props) => {
   const cue =
     track.kind === 'booth' ? activeAt(manifest.cues[track.id] ?? [], t) : null;
   const caption = cue && t - cue.t < CAPTION_SECS ? cue : null;
+
+  const frame =
+    showMap && manifest.minimap ? activeAt(manifest.minimap.frames, t) : null;
+  const replayHere = !!manifest.replays && (replaying || !!replayAt(manifest, t));
+  const panelOpen = !!overlay && overlay.kind !== 'answer';
+
+  useEffect(() => {
+    // ponytail: log every 10th frame (5 s at 2 Hz) as evidence the map moves
+    if (frame && Math.round(frame.t * 2) % 10 === 0) {
+      const b = frame.ball;
+      log(
+        `minimap t=${frame.t} players=${frame.players.length} ball=${
+          b ? `${b.x.toFixed(1)},${b.y.toFixed(1)}` : 'none'
+        }`,
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [frame?.t]);
+  useEffect(() => {
+    log(`replay control ${replayHere ? 'shown' : 'hidden'} t=${t.toFixed(2)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [replayHere]);
 
   const scoreText = score ? `pink ${score.pink} - ${score.blue} blue` : '';
   useEffect(() => {
@@ -362,8 +492,47 @@ export const Player = ({manifest, initial, onBack}: Props) => {
           <Text style={[styles.team, styles.blue]}>BLUE {score.blue}</Text>
         </View>
       )}
+      {code && (
+        <View style={styles.badge}>
+          <Text style={styles.badgeText}>Ask on your phone: {code}</Text>
+        </View>
+      )}
+      {frame && (
+        <View style={styles.map}>
+          <View style={styles.midline} />
+          {frame.players.map((p) => (
+            <View
+              key={p.id}
+              style={[
+                styles.dot,
+                {
+                  left: (p.x / COURT.w) * MAP_W - 8,
+                  top: (p.y / COURT.h) * MAP_H - 8,
+                  backgroundColor: TEAM_COLOR[p.team] ?? '#ccc',
+                },
+              ]}
+            />
+          ))}
+          {frame.ball && (
+            <View
+              style={[
+                styles.ball,
+                {
+                  left: (frame.ball.x / COURT.w) * MAP_W - 6,
+                  top: (frame.ball.y / COURT.h) * MAP_H - 6,
+                },
+              ]}
+            />
+          )}
+        </View>
+      )}
+      {replaying && (
+        <View style={styles.replayTag}>
+          <Text style={styles.role}>REPLAY</Text>
+        </View>
+      )}
       {card && !overlay && (
-        <View style={styles.card}>
+        <View style={[styles.card, frame ? styles.cardLow : null]}>
           <Text style={styles.cardTitle}>{card.title}</Text>
           <Text style={styles.cardBody}>{card.body}</Text>
         </View>
@@ -376,7 +545,13 @@ export const Player = ({manifest, initial, onBack}: Props) => {
           <Text style={styles.captionText}>{caption.text}</Text>
         </View>
       )}
-      {overlay && (
+      {overlay?.kind === 'answer' && (
+        <View style={styles.caption}>
+          <Text style={styles.role}>{ROLE.analyst}</Text>
+          <Text style={styles.captionText}>{overlay.text}</Text>
+        </View>
+      )}
+      {overlay && overlay.kind !== 'answer' && (
         <View style={styles.panel}>
           <Text style={styles.cardTitle}>
             {overlay.kind === 'why' ? 'Why?' : 'Catch me up'}
@@ -414,9 +589,13 @@ export const Player = ({manifest, initial, onBack}: Props) => {
           <Text style={styles.switchingText}>Switching to {switching}…</Text>
         </View>
       )}
-      {/* next (Sprint 2): replay button for manifest.replays, minimap from manifest.minimap, fantasy panel */}
+      {/* next: fantasy panel */}
       <View style={styles.bar}>
-        <FocusButton label="Why?" onPress={why} />
+        <FocusButton
+          label="Why?"
+          onPress={why}
+          hasTVPreferredFocus={refocusWhy && !panelOpen}
+        />
         <FocusButton label="Catch me up" onPress={catchUp} />
         {manifest.tracks.map((tr) => (
           <FocusButton
@@ -424,9 +603,23 @@ export const Player = ({manifest, initial, onBack}: Props) => {
             label={trackName(tr)}
             selected={tr.id === track.id}
             onPress={() => switchTo(tr)}
-            hasTVPreferredFocus={tr.id === initial.id}
+            hasTVPreferredFocus={!refocusWhy && tr.id === initial.id}
           />
         ))}
+        {manifest.minimap && (
+          <FocusButton
+            label="Map"
+            selected={showMap}
+            onPress={() => setShowMap((on) => !on)}
+          />
+        )}
+        {/* ponytail: last in the bar so showing/hiding it doesn't shift the others */}
+        {replayHere && (
+          <FocusButton
+            label={replaying ? 'Replaying…' : 'Replay'}
+            onPress={replay}
+          />
+        )}
       </View>
     </View>
   );
@@ -463,6 +656,55 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(10,14,26,0.9)',
     borderLeftWidth: 8,
     borderLeftColor: '#FFD400',
+  },
+  cardLow: {top: '32%'},
+  badge: {
+    position: 'absolute',
+    top: '14%',
+    left: '5%',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.75)',
+  },
+  badgeText: {color: '#FFFFFF', fontSize: 26, fontWeight: '600'},
+  map: {
+    position: 'absolute',
+    top: '5%',
+    right: '5%',
+    width: MAP_W,
+    height: MAP_H,
+    borderWidth: 3,
+    borderColor: '#FFFFFF',
+    backgroundColor: 'rgba(24,70,40,0.85)',
+    overflow: 'hidden',
+  },
+  midline: {
+    position: 'absolute',
+    left: MAP_W / 2 - 1,
+    top: 0,
+    bottom: 0,
+    width: 2,
+    backgroundColor: '#FFFFFF',
+  },
+  dot: {position: 'absolute', width: 16, height: 16, borderRadius: 8},
+  ball: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#FF9900',
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  replayTag: {
+    position: 'absolute',
+    top: '5%',
+    alignSelf: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(0,0,0,0.8)',
   },
   panel: {
     position: 'absolute',

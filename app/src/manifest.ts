@@ -109,6 +109,16 @@ export const whyAt = (m: Manifest, t: number) => {
     : null;
 };
 
+// The replay of the latest event, if that event happened at most WHY_WINDOW_SECS ago.
+export const replayAt = (m: Manifest, t: number) => {
+  const ev = activeAt(m.events, t);
+  return (
+    (ev && t - ev.t <= WHY_WINDOW_SECS
+      ? m.replays?.find((r) => r.eventId === ev.id)
+      : undefined) ?? null
+  );
+};
+
 // ponytail: the track's own answer, else any rendered one (the pipeline gates all of them)
 export const answerFor = (q: Question, trackId: string): Answer | undefined =>
   q.answers[trackId] ?? Object.values(q.answers)[0];

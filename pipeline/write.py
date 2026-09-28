@@ -55,9 +55,53 @@ def allowed_numbers(facts):
     return found
 
 
+EN_UNITS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
+                                         "fifteen sixteen seventeen eighteen nineteen".split())}
+EN_TENS = {w: 10 * i for i, w in enumerate("_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()) if i > 1}
+# es: un/una/uno are left out, they're mostly articles ("una canasta")
+ES_UNITS = {"cero": 0, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6, "siete": 7, "ocho": 8, "nueve": 9, "diez": 10,
+            "once": 11, "doce": 12, "trece": 13, "catorce": 14, "quince": 15, "dieciséis": 16, "diecisiete": 17,
+            "dieciocho": 18, "diecinueve": 19, "veinte": 20, "veintiuno": 21, "veintidós": 22, "veintitrés": 23,
+            "veinticuatro": 24, "veinticinco": 25, "veintiséis": 26, "veintisiete": 27, "veintiocho": 28, "veintinueve": 29}
+ES_TENS = {"treinta": 30, "cuarenta": 40, "cincuenta": 50, "sesenta": 60, "setenta": 70, "ochenta": 80, "noventa": 90}
+ES_Y = {"uno": 1, **{k: v for k, v in ES_UNITS.items() if 2 <= v <= 9}}
+ZH_DIGIT = {"零": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9}
+EN_NUM = re.compile(r"\b(" + "|".join(EN_TENS) + r")(?:[- ](" + "|".join(k for k in EN_UNITS if 0 < EN_UNITS[k] < 10) + r"))?\b|\b("
+                    + "|".join(EN_UNITS) + r")\b", re.I)
+ES_NUM = re.compile(r"\b(" + "|".join(ES_TENS) + r")(?:\s+y\s+(" + "|".join(ES_Y) + r"))?\b|\b(" + "|".join(ES_UNITS) + r")\b", re.I)
+ZH_NUM = re.compile(r"[零一二两三四五六七八九十百]+")
+
+
+def _zh_value(s):
+    total, cur = 0, 0
+    for ch in s:
+        if ch == "百":
+            total += (cur or 1) * 100; cur = 0
+        elif ch == "十":
+            total += (cur or 1) * 10; cur = 0
+        else:
+            cur = ZH_DIGIT[ch]
+    return total + cur
+
+
+def spelled_numbers(text):
+    """Numbers written as words ('forty-four', 'cuarenta y cuatro', '四十四') as canonical digit strings.
+    The digit gate can't see words, so an invented score spelled out would otherwise pass. TODO: Hindi number words."""
+    out = set()
+    for m in EN_NUM.finditer(text):
+        out.add(str(EN_TENS[m.group(1).lower()] + (EN_UNITS[m.group(2).lower()] if m.group(2) else 0)) if m.group(1)
+                else str(EN_UNITS[m.group(3).lower()]))
+    for m in ES_NUM.finditer(text):
+        out.add(str(ES_TENS[m.group(1).lower()] + (ES_Y[m.group(2).lower()] if m.group(2) else 0)) if m.group(1)
+                else str(ES_UNITS[m.group(3).lower()]))
+    for m in ZH_NUM.finditer(text):
+        out.add(str(_zh_value(m.group())))
+    return out
+
+
 def unsupported_digits(text, facts):
     """Numbers in `text` that appear nowhere in `facts`. Empty set = passes the gate."""
-    return _numbers(text) - allowed_numbers(facts)
+    return (_numbers(text) | spelled_numbers(text)) - allowed_numbers(facts)
 
 
 # Third gate: every play a line names must be a play in FACTS. {lang: [(regex, event types it names)]}

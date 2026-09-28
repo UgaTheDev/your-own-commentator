@@ -37,3 +37,13 @@ def test_other_languages_and_digit_scripts():
 
 def test_no_numbers_passes():
     assert unsupported_digits("What a shot!", FACTS) == set()
+
+
+def test_spelled_numbers_are_checked_too():
+    # found in review: "white forty, maroon thirty" when the state was 39-30
+    facts = {"state": {"score": {"white": 39, "maroon": 30}}}
+    assert unsupported_digits("making the score white forty, maroon thirty", facts) == {"40"}
+    assert unsupported_digits("white thirty-nine, maroon thirty", facts) == set()
+    assert unsupported_digits("blanco cuarenta y cuatro, granate treinta", facts) == {"44"}
+    assert unsupported_digits("比分四十四比三十", facts) == {"44"}
+    assert unsupported_digits("El equipo anota una canasta", facts) == set()  # 'una' is an article, not a number

@@ -1,0 +1,672 @@
+[
+  {
+    "id": "e1",
+    "t": 10.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e2",
+    "t": 57.5,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e3",
+    "t": 63.1,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e4",
+    "t": 69.4,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e5",
+    "t": 69.5,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e6",
+    "t": 72.5,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e7",
+    "t": 73.6,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e8",
+    "t": 75.1,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e9",
+    "t": 77.8,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e10",
+    "t": 81.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e11",
+    "t": 93.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e12",
+    "t": 105.0,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e13",
+    "t": 108.1,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e14",
+    "t": 115.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e15",
+    "t": 120.7,
+    "type": "ft_missed",
+    "team": "white",
+    "jersey": 15,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e16",
+    "t": 130.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e17",
+    "t": 139.9,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e18",
+    "t": 148.5,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e19",
+    "t": 161.5,
+    "type": "foul",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e20",
+    "t": 163.6,
+    "type": "foul",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e21",
+    "t": 198.1,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e22",
+    "t": 200.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e23",
+    "t": 225.0,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e24",
+    "t": 225.1,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e25",
+    "t": 254.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e26",
+    "t": 275.2,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e27",
+    "t": 279.4,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e28",
+    "t": 288.0,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.8,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e29",
+    "t": 333.1,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e30",
+    "t": 335.2,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e31",
+    "t": 340.5,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e32",
+    "t": 348.1,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e33",
+    "t": 350.2,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e34",
+    "t": 352.3,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e35",
+    "t": 354.4,
+    "type": "rebound",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e36",
+    "t": 356.5,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e37",
+    "t": 358.6,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e38",
+    "t": 360.7,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e39",
+    "t": 361.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e40",
+    "t": 362.8,
+    "type": "rebound",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e41",
+    "t": 363.1,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": 10,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e42",
+    "t": 365.2,
+    "type": "rebound",
+    "team": "white",
+    "jersey": 11,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e43",
+    "t": 367.3,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": 11,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e44",
+    "t": 367.5,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e45",
+    "t": 369.4,
+    "type": "rebound",
+    "team": "green",
+    "jersey": 10,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e46",
+    "t": 371.5,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": 10,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e47",
+    "t": 373.6,
+    "type": "rebound",
+    "team": "white",
+    "jersey": 11,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e48",
+    "t": 375.7,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": 11,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e49",
+    "t": 421.0,
+    "type": "timeout",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e50",
+    "t": 421.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e51",
+    "t": 454.9,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e52",
+    "t": 460.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e53",
+    "t": 466.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e54",
+    "t": 470.2,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e55",
+    "t": 472.3,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e56",
+    "t": 476.5,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e57",
+    "t": 478.6,
+    "type": "rebound",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e58",
+    "t": 480.7,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e59",
+    "t": 482.8,
+    "type": "rebound",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e60",
+    "t": 495.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e61",
+    "t": 510.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e62",
+    "t": 510.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "proposed"
+  },
+  {
+    "id": "e63",
+    "t": 540.0,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e64",
+    "t": 545.2,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e65",
+    "t": 549.4,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e66",
+    "t": 553.6,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "proposed"
+  },
+  {
+    "id": "e67",
+    "t": 555.1,
+    "type": "rebound",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.7,
+    "source": "nova",
+    "status": "proposed"
+  }
+]

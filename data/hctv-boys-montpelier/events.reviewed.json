@@ -1,0 +1,200 @@
+[
+  {
+    "id": "e1",
+    "t": 3.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e2",
+    "t": 55.0,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e5",
+    "t": 67.0,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e7",
+    "t": 74.5,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e10",
+    "t": 80.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e11",
+    "t": 93.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e16",
+    "t": 128.5,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e16b",
+    "t": 129.0,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e18",
+    "t": 148.5,
+    "type": "ft_made",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e22",
+    "t": 198.0,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e25",
+    "t": 254.5,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e26",
+    "t": 274.0,
+    "type": "missed_shot",
+    "team": "white",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e31",
+    "t": 331.5,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e44",
+    "t": 362.0,
+    "type": "ft_made",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e50",
+    "t": 421.5,
+    "type": "made_2",
+    "team": "green",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e49",
+    "t": 423.0,
+    "type": "timeout",
+    "team": null,
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e62",
+    "t": 505.0,
+    "type": "made_2",
+    "team": "white",
+    "jersey": null,
+    "confidence": 1.0,
+    "source": "scoreboard",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  },
+  {
+    "id": "e64",
+    "t": 545.0,
+    "type": "missed_shot",
+    "team": "green",
+    "jersey": null,
+    "confidence": 0.9,
+    "source": "nova",
+    "status": "accepted",
+    "reviewedBy": "claude"
+  }
+]

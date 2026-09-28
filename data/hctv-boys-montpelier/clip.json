@@ -1,0 +1,32 @@
+{
+  "teams": [
+    "white",
+    "green"
+  ],
+  "start_score": {
+    "white": 23,
+    "green": 22
+  },
+  "final_score": {
+    "white": 34,
+    "green": 33
+  },
+  "roster": [],
+  "audioBed": "data/ambience/crowd.flac",
+  "source": "Hazen vs Montpelier boys varsity, Feb 21 2026, segment 40:00-50:00 of the Commons file",
+  "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons",
+  "notes": "white = Hazen (home, white jerseys with red trim; the score graphic reads 'Hazen'), green = Montpelier ('Guest'). Score read off the graphic: 23-22 at 0 s, 34-33 at 570 s; the segment ends on the halftime card.",
+  "scoreBug": {
+    "crop": "iw*0.16:ih*0.14:0:ih*0.86",
+    "labels": {
+      "Hazen": "white",
+      "Guest": "green"
+    }
+  },
+  "talk": {
+    "wsUrl": "wss://d38etaw7xiqv3j.cloudfront.net"
+  },
+  "party": {
+    "wsUrl": "wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev"
+  }
+}

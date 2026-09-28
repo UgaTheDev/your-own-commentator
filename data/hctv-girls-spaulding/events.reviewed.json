@@ -1,0 +1,156 @@
+[
+ {
+  "id": "e1",
+  "t": 8.3,
+  "type": "ft_made",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e22",
+  "t": 100.5,
+  "type": "missed_shot",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 0.8,
+  "source": "nova",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e23",
+  "t": 132.5,
+  "type": "ft_made",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e24",
+  "t": 147.5,
+  "type": "ft_made",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e38",
+  "t": 188.0,
+  "type": "made_3",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e51",
+  "t": 267.3,
+  "type": "made_2",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e67",
+  "t": 320.0,
+  "type": "made_2",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e72",
+  "t": 358.0,
+  "type": "ft_made",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e73",
+  "t": 371.5,
+  "type": "ft_made",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e78",
+  "t": 394.3,
+  "type": "made_2",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e87",
+  "t": 436.0,
+  "type": "made_3",
+  "team": "white",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e88",
+  "t": 466.3,
+  "type": "ft_missed",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "nova",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e91",
+  "t": 482.0,
+  "type": "ft_missed",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 0.8,
+  "source": "nova",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ },
+ {
+  "id": "e100",
+  "t": 491.0,
+  "type": "made_2",
+  "team": "maroon",
+  "jersey": null,
+  "confidence": 1.0,
+  "source": "scoreboard",
+  "status": "accepted",
+  "reviewedBy": "claude"
+ }
+]

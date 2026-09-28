@@ -1,0 +1,32 @@
+{
+  "teams": [
+    "white",
+    "maroon"
+  ],
+  "start_score": {
+    "white": 38,
+    "maroon": 30
+  },
+  "final_score": {
+    "white": 51,
+    "maroon": 36
+  },
+  "roster": [],
+  "audioBed": "data/ambience/crowd.flac",
+  "source": "Hazen vs Spaulding girls varsity, Jan 21 2026, segment 64:00-74:00 of the Commons file",
+  "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons",
+  "notes": "white = Hazen (home, white jerseys; the score graphic reads 'Hazen'), maroon = Spaulding ('Guest'). Score read off the graphic: 38-30 at 0 s, 51-36 at 570 s; the segment ends on an HCTV donation card.",
+  "scoreBug": {
+    "crop": "iw*0.16:ih*0.14:0:ih*0.86",
+    "labels": {
+      "Hazen": "white",
+      "Guest": "maroon"
+    }
+  },
+  "talk": {
+    "wsUrl": "wss://d38etaw7xiqv3j.cloudfront.net"
+  },
+  "party": {
+    "wsUrl": "wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev"
+  }
+}

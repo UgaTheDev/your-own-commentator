@@ -1,0 +1,22 @@
+{
+  "clips": [
+    {
+      "clipId": "lake-region",
+      "title": "Hazen vs Lake Region (girls varsity)",
+      "manifestUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/manifest.json",
+      "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons"
+    },
+    {
+      "clipId": "hctv-girls-spaulding",
+      "title": "Hazen vs Spaulding (girls varsity)",
+      "manifestUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/manifest.json",
+      "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons"
+    },
+    {
+      "clipId": "hctv-boys-montpelier",
+      "title": "Hazen vs Montpelier (boys varsity)",
+      "manifestUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/manifest.json",
+      "attribution": "Game footage: Hardwick Community Television (HCTV), CC BY 4.0, via Wikimedia Commons"
+    }
+  ]
+}

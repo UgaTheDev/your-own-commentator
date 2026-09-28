@@ -54,7 +54,7 @@ Every spoken line goes through `write.gate()`:
 
 Only events accepted in review are spoken (`write.speakable()`), and published manifests contain only those.
 
-## Measured so far (2026-09-27, 10-minute CC BY high-school game)
+## Measured so far (2026-09-28, three 10-minute CC BY high-school games)
 
 | What | Result |
 |---|---|
@@ -66,18 +66,25 @@ Only events accepted in review are spoken (`write.speakable()`), and published m
 | Computer vision (RF-DETR + ByteTrack, 60 s) | 95% of frames with court homography; team colour ~80–85%; ball 42% of frames |
 | Vega | WebSocket works; media must be HTTPS; switching commentators by source swap + seek ≈ 1–1.5 s to playing |
 
-**Event extraction vs reviewed ground truth** (`pipeline/eval.py lake-region`, full table in `eval/lake-region.md`):
+**Event extraction vs reviewed ground truth, across 3 games** (30 min of play, `eval/*.md`):
 
-| Proposer | Correct | False | Precision | Recall |
+| Proposer | Lake Region | Spaulding | Montpelier | All 3 games |
 |---|---|---|---|---|
-| Score-graphic reader (Nova Pro on the broadcast graphic) | 7 | 0 | **1.00** | **1.00** |
-| Nova Pro video-only (fouls, rebounds, steals, timeouts…) | 1 | 34 | 0.03 | 0.50 |
+| Score-graphic reader (Nova Pro reads the broadcast graphic) | 7/7 | 11/11 | 14 events, points exact* | **points exact on every game; 18/18 matched on the two clean games** |
+| Nova Pro video-only (fouls, rebounds, steals, timeouts…) | 1 of 35 | 0 of 94 | 4 of 53 | **5 of 182 correct (precision 0.03)** |
 
-This is why the product anchors facts to the broadcast graphic and a review step instead of
-trusting raw video understanding on amateur footage. Ground truth was produced by an AI reviewer
-(Claude) looking at frames around every proposal, with every decision explained in
-`data/lake-region/review-notes.md`, and the computed final score checked against the broadcast
-(20–6). Human spot-checks are welcome; nothing is spoken unless it is in the reviewed file.
+\* On Montpelier the operator sometimes ticked one basket up in two +1 steps and recorded free throws during a
+dead ball, so review corrected 3 types. The per-event match score (0.64 in `eval/hctv-boys-montpelier.md`) counts
+those corrections as misses, but the scoreboard's point totals equal the graphic exactly (+11/+11).
+
+The score-graphic reader needed no retuning between games (same crop, same code). Raw video understanding on
+amateur footage mostly hallucinates, which is why the product anchors facts to the broadcast graphic plus a
+review step. Ground truth was produced by an AI reviewer (Claude) looking at frames around every proposal, with
+every decision explained in `data/<clip>/review-notes.md` and each game's computed final score checked against the
+broadcast. Human spot-checks are welcome; nothing is spoken unless it is in a reviewed file.
+
+**Jerseys:** Nova Pro reading shooters' jerseys named the wrong player in 3 of 5 proposals on Lake Region, so a
+jersey is used only after the reviewer confirms it in the frames (3 of 7 shooters verified; `jersey-notes.md`).
 
 ## Repo map
 - `app/`: Vega OS Fire TV app (Home, Player, Why card, Catch me up, booth captions, pairing code, replays, minimap, watch party)

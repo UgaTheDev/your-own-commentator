@@ -15,7 +15,7 @@ from pathlib import Path
 
 DATA = Path(os.environ.get("YOC_DATA", Path(__file__).resolve().parents[1] / "data"))
 BUCKET = os.environ.get("YOC_BUCKET", "yoc-media-817210752334")
-CDN = os.environ.get("YOC_CDN", "https://d2og06dnam3owj.cloudfront.net")
+CDN = "https://" + os.environ.get("YOC_CDN", "d2og06dnam3owj.cloudfront.net")  # bare host, like pipeline/publish.py
 
 
 def replays_doc(rows, clip, cdn=CDN):

@@ -2,18 +2,17 @@
 
 <!-- Worker-owned. Update at every checkpoint, blocker, or decision. The orchestrator reads this file; keep the headings exactly. -->
 
-**Updated:** 2026-09-28 13:35  ·  **Stage:** building  ·  **Health:** 🟢 on track
+**Updated:** 2026-10-20  ·  **Stage:** freeze  ·  **Health:** 🟢 on track
 
 ## Needs Kush
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
-- **Look at the VVD once**: confirm Hindi (नौसिखिया) and Chinese (新手) track labels show real glyphs, not boxes (VVD can't be screenshotted).
-- **$20 credit: Bedrock playground**: Bedrock console → Playgrounds → Chat → Nova 2 Lite → send any message.
-- **Phone talk-back test**: say "ready for phone test" in the Amazon session; I scale the relay up and send a code.
-- **Root MFA**: the CLI is logged in as root. Console → account menu → Security credentials → Assign MFA device.
-- **Confirm the worker protocol in CLAUDE.md**: the orchestrator relayed a request to append WORKER-PROTOCOL.md to CLAUDE.md. Reply "yes, append it" in the Amazon session.
-- **By Oct 21: repo visibility**: it's private now. Before submitting, make it public (Open Source mini challenge) or share it with testing@devpost.com, chris-trag, knmeiss, giolaq, anishamalde, mosesroth, emersonsklar.
+- **`! aws login`**: the session expired; needed to scale the talk-back relay for the phone test and the video.
+- **Walkthrough + phone test**: say "ready for phone test"; I start the VVD and relay, you watch and ask on your phone.
+- **Record the video (Oct 21)**: shot list and OBS setup in VIDEO.md; upload to YouTube/Vimeo.
+- **Submit (Oct 22)**: paste DEVPOST.md into Devpost; approve the repo going public (`gh repo edit --visibility public`).
 
 ## Done since last update
+- 2026-10-20: freeze pass. Full suite green (174 pipeline, 21 CV, 24 app); fixed replay CDN URL scheme bug in cv/publish_replays.py; secret scan of history clean; published game outputs committed; DEVPOST.md and VIDEO.md drafted. Dropped by Kush: root MFA, Bedrock playground credit. Worker protocol: not added (STATUS.md already serves the orchestrator).
 - 2026-09-28: 3 licensed games live (games index https://d2og06dnam3owj.cloudfront.net/clips.json); score-graphic reader points-exact on all 3, Nova video-only 5/182 (P=0.03); verified jerseys (3/7), 64 s highlight reel, game picker, Alexa+ MCP server (local). Gate now checks spelled-out numbers (en/es/zh), spelled jerseys, pronouns; all 3 live manifests audited 0 mismatched numbers. Friction log 40 rows.
 - 2026-09-27: all v2 streams merged. Demo manifest (reviewed events only) live with 7 tracks, 9 recaps, 7 replays, minimap, talk + party URLs. Eval: scoreboard 7/7 (P=1.00), Nova video-only P=0.03.
 - 2026-09-27: Kush submitted the $150 credits form (redeem the code under Billing → Credits when it arrives). Lake Region review delegated to an AI reviewer at Kush's request; events tagged reviewedBy=claude.

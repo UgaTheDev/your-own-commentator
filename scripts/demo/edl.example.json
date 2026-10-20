@@ -1,0 +1,23 @@
+{
+  "_note": "DRAFT following VIDEO.md. Screen in/out are seconds in the recording driven by keys.demo.txt; retime after the real take. The hook is a separate take (phone talk-back) with its own soundtrack.",
+  "out": "scripts/demo/out/demo.mp4",
+  "vo_dir": "scripts/demo/out/vo",
+  "screen": "scripts/demo/out/take.mp4",
+  "audio": "scripts/demo/out/take.wav",
+  "segments": [
+    {"type": "screen", "file": "scripts/demo/out/hook.mp4", "audio": "scripts/demo/out/hook.wav", "in": 0, "out": 15, "vo": [["hook", 1.0]]},
+    {"type": "card", "file": "scripts/demo/out/cards/title.png", "in": 0, "out": 3},
+    {"type": "screen", "in": 0, "out": 12, "vo": [["pick", 0.5]]},
+    {"type": "screen", "in": 30, "out": 52, "vo": [["rules", 2.0]]},
+    {"type": "screen", "in": 70, "out": 94, "vo": [["switch", 3.0]]},
+    {"type": "screen", "in": 96, "out": 112, "vo": [["booth", 3.0]]},
+    {"type": "screen", "in": 139, "out": 150, "vo": [["why", 1.0]]},
+    {"type": "screen", "in": 159, "out": 169},
+    {"type": "screen", "in": 182, "out": 192, "vo": [["catchup", 0.5]]},
+    {"type": "screen", "in": 197, "out": 202},
+    {"type": "card", "file": "scripts/demo/out/cards/hood-pipeline.png", "in": 0, "out": 13, "vo": [["hood", 1.0]]},
+    {"type": "card", "file": "scripts/demo/out/cards/hood-numbers.png", "in": 0, "out": 13, "vo": [["numbers", 0.8]]},
+    {"type": "screen", "in": 206, "out": 218, "vo": [["close", 2.0]]},
+    {"type": "card", "file": "scripts/demo/out/cards/end.png", "in": 0, "out": 6}
+  ]
+}

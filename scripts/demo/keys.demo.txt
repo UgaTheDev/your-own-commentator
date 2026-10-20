@@ -1,0 +1,67 @@
+# DRAFT: untested against the real UI. Tune every time and focus count on the VVD before the real take.
+# "<seconds from recording start> <KEY>". Bursts drift: each press is a `vega device run-cmd` round trip.
+# Lake Region events (game time): e2 FT 31.0, e3 three 63.5, e6 two 98.0, e9 FT 131.5. Playback starts ~6 s in.
+# Home: first game is focused -> OK; then Rookie (EN) is focused -> OK. Plays from game 0:00.
+2 KEY_ENTER
+5 KEY_ENTER
+# 31-52: Rookie explains the FT (rec ~37) and the three (rec ~70). Row: Why? | Catch me up | tracks... | Map | Highlights | Replay
+# 72: Rookie -> Booth -> Fantasy -> Kid
+72 KEY_RIGHT
+72.5 KEY_RIGHT
+73 KEY_RIGHT
+74 KEY_ENTER
+# 80: Spanish, 88: Hindi
+80 KEY_RIGHT
+81 KEY_ENTER
+88 KEY_RIGHT
+89 KEY_ENTER
+# 96: Hindi -> LEFT x4 = Booth, 106: Fantasy
+96 KEY_LEFT
+96.5 KEY_LEFT
+97 KEY_LEFT
+97.5 KEY_LEFT
+98 KEY_ENTER
+106 KEY_RIGHT
+107 KEY_ENTER
+# 139: Why? right after e9 (game 131.5): LEFT to the row's start, OK, then OK on the first question
+136 KEY_LEFT
+136.5 KEY_LEFT
+137 KEY_LEFT
+137.5 KEY_LEFT
+139 KEY_ENTER
+142 KEY_ENTER
+# ~155 answer ends and focus returns to Why?. 157: Replay is the last button in the row
+155 KEY_RIGHT
+155.5 KEY_RIGHT
+156 KEY_RIGHT
+156.5 KEY_RIGHT
+157 KEY_RIGHT
+157.5 KEY_RIGHT
+158 KEY_RIGHT
+158.5 KEY_RIGHT
+159 KEY_RIGHT
+159.5 KEY_RIGHT
+160 KEY_ENTER
+# ~173 replay back; Map is two to the left of Replay
+173 KEY_LEFT
+173.5 KEY_LEFT
+174 KEY_ENTER
+# 181: Catch me up = second button
+178 KEY_LEFT
+178.5 KEY_LEFT
+179 KEY_LEFT
+179.5 KEY_LEFT
+180 KEY_LEFT
+180.5 KEY_LEFT
+181 KEY_LEFT
+181.5 KEY_LEFT
+182 KEY_LEFT
+182.5 KEY_RIGHT
+183 KEY_ENTER
+# 195: back to Home; Watch party shows its code; then Highlights reel
+195 KEY_BACK
+197 KEY_DOWN
+198 KEY_ENTER
+203 KEY_UP
+204 KEY_ENTER
+235 STOP

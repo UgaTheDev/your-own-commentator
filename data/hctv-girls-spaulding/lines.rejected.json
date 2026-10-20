@@ -1,0 +1,56 @@
+[
+  {
+    "trackId": "rookie-en",
+    "eventId": "e51",
+    "lastText": "The player makes a two-point shot from inside the arc, updating the score to white forty-four, maroon thirty-four.",
+    "reason": "numbers not in facts: ['34']"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e88",
+    "lastText": "The player misses the free throw, and the ball is now live for a rebound.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e91",
+    "lastText": "The player from the maroon team misses the free throw, and now the ball is live for a rebound.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e1",
+    "lastText": "El equipo blanco anota un tiro libre y lleva la puntuación a 40 a 30.",
+    "reason": "numbers not in facts: ['40']"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e88",
+    "lastText": "Un intento de tiro libre falló; ahora la pelota está viva para un rebote.",
+    "reason": "names a rebound not in facts: 'rebote'"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e100",
+    "lastText": "El equipo rosa anota una canasta de 2 puntos, el marcador ahora es 51 a 38.",
+    "reason": "numbers not in facts: ['38']"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e100",
+    "lastText": "The pink player sinks a two-pointer, shifting the score.",
+    "reason": "judge: The line references a 'pink player,' but the FACTS only mention 'maroon' and 'white' teams. Additionally, the score update is implied but not confirmed—FACTS shows the maroon team scored, not pink."
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e38",
+    "lastText": "白队一名球员命中三分球，比分变为44比30。",
+    "reason": "numbers not in facts: ['1']"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e51",
+    "lastText": "一名栗红队球员命中二分球，比分变为44比34。",
+    "reason": "numbers not in facts: ['1', '34']"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "trackId": "rookie-en",
+    "eventId": "e62",
+    "lastText": "The white team scores two points from inside the arc; the game is now thirty-four to thirty-three.",
+    "reason": "names a made_3 not in facts: 'three'"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e1",
+    "lastText": "The green team scores two points, and the score is now twenty-four to twenty-three!",
+    "reason": "names a made_3 not in facts: 'three'"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e49",
+    "lastText": "The game is close, thirty-three to thirty-two, and now it's time for a break!",
+    "reason": "names a made_3 not in facts: 'three'"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e62",
+    "lastText": "The white team scores two points, and now it's thirty-four to thirty-three!",
+    "reason": "names a made_3 not in facts: 'three'"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e11",
+    "lastText": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 28 a 26 a favor de los verdes.",
+    "reason": "judge: The line incorrectly reverses the score. FACTS.state.score shows white: 26, green: 28, but the line states the score is 28 to 26 in favor of green after white scores, which contradicts the actual score update (white would go to 28, green remains 28, making it tied 28-28)."
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e26",
+    "lastText": "El equipo blanco intenta un tiro, pero falla; ahora cualquiera puede tomar el rebote y continuar con el juego.",
+    "reason": "names a rebound not in facts: 'rebote'"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e64",
+    "lastText": "El equipo verde falla un tiro, ahora cualquiera puede tomar el rebote.",
+    "reason": "names a rebound not in facts: 'rebote'"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e1",
+    "lastText": "The green player drains a two-pointer, pushing the score to green 25-23.",
+    "reason": "numbers not in facts: ['25']"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e2",
+    "lastText": "व्हाइट टीम का प्लेयर फ़्री थ्रो सफल, स्कोर अब २५-२४ है।",
+    "reason": "numbers not in facts: ['25']"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e7",
+    "lastText": "व्हाइट टीम का शॉट मिस हो गया, अब ग्रीन टीम रिबाउंड ले सकती है।",
+    "reason": "names a rebound not in facts: 'रिबाउंड'"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e26",
+    "lastText": "व्हाइट टीम का शॉट मिस हो गया, अब हर कोई रिबाउंड के लिए तैयार है।",
+    "reason": "names a rebound not in facts: 'रिबाउंड'"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e49",
+    "lastText": "एक पिंक प्लेयर ने टाइमआउट लिया है, टीम को रेस्ट और स्ट्रैटेजी पर बात करने का मौका मिलेगा।",
+    "reason": "judge: The line states a 'पिंक प्लेयर' (pink player) took a timeout, but FACTS.event.team and FACTS.event.jersey are null, and no team color or player is specified in FACTS. The mention of a pink player is an unsupported detail."
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e11",
+    "lastText": "第93.5秒，白队一名球员在内线命中二分，比分变为白队26分，绿队28分。",
+    "reason": "numbers not in facts: ['1', '93.5']"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e25",
+    "lastText": "白队一名球员命中二分球，比分现在是白队30，绿队31。",
+    "reason": "numbers not in facts: ['1']"
+  }
+]

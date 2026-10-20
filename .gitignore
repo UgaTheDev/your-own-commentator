@@ -22,3 +22,8 @@ data/ambience/
 .claude/worktrees/
 services/party/.aws-sam/
 services/party/schemas/
+# dev-only clips and large regenerable CV output; player crops stay local (minors)
+data/lake-region-dev/
+data/navy-dg/
+data/*/jersey/
+data/*/tracks.json

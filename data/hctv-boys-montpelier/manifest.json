@@ -1,0 +1,1748 @@
+{
+  "clipId": "hctv-boys-montpelier",
+  "videoUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/rookie-en.mp4",
+  "tracks": [
+    {
+      "id": "rookie-en",
+      "persona": "rookie",
+      "lang": "en",
+      "label": "Rookie (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/rookie-en.mp4"
+    },
+    {
+      "id": "booth-en",
+      "persona": "booth",
+      "lang": "en",
+      "label": "Booth (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/booth-en.mp4",
+      "kind": "booth",
+      "voices": [
+        {
+          "role": "pbp",
+          "voice": "Matthew"
+        },
+        {
+          "role": "analyst",
+          "voice": "Ruth"
+        }
+      ]
+    },
+    {
+      "id": "fantasy-en",
+      "persona": "fantasy",
+      "lang": "en",
+      "label": "Fantasy (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/fantasy-en.mp4"
+    },
+    {
+      "id": "kid-en",
+      "persona": "kid",
+      "lang": "en",
+      "label": "Kid (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/kid-en.mp4"
+    },
+    {
+      "id": "rookie-es",
+      "persona": "rookie",
+      "lang": "es",
+      "label": "Rookie (ES)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/rookie-es.mp4"
+    },
+    {
+      "id": "rookie-hi",
+      "persona": "rookie",
+      "lang": "hi",
+      "label": "Rookie (HI)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/rookie-hi.mp4"
+    },
+    {
+      "id": "rookie-zh",
+      "persona": "rookie",
+      "lang": "zh",
+      "label": "Rookie (ZH)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/render/rookie-zh.mp4"
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "t": 3.5,
+      "type": "made_2",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e2",
+      "t": 55.0,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e5",
+      "t": 67.0,
+      "type": "made_2",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e7",
+      "t": 74.5,
+      "type": "missed_shot",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "missed_shot"
+    },
+    {
+      "id": "e10",
+      "t": 80.5,
+      "type": "made_2",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e11",
+      "t": 93.5,
+      "type": "made_2",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e16",
+      "t": 128.5,
+      "type": "ft_made",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e16b",
+      "t": 129.0,
+      "type": "ft_made",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e18",
+      "t": 148.5,
+      "type": "ft_made",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e22",
+      "t": 198.0,
+      "type": "made_2",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e25",
+      "t": 254.5,
+      "type": "made_2",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e26",
+      "t": 274.0,
+      "type": "missed_shot",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "missed_shot"
+    },
+    {
+      "id": "e31",
+      "t": 331.5,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e44",
+      "t": 362.0,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e50",
+      "t": 421.5,
+      "type": "made_2",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e49",
+      "t": 423.0,
+      "type": "timeout",
+      "team": null,
+      "jersey": null,
+      "ruleCardId": "timeout"
+    },
+    {
+      "id": "e62",
+      "t": 505.0,
+      "type": "made_2",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e64",
+      "t": 545.0,
+      "type": "missed_shot",
+      "team": "green",
+      "jersey": null,
+      "ruleCardId": "missed_shot"
+    }
+  ],
+  "cues": {
+    "rookie-en": [
+      {
+        "t": 3.9,
+        "eventId": "e1",
+        "text": "The green team scores two points from inside the arc, taking the lead."
+      },
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "The white team player makes a free throw, tying the score at twenty-four to twenty-four."
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "The green team scores two points, making the score white twenty-four, green twenty-six."
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "The white team misses a shot, and now either team may grab the ball."
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "The player makes a two-point shot from inside the arc, updating the score to white twenty-four, green twenty-eight."
+      },
+      {
+        "t": 93.9,
+        "eventId": "e11",
+        "text": "The white team scores two points from inside the arc, making the score white twenty-six, green twenty-eight."
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "The player makes it."
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "The green team scores one point with a free throw, making the score white twenty-six, green thirty-one."
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "The white team scores two points from inside the arc, making the score white twenty-eight, green thirty-one."
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "The white team scores two points from inside the arc, bringing the score to 30 to 31."
+      },
+      {
+        "t": 274.4,
+        "eventId": "e26",
+        "text": "The white team misses a shot, and now either team can grab the ball and take over."
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "The white team player makes a free throw, tying the game at thirty-one to thirty-one."
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "The player makes the free throw, increasing the white team's score to 32 to 31."
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "The green team leads."
+      },
+      {
+        "t": 423.4,
+        "eventId": "e49",
+        "text": "A timeout has been called; the teams can rest and discuss strategy now."
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "The green team misses a shot, now anyone can grab the ball."
+      }
+    ],
+    "booth-en": [
+      {
+        "t": 3.9,
+        "eventId": "e1",
+        "text": "The green team takes the lead at 24 to 23 with a made two-pointer.",
+        "role": "pbp"
+      },
+      {
+        "t": 7.918,
+        "eventId": "e1",
+        "text": "That shot from inside the arc gives the green team the lead, as it counts for two points under the two-point basket rule.",
+        "role": "analyst"
+      },
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "The white team ties the game at 24-24 with a free throw.",
+        "role": "pbp"
+      },
+      {
+        "t": 59.346,
+        "eventId": "e2",
+        "text": "The analyst explains that free throws are worth one point each, tying the game.",
+        "role": "analyst"
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "A green player makes a two-pointer, putting the score at white twenty-four, green twenty-six.",
+        "role": "pbp"
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "A white player misses, green lead is twenty-six to twenty-four.",
+        "role": "pbp"
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "The green team takes the lead at 28 to 24 with a made two-pointer.",
+        "role": "pbp"
+      },
+      {
+        "t": 84.894,
+        "eventId": "e10",
+        "text": "That shot from inside the arc adds two points to the green team's score.",
+        "role": "analyst"
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "The player makes the free throw, green 29, white 26.",
+        "role": "pbp"
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "The green team makes the free throw, updating the score to white twenty-six, green thirty-one.",
+        "role": "pbp"
+      },
+      {
+        "t": 154.094,
+        "eventId": "e18",
+        "text": "That's a one-point play from the free-throw line, rewarding the fouled player for the earlier foul.",
+        "role": "analyst"
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "A white player makes a two-pointer, the score is now green 31, white 28.",
+        "role": "pbp"
+      },
+      {
+        "t": 203.234,
+        "eventId": "e22",
+        "text": "The analyst explains, \"That shot was inside the arc, so it's worth two points by the rules.",
+        "role": "analyst"
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "A white player makes a two-pointer, now it's 30 to 31.",
+        "role": "pbp"
+      },
+      {
+        "t": 258.582,
+        "eventId": "e25",
+        "text": "The analyst explains, this shot from inside the arc adds two points to the white team's total.",
+        "role": "analyst"
+      },
+      {
+        "t": 274.4,
+        "eventId": "e26",
+        "text": "The white team misses a shot, and the score remains green 31, white 30.",
+        "role": "pbp"
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "The white team ties it at 31 to 31 with a free throw.",
+        "role": "pbp"
+      },
+      {
+        "t": 335.534,
+        "eventId": "e31",
+        "text": "The free throw, worth one point, ties the game as rule states each make scores a single point.",
+        "role": "analyst"
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "The white team player steps up and makes the free throw, extending the lead to 32–31.",
+        "role": "pbp"
+      },
+      {
+        "t": 367.738,
+        "eventId": "e44",
+        "text": "That free throw counts as one point because the player was fouled earlier in the play.",
+        "role": "analyst"
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "A green player scores two.",
+        "role": "pbp"
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "The green team misses a shot, leaving the score white 34, green 33.",
+        "role": "pbp"
+      }
+    ],
+    "fantasy-en": [
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "The player nails the free throw, but fantasy points remain unchanged."
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "The green player drains a two-pointer, shifting the lead to 26-24."
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "The white player missed the shot, keeping the score white twenty-four, green twenty-six."
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "The green player scores, updating the score to 28–24."
+      },
+      {
+        "t": 93.9,
+        "eventId": "e11",
+        "text": "Number adds two points, moving the white team's score to 26."
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "A green player scores."
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "The green player makes the free throw, updating the score to 31 to 26."
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "The white team's player adds two points to the board."
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "A pink player drills a two-pointer, pulling the white team to 30-31."
+      },
+      {
+        "t": 274.4,
+        "eventId": "e26",
+        "text": "The white player misses the shot, no fantasy impact, score remains 30 to 31."
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "The white team ties the game at 31-31 with a successful free throw."
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "Number makes the free throw, lifting the white team to 32-31."
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "A green player scores!"
+      },
+      {
+        "t": 505.4,
+        "eventId": "e62",
+        "text": "The white team increases the lead to 34-33 with a made two-pointer."
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "The green player missed the shot, keeping the score white 34, green 33."
+      }
+    ],
+    "kid-en": [
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "The white team ties the game at twenty-four to twenty-four with a free throw!"
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "The green team goes up by two, the score is now twenty-six to twenty-four!"
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "The white team missed a shot, and the green team gets the ball next!"
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "The green team scores! Now the score is white twenty-four, green twenty-eight!"
+      },
+      {
+        "t": 93.9,
+        "eventId": "e11",
+        "text": "The white team scores two points, now it's  twenty-six to twenty-eight!"
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "The green team scores!"
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "The green team scores! Free throw makes the game 31 to 26 for green!"
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "The white team scores again! Now it's twenty-eight to thirty-one!"
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "The white team scores! Now it's thirty to thirty-one!"
+      },
+      {
+        "t": 274.4,
+        "eventId": "e26",
+        "text": "The white team missed a shot! The score is white thirty, green thirty-one!"
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "The white team ties the game at thirty-one to thirty-one with a free throw!"
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "The white team gets one more point with a free throw! Score is now thirty-two to thirty-one!"
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "The green team leads!"
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "The green team missed a shot, and now it's anyone's ball!"
+      }
+    ],
+    "rookie-es": [
+      {
+        "t": 3.9,
+        "eventId": "e1",
+        "text": "El equipo verde anota una canasta de 2 puntos, marcando 24 a 23 para verde."
+      },
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "La línea de tiro libre anotó para el equipo blanco, empate a 24 a 24."
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "El equipo verde anota una canasta de 2 puntos, ahora lleva 26 contra 24."
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "El equipo blanco falla el tiro, ahora cualquiera puede tomar el balón."
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "El equipo verde anota una canasta de 2 puntos, ahora lleva 28 contra 24 del blanco."
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "Un tiro libre."
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "El equipo verde anota un tiro libre y ahora lleva 31 a 26."
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 28 a 31."
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 30 a 31."
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "El equipo blanco anota un tiro libre y empata el juego 31 a 31."
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "El equipo blanco anota un tiro libre y ahora lleva 32 a 31."
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "Una canasta de dos."
+      },
+      {
+        "t": 505.4,
+        "eventId": "e62",
+        "text": "El equipo blanco anota una canasta de 2 puntos, ahora lleva 34 a 33."
+      }
+    ],
+    "rookie-hi": [
+      {
+        "t": 3.9,
+        "eventId": "e1",
+        "text": "ग्रीन टीम ने दो पॉइंट्स स्कोर किए, अब स्कोर 24-23 है।"
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "ग्रीन टीम ने दो पॉइंट स्कोर किए हैं, स्कोर अब २६-२४ है।"
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "ग्रीन टीम ने एक २-पॉइंटर स्कोर किया है, स्कोर अब व्हाइट २४ और ग्रीन २८ है।"
+      },
+      {
+        "t": 93.9,
+        "eventId": "e11",
+        "text": "नंबर ० ने एक दो पॉइंटर स्कोर किया, स्कोर अब सफेद २६ और हरा २८ है।"
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "सफ़ल फ़्री थ्रो!"
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "एक ग्रीन टीम का प्लेयर फ़्री थ्रो सफल करता है, स्कोर अब 31-26 है।"
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "ग्रीन 31, वाइट 28 का स्कोर है, और अब वाइट टीम ने दो पॉइंट्स स्कोर किए हैं।"
+      },
+      {
+        "t": 254.9,
+        "eventId": "e25",
+        "text": "व्हाइट टीम ने दो पॉइंट का स्कोर बनाया, स्कोर अब 30-31 है।"
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "व्हाइट टीम ने फ़्री थ्रो स्कोर किया है, स्कोर अब ३१-३१ है।"
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "एक सफेद खिलाड़ी ने फ़्री थ्रो सफल बनाया, स्कोर अब सफेद 32 और हरा 31 है।"
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "ग्रीन बढ़ गया।"
+      },
+      {
+        "t": 505.4,
+        "eventId": "e62",
+        "text": "व्हाइट टीम ने दो पॉइंट्स स्कोर किए हैं, स्कोर अब 34-33 है।"
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "सबसे पहले, ग्रीन टीम का शॉट मिस हो गया।"
+      }
+    ],
+    "rookie-zh": [
+      {
+        "t": 3.9,
+        "eventId": "e1",
+        "text": "绿队得分，比分变为24比23。"
+      },
+      {
+        "t": 55.4,
+        "eventId": "e2",
+        "text": "白队球员罚球得分，比分变为24比24。"
+      },
+      {
+        "t": 67.4,
+        "eventId": "e5",
+        "text": "绿队得分，现场比分白队24，绿队26。"
+      },
+      {
+        "t": 74.9,
+        "eventId": "e7",
+        "text": "白色队的球员投篮未中，球权由双方争抢。"
+      },
+      {
+        "t": 80.9,
+        "eventId": "e10",
+        "text": "绿队球员在进攻中成功投中，比分变为白队24，绿队28。"
+      },
+      {
+        "t": 128.9,
+        "eventId": "e16",
+        "text": "绿队得分。"
+      },
+      {
+        "t": 148.9,
+        "eventId": "e18",
+        "text": "绿队球员罚球得分，比分变为白队26，绿队31。"
+      },
+      {
+        "t": 198.4,
+        "eventId": "e22",
+        "text": "白队得分，目前比分是28比31。"
+      },
+      {
+        "t": 274.4,
+        "eventId": "e26",
+        "text": "白队球员出手未中，绿队有机会抢板。"
+      },
+      {
+        "t": 331.9,
+        "eventId": "e31",
+        "text": "白队球员罚球得分，比分变为31比31。"
+      },
+      {
+        "t": 362.4,
+        "eventId": "e44",
+        "text": "白队球员罚球命中，比分变为32比31。"
+      },
+      {
+        "t": 421.9,
+        "eventId": "e50",
+        "text": "绿队得分，33比32。"
+      },
+      {
+        "t": 505.4,
+        "eventId": "e62",
+        "text": "白队得分，比分变为34比33。"
+      },
+      {
+        "t": 545.4,
+        "eventId": "e64",
+        "text": "绿队球员错失投篮，白队可争抢球权。"
+      }
+    ]
+  },
+  "ruleCards": {
+    "made_2": {
+      "title": "Two-point basket",
+      "body": "A shot made from inside the arc is worth 2 points."
+    },
+    "made_3": {
+      "title": "Three-pointer",
+      "body": "A shot made with both feet behind the arc is worth 3 points instead of 2."
+    },
+    "ft_made": {
+      "title": "Free throw",
+      "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. Each make is worth 1 point."
+    },
+    "ft_missed": {
+      "title": "Free throw",
+      "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. A miss scores nothing and the ball is live for a rebound on the last attempt."
+    },
+    "missed_shot": {
+      "title": "Missed shot",
+      "body": "When a shot misses, either team can grab the rebound and take possession."
+    },
+    "foul": {
+      "title": "Personal foul",
+      "body": "Illegal contact, like pushing, holding or hitting a shooter's arm, is a foul. The other team gets the ball, or free throws if the player was shooting. Players who collect too many fouls must leave the game."
+    },
+    "and_one": {
+      "title": "And-one",
+      "body": "If a player is fouled while making a shot, the basket still counts and they get 1 extra free throw."
+    },
+    "travel": {
+      "title": "Traveling",
+      "body": "A player holding the ball can't take steps without dribbling. Moving the pivot foot or taking extra steps is a travel, and the other team gets the ball."
+    },
+    "turnover": {
+      "title": "Turnover",
+      "body": "A turnover is losing the ball to the other team without taking a shot, for example a bad pass or stepping out of bounds."
+    },
+    "steal": {
+      "title": "Steal",
+      "body": "A defender who takes the ball away from the offense, without a foul, gets credit for a steal."
+    },
+    "block": {
+      "title": "Block",
+      "body": "A defender who legally deflects a shot on its way up gets credit for a block. Touching it on the way down toward the rim is goaltending, and the basket counts."
+    },
+    "rebound": {
+      "title": "Rebound",
+      "body": "Grabbing the ball after a missed shot is a rebound. A defensive rebound ends the other team's possession; an offensive rebound gives your team another chance."
+    },
+    "timeout": {
+      "title": "Timeout",
+      "body": "A team can stop the clock to rest, talk strategy or break the other team's momentum."
+    }
+  },
+  "state": [
+    {
+      "eventId": "e1",
+      "t": 3.5,
+      "score": {
+        "white": 23,
+        "green": 24
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e2",
+      "t": 55.0,
+      "score": {
+        "white": 24,
+        "green": 24
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e5",
+      "t": 67.0,
+      "score": {
+        "white": 24,
+        "green": 26
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e7",
+      "t": 74.5,
+      "score": {
+        "white": 24,
+        "green": 26
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e10",
+      "t": 80.5,
+      "score": {
+        "white": 24,
+        "green": 28
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e11",
+      "t": 93.5,
+      "score": {
+        "white": 26,
+        "green": 28
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e16",
+      "t": 128.5,
+      "score": {
+        "white": 26,
+        "green": 29
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e16b",
+      "t": 129.0,
+      "score": {
+        "white": 26,
+        "green": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e18",
+      "t": 148.5,
+      "score": {
+        "white": 26,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e22",
+      "t": 198.0,
+      "score": {
+        "white": 28,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e25",
+      "t": 254.5,
+      "score": {
+        "white": 30,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e26",
+      "t": 274.0,
+      "score": {
+        "white": 30,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e31",
+      "t": 331.5,
+      "score": {
+        "white": 31,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e44",
+      "t": 362.0,
+      "score": {
+        "white": 32,
+        "green": 31
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e50",
+      "t": 421.5,
+      "score": {
+        "white": 32,
+        "green": 33
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e49",
+      "t": 423.0,
+      "score": {
+        "white": 32,
+        "green": 33
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e62",
+      "t": 505.0,
+      "score": {
+        "white": 34,
+        "green": 33
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e64",
+      "t": 545.0,
+      "score": {
+        "white": 34,
+        "green": 33
+      },
+      "teamFouls": {
+        "white": 0,
+        "green": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    }
+  ],
+  "questions": {
+    "e2": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c1c1335aeb2af54f53e4aaa.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "Por una falta cometida, el jugador de blanco lanzó un tiro libre y anotó. Cada tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/43d06ef2e14fb4858b6fb43b.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/29b2a4adc6e85afd9a79b187.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made with no change in fantasy points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c5ef8d8aead929959e00cd50.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，罚球是在特定犯规后由犯规球员在罚球线进行无防守投射，每命中得1分。球员此次命中了罚球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b8cac01122c6b46df535494f.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score just went up after the made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/81b7803cefe489ec64f48b43.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto. Cada vez que un jugador hace un tiro libre, su equipo suma un punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e038cf5394e80ad3ba72973a.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each; it's an unguarded shot taken after certain fouls.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/cf9afa4b98f3cf0826885e51.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2d3de4ce7df28d11f283a39e.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每进一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f96ed765de2c9c6fdb068a80.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is tied at 24 to 24 with the white team just making a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/77b342d1511de5be6d144988.mp3"
+          },
+          "kid-en": {
+            "text": "The score is tied at 24 to 24! The white team just made a free throw!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e19470b6092a1cde8ef2e512.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador está 24 a 24 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/6b08fbeaec091b1de0bd7fac.mp3"
+          },
+          "booth-en": {
+            "text": "The score is still tied at 24 to 24; the last play was a free throw that didn't change the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a0f6592c6b259832908115bc.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is tied at 24 to 24. I can only speak to what happened on the court: a free throw was made.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a0645432f35b78438147828c.mp3"
+          },
+          "rookie-hi": {
+            "text": "स्कोर 24-24 है। वाइट टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9e603752dc2f46507fddfe02.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队24分，绿队24分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/6ca06d79e7aa88a5992aceb6.mp3"
+          }
+        }
+      }
+    ],
+    "e16": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/1d2d6fae0e27fccb0e924878.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they score 1 point!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a19bb833e7b096dc9a4d66a3.mp3"
+          },
+          "rookie-es": {
+            "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 29.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/81e00916d124916ccaefa7b7.mp3"
+          },
+          "booth-en": {
+            "text": "That player got a free shot because a foul was called against the other team, and now they get to shoot unguarded from the free-throw line for 1 point each.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/3df6abf181470f91d38c5e0c.mp3"
+          },
+          "fantasy-en": {
+            "text": "The play was a free throw, which comes after certain fouls. The fantasy data isn’t provided, so I can’t speak to fantasy points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ef0f3cbb63c3a9f6ae8998f0.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，罚球是在特定犯规后由被犯规的球员从罚球线出手的。每命中一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/391757266abb51cb1aa4ed9f.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point each. That's why the green team's score just went up after the made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d8761b13167c9b2a0396c206.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's a super important rule in basketball!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/10c3bfcabe923d002b13db68.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each. That's why the green team's score just went up.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/245644e20fe928266d7e7d8d.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2d3de4ce7df28d11f283a39e.mp3"
+          },
+          "rookie-hi": {
+            "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c496c58d9e2f7afd11b32ac8.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每进一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f96ed765de2c9c6fdb068a80.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is White 26, Green 29. The last play was a successful free throw for the Green team, worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b5d2d65776273eba6a0118c4.mp3"
+          },
+          "kid-en": {
+            "text": "The score is White 26, Green 29! Great free throw by Green!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/5b13b2beaccc1166f15459f7.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 26, verde 29. El último evento fue un tiro libre anotado por el equipo verde.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e10b988dee54846faf4a6f25.mp3"
+          },
+          "booth-en": {
+            "text": "The score is White 26, Green 29 after a free throw made by Green.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e218b51ba72bd3b1f6fd6e3f.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is White 26, Green 29. The last play was a free throw made by Green.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f38b592a90f1ef4d46ed1f1f.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 26 और ग्रीन टीम 29 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9f9646e1d5892d5afdcd5bb6.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队26分，绿队29分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/92010a3973fa9232d2ebd2f4.mp3"
+          }
+        }
+      }
+    ],
+    "e16b": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c1c1335aeb2af54f53e4aaa.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 30.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec36d194e50e2c7a47343772.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/29b2a4adc6e85afd9a79b187.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made, increasing the score to 30-26.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c83a8a6d5d5a550bd7a3e2c.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，当特定犯规后，犯规球员需要从罚球线进行罚球。每命中一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/4fd0f55342f15191d9cdb7d1.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e947cf9262ade2d00e1c406e.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's a great question!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ee93b9896604e25a872ef00a.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each time it's made. That's why Green's lead is now 30 to 26.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c936613b7837167af2f4bc3c.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you its fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9d57ca5bec5d25cec64cb57c.mp3"
+          },
+          "rookie-hi": {
+            "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c496c58d9e2f7afd11b32ac8.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每个命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ac82844d2759e5802f757ca4.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The current score is White 26, Green 30, with Green just making a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/84e80c0b3ec7e180cb111e59.mp3"
+          },
+          "kid-en": {
+            "text": "The score is White 26, Green 30! Great free throw by Green!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d8cbdaae9c7ffd1adf13a302.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 26, verde 30. El último evento fue un tiro libre anotado por el equipo verde.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/8f6a3e6af041e28f4d71b517.mp3"
+          },
+          "booth-en": {
+            "text": "The score is White 26, Green 30 after a made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/46b731204c39c42974349193.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now White 26, Green 30. The last play was a free throw made by Green.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/4566fa5bcab64b8b55550310.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 26 और ग्रीन टीम 30 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/23848c188949a5874333c79e.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队26分，绿队30分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b8c2135df2a684b37da9bb27.mp3"
+          }
+        }
+      }
+    ],
+    "e18": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because a foul was called against the other team, and now they get to shoot from the free-throw line without defense. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fc9d2451997b5b069b89f118.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "Una falta contra el equipo verde dio derecho a un tiro libre, y el jugador lo anotó. Cada tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2bab9716c644fa1873b571a7.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, allowing the player to shoot unguarded from the free-throw line. Each successful free throw adds 1 point to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/497f4324ea3424887bf5d0d3.mp3"
+          },
+          "fantasy-en": {
+            "text": "The free throw was awarded after a foul, giving the player an unguarded shot from the line. Since the fantasyDelta is empty, I can’t speak to fantasy points for this play.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/519e0d1e101ac4af6f3c4c9c.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，犯规后被犯规球员可以从罚球线进行无防守的投篮，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/1dd0b11e43816eefe5e15c0e.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e947cf9262ade2d00e1c406e.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each. That's why Green's lead is now 31 to 26 after the made shot.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/209bfcbd73b359871fc42b5a.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2d3de4ce7df28d11f283a39e.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投篮每进1分。现在绿队又进了一球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/23a5401c5a2042c245bae04c.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The current score is White 26, Green 31, with Green just making a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/0fb2801356addd513c888c83.mp3"
+          },
+          "kid-en": {
+            "text": "The score is White 26, Green 31! Green just made a free throw!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/59ca2459c865d4e25442edb8.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 26, verde 31. El último evento fue un tiro libre anotado por el equipo verde.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/5ec4db1586a6fd6187fea395.mp3"
+          },
+          "booth-en": {
+            "text": "The score is White 26, Green 31 after a free throw make.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d9698e5d74883f365640f778.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now White 26, Green 31. The last play was a free throw made by Green.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/67f380a7210a6ace3e53ba63.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 26 और ग्रीन टीम 31 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/19496ae123beb8472b40507e.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队26分，绿队31分。绿队刚刚进了一个罚球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/dffe18ebe1a13c8428e37588.mp3"
+          }
+        }
+      }
+    ],
+    "e31": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d4182feac0473455afa92464.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "Obtuvieron un tiro libre porque cometieron una falta contra el jugador de blanco, y por eso él puede lanzar sin defensa desde la línea de tiros libres. Cada canasta vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c616679da9709153f0a17fb1.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because of a foul, and each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/95039d5ebac20c96ae39212f.mp3"
+          },
+          "fantasy-en": {
+            "text": "The play was a free throw, awarded after a foul, and the player made it for 1 point. Since the fantasyDelta is empty, I can’t speak to fantasy points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b936a2f5b6098c9ca55c02b6.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，罚球是在特定犯规后由被犯规的球员在罚球线进行无防守射击，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c40c6d9854850b1a78f9fc7.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score went up by 1 after the free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ffcd89c0ae3ec56b6d983cbb.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto. Es así porque después de ciertas faltas, el jugador tira desde la línea de tiro libre sin defensa.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/22f77a7a33dba35ed1d198ee.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each. That's why the white team's score went up by 1 after the made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b1e331243d81756f766fa254.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. I can only speak to what happened on the court: the play was a free throw made by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/76ff631c1c0faf44c7e30299.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每进一球得1分。当前白队球员刚刚进了一球，比分现在是31比31。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9f41e69ba679d78d6c48b7cb.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is tied at 31 to 31. The last play was a successful free throw by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c9e63bedb4605ac1eeda61a5.mp3"
+          },
+          "kid-en": {
+            "text": "The score is tied at 31 to 31!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/5e954c93ed7fae1513e06afd.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador está 31 a 31 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9a717ba83c9ff2bafc01fe92.mp3"
+          },
+          "booth-en": {
+            "text": "The score is tied at 31 to 31 after the last free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ae23dbe1ffb08c79f9b98582.mp3"
+          },
+          "fantasy-en": {
+            "text": "The last play was Free throw by the white team. The score is white 31, green 31.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/564050c6a4d11cba052dfb98.mp3"
+          },
+          "rookie-hi": {
+            "text": "वर्तमान स्कोर 31-31 है। सफेद टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/652f6eb7e00f118918fa7ef7.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队31分，绿队31分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/12a41fff389e40c46f982e17.mp3"
+          }
+        }
+      }
+    ],
+    "e44": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "They got a free shot because a certain foul allowed the player to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/732a7dad78ceb9a941d40912.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they score 1 point!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a19bb833e7b096dc9a4d66a3.mp3"
+          },
+          "rookie-es": {
+            "text": "El jugador de blanco recibió un tiro libre por una falta, y anotó 1 punto. Cada tiro libre vale siempre 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/31e53bf64916949c6a427871.mp3"
+          },
+          "booth-en": {
+            "text": "The player got a free shot because of a foul, and each successful free throw is worth 1 point. The white team now leads 32 to 31.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2335e8834b04cabc0dd0bbde.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made, increasing the white team's score to 32.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/7e473aa9060218a5a92f176b.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则，当特定犯规后，犯规球员需要从罚球线进行罚球，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/447464d80542fc7912f5124a.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. The white team just made one, bringing the score to 32 to 31.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c3809c2be5590a3d0a6981a0.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's how players score when they get a foul and shoot from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f03bdf1967709843400f732a.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point; it's an unguarded shot taken after certain fouls.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/1d3d9c606742391a5bdc6ac4.mp3"
+          },
+          "fantasy-en": {
+            "text": "Each free throw make is worth 1 point, according to the rule. But the fantasy data isn't provided, so I can't speak to fantasy points for this play.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e123ff28e114060aa4802a78.mp3"
+          },
+          "rookie-hi": {
+            "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c496c58d9e2f7afd11b32ac8.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投篮每进1分。现在白队得分32，绿队得分31。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e975ee63b9bd33628da024d6.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is now White 32, Green 31 after a successful free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d9248005da275821c8b096c0.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead, 32 to 31!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fae2b0a61254812e1c1da144.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 32, verde 31. El último punto fue un tiro libre del equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/04a0814d8a9b252c9abb63d9.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 32 to 31 in favor of the white team after a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/eca92e9b0f322d9beef5df14.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 32 to 31 in favor of the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/8f1fb4400281bc4ad5cffe49.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 32 और ग्रीन टीम 31 पर है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो मारकर स्कोर बढ़ाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c76330563633cfa95b16bb47.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队32分，绿队31分。白队刚刚进了一次罚球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2eb378f2fa1e4e49a31f7c19.mp3"
+          }
+        }
+      }
+    ]
+  },
+  "roster": [],
+  "recaps": [
+    {
+      "t": 60,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a8454e8497646d952d66247e.mp3",
+      "text": "Green made a two-point shot, then white made a free throw; the score is now 24 to 24."
+    },
+    {
+      "t": 300,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/064d8d045d200b3f770947ce.mp3",
+      "text": "White scored two points twice, then missed a shot; Green leads 31 to 30."
+    },
+    {
+      "t": 480,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fc29950c9b720bc6581baf8a.mp3",
+      "text": "White scored a free throw, then green made a two-point shot, and now the score is 32 to 33."
+    },
+    {
+      "t": 540,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/73541d21b83cc63a479e7f28.mp3",
+      "text": "Green scored a two-pointer, then white responded with their own two-pointer after a timeout; the score is now white 34, green 33."
+    }
+  ],
+  "talk": {
+    "wsUrl": "wss://d38etaw7xiqv3j.cloudfront.net"
+  },
+  "party": {
+    "wsUrl": "wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev"
+  }
+}

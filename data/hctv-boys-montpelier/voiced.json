@@ -1,0 +1,880 @@
+[
+  {
+    "trackId": "booth-en",
+    "eventId": "e1",
+    "start": 3.9,
+    "duration": 3.768,
+    "text": "The green team takes the lead at 24 to 23 with a made two-pointer.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e67574bd9780611ba4de625a.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e1",
+    "start": 3.9,
+    "duration": 3.648,
+    "text": "The green team scores two points from inside the arc, taking the lead.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/88fae6e2dd2dcbca5cb7aed3.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e1",
+    "start": 3.9,
+    "duration": 5.952,
+    "text": "El equipo verde anota una canasta de 2 puntos, marcando 24 a 23 para verde.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f44320fcbaca387078f3322d.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e1",
+    "start": 3.9,
+    "duration": 4.032,
+    "text": "ग्रीन टीम ने दो पॉइंट्स स्कोर किए, अब स्कोर 24-23 है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec23185fe8162763888f7a31.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e1",
+    "start": 3.9,
+    "duration": 3.576,
+    "text": "绿队得分，比分变为24比23。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7a74bb2573ede8fa549cf90f.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e1",
+    "start": 7.918,
+    "duration": 6.408,
+    "text": "That shot from inside the arc gives the green team the lead, as it counts for two points under the two-point basket rule.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7c4672036feb7b5f810ed6b5.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 3.696,
+    "text": "The white team ties the game at 24-24 with a free throw.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8e33cac3d48291cde066fc51.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 4.248,
+    "text": "The player nails the free throw, but fantasy points remain unchanged.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cd662ed178cfe1c7b3dc5e80.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 3.888,
+    "text": "The white team ties the game at twenty-four to twenty-four with a free throw!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b8e1f447dc84c34484d37a7a.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 4.32,
+    "text": "The white team player makes a free throw, tying the score at twenty-four to twenty-four.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/92df8ec33c01e4260de7a52f.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 5.688,
+    "text": "La línea de tiro libre anotó para el equipo blanco, empate a 24 a 24.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/04892e4e6a57512452afee20.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e2",
+    "start": 55.4,
+    "duration": 4.344,
+    "text": "白队球员罚球得分，比分变为24比24。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f8f9807c81da2e476ad0a4a7.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e2",
+    "start": 59.346,
+    "duration": 4.968,
+    "text": "The analyst explains that free throws are worth one point each, tying the game.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3b0d215cf058a7a9f038402f.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.728,
+    "text": "A green player makes a two-pointer, putting the score at white twenty-four, green twenty-six.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/31ac70c3bd81ea97356e5092.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.848,
+    "text": "The green player drains a two-pointer, shifting the lead to 26-24.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9a488ab3eecf02dad0d87e11.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.272,
+    "text": "The green team goes up by two, the score is now twenty-six to twenty-four!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5d6dd2703f3cebb202eb5d41.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.752,
+    "text": "The green team scores two points, making the score white twenty-four, green twenty-six.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7c048ec27614231fe1b53c43.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 6.072,
+    "text": "El equipo verde anota una canasta de 2 puntos, ahora lleva 26 contra 24.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5d032dc28604ac638b3850f1.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.248,
+    "text": "ग्रीन टीम ने दो पॉइंट स्कोर किए हैं, स्कोर अब २६-२४ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7e2d0edea4bde8fd2020113a.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e5",
+    "start": 67.4,
+    "duration": 4.368,
+    "text": "绿队得分，现场比分白队24，绿队26。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/559de6b5fecfb1ec223065f5.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 3.384,
+    "text": "A white player misses, green lead is twenty-six to twenty-four.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4e2bb582b8dc6fb2b75f6605.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 5.016,
+    "text": "The white player missed the shot, keeping the score white twenty-four, green twenty-six.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/191e150824baf94e601268b2.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 3.6,
+    "text": "The white team missed a shot, and the green team gets the ball next!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e9e288930e080f92544178b1.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 3.456,
+    "text": "The white team misses a shot, and now either team may grab the ball.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/03cbffaec8c4c81b0e60c9ad.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 4.464,
+    "text": "El equipo blanco falla el tiro, ahora cualquiera puede tomar el balón.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b1f94f1a81dae8d60205f7a6.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e7",
+    "start": 74.9,
+    "duration": 4.08,
+    "text": "白色队的球员投篮未中，球权由双方争抢。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1abb90911c9bc379ba5b5080.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 3.744,
+    "text": "The green team takes the lead at 28 to 24 with a made two-pointer.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cfac9785f42e88fde130ab52.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 4.368,
+    "text": "The green player scores, updating the score to 28–24.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1c0271898fcb506deb002d8e.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 4.776,
+    "text": "The green team scores! Now the score is white twenty-four, green twenty-eight!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5a174d3a0cfd9219fd73ba35.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 5.544,
+    "text": "The player makes a two-point shot from inside the arc, updating the score to white twenty-four, green twenty-eight.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bf17b3030e4afd034bbd7e1a.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 6.552,
+    "text": "El equipo verde anota una canasta de 2 puntos, ahora lleva 28 contra 24 del blanco.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/87e403222ba47841646a3a03.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 4.896,
+    "text": "ग्रीन टीम ने एक २-पॉइंटर स्कोर किया है, स्कोर अब व्हाइट २४ और ग्रीन २८ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2c100d11ca9252ae1b8e37bb.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e10",
+    "start": 80.9,
+    "duration": 6.048,
+    "text": "绿队球员在进攻中成功投中，比分变为白队24，绿队28。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9ecc7d0a1a2963b351fb82be.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e10",
+    "start": 84.894,
+    "duration": 4.056,
+    "text": "That shot from inside the arc adds two points to the green team's score.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7a1a622becd9030f216c8c73.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e11",
+    "start": 93.9,
+    "duration": 4.248,
+    "text": "Number adds two points, moving the white team's score to 26.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a744de8871596ac14d7de759.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e11",
+    "start": 93.9,
+    "duration": 3.84,
+    "text": "The white team scores two points, now it's  twenty-six to twenty-eight!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3dd1e3993d73daf71d8098e7.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e11",
+    "start": 93.9,
+    "duration": 5.496,
+    "text": "The white team scores two points from inside the arc, making the score white twenty-six, green twenty-eight.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b472c1e0398143fe67f9ba3b.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e11",
+    "start": 93.9,
+    "duration": 5.232,
+    "text": "नंबर ० ने एक दो पॉइंटर स्कोर किया, स्कोर अब सफेद २६ और हरा २८ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/80fc77d9f0785d0aa5e0bc37.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 3.816,
+    "text": "The player makes the free throw, green 29, white 26.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b9ed6e8e3034c490203953f4.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 2.016,
+    "text": "A green player scores.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8f7ead64b768bc8f31f42bba.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 1.536,
+    "text": "The green team scores!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/282d478966a25fb898cbd62c.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 0.96,
+    "text": "The player makes it.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/72affc53a3e36d9ad0be572d.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 1.464,
+    "text": "Un tiro libre.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3bfb417630b2ed4cbf483fc9.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 1.344,
+    "text": "सफ़ल फ़्री थ्रो!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/26e72008f0693a0a86384475.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e16",
+    "start": 128.9,
+    "duration": 1.152,
+    "text": "绿队得分。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f7009167505bbceb8e68fb15.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 4.944,
+    "text": "The green team makes the free throw, updating the score to white twenty-six, green thirty-one.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/462234014ff36981b81d7729.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 4.872,
+    "text": "The green player makes the free throw, updating the score to 31 to 26.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e22dad2b0ed106a6318e3df2.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 5.112,
+    "text": "The green team scores! Free throw makes the game 31 to 26 for green!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/87826d4f86b21a335fb13814.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 5.592,
+    "text": "The green team scores one point with a free throw, making the score white twenty-six, green thirty-one.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/12bde0cd595c6f315986c689.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 5.256,
+    "text": "El equipo verde anota un tiro libre y ahora lleva 31 a 26.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bab2d392b2881ccc9f979e2e.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 4.824,
+    "text": "एक ग्रीन टीम का प्लेयर फ़्री थ्रो सफल करता है, स्कोर अब 31-26 है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d9481c9e9274656161c50b8a.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e18",
+    "start": 148.9,
+    "duration": 5.16,
+    "text": "绿队球员罚球得分，比分变为白队26，绿队31。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f61e3913daca07c2d72b357d.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e18",
+    "start": 154.094,
+    "duration": 5.352,
+    "text": "That's a one-point play from the free-throw line, rewarding the fouled player for the earlier foul.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/70f342299000000fe8ac3031.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 4.584,
+    "text": "A white player makes a two-pointer, the score is now green 31, white 28.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ece7547507299154eb08b1ca.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 3.168,
+    "text": "The white team's player adds two points to the board.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3ed40c544d6b06cbbc806887.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 3.792,
+    "text": "The white team scores again! Now it's twenty-eight to thirty-one!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d0d0474167a68e783999ed00.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 5.496,
+    "text": "The white team scores two points from inside the arc, making the score white twenty-eight, green thirty-one.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1590f209013599757c28ac7f.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 6.12,
+    "text": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 28 a 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/74b5e902b689d01b9d0b9d17.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 4.824,
+    "text": "ग्रीन 31, वाइट 28 का स्कोर है, और अब वाइट टीम ने दो पॉइंट्स स्कोर किए हैं।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8cd8b144c8795356fd5e7122.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e22",
+    "start": 198.4,
+    "duration": 3.984,
+    "text": "白队得分，目前比分是28比31。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6f7df0e994fd91d6bdfdb515.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e22",
+    "start": 203.234,
+    "duration": 5.64,
+    "text": "The analyst explains, \"That shot was inside the arc, so it's worth two points by the rules.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8c4c5ea7a2f5024d3f659a0e.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 3.432,
+    "text": "A white player makes a two-pointer, now it's 30 to 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/208ce23076bfc197cb48735e.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 4.848,
+    "text": "A pink player drills a two-pointer, pulling the white team to 30-31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/db41e206c6b6d4df88d15d18.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 3.456,
+    "text": "The white team scores! Now it's thirty to thirty-one!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8a68bac863c1fb2b242c3282.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 4.752,
+    "text": "The white team scores two points from inside the arc, bringing the score to 30 to 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a13352e5d9c1e272f56463a3.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 6.24,
+    "text": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 30 a 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/688aef998ed8c5456952032e.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e25",
+    "start": 254.9,
+    "duration": 4.008,
+    "text": "व्हाइट टीम ने दो पॉइंट का स्कोर बनाया, स्कोर अब 30-31 है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b02c37f0f4a850b8cf6a52b8.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e25",
+    "start": 258.582,
+    "duration": 5.52,
+    "text": "The analyst explains, this shot from inside the arc adds two points to the white team's total.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bfd9b7f3f1dc4add9863d736.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e26",
+    "start": 274.4,
+    "duration": 4.464,
+    "text": "The white team misses a shot, and the score remains green 31, white 30.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/102de1f3929a2cf02c970a63.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e26",
+    "start": 274.4,
+    "duration": 5.688,
+    "text": "The white player misses the shot, no fantasy impact, score remains 30 to 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4ace02379adc1d8ce3e1518f.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e26",
+    "start": 274.4,
+    "duration": 4.32,
+    "text": "The white team missed a shot! The score is white thirty, green thirty-one!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4199df99e025e9482069e5ee.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e26",
+    "start": 274.4,
+    "duration": 4.128,
+    "text": "The white team misses a shot, and now either team can grab the ball and take over.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/469031d348f09be28f616c40.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e26",
+    "start": 274.4,
+    "duration": 3.576,
+    "text": "白队球员出手未中，绿队有机会抢板。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/46d2cd6a14b9c66d0e07a9b0.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 3.384,
+    "text": "The white team ties it at 31 to 31 with a free throw.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/536e71b207a7a6e223df82f8.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 4.536,
+    "text": "The white team ties the game at 31-31 with a successful free throw.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d36c5babe6020b4e59cb714e.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 3.72,
+    "text": "The white team ties the game at thirty-one to thirty-one with a free throw!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fb6c78db79d51393c47585d0.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 4.272,
+    "text": "The white team player makes a free throw, tying the game at thirty-one to thirty-one.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/42c5750ad130a06c428d5f7c.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 5.184,
+    "text": "El equipo blanco anota un tiro libre y empata el juego 31 a 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9b842e47e822c3b500d7bf12.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 4.08,
+    "text": "व्हाइट टीम ने फ़्री थ्रो स्कोर किया है, स्कोर अब ३१-३१ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ac7ef2f31889486560c5c4b5.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e31",
+    "start": 331.9,
+    "duration": 4.416,
+    "text": "白队球员罚球得分，比分变为31比31。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/912496507b4a6703ffa71db6.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e31",
+    "start": 335.534,
+    "duration": 6.192,
+    "text": "The free throw, worth one point, ties the game as rule states each make scores a single point.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4606d238c0cfe80a9c916135.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 5.088,
+    "text": "The white team player steps up and makes the free throw, extending the lead to 32–31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fc51b92d3392a8470c4f862a.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 4.584,
+    "text": "Number makes the free throw, lifting the white team to 32-31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/22dd0ca923c08e8dd96b2fb4.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 5.328,
+    "text": "The white team gets one more point with a free throw! Score is now thirty-two to thirty-one!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cdf27ea8b53420f1d8322380.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 4.656,
+    "text": "The player makes the free throw, increasing the white team's score to 32 to 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1d67eebe33f8fb8dd9dee76c.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 4.92,
+    "text": "El equipo blanco anota un tiro libre y ahora lleva 32 a 31.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/df343d291e254437a917eb7a.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 5.136,
+    "text": "एक सफेद खिलाड़ी ने फ़्री थ्रो सफल बनाया, स्कोर अब सफेद 32 और हरा 31 है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/554b740ea6c8885c715c5729.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e44",
+    "start": 362.4,
+    "duration": 4.68,
+    "text": "白队球员罚球命中，比分变为32比31。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b4aab6a0b91a7b82fc8f14ee.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e44",
+    "start": 367.738,
+    "duration": 4.752,
+    "text": "That free throw counts as one point because the player was fouled earlier in the play.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/98412dc07e5056a4ef6b2b5a.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 1.512,
+    "text": "A green player scores two.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f8c44dd1949c44edd376f237.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 2.064,
+    "text": "A green player scores!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8038d7f2724667f1fd581d9a.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 1.44,
+    "text": "The green team leads!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/29f4a3db9c9c08d26e566350.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 1.176,
+    "text": "The green team leads.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e4b7b43f9a8b293bf4158e30.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 1.896,
+    "text": "Una canasta de dos.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/83bf264b2b8c39d31f86b8d7.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 1.2,
+    "text": "ग्रीन बढ़ गया।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a2c6dc6bc9fe6080587f5075.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e50",
+    "start": 421.9,
+    "duration": 2.88,
+    "text": "绿队得分，33比32。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c516571d787176e8bb2716dc.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e49",
+    "start": 423.4,
+    "duration": 3.792,
+    "text": "A timeout has been called; the teams can rest and discuss strategy now.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/10466f7e3183250affe6a802.mp3"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e62",
+    "start": 505.4,
+    "duration": 4.968,
+    "text": "The white team increases the lead to 34-33 with a made two-pointer.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9e72475fb4d5272c937f1f9c.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e62",
+    "start": 505.4,
+    "duration": 6.168,
+    "text": "El equipo blanco anota una canasta de 2 puntos, ahora lleva 34 a 33.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/693477401e624c1c4afc6018.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e62",
+    "start": 505.4,
+    "duration": 4.08,
+    "text": "व्हाइट टीम ने दो पॉइंट्स स्कोर किए हैं, स्कोर अब 34-33 है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/396f170347a2a3acf1e68930.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e62",
+    "start": 505.4,
+    "duration": 3.936,
+    "text": "白队得分，比分变为34比33。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9e2d4d3b449da15725bfe505.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 4.584,
+    "text": "The green team misses a shot, leaving the score white 34, green 33.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4561dcd1634177b192692a03.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 5.136,
+    "text": "The green player missed the shot, keeping the score white 34, green 33.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4610762985071a7513db2755.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 3.048,
+    "text": "The green team missed a shot, and now it's anyone's ball!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a5194397ee708095b6d69080.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 3.216,
+    "text": "The green team misses a shot, now anyone can grab the ball.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/287675cab35d04aaa4d18811.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 3.024,
+    "text": "सबसे पहले, ग्रीन टीम का शॉट मिस हो गया।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fe0118b8f17298440e98e214.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e64",
+    "start": 545.4,
+    "duration": 3.888,
+    "text": "绿队球员错失投篮，白队可争抢球权。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8571725c41e297185d10c06d.mp3"
+  }
+]

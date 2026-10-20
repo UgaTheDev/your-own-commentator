@@ -1,0 +1,30 @@
+[
+  {
+    "trackId": "booth-en",
+    "eventId": "e2",
+    "role": "pbp",
+    "lastText": "Number 5 steps up and sinks the free throw, blue leads pink 4 to 11.",
+    "reason": "numbers not in facts: ['4']"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e3",
+    "role": "pbp",
+    "lastText": "A blue player nails a three-pointer, updating the score to pink 11, blue 9.",
+    "reason": "numbers not in facts: ['9']"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e22",
+    "role": "pbp",
+    "lastText": "A pink player calls timeout, halting play with the score pink 16, blue 6.",
+    "reason": "pink didn't make that play: 'pink player calls timeout'; credits a team-less play to a team: 'pink player'"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e29",
+    "role": "analyst",
+    "lastText": "The analyst notes that since the shot missed, either team now has a chance to gain possession from the rebound.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  }
+]

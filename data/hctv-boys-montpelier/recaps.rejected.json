@@ -1,0 +1,27 @@
+[
+  {
+    "t": 120,
+    "lastText": "Green scored three baskets and White scored two; the score is now Green 28, White 26.",
+    "reason": "numbers not in facts: ['3']"
+  },
+  {
+    "t": 180,
+    "lastText": "Green scored a two-pointer, then another two-pointer, then three free throws. White scored a two-pointer. The score is now Green 31, White 26.",
+    "reason": "numbers not in facts: ['3']"
+  },
+  {
+    "t": 240,
+    "lastText": "Green scored three free throws, then White scored two points, and the score is now 31 to 28 in favor of Green.",
+    "reason": "numbers not in facts: ['3']"
+  },
+  {
+    "t": 360,
+    "lastText": "White scored a two-pointer, missed a shot, then made a free throw; it's now tied at 31–31.",
+    "reason": "'scored' on a non-scoring play: 'scored a two-pointer, missed'"
+  },
+  {
+    "t": 420,
+    "lastText": "White scored two free throws, now the score is White 32, Green 31.",
+    "reason": "numbers not in facts: ['2']"
+  }
+]

@@ -1,0 +1,734 @@
+{
+  "e2": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2c1c1335aeb2af54f53e4aaa.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff4f9c71fa3eacb2970b9f64.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Por una falta cometida, el jugador de blanco lanzó un tiro libre y anotó. Cada tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/43d06ef2e14fb4858b6fb43b.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/29b2a4adc6e85afd9a79b187.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "I can only speak to what happened on the court: a free throw was made with no change in fantasy points.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c5ef8d8aead929959e00cd50.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则卡片，罚球是在特定犯规后由犯规球员在罚球线进行无防守投射，每命中得1分。球员此次命中了罚球。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b8cac01122c6b46df535494f.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point. That's why the white team's score just went up after the made free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/81b7803cefe489ec64f48b43.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/24055c6824b049fb0bc81670.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto. Cada vez que un jugador hace un tiro libre, su equipo suma un punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e038cf5394e80ad3ba72973a.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point each; it's an unguarded shot taken after certain fouls.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cf9afa4b98f3cf0826885e51.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2d3de4ce7df28d11f283a39e.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f45ad6bd211b2f77ee8353b9.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投每进一球得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f96ed765de2c9c6fdb068a80.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The score is tied at 24 to 24 with the white team just making a free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/77b342d1511de5be6d144988.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "The score is tied at 24 to 24! The white team just made a free throw!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e19470b6092a1cde8ef2e512.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador está 24 a 24 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6b08fbeaec091b1de0bd7fac.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is still tied at 24 to 24; the last play was a free throw that didn't change the score.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a0f6592c6b259832908115bc.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The score is tied at 24 to 24. I can only speak to what happened on the court: a free throw was made.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a0645432f35b78438147828c.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "स्कोर 24-24 है। वाइट टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9e603752dc2f46507fddfe02.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队24分，绿队24分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6ca06d79e7aa88a5992aceb6.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ],
+  "e16": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1d2d6fae0e27fccb0e924878.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they score 1 point!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a19bb833e7b096dc9a4d66a3.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 29.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/81e00916d124916ccaefa7b7.mp3",
+          "fallback": true
+        },
+        "booth-en": {
+          "text": "That player got a free shot because a foul was called against the other team, and now they get to shoot unguarded from the free-throw line for 1 point each.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3df6abf181470f91d38c5e0c.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The play was a free throw, which comes after certain fouls. The fantasy data isn’t provided, so I can’t speak to fantasy points.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ef0f3cbb63c3a9f6ae8998f0.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则卡片，罚球是在特定犯规后由被犯规的球员从罚球线出手的。每命中一球得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/391757266abb51cb1aa4ed9f.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point each. That's why the green team's score just went up after the made free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d8761b13167c9b2a0396c206.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's a super important rule in basketball!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/10c3bfcabe923d002b13db68.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/63d484764e0a106aba831fb7.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point each. That's why the green team's score just went up.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/245644e20fe928266d7e7d8d.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2d3de4ce7df28d11f283a39e.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c496c58d9e2f7afd11b32ac8.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投每进一球得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f96ed765de2c9c6fdb068a80.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The score is White 26, Green 29. The last play was a successful free throw for the Green team, worth 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b5d2d65776273eba6a0118c4.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "The score is White 26, Green 29! Great free throw by Green!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5b13b2beaccc1166f15459f7.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador actual es blanco 26, verde 29. El último evento fue un tiro libre anotado por el equipo verde.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e10b988dee54846faf4a6f25.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is White 26, Green 29 after a free throw made by Green.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e218b51ba72bd3b1f6fd6e3f.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The score is White 26, Green 29. The last play was a free throw made by Green.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f38b592a90f1ef4d46ed1f1f.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "व्हाइट टीम 26 और ग्रीन टीम 29 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9f9646e1d5892d5afdcd5bb6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队26分，绿队29分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/92010a3973fa9232d2ebd2f4.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ],
+  "e16b": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2c1c1335aeb2af54f53e4aaa.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff4f9c71fa3eacb2970b9f64.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 30.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec36d194e50e2c7a47343772.mp3",
+          "fallback": true
+        },
+        "booth-en": {
+          "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/29b2a4adc6e85afd9a79b187.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "I can only speak to what happened on the court: a free throw was made, increasing the score to 30-26.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2c83a8a6d5d5a550bd7a3e2c.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则卡片，当特定犯规后，犯规球员需要从罚球线进行罚球。每命中一球得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4fd0f55342f15191d9cdb7d1.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e947cf9262ade2d00e1c406e.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's a great question!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ee93b9896604e25a872ef00a.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/63d484764e0a106aba831fb7.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point each time it's made. That's why Green's lead is now 30 to 26.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c936613b7837167af2f4bc3c.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you its fantasy impact.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9d57ca5bec5d25cec64cb57c.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c496c58d9e2f7afd11b32ac8.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投每个命中得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ac82844d2759e5802f757ca4.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The current score is White 26, Green 30, with Green just making a free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/84e80c0b3ec7e180cb111e59.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "The score is White 26, Green 30! Great free throw by Green!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d8cbdaae9c7ffd1adf13a302.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador actual es blanco 26, verde 30. El último evento fue un tiro libre anotado por el equipo verde.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8f6a3e6af041e28f4d71b517.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is White 26, Green 30 after a made free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/46b731204c39c42974349193.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The score is now White 26, Green 30. The last play was a free throw made by Green.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4566fa5bcab64b8b55550310.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "व्हाइट टीम 26 और ग्रीन टीम 30 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/23848c188949a5874333c79e.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队26分，绿队30分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b8c2135df2a684b37da9bb27.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ],
+  "e18": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "The player got a free shot because a foul was called against the other team, and now they get to shoot from the free-throw line without defense. Each successful free throw is worth 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fc9d2451997b5b069b89f118.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff4f9c71fa3eacb2970b9f64.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Una falta contra el equipo verde dio derecho a un tiro libre, y el jugador lo anotó. Cada tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2bab9716c644fa1873b571a7.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "They got a free shot because a foul was called, allowing the player to shoot unguarded from the free-throw line. Each successful free throw adds 1 point to the score.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/497f4324ea3424887bf5d0d3.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The free throw was awarded after a foul, giving the player an unguarded shot from the line. Since the fantasyDelta is empty, I can’t speak to fantasy points for this play.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/519e0d1e101ac4af6f3c4c9c.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则卡片，犯规后被犯规球员可以从罚球线进行无防守的投篮，每次命中得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1dd0b11e43816eefe5e15c0e.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e947cf9262ade2d00e1c406e.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/24055c6824b049fb0bc81670.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/63d484764e0a106aba831fb7.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point each. That's why Green's lead is now 31 to 26 after the made shot.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/209bfcbd73b359871fc42b5a.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2d3de4ce7df28d11f283a39e.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f45ad6bd211b2f77ee8353b9.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投篮每进1分。现在绿队又进了一球。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/23a5401c5a2042c245bae04c.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The current score is White 26, Green 31, with Green just making a free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0fb2801356addd513c888c83.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "The score is White 26, Green 31! Green just made a free throw!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/59ca2459c865d4e25442edb8.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador actual es blanco 26, verde 31. El último evento fue un tiro libre anotado por el equipo verde.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5ec4db1586a6fd6187fea395.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is White 26, Green 31 after a free throw make.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d9698e5d74883f365640f778.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The score is now White 26, Green 31. The last play was a free throw made by Green.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/67f380a7210a6ace3e53ba63.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "व्हाइट टीम 26 और ग्रीन टीम 31 पर है। ग्रीन टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/19496ae123beb8472b40507e.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队26分，绿队31分。绿队刚刚进了一个罚球。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/dffe18ebe1a13c8428e37588.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ],
+  "e31": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d4182feac0473455afa92464.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff4f9c71fa3eacb2970b9f64.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Obtuvieron un tiro libre porque cometieron una falta contra el jugador de blanco, y por eso él puede lanzar sin defensa desde la línea de tiros libres. Cada canasta vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c616679da9709153f0a17fb1.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "They got a free shot because of a foul, and each successful free throw is worth 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/95039d5ebac20c96ae39212f.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The play was a free throw, awarded after a foul, and the player made it for 1 point. Since the fantasyDelta is empty, I can’t speak to fantasy points.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b936a2f5b6098c9ca55c02b6.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则卡片，罚球是在特定犯规后由被犯规的球员在罚球线进行无防守射击，每次命中得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2c40c6d9854850b1a78f9fc7.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point. That's why the white team's score went up by 1 after the free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ffcd89c0ae3ec56b6d983cbb.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/24055c6824b049fb0bc81670.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto. Es así porque después de ciertas faltas, el jugador tira desde la línea de tiro libre sin defensa.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/22f77a7a33dba35ed1d198ee.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point each. That's why the white team's score went up by 1 after the made free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b1e331243d81756f766fa254.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "A free throw is worth 1 point if made. I can only speak to what happened on the court: the play was a free throw made by the white team.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/76ff631c1c0faf44c7e30299.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f45ad6bd211b2f77ee8353b9.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投每进一球得1分。当前白队球员刚刚进了一球，比分现在是31比31。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9f41e69ba679d78d6c48b7cb.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The score is tied at 31 to 31. The last play was a successful free throw by the white team.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c9e63bedb4605ac1eeda61a5.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "The score is tied at 31 to 31!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5e954c93ed7fae1513e06afd.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador está 31 a 31 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9a717ba83c9ff2bafc01fe92.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is tied at 31 to 31 after the last free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ae23dbe1ffb08c79f9b98582.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The last play was Free throw by the white team. The score is white 31, green 31.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/564050c6a4d11cba052dfb98.mp3",
+          "fallback": true
+        },
+        "rookie-hi": {
+          "text": "वर्तमान स्कोर 31-31 है। सफेद टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/652f6eb7e00f118918fa7ef7.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队31分，绿队31分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/12a41fff389e40c46f982e17.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ],
+  "e44": [
+    {
+      "q": "Why did they get a free shot?",
+      "answers": {
+        "rookie-en": {
+          "text": "They got a free shot because a certain foul allowed the player to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/732a7dad78ceb9a941d40912.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "They got a free shot because of a foul! Now they score 1 point!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a19bb833e7b096dc9a4d66a3.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El jugador de blanco recibió un tiro libre por una falta, y anotó 1 punto. Cada tiro libre vale siempre 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/31e53bf64916949c6a427871.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The player got a free shot because of a foul, and each successful free throw is worth 1 point. The white team now leads 32 to 31.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2335e8834b04cabc0dd0bbde.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "I can only speak to what happened on the court: a free throw was made, increasing the white team's score to 32.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7e473aa9060218a5a92f176b.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec6fddfe13ce55c04cbd91e6.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "根据规则，当特定犯规后，犯规球员需要从罚球线进行罚球，每次命中得1分。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/447464d80542fc7912f5124a.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "How much is a free throw worth?",
+      "answers": {
+        "rookie-en": {
+          "text": "A free throw is worth 1 point. The white team just made one, bringing the score to 32 to 31.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c3809c2be5590a3d0a6981a0.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "A free throw is worth 1 point! That's how players score when they get a foul and shoot from the line!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f03bdf1967709843400f732a.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "Un tiro libre vale 1 punto.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/63d484764e0a106aba831fb7.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "A free throw is worth 1 point; it's an unguarded shot taken after certain fouls.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1d3d9c606742391a5bdc6ac4.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "Each free throw make is worth 1 point, according to the rule. But the fantasy data isn't provided, so I can't speak to fantasy points for this play.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e123ff28e114060aa4802a78.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c496c58d9e2f7afd11b32ac8.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "自由投篮每进1分。现在白队得分32，绿队得分31。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e975ee63b9bd33628da024d6.mp3",
+          "fallback": false
+        }
+      }
+    },
+    {
+      "q": "What's the score now?",
+      "answers": {
+        "rookie-en": {
+          "text": "The score is now White 32, Green 31 after a successful free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d9248005da275821c8b096c0.mp3",
+          "fallback": false
+        },
+        "kid-en": {
+          "text": "White is ahead, 32 to 31!",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fae2b0a61254812e1c1da144.mp3",
+          "fallback": false
+        },
+        "rookie-es": {
+          "text": "El marcador actual es blanco 32, verde 31. El último punto fue un tiro libre del equipo blanco.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/04a0814d8a9b252c9abb63d9.mp3",
+          "fallback": false
+        },
+        "booth-en": {
+          "text": "The score is now 32 to 31 in favor of the white team after a free throw.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/eca92e9b0f322d9beef5df14.mp3",
+          "fallback": false
+        },
+        "fantasy-en": {
+          "text": "The score is now 32 to 31 in favor of the white team.",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8f1fb4400281bc4ad5cffe49.mp3",
+          "fallback": false
+        },
+        "rookie-hi": {
+          "text": "व्हाइट टीम 32 और ग्रीन टीम 31 पर है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो मारकर स्कोर बढ़ाया।",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c76330563633cfa95b16bb47.mp3",
+          "fallback": false
+        },
+        "rookie-zh": {
+          "text": "目前比分是白队32分，绿队31分。白队刚刚进了一次罚球。",
+          "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2eb378f2fa1e4e49a31f7c19.mp3",
+          "fallback": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "t": 180,
+    "lastText": "White scored two free throws after Maroon missed a shot; the score is now White 41, Maroon 30.",
+    "reason": "numbers not in facts: ['2']"
+  },
+  {
+    "t": 240,
+    "lastText": "White scored two free throws and a three-pointer, making the score White 44, Maroon 30.",
+    "reason": "numbers not in facts: ['2']"
+  }
+]

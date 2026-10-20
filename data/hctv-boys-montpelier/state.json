@@ -1,0 +1,272 @@
+[
+  {
+    "eventId": "e1",
+    "t": 3.5,
+    "score": {
+      "white": 23,
+      "green": 24
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e2",
+    "t": 55.0,
+    "score": {
+      "white": 24,
+      "green": 24
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e5",
+    "t": 67.0,
+    "score": {
+      "white": 24,
+      "green": 26
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e7",
+    "t": 74.5,
+    "score": {
+      "white": 24,
+      "green": 26
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e10",
+    "t": 80.5,
+    "score": {
+      "white": 24,
+      "green": 28
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e11",
+    "t": 93.5,
+    "score": {
+      "white": 26,
+      "green": 28
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e16",
+    "t": 128.5,
+    "score": {
+      "white": 26,
+      "green": 29
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e16b",
+    "t": 129.0,
+    "score": {
+      "white": 26,
+      "green": 30
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e18",
+    "t": 148.5,
+    "score": {
+      "white": 26,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e22",
+    "t": 198.0,
+    "score": {
+      "white": 28,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e25",
+    "t": 254.5,
+    "score": {
+      "white": 30,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e26",
+    "t": 274.0,
+    "score": {
+      "white": 30,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e31",
+    "t": 331.5,
+    "score": {
+      "white": 31,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e44",
+    "t": 362.0,
+    "score": {
+      "white": 32,
+      "green": 31
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e50",
+    "t": 421.5,
+    "score": {
+      "white": 32,
+      "green": 33
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e49",
+    "t": 423.0,
+    "score": {
+      "white": 32,
+      "green": 33
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e62",
+    "t": 505.0,
+    "score": {
+      "white": 34,
+      "green": 33
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  },
+  {
+    "eventId": "e64",
+    "t": 545.0,
+    "score": {
+      "white": 34,
+      "green": 33
+    },
+    "teamFouls": {
+      "white": 0,
+      "green": 0
+    },
+    "fantasy": {},
+    "fantasyDelta": {},
+    "andOne": false
+  }
+]

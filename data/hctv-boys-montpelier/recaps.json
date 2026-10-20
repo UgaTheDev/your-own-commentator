@@ -1,0 +1,22 @@
+[
+  {
+    "t": 60,
+    "text": "Green made a two-point shot, then white made a free throw; the score is now 24 to 24.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a8454e8497646d952d66247e.mp3"
+  },
+  {
+    "t": 300,
+    "text": "White scored two points twice, then missed a shot; Green leads 31 to 30.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/064d8d045d200b3f770947ce.mp3"
+  },
+  {
+    "t": 480,
+    "text": "White scored a free throw, then green made a two-point shot, and now the score is 32 to 33.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fc29950c9b720bc6581baf8a.mp3"
+  },
+  {
+    "t": 540,
+    "text": "Green scored a two-pointer, then white responded with their own two-pointer after a timeout; the score is now white 34, green 33.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/73541d21b83cc63a479e7f28.mp3"
+  }
+]

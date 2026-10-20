@@ -1,0 +1,23 @@
+[
+  {
+    "trackId": "booth-en",
+    "eventId": "e11",
+    "role": "pbp",
+    "lastText": "A white player makes a two-pointer, tying the game at 28–28.",
+    "reason": "judge: The line claims the game is tied at 28–28, but FACTS.state.score shows white: 26, green: 28 — the score is not tied."
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e26",
+    "role": "analyst",
+    "lastText": "According to the rules, either team can now grab the rebound and take control.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e62",
+    "role": "pbp",
+    "lastText": "A white player hits a two-pointer, putting the white team ahead thirty-four to thirty-three.",
+    "reason": "names a made_3 not in facts: 'three'"
+  }
+]

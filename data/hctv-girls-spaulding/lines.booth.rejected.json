@@ -1,0 +1,37 @@
+[
+  {
+    "trackId": "booth-en",
+    "eventId": "e22",
+    "role": "analyst",
+    "lastText": "The analyst notes that since the shot missed, either team now has a chance to grab the rebound and take control.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e51",
+    "role": "pbp",
+    "lastText": "A maroon player hits a two-pointer, updating the score to white forty-four, maroon thirty-four.",
+    "reason": "numbers not in facts: ['34']"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e67",
+    "role": "pbp",
+    "lastText": "A maroon player sinks a two-pointer, white leads maroon 44 to 36.",
+    "reason": "numbers not in facts: ['36']"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e88",
+    "role": "analyst",
+    "lastText": "The missed free throw keeps the score at white fifty-one, maroon thirty-four, and the ball is now live for a rebound.",
+    "reason": "names a rebound not in facts: 'rebound'"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e100",
+    "role": "pbp",
+    "lastText": "The maroon team scores, making it white fifty-one, maroon thirty-eight.",
+    "reason": "numbers not in facts: ['38']"
+  }
+]

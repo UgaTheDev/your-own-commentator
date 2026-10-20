@@ -1,0 +1,545 @@
+[
+  {
+    "eventId": "e2",
+    "t": 31.0,
+    "team": "blue",
+    "jersey": null,
+    "votes": {},
+    "crops": [],
+    "sheet": "jersey/e2-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 40,
+        "jersey": null,
+        "votes": {
+          "3": 1
+        },
+        "reads": [
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e2-id40-29.6.jpg",
+          "jersey/e2-id40-30.0.jpg",
+          "jersey/e2-id40-30.3.jpg",
+          "jersey/e2-id40-30.6.jpg",
+          "jersey/e2-id40-30.9.jpg"
+        ]
+      },
+      {
+        "trackId": 13,
+        "jersey": 3,
+        "votes": {
+          "3": 5
+        },
+        "reads": [
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e2-id13-29.5.jpg",
+          "jersey/e2-id13-29.9.jpg",
+          "jersey/e2-id13-30.1.jpg",
+          "jersey/e2-id13-30.4.jpg",
+          "jersey/e2-id13-30.7.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e3",
+    "t": 63.0,
+    "team": "blue",
+    "jersey": null,
+    "votes": {},
+    "crops": [],
+    "sheet": "jersey/e3-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 189,
+        "jersey": null,
+        "votes": {
+          "11": 1,
+          "15": 2,
+          "1": 1,
+          "5": 1
+        },
+        "reads": [
+          {
+            "jersey": 11,
+            "legible": true
+          },
+          {
+            "jersey": 15,
+            "legible": true
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 5,
+            "legible": true
+          },
+          {
+            "jersey": 15,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e3-id189-61.7.jpg",
+          "jersey/e3-id189-62.0.jpg",
+          "jersey/e3-id189-62.2.jpg",
+          "jersey/e3-id189-62.5.jpg",
+          "jersey/e3-id189-62.9.jpg"
+        ]
+      },
+      {
+        "trackId": 161,
+        "jersey": null,
+        "votes": {},
+        "reads": [
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          }
+        ],
+        "crops": [
+          "jersey/e3-id161-61.6.jpg",
+          "jersey/e3-id161-61.9.jpg",
+          "jersey/e3-id161-62.1.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e6",
+    "t": 98.0,
+    "team": "pink",
+    "jersey": 1,
+    "votes": {
+      "1": 3,
+      "2": 1
+    },
+    "crops": [
+      "jersey/e6-id336-96.5.jpg",
+      "jersey/e6-id336-96.8.jpg",
+      "jersey/e6-id336-97.1.jpg",
+      "jersey/e6-id336-98.0.jpg"
+    ],
+    "sheet": "jersey/e6-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 336,
+        "jersey": 1,
+        "votes": {
+          "1": 3,
+          "2": 1
+        },
+        "reads": [
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 2,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e6-id336-96.5.jpg",
+          "jersey/e6-id336-96.8.jpg",
+          "jersey/e6-id336-97.1.jpg",
+          "jersey/e6-id336-98.0.jpg"
+        ]
+      },
+      {
+        "trackId": 362,
+        "jersey": null,
+        "votes": {},
+        "reads": [
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": 0,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          }
+        ],
+        "crops": [
+          "jersey/e6-id362-97.0.jpg",
+          "jersey/e6-id362-97.2.jpg",
+          "jersey/e6-id362-97.5.jpg",
+          "jersey/e6-id362-97.7.jpg",
+          "jersey/e6-id362-97.9.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e9",
+    "t": 127.0,
+    "team": "pink",
+    "jersey": 1,
+    "votes": {
+      "1": 2,
+      "11": 1
+    },
+    "crops": [
+      "jersey/e9-id402-125.6.jpg",
+      "jersey/e9-id402-125.8.jpg",
+      "jersey/e9-id402-126.0.jpg",
+      "jersey/e9-id402-126.7.jpg",
+      "jersey/e9-id402-127.0.jpg"
+    ],
+    "sheet": "jersey/e9-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 402,
+        "jersey": 1,
+        "votes": {
+          "1": 2,
+          "11": 1
+        },
+        "reads": [
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": 11,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e9-id402-125.6.jpg",
+          "jersey/e9-id402-125.8.jpg",
+          "jersey/e9-id402-126.0.jpg",
+          "jersey/e9-id402-126.7.jpg",
+          "jersey/e9-id402-127.0.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e13",
+    "t": 257.0,
+    "team": "pink",
+    "jersey": 3,
+    "votes": {
+      "3": 3
+    },
+    "crops": [
+      "jersey/e13-id834-255.7.jpg",
+      "jersey/e13-id834-255.9.jpg",
+      "jersey/e13-id834-256.5.jpg",
+      "jersey/e13-id834-256.9.jpg"
+    ],
+    "sheet": "jersey/e13-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 834,
+        "jersey": 3,
+        "votes": {
+          "3": 3
+        },
+        "reads": [
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": null,
+            "legible": false
+          }
+        ],
+        "crops": [
+          "jersey/e13-id834-255.7.jpg",
+          "jersey/e13-id834-255.9.jpg",
+          "jersey/e13-id834-256.5.jpg",
+          "jersey/e13-id834-256.9.jpg"
+        ]
+      },
+      {
+        "trackId": 859,
+        "jersey": 15,
+        "votes": {
+          "15": 4,
+          "1": 1
+        },
+        "reads": [
+          {
+            "jersey": 15,
+            "legible": true
+          },
+          {
+            "jersey": 1,
+            "legible": true
+          },
+          {
+            "jersey": 15,
+            "legible": true
+          },
+          {
+            "jersey": 15,
+            "legible": true
+          },
+          {
+            "jersey": 15,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e13-id859-255.6.jpg",
+          "jersey/e13-id859-256.0.jpg",
+          "jersey/e13-id859-256.4.jpg",
+          "jersey/e13-id859-256.6.jpg",
+          "jersey/e13-id859-256.9.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e34",
+    "t": 471.0,
+    "team": "pink",
+    "jersey": 3,
+    "votes": {
+      "2": 2,
+      "3": 3
+    },
+    "crops": [
+      "jersey/e34-id1459-469.9.jpg",
+      "jersey/e34-id1459-470.1.jpg",
+      "jersey/e34-id1459-470.4.jpg",
+      "jersey/e34-id1459-470.6.jpg",
+      "jersey/e34-id1459-470.9.jpg"
+    ],
+    "sheet": "jersey/e34-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 1459,
+        "jersey": 3,
+        "votes": {
+          "2": 2,
+          "3": 3
+        },
+        "reads": [
+          {
+            "jersey": 2,
+            "legible": true
+          },
+          {
+            "jersey": 2,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          },
+          {
+            "jersey": 3,
+            "legible": true
+          }
+        ],
+        "crops": [
+          "jersey/e34-id1459-469.9.jpg",
+          "jersey/e34-id1459-470.1.jpg",
+          "jersey/e34-id1459-470.4.jpg",
+          "jersey/e34-id1459-470.6.jpg",
+          "jersey/e34-id1459-470.9.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  },
+  {
+    "eventId": "e42",
+    "t": 577.0,
+    "team": "pink",
+    "jersey": 5,
+    "votes": {
+      "5": 3,
+      "2": 1
+    },
+    "crops": [
+      "jersey/e42-id1851-575.5.jpg",
+      "jersey/e42-id1851-575.8.jpg",
+      "jersey/e42-id1851-576.5.jpg",
+      "jersey/e42-id1851-576.7.jpg",
+      "jersey/e42-id1851-577.0.jpg"
+    ],
+    "sheet": "jersey/e42-sheet.jpg",
+    "candidates": [
+      {
+        "trackId": 1851,
+        "jersey": 5,
+        "votes": {
+          "5": 3,
+          "2": 1
+        },
+        "reads": [
+          {
+            "jersey": 5,
+            "legible": true
+          },
+          {
+            "jersey": 5,
+            "legible": true
+          },
+          {
+            "jersey": 5,
+            "legible": true
+          },
+          {
+            "jersey": 2,
+            "legible": true
+          },
+          {
+            "jersey": null,
+            "legible": false
+          }
+        ],
+        "crops": [
+          "jersey/e42-id1851-575.5.jpg",
+          "jersey/e42-id1851-575.8.jpg",
+          "jersey/e42-id1851-576.5.jpg",
+          "jersey/e42-id1851-576.7.jpg",
+          "jersey/e42-id1851-577.0.jpg"
+        ]
+      },
+      {
+        "trackId": 1814,
+        "jersey": null,
+        "votes": {
+          "14": 1,
+          "5": 1
+        },
+        "reads": [
+          {
+            "jersey": 14,
+            "legible": true
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": null,
+            "legible": false
+          },
+          {
+            "jersey": 5,
+            "legible": true
+          },
+          {
+            "jersey": null,
+            "legible": false
+          }
+        ],
+        "crops": [
+          "jersey/e42-id1814-575.9.jpg",
+          "jersey/e42-id1814-576.1.jpg",
+          "jersey/e42-id1814-576.5.jpg",
+          "jersey/e42-id1814-576.7.jpg",
+          "jersey/e42-id1814-577.0.jpg"
+        ]
+      }
+    ],
+    "status": "proposed"
+  }
+]

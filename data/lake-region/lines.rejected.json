@@ -1,0 +1,56 @@
+[
+  {
+    "trackId": "rookie-en",
+    "eventId": "e2",
+    "lastText": "The player in number 5 makes a free throw, bringing the blue team's score to four.",
+    "reason": "numbers not in facts: ['4']"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e2",
+    "lastText": "The player in number 5 makes the free throw! Blue leads pink, 3 to 11!",
+    "reason": "judge: Incorrect score representation: FACTS.state.score shows pink 11, blue 3, but the line states 'Blue leads pink, 3 to 11', reversing the teams' scores."
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e9",
+    "lastText": "Number eleven makes the free throw! The pink team leads six to fourteen!",
+    "reason": "jersey spelled as a word ('Number eleven'); write it as a digit"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e22",
+    "lastText": "The pink team calls a timeout to rest and talk strategy!",
+    "reason": "credits a team-less play to a team: 'pink team'"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e2",
+    "lastText": "El equipo azul anota un tiro libre, ahora el marcador es rosa 11, azul 4.",
+    "reason": "numbers not in facts: ['4']"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e3",
+    "lastText": "El equipo azul anota un triple y ahora el marcador es rosa 11, azul 9.",
+    "reason": "numbers not in facts: ['9']"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e2",
+    "lastText": "नंबर 5 ने फ़्री थ्रो स्कोर किया, ब्लू टीम अब ४ पर है।",
+    "reason": "numbers not in facts: ['4']"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e29",
+    "lastText": "पिंक टीम का शॉट मिस हुआ, अब कोई भी टीम रिबाउंड ले सकती है।",
+    "reason": "names a rebound not in facts: 'रिबाउंड'"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e2",
+    "lastText": "蓝队5号球员罚球得分，比分变为粉红队11，蓝队4。",
+    "reason": "numbers not in facts: ['4']"
+  }
+]

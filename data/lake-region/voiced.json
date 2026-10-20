@@ -1,0 +1,443 @@
+[
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e2",
+    "start": 31.4,
+    "duration": 4.416,
+    "text": "Number 5 drills the free throw, adding one fantasy point to the total.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/20f3e229457aa4cd34e9f243.mp3"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e3",
+    "start": 63.9,
+    "duration": 3.816,
+    "text": "A blue player nails a three-pointer, shifting the game momentum.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/657ad70423f43b2d94db011f.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e3",
+    "start": 63.9,
+    "duration": 3.6,
+    "text": "The blue team gets three points with a great shot from beyond the arc!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d5217d08e7b07c07f5d9ac05.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e3",
+    "start": 63.9,
+    "duration": 4.632,
+    "text": "The player from the blue team makes a shot from behind the arc, adding three points to the score.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/46d5a6847e1da48d61e19d01.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e3",
+    "start": 63.9,
+    "duration": 5.328,
+    "text": "एक पिंक टीम का स्कोर 11, ब्लू टीम का स्कोर 6 है, अब ब्लू टीम ने थ्री-पॉइंटर किया है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a3db0e3fd8cfb86f02d3fdb4.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e3",
+    "start": 63.9,
+    "duration": 3.312,
+    "text": "蓝队一名球员出手三分，命中！",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0dc2ac56bd184980e318c89e.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 3.912,
+    "text": "A pink player sinks a two-pointer, extending the lead to 13 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f28493dae8f80bfcd9a3798f.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 4.584,
+    "text": "The pink player sinks a two-pointer, extending the lead to 13-6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/af67a2400480f9716054d821.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 3.792,
+    "text": "The pink player made a two-point shot, and now it's thirteen to six!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/644408ce7a8fce6b224b6ef5.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 4.848,
+    "text": "The pink player makes a two-point shot from inside the arc, updating the score to 13 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/178fd14fed9a3e0f830cb85a.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 5.904,
+    "text": "El equipo rosa anota una canasta de 2 puntos, ahora el marcador es 13 a 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0fbaa32866260abb3229012a.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 5.016,
+    "text": "नंबर १३ के साथ पिंक टीम ने दो पॉइंट स्कोर किए, अब स्कोर पिंक १३, ब्लू ६ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/466002da53846468ef218951.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e6",
+    "start": 98.4,
+    "duration": 3.456,
+    "text": "粉色队进球，比分变为13比6。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c4ffb54990058e86915fa662.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e6",
+    "start": 102.562,
+    "duration": 4.536,
+    "text": "That shot was from inside the arc, so it counts as two points by the rulebook.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec1aba25332300385f5d149c.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 4.68,
+    "text": "Number 11 sinks the free throw, extending the pink team's lead to 14-6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3e63c097a3f3ede2f9430cbf.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 4.464,
+    "text": "Number 11 adds one point with the free throw, boosting fantasy value.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6293a31ccf269b3370baa8f5.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 4.344,
+    "text": "The player in pink number 11 makes a free throw, adding one point to the score.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/238290cc40101680fe760a4d.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 5.04,
+    "text": "La jugadora número 11 de rosa anota un tiro libre y suma un punto más.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3784d815d22e8eac7a0b533d.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 4.488,
+    "text": "नंबर 11 ने फ़्री थ्रो सफल किया, पिंक की स्कोर 14-6 हो गई है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cef9724911c81fd5b43c1ca7.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 5.064,
+    "text": "粉色球队11号球员罚球命中，比分变为14比6。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/399f51cf06d1776f5fcc1541.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e9",
+    "start": 136.83,
+    "duration": 5.568,
+    "text": "That free throw counts as one point because the player was fouled earlier, per the free-throw rule.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b845b1c88fd8eaf650c0958e.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 3.864,
+    "text": "A pink player makes a two-pointer, updating the score to 16 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/eabb6f13de3acc594fa095b0.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 3.552,
+    "text": "A pink player sinks a two-pointer, extending the lead.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e480cf7254fe9551c47093e9.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 3.936,
+    "text": "The pink player made a two-point shot, and the score is sixteen to six!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/dc1b6f70ce04c423c03fddb5.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 4.32,
+    "text": "The pink player makes a two-point basket, increasing the score to 16 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/76096da3ad73c72e797dd4c4.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 6.24,
+    "text": "El equipo rosa anota una canasta de 2 puntos, el marcador ahora es 16 a 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/862835591425b9d5d82e1f4e.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 4.728,
+    "text": "एक गुलाबी खिलाड़ी ने इनर आर्क से शॉट लगाया, स्कोर 16-6 हो गया।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/13b58a2ecec32840f98cf235.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e13",
+    "start": 257.9,
+    "duration": 3.264,
+    "text": "粉色队得分，目前比分16比6。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/60778c279d7b41e27694a235.mp3"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e22",
+    "start": 264.4,
+    "duration": 4.368,
+    "text": "Timeout called, clock stops, strategy time for the teams.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/010e21ad04a75c77f1bfe2dd.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e22",
+    "start": 264.4,
+    "duration": 4.008,
+    "text": "The game pauses for a timeout, allowing the teams to rest and strategize.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8db83032fa740a1b23c31c3f.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e22",
+    "start": 264.4,
+    "duration": 9.624,
+    "text": "Se toma un tiempo fuera, según la tarjeta de reglas, para descansar o planificar estrategia. El marcador está en rosa 16, azul 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/015385a3fe8fa06ad6941153.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e22",
+    "start": 264.4,
+    "duration": 4.944,
+    "text": "टाइमआउट! पिंक टीम रुककर अपनी रणनीति बनाने के लिए समय ले रही है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff11f1fdb0e6cf4773b3fff6.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e22",
+    "start": 264.4,
+    "duration": 3.72,
+    "text": "粉色队请求暂停，休息并调整战术。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ea06840e07904df3d45f2645.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 4.512,
+    "text": "The pink player misses a shot, and the score remains 16 to 6 in favor of pink.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/330a2a64ff938fdd9f6b0961.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 6.072,
+    "text": "A pink player misses the shot, no change in fantasy points, score remains 16 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6455815744e827e31042b030.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 7.584,
+    "text": "The pink player tried a shot, but it missed! Now everyone watches for the ball! Score is pink sixteen, blue six.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f182365fd5acd7e9d80dece3.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 3.504,
+    "text": "The pink player misses a shot, and now either team may grab the ball.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/16aaac020537a36ce097df58.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 7.32,
+    "text": "El equipo rosa falló un tiro, y ahora cualquiera puede tomar el balón. El marcador está 16 a 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8f431961b9098fc8ee73779a.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e29",
+    "start": 347.4,
+    "duration": 4.032,
+    "text": "粉衣球员出手未中，蓝队可以抢回篮球。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3f5431585c7021fdf6d285bf.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 4.536,
+    "text": "Number 3 makes the free throw, extending the pink team's lead to 17 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/89b7a1ede1f441a4d2bedbda.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 4.032,
+    "text": "Number 3 adds one point with the free throw, boosting fantasy value.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/24a2a50914d0fcfce06e4d96.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 4.992,
+    "text": "Number 3 makes the free throw! The score is now seventeen to six for the pink team!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/32ef8c437644a3c5155d2970.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 5.04,
+    "text": "The player in number 3 makes a free throw, increasing the pink team's score to 17 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7ea137a43e717d21555457ab.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 5.616,
+    "text": "El equipo rosa anota un tiro libre, ahora lleva 17 a 6 contra el azul.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/72092ba5c1fcda44933263a9.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 4.776,
+    "text": "नंबर 3 ने फ़्री थ्रो किया और एक पॉइंट स्कोर किया, पिंक की स्कोर 17 हो गई है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f52d41225512cb1ba40c7290.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e34",
+    "start": 474.9,
+    "duration": 4.896,
+    "text": "粉色球队3号球员罚球命中，比分变为17比6。",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/42a85407725b3c342f1e3247.mp3"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e34",
+    "start": 479.686,
+    "duration": 6.072,
+    "text": "The analyst notes that free throws are worth one point each, which explains the pink team's score increase.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8e61b0514afd200c3c53b31c.mp3",
+    "role": "analyst"
+  },
+  {
+    "trackId": "booth-en",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 3.744,
+    "text": "A pink player nails a three-pointer, updating the score to 20 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c9a1ee11b3e3cb5bc4d79939.mp3",
+    "role": "pbp"
+  },
+  {
+    "trackId": "fantasy-en",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 3.504,
+    "text": "A pink player nails a three-pointer, extending the lead.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/249392cf032147f0612257eb.mp3"
+  },
+  {
+    "trackId": "kid-en",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 3.696,
+    "text": "A pink player makes a three-pointer, now it's twenty to six!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bbdeca8d7fcbf6e310680af0.mp3"
+  },
+  {
+    "trackId": "rookie-en",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 3.576,
+    "text": "A pink player makes a three-pointer, putting pink ahead twenty to six.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b1bc84263cf7b0b7112c8556.mp3"
+  },
+  {
+    "trackId": "rookie-es",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 4.752,
+    "text": "El equipo rosa anota un triple y lleva la puntuación a 20 a 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/53c583cb233a54aa77c0299d.mp3"
+  },
+  {
+    "trackId": "rookie-hi",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 4.032,
+    "text": "एक पिंक प्लेयर ने थ्री-पॉइंटर कर दिया, स्कोर अब २०-६ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5dd85b51472c7dca5de1ae22.mp3"
+  },
+  {
+    "trackId": "rookie-zh",
+    "eventId": "e42",
+    "start": 578.4,
+    "duration": 2.856,
+    "text": "粉色队得分，三分球命中！",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e5225af0bbd43e19afd5433e.mp3"
+  }
+]

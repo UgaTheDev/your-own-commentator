@@ -1,0 +1,1705 @@
+{
+  "clipId": "hctv-girls-spaulding",
+  "videoUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/rookie-en.mp4",
+  "tracks": [
+    {
+      "id": "rookie-en",
+      "persona": "rookie",
+      "lang": "en",
+      "label": "Rookie (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/rookie-en.mp4"
+    },
+    {
+      "id": "booth-en",
+      "persona": "booth",
+      "lang": "en",
+      "label": "Booth (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/booth-en.mp4",
+      "kind": "booth",
+      "voices": [
+        {
+          "role": "pbp",
+          "voice": "Matthew"
+        },
+        {
+          "role": "analyst",
+          "voice": "Ruth"
+        }
+      ]
+    },
+    {
+      "id": "fantasy-en",
+      "persona": "fantasy",
+      "lang": "en",
+      "label": "Fantasy (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/fantasy-en.mp4"
+    },
+    {
+      "id": "kid-en",
+      "persona": "kid",
+      "lang": "en",
+      "label": "Kid (EN)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/kid-en.mp4"
+    },
+    {
+      "id": "rookie-es",
+      "persona": "rookie",
+      "lang": "es",
+      "label": "Rookie (ES)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/rookie-es.mp4"
+    },
+    {
+      "id": "rookie-hi",
+      "persona": "rookie",
+      "lang": "hi",
+      "label": "Rookie (HI)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/rookie-hi.mp4"
+    },
+    {
+      "id": "rookie-zh",
+      "persona": "rookie",
+      "lang": "zh",
+      "label": "Rookie (ZH)",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/render/rookie-zh.mp4"
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "t": 8.3,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e22",
+      "t": 100.5,
+      "type": "missed_shot",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "missed_shot"
+    },
+    {
+      "id": "e23",
+      "t": 132.5,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e24",
+      "t": 147.5,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e38",
+      "t": 188.0,
+      "type": "made_3",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_3"
+    },
+    {
+      "id": "e51",
+      "t": 267.3,
+      "type": "made_2",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e67",
+      "t": 320.0,
+      "type": "made_2",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e72",
+      "t": 358.0,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e73",
+      "t": 371.5,
+      "type": "ft_made",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "ft_made"
+    },
+    {
+      "id": "e78",
+      "t": 394.3,
+      "type": "made_2",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    },
+    {
+      "id": "e87",
+      "t": 436.0,
+      "type": "made_3",
+      "team": "white",
+      "jersey": null,
+      "ruleCardId": "made_3"
+    },
+    {
+      "id": "e88",
+      "t": 466.3,
+      "type": "ft_missed",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "ft_missed"
+    },
+    {
+      "id": "e91",
+      "t": 482.0,
+      "type": "ft_missed",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "ft_missed"
+    },
+    {
+      "id": "e100",
+      "t": 491.0,
+      "type": "made_2",
+      "team": "maroon",
+      "jersey": null,
+      "ruleCardId": "made_2"
+    }
+  ],
+  "cues": {
+    "rookie-en": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "The white team scores one point from a free throw, making the score 39 to 30."
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "The player from maroon misses a shot, and now either team can grab the ball."
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "The white team player makes a free throw, increasing the score to forty to thirty."
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "The player makes the free throw, adding one point to the white team's score."
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "The white team scores three points with a shot from beyond the arc."
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "The player makes a shot from inside the arc, adding two points to the maroon team's score."
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "The white team player makes a free throw, adding one point; the score is now 45 to 34."
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "The white team scores one point with a successful free throw."
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "The white team scores two points from inside the arc; the score is now 48 to 34."
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "The white team scores three points with a shot from behind the arc."
+      },
+      {
+        "t": 491.4,
+        "eventId": "e100",
+        "text": "The player makes a shot from inside the arc, adding two points for the maroon team."
+      }
+    ],
+    "booth-en": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "The player makes the free throw; the white team leads 39 to 30.",
+        "role": "pbp"
+      },
+      {
+        "t": 12.742,
+        "eventId": "e1",
+        "text": "That free throw adds one point to the white team's score, following a foul according to the rules.",
+        "role": "analyst"
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "A maroon player misses a shot, the ball is live with the score white 39, maroon 30.",
+        "role": "pbp"
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "The white team makes a free throw, updating the score to 40–30.",
+        "role": "pbp"
+      },
+      {
+        "t": 136.798,
+        "eventId": "e23",
+        "text": "That's a one-point play from the free-throw line after a foul, as per the rules.",
+        "role": "analyst"
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "The white team makes a free throw, updating the score to 41 to 30.",
+        "role": "pbp"
+      },
+      {
+        "t": 151.99,
+        "eventId": "e24",
+        "text": "The analyst notes that free throws are worth one point each, which explains the new score.",
+        "role": "analyst"
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "A white player nails a three-pointer, extending the lead to 44 to 30.",
+        "role": "pbp"
+      },
+      {
+        "t": 192.658,
+        "eventId": "e38",
+        "text": "That three-pointer counts for three points because the shot was taken from behind the arc.",
+        "role": "analyst"
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "The white team makes a free throw, now leading 45 to 34.",
+        "role": "pbp"
+      },
+      {
+        "t": 362.514,
+        "eventId": "e72",
+        "text": "That's a free throw, worth one point after a foul, boosting the white team's lead.",
+        "role": "analyst"
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "The white team makes the free throw, updating the score to 46 to 34.",
+        "role": "pbp"
+      },
+      {
+        "t": 376.35,
+        "eventId": "e73",
+        "text": "That's a one-point play from the free-throw line, awarded after a foul, and it extends the white team's lead.",
+        "role": "analyst"
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "The white team scores, now leading 48 to 34.",
+        "role": "pbp"
+      },
+      {
+        "t": 398.262,
+        "eventId": "e78",
+        "text": "That shot was from inside the arc, so it counts as two points for the white team.",
+        "role": "analyst"
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "A white player nails a three-pointer, extending the lead to 51 to 34.",
+        "role": "pbp"
+      },
+      {
+        "t": 440.85,
+        "eventId": "e87",
+        "text": "The analyst notes that the shot was taken from beyond the arc, making it worth three points.",
+        "role": "analyst"
+      },
+      {
+        "t": 466.7,
+        "eventId": "e88",
+        "text": "The maroon team misses a free throw, and the score remains white fifty-one, maroon thirty-four.",
+        "role": "pbp"
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "The maroon team misses the free throw, leaving the score white 51, maroon 34.",
+        "role": "pbp"
+      },
+      {
+        "t": 487.69,
+        "eventId": "e91",
+        "text": "The ball is now live.",
+        "role": "analyst"
+      }
+    ],
+    "fantasy-en": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "The white player nails the free throw, updating the score to 39 to 30."
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "The player misses the shot, no fantasy points added, ball up for grabs."
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "The white player nails the free throw, updating the score to 40 to 30."
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "The player nails the free throw, updating the score to 41-30 for white."
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "A pink player nails a three-pointer, pushing white to 44-30."
+      },
+      {
+        "t": 267.7,
+        "eventId": "e51",
+        "text": "A maroon player hits a two-pointer, extending the lead."
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "A maroon player hits a two-pointer, pulling the team closer in this intense matchup."
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "The white player sinks the free throw, updating the score to 45 to 34."
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "The white player nails the free throw, updating the score to 46-34."
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "The white player drills a two-pointer, pushing the score to 48–34."
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "A white player hits a three-pointer, pushing the lead to 51-34 with no fantasy impact."
+      },
+      {
+        "t": 466.7,
+        "eventId": "e88",
+        "text": "A maroon player misses the free throw, keeping the score white 51, maroon 34."
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "A maroon player misses the free throw, keeping the score white 51, maroon 34."
+      }
+    ],
+    "kid-en": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "The white team scores! Now it's thirty-nine to thirty."
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "The maroon team missed a shot, and now the white team gets the ball! Score is white thirty-nine, maroon thirty."
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "The white team player makes the free throw! Score is forty to thirty."
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "The white team scores! Now it's forty-one to thirty!"
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "The white team scores a three-pointer, making the score forty-four to thirty!"
+      },
+      {
+        "t": 267.7,
+        "eventId": "e51",
+        "text": "The maroon team scores again! Now the score is white forty-four, maroon thirty-two!"
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "The maroon team scores two points, now it's white forty-four, maroon thirty-four!"
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "The white team scores! Now it's forty-five to thirty-four!"
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "The white team scores! Free throw good! Score is forty-six to thirty-four!"
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "The white team scores again, now it's forty-eight to thirty-four!"
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "The white team scores with a three-pointer! Now the score is fifty-one to thirty-four!"
+      },
+      {
+        "t": 466.7,
+        "eventId": "e88",
+        "text": "The maroon player missed the free throw, and now the white team gets the ball!"
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "The player missed the free throw, and now it's anyone's ball!"
+      },
+      {
+        "t": 491.4,
+        "eventId": "e100",
+        "text": "The maroon team scores two points, now it's white fifty-one, maroon thirty-six!"
+      }
+    ],
+    "rookie-es": [
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "El equipo rosa tiene la oportunidad después de que un jugador rosa falló el tiro."
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "El equipo blanco anota un tiro libre y lleva la puntuación a 40 a 30."
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "El equipo blanco anota un tiro libre y lleva la puntuación a 41 a 30."
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "El equipo blanco anota un triple y ahora lleva 44 a 30."
+      },
+      {
+        "t": 267.7,
+        "eventId": "e51",
+        "text": "El equipo rosa anota una canasta de 2 puntos, ahora el marcador es blanco 44, rosa 32."
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "El equipo rosa anota una canasta de 2 puntos, ahora el marcador es blanco 44, rosa 34."
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "El equipo blanco anota un tiro libre, ahora el marcador es 45 a 34."
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "El equipo blanco anota un tiro libre y lleva la puntuación a 46 a 34."
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "El equipo blanco anota una canasta de 2 puntos, ahora el marcador es 48 a 34."
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "El equipo blanco anota un triple y ahora lleva 51 a 34."
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "El equipo azul mantiene el marcador 51 a 34 tras un tiro libre fallado por un jugador rosa."
+      }
+    ],
+    "rookie-hi": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "व्हाइट टीम का एक प्लेयर फ़्री थ्रो सफल कर रहा है, स्कोर बन गया 39-30।"
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "व्हाइट टीम ने 39 और मैरोन टीम ने 30 स्कोर किया है।"
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "व्हाइट टीम का एक खिलाड़ी फ़्री थ्रो सफल करता है, स्कोर बनता है ४०-३०।"
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "व्हाइट टीम का एक खिलाड़ी फ़्री थ्रो सफल करता है, स्कोर बनता है 41-30।"
+      },
+      {
+        "t": 188.4,
+        "eventId": "e38",
+        "text": "व्हाइट टीम ने थ्री-पॉइंटर किया, स्कोर अब ४४-३० है।"
+      },
+      {
+        "t": 267.7,
+        "eventId": "e51",
+        "text": "द मारून टीम ने दो पॉइंट स्कोर किए हैं, स्कोर अब व्हाइट 44 और मारून 32 है।"
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "एक मैरून खिलाड़ी ने दो पॉइंट स्कोर किए, स्कोर अब सफेद 44 और मैरून 34 है।"
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "व्हाइट टीम का एक खिलाड़ी फ़्री थ्रो सफल कर रहा है, स्कोर अब ४५-३४ हो गया है।"
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "व्हाइट टीम का एक प्लेयर फ़्री थ्रो में सफल रहा, स्कोर अब ४६-३४ है।"
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "व्हाइट टीम ने दो पॉइंट स्कोर किए हैं, स्कोर अब 48-34 है।"
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "एक सफेद खिलाड़ी ने थ्री-पॉइंटर लगाया, स्कोर अब 51-34 है।"
+      },
+      {
+        "t": 466.7,
+        "eventId": "e88",
+        "text": "व्हाइट टीम 51, मैरून टीम 34 पर है; एक मैरून खिलाड़ी ने फ़्री थ्रो मिस किया है।"
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "नंबर 34 ने फ़्री थ्रो मिस किया, अब गेंद लाइव है।"
+      },
+      {
+        "t": 491.4,
+        "eventId": "e100",
+        "text": "एक मैरून खिलाड़ी ने टू-पॉइंटर स्कोर किया।"
+      }
+    ],
+    "rookie-zh": [
+      {
+        "t": 8.7,
+        "eventId": "e1",
+        "text": "白队球员罚球命中，比分变为39比30。"
+      },
+      {
+        "t": 100.9,
+        "eventId": "e22",
+        "text": "白队领先39比30，红队未命中投篮。"
+      },
+      {
+        "t": 132.9,
+        "eventId": "e23",
+        "text": "白队球员罚球命中，比分变为40比30。"
+      },
+      {
+        "t": 147.9,
+        "eventId": "e24",
+        "text": "白队球员罚球得分，比分变为41比30。"
+      },
+      {
+        "t": 320.4,
+        "eventId": "e67",
+        "text": "粉红队得分，将比分改为白队44，粉红队34。"
+      },
+      {
+        "t": 358.4,
+        "eventId": "e72",
+        "text": "白队球员罚球命中，比分变为45比34。"
+      },
+      {
+        "t": 371.9,
+        "eventId": "e73",
+        "text": "白队球员罚球得分，比分变为46比34。"
+      },
+      {
+        "t": 394.7,
+        "eventId": "e78",
+        "text": "白队得分，现在比分是48比34。"
+      },
+      {
+        "t": 436.4,
+        "eventId": "e87",
+        "text": "白队球员在三分线外得分，比分变为51比34。"
+      },
+      {
+        "t": 466.7,
+        "eventId": "e88",
+        "text": "球队穿棕色球衣的球员罚球未命中，比分白队51，棕队34。"
+      },
+      {
+        "t": 482.4,
+        "eventId": "e91",
+        "text": "粉色球队的球员罚球未命中，比分白队51，粉队34。"
+      },
+      {
+        "t": 491.4,
+        "eventId": "e100",
+        "text": "球队红方得分，现比分白队51-红队36。"
+      }
+    ]
+  },
+  "ruleCards": {
+    "made_2": {
+      "title": "Two-point basket",
+      "body": "A shot made from inside the arc is worth 2 points."
+    },
+    "made_3": {
+      "title": "Three-pointer",
+      "body": "A shot made with both feet behind the arc is worth 3 points instead of 2."
+    },
+    "ft_made": {
+      "title": "Free throw",
+      "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. Each make is worth 1 point."
+    },
+    "ft_missed": {
+      "title": "Free throw",
+      "body": "After certain fouls the fouled player shoots unguarded from the free-throw line. A miss scores nothing and the ball is live for a rebound on the last attempt."
+    },
+    "missed_shot": {
+      "title": "Missed shot",
+      "body": "When a shot misses, either team can grab the rebound and take possession."
+    },
+    "foul": {
+      "title": "Personal foul",
+      "body": "Illegal contact, like pushing, holding or hitting a shooter's arm, is a foul. The other team gets the ball, or free throws if the player was shooting. Players who collect too many fouls must leave the game."
+    },
+    "and_one": {
+      "title": "And-one",
+      "body": "If a player is fouled while making a shot, the basket still counts and they get 1 extra free throw."
+    },
+    "travel": {
+      "title": "Traveling",
+      "body": "A player holding the ball can't take steps without dribbling. Moving the pivot foot or taking extra steps is a travel, and the other team gets the ball."
+    },
+    "turnover": {
+      "title": "Turnover",
+      "body": "A turnover is losing the ball to the other team without taking a shot, for example a bad pass or stepping out of bounds."
+    },
+    "steal": {
+      "title": "Steal",
+      "body": "A defender who takes the ball away from the offense, without a foul, gets credit for a steal."
+    },
+    "block": {
+      "title": "Block",
+      "body": "A defender who legally deflects a shot on its way up gets credit for a block. Touching it on the way down toward the rim is goaltending, and the basket counts."
+    },
+    "rebound": {
+      "title": "Rebound",
+      "body": "Grabbing the ball after a missed shot is a rebound. A defensive rebound ends the other team's possession; an offensive rebound gives your team another chance."
+    },
+    "timeout": {
+      "title": "Timeout",
+      "body": "A team can stop the clock to rest, talk strategy or break the other team's momentum."
+    }
+  },
+  "state": [
+    {
+      "eventId": "e1",
+      "t": 8.3,
+      "score": {
+        "white": 39,
+        "maroon": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e22",
+      "t": 100.5,
+      "score": {
+        "white": 39,
+        "maroon": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e23",
+      "t": 132.5,
+      "score": {
+        "white": 40,
+        "maroon": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e24",
+      "t": 147.5,
+      "score": {
+        "white": 41,
+        "maroon": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e38",
+      "t": 188.0,
+      "score": {
+        "white": 44,
+        "maroon": 30
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e51",
+      "t": 267.3,
+      "score": {
+        "white": 44,
+        "maroon": 32
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e67",
+      "t": 320.0,
+      "score": {
+        "white": 44,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e72",
+      "t": 358.0,
+      "score": {
+        "white": 45,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e73",
+      "t": 371.5,
+      "score": {
+        "white": 46,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e78",
+      "t": 394.3,
+      "score": {
+        "white": 48,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e87",
+      "t": 436.0,
+      "score": {
+        "white": 51,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e88",
+      "t": 466.3,
+      "score": {
+        "white": 51,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e91",
+      "t": 482.0,
+      "score": {
+        "white": 51,
+        "maroon": 34
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    },
+    {
+      "eventId": "e100",
+      "t": 491.0,
+      "score": {
+        "white": 51,
+        "maroon": 36
+      },
+      "teamFouls": {
+        "white": 0,
+        "maroon": 0
+      },
+      "fantasy": {},
+      "fantasyDelta": {},
+      "andOne": false
+    }
+  ],
+  "questions": {
+    "e1": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "They got a free shot because a certain foul allowed the player to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/732a7dad78ceb9a941d40912.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/7c5db4be4be49cae59585491.mp3"
+          },
+          "rookie-es": {
+            "text": "El jugador de rosa recibió un tiro libre porque cometieron una falta contra él. Cada tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/bb0eb5006956c3a3b3df3f72.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4078edd5de0679855212d96a.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made with no fantasy data provided.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/346f790ea499d161e0cd8a76.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिलना चाहिए। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/810d2d26df6a4310dfd86004.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，当特定犯规后，犯规球员需要从罚球线进行无防守的投篮。每投中一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c0b4fbbde8510d9af4c1270c.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score just went up after the made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/81b7803cefe489ec64f48b43.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/24055c6824b049fb0bc81670.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point; that's why the white team's score just went up.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/23d8916e31418a50d4fb95e7.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you its fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/9d57ca5bec5d25cec64cb57c.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由球每进1分。现在白队得分39，红队得分30。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d17e5f5f90a6c01558dd694c.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is White 39, Maroon 30. The last play was a free throw made by a White player.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/78171bda840520b3c83731ab.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead, 39 to 30!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/df07e9b413c26e56ccb10ef5.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es 39 a 30 a favor del equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4373afd9672688fd5d61cc2d.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 39 to 30 in favor of the white team after a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4196d7729cc58daf92bc59bc.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 39 to 30 in favor of the white team. Only facts from the court can be shared right now.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/8966135a107a45f5f0487fe6.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 39 और मैरून टीम 30 पर है। यही अब का स्कोर है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1d020a2b3a544eb1e1ef3aee.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队39分，栗色队30分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/69cfc536809ae713e4bede47.mp3"
+          }
+        }
+      }
+    ],
+    "e23": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because they were fouled during a play, and the rules give them an unguarded shot from the free-throw line after certain fouls.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/80eff21b5b60df19cd232d57.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "Obtuvieron un tiro libre porque cometieron una falta contra el jugador de rosa. Cada tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/424c6727de8da11fe4588e7b.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because of a foul, and each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/95039d5ebac20c96ae39212f.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made with no change to fantasy points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d747e7d1030f5ced872cae5d.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिलना चाहिए था। उन्होंने उस फ़्री थ्रो को सफल बनाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/38540a7eddbe23659a3aea59.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，当特定犯规后，犯规球员需要从罚球线进行无防守的投篮。每投中一次得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0fa5c78f252d713969c9e6db.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score just went up by 1.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/aa14092fd24c1a1a28642c04.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's a great question!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ee93b9896604e25a872ef00a.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto. Es así porque después de ciertas faltas, el jugador tira desde la línea de tiro libre sin defensa.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/22f77a7a33dba35ed1d198ee.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each time it's made. That's why the white team's score just went up by 1.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/3ea8808186c34e60aad07b7a.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t speak to any fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0151471dd737202a609dd095.mp3"
+          },
+          "rookie-hi": {
+            "text": "फ्री थ्रो हर बार 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c496c58d9e2f7afd11b32ac8.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每进一球得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f96ed765de2c9c6fdb068a80.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is White 40, Maroon 30 after a successful free throw by the White team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/25e4244a94a9e12e895cb4b3.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead 40 to 30! Great free throw by White!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/87a8c39e766e35e4ace00cab.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 40, marrón 30. El último evento fue un tiro libre anotado por el equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a1fc95810da117d1ef0d9f8a.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now White 40, Maroon 30 after a free throw made by White.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5ca723e645837ebf87d05401.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 40 to 30 in favor of the white team. The latest play was a free throw made by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ee6b0ccafb8270a793091c9a.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 40 और मैरोन टीम 30 पर है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो लगाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/767e149d232c2b0950195818.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队40分，红队30分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e96f1b1857e5140ebbfc517b.mp3"
+          }
+        }
+      }
+    ],
+    "e24": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d4182feac0473455afa92464.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/7c5db4be4be49cae59585491.mp3"
+          },
+          "rookie-es": {
+            "text": "Obtuvieron un tiro libre porque cometieron una falta contra el jugador de blanco. Cada tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/9968d1edda965b50886b8015.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/29b2a4adc6e85afd9a79b187.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made, increasing the white team's score to 41.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/16f4c65bfb9bd8c3822780b5.mp3"
+          },
+          "rookie-hi": {
+            "text": "फ्री थ्रो तब मिलता है जब कोई फाउल होता है। यहाँ कोई फाउल दिखाया नहीं गया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4dc12531a214d8add0f6eb84.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，犯规后被犯规球员可以从罚球线进行无防守的投篮，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1dd0b11e43816eefe5e15c0e.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score just went up by 1.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/aa14092fd24c1a1a28642c04.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/24055c6824b049fb0bc81670.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point; that's why the white team's score went up by 1.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/79892e4ac60c37d8fbc1fab6.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you the fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2d3de4ce7df28d11f283a39e.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由球每个得分价值1分。当前白队球员刚刚命中了一个自由球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/97f8ad888e15b1efec11f385.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is now White 41, Maroon 30 after a successful free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2a3748bde1e6abe23e286eed.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead, 41 to 30!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/97d2d7c6abd30d3d704752e1.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 41, marrón 30. El último evento fue un tiro libre anotado por el equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2e877caaaba23fd67915aaaa.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now White 41, Maroon 30 after a free throw made by White.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/3777e9ee19301cc88b9ee935.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 41 to 30 in favor of the white team. The last play was a free throw made by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ed9c60bef093f9296ad56c11.mp3"
+          },
+          "rookie-hi": {
+            "text": "स्कोर अब व्हाइट 41 और मैरोन 30 है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो बनाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e3ea6dc90930439947fe1adc.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队41分，红队30分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/9e1215cfcaa786caf4b6330a.mp3"
+          }
+        }
+      }
+    ],
+    "e38": [
+      {
+        "q": "Why is that worth 3?",
+        "answers": {
+          "rookie-en": {
+            "text": "That shot is worth 3 because it was made from behind the arc, and according to the rules, any shot from behind the arc counts for 3 points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e5b0e4e9c339b5675dcfa925.mp3"
+          },
+          "kid-en": {
+            "text": "That shot was worth 3 because the player shot from behind the arc! That's the rule!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/8ecc8504eeb5451deb966329.mp3"
+          },
+          "rookie-es": {
+            "text": "Un triple vale 3 puntos porque se tira desde detrás del arco. Esa es la regla del triple.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/569bc4bea8123dfb1144fccd.mp3"
+          },
+          "booth-en": {
+            "text": "That shot is worth 3 because it was made from behind the arc. Any successful shot taken from beyond that line counts for 3 points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1c348c33388444beffee456d.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a shot was made from behind the arc. The rule states this is worth 3 points instead of 2.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/6fac258c70b9d196264699a7.mp3"
+          },
+          "rookie-hi": {
+            "text": "यह 3 पॉइंट है क्योंकि यह शॉट आर्क के पीछे से बनाया गया था। तीन पॉइंटर के लिए यही नियम है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a2271c2f752ca2ad7538f6ab.mp3"
+          },
+          "rookie-zh": {
+            "text": "这次投篮是从三分线外完成的，所以值得3分。根据规则，双脚在三分线后方的投篮可以获得3分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5d719933662d9058098fa63c.mp3"
+          }
+        }
+      },
+      {
+        "q": "Where do you shoot a 3 from?",
+        "answers": {
+          "rookie-en": {
+            "text": "You can shoot a 3 from anywhere behind the arc. A shot from behind the arc counts for 3 points instead of 2.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5d57e78dc18f9dc050d83332.mp3"
+          },
+          "kid-en": {
+            "text": "You shoot a 3 from behind the arc! That’s where the magic happens!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c5ca7d36ee6ea46fd3e6b172.mp3"
+          },
+          "rookie-es": {
+            "text": "Un triple se tira desde más allá del arco en la cancha. Cada triple vale 3 puntos en lugar de 2.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e1b7f7c5f671e8626685ee57.mp3"
+          },
+          "booth-en": {
+            "text": "You can shoot a 3 from anywhere behind the arc, and it’s worth 3 points instead of 2. That last shot gave the white team 44 points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/b9dc83c35fc180c461155abb.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a shot was made from behind the arc. The facts don't specify where the 3-pointer was shot from.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/904d80a9e8973314519a0d83.mp3"
+          },
+          "rookie-hi": {
+            "text": "आप 3-पॉइंटर तब लगाते हैं जब दोनों पैर आर्क के पीछे होते हैं। यह 3 पॉइंट्स का स्कोर करता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/cff277a062b8594e3cadafe0.mp3"
+          },
+          "rookie-zh": {
+            "text": "你需要站在三分线后面才能投进3分球。投进后可以获得3分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a8060ff3b859a158c445cbb0.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The current score is White 44, Maroon 30, with White just making a 3-pointer.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/35f14c15b75a63ac1049eb19.mp3"
+          },
+          "kid-en": {
+            "text": "The score is White 44, Maroon 30! Great game so far!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e4e49c07d62902b03e12192b.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es 44 a 30, con el equipo blanco liderando.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e13cb67b798b5535d6c9386e.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 44 to 30 in favor of the white team after a three-pointer. That's because a shot from behind the arc adds 3 points to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4f9f002b5970fa1ee0b16857.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 44 to 30 in favor of the white team. The last play was a made three-pointer by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c260f395c38e9b71fd4558ee.mp3"
+          },
+          "rookie-hi": {
+            "text": "स्कोर अभी व्हाइट 44 और मैरून 30 है। आखिरी प्ले में व्हाइट ने थ्री-पॉइंटर लगाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/fbeb340caef35d11913afeae.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队44分，栗色队30分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/b4a8fb3c81867858d33eecff.mp3"
+          }
+        }
+      }
+    ],
+    "e72": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because a foul was called against the other team, and now they get to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/3e60b47f41c16514be87ed77.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+          },
+          "rookie-es": {
+            "text": "Por una falta cometida, el jugador de rosa lanza un tiro libre. Cada tiro libre hecho vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/6c64a0df0654949ac6b7549a.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and the rule gives the fouled player an unguarded shot from the free-throw line. Each successful free throw adds 1 point to the score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/29b2a4adc6e85afd9a79b187.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made, increasing the white team's score to 45.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0a9f07003ad39a0374efd4f4.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，罚球是在特定犯规后由被犯规的球员在罚球线进行无防守射击，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2c40c6d9854850b1a78f9fc7.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score went up by 1 after the free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ffcd89c0ae3ec56b6d983cbb.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's how players score when they get a foul.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/3fc0136571b9fe951d7ffc8b.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto. Es así porque, según la regla, cada canasta de tiro libre suma 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d4969340240653511af3f76d.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each. That's why the white team's score went up by 1 after the made free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/b1e331243d81756f766fa254.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there are no fantasy points or deltas provided for this play.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5a8306105847767f51873fc7.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每得1分。现在白队又进了1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2796dd1d938e2b89dfc59f9b.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is White 45, Maroon 34 after a free throw made by the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0e7d6985916931be9db89f87.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead, 45 to 34!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5cae931352158ac6d6a72fb9.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es blanco 45, marrón 34. El último evento fue un tiro libre anotado por el equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e638ab001816e27ae3a31e86.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 45 to 34 in favor of the white team after a free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/74c1ebf872a90ed49a361a00.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 45 to 34 in favor of the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/37dd111a98e7088791381172.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 45 और मैरून टीम 34 पर है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो बनाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1ff39f85cc9a83e5cbb8ceb2.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队45分，红队34分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a322754cef89a5dd1b5c9370.mp3"
+          }
+        }
+      }
+    ],
+    "e73": [
+      {
+        "q": "Why did they get a free shot?",
+        "answers": {
+          "rookie-en": {
+            "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2c1c1335aeb2af54f53e4aaa.mp3"
+          },
+          "kid-en": {
+            "text": "They got a free shot because of a foul! Now they score 1 point!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a19bb833e7b096dc9a4d66a3.mp3"
+          },
+          "rookie-es": {
+            "text": "El jugador de blanco obtuvo un tiro libre porque una falta le permitió lanzar sin defensa desde la línea de tiros libres. Cada canasta vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/89e34e9261250168af6b2025.mp3"
+          },
+          "booth-en": {
+            "text": "They got a free shot because a foul was called, and now the player gets an unguarded shot from the free-throw line. Each successful free throw is worth 1 point.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/6f22ecc20c6f85ed13187162.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a free throw was made with no change to fantasy points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d747e7d1030f5ced872cae5d.mp3"
+          },
+          "rookie-hi": {
+            "text": "क्योंकि एक फ़ाउल हुआ था, इसलिए उन्हें फ़्री थ्रो मिल गया। हर फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ec6fddfe13ce55c04cbd91e6.mp3"
+          },
+          "rookie-zh": {
+            "text": "根据规则卡片，犯规后被犯规球员可以从罚球线进行无防守的投篮，每次命中得1分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1dd0b11e43816eefe5e15c0e.mp3"
+          }
+        }
+      },
+      {
+        "q": "How much is a free throw worth?",
+        "answers": {
+          "rookie-en": {
+            "text": "A free throw is worth 1 point. That's why the white team's score just went up by 1.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/aa14092fd24c1a1a28642c04.mp3"
+          },
+          "kid-en": {
+            "text": "A free throw is worth 1 point! That's a great question!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/ee93b9896604e25a872ef00a.mp3"
+          },
+          "rookie-es": {
+            "text": "Un tiro libre vale 1 punto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/63d484764e0a106aba831fb7.mp3"
+          },
+          "booth-en": {
+            "text": "A free throw is worth 1 point each. That's why the white team's score just went up.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0c430babe0a88bd5c05ff823.mp3"
+          },
+          "fantasy-en": {
+            "text": "A free throw is worth 1 point if made. However, there’s no fantasy data for this play, so I can’t tell you its fantasy impact.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/9d57ca5bec5d25cec64cb57c.mp3"
+          },
+          "rookie-hi": {
+            "text": "एक फ़्री थ्रो 1 पॉइंट का होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f45ad6bd211b2f77ee8353b9.mp3"
+          },
+          "rookie-zh": {
+            "text": "自由投每进1分。现在白队得分46分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/66fd691a1861d7cdd2926f15.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is White 46, Maroon 34 after a free throw made by the White team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/32c5f90642ae5d8a5ff4abf7.mp3"
+          },
+          "kid-en": {
+            "text": "White is ahead, 46 to 34! Great free throw by White!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/8888eb8682309195416cdb32.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es 46 a 34, a favor del equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/cf1d63913079e520554bc420.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 46 to 34 in favor of the white team after a successful free throw.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/121b18aa14f2155ca8323814.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 46 to 34 in favor of the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/41685e19997fdf9ecdcf4af5.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 46 और मैरून टीम 34 पर है। आखिरी प्ले में व्हाइट ने फ़्री थ्रो किया और एक पॉइंट स्कोर किया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/3f99dc5f1618433d22763214.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队46分，红队34分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f32717eced14eacf4beb5d28.mp3"
+          }
+        }
+      }
+    ],
+    "e87": [
+      {
+        "q": "Why is that worth 3?",
+        "answers": {
+          "rookie-en": {
+            "text": "A shot from behind the arc is worth 3 points instead of 2. That's why it's worth 3.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/663274698ef03a41c38e34f8.mp3"
+          },
+          "kid-en": {
+            "text": "That shot is worth 3 because the player shot from behind the arc!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/4c51b8859f5d56c941bb9f02.mp3"
+          },
+          "rookie-es": {
+            "text": "Un triple vale 3 puntos porque se hace detrás de la línea de tres puntos. Esa es la regla del baloncesto.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/229d9af00e9b9335426ac531.mp3"
+          },
+          "booth-en": {
+            "text": "That shot is worth 3 because it was taken from behind the arc. Any successful shot from beyond that line counts for 3 points.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e23ffa9efc79fa4ec7758f39.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a shot was made from behind the arc. The rule states such a shot is worth 3 points instead of 2.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/d5a4251be718798a0b2e913c.mp3"
+          },
+          "rookie-hi": {
+            "text": "यह 3 पॉइंट है क्योंकि यह शॉट आर्क के पीछे से बनाया गया था। तीन-पॉइंटर हमेशा 3 पॉइंट के लायक होता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/62444d6af9a0271d172d264a.mp3"
+          },
+          "rookie-zh": {
+            "text": "这次球是从三分线外投进的，所以值得3分。根据规则，双脚在三分线后方投进的球得3分，而不是2分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c7c35eed090e571b72ee54a7.mp3"
+          }
+        }
+      },
+      {
+        "q": "Where do you shoot a 3 from?",
+        "answers": {
+          "rookie-en": {
+            "text": "You can shoot a 3 from anywhere beyond the arc on the court. A shot made from behind this line counts for 3 points instead of 2.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/1b8265f3d8518002b7254f60.mp3"
+          },
+          "kid-en": {
+            "text": "You shoot a 3 from behind the arc! That’s worth 3 points!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/75f28d17be286010f0922575.mp3"
+          },
+          "rookie-es": {
+            "text": "Un triple se tira desde más allá del arco en la cancha.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/42f8df515325e6f86c318f7d.mp3"
+          },
+          "booth-en": {
+            "text": "You can shoot a 3 from anywhere behind the arc, and it’s worth 3 points instead of 2. That last shot was just made from beyond the arc, adding 3 points to the white team's score.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/12ee4bf3532bd62fdbba287f.mp3"
+          },
+          "fantasy-en": {
+            "text": "I can only speak to what happened on the court: a shot was made from beyond the arc. The facts don't specify where the 3 was shot from.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/49b4223a6245d5d2b69971c4.mp3"
+          },
+          "rookie-hi": {
+            "text": "थ्री-पॉइंटर को आर्क के पीछे से शूट करना होता है। यह 3 पॉइंट्स का स्कोर बनाता है।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/a3bad4253c17e5c86f856119.mp3"
+          },
+          "rookie-zh": {
+            "text": "上一个回合是white队的Three-pointer。 比分是white 51, maroon 34。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/b96e8e793339ede3b954a077.mp3"
+          }
+        }
+      },
+      {
+        "q": "What's the score now?",
+        "answers": {
+          "rookie-en": {
+            "text": "The score is now 51 to 34 in favor of the white team after they made a three-pointer.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/acea614469e0c26aaa6fbc52.mp3"
+          },
+          "kid-en": {
+            "text": "The score is White 51, Maroon 34! Great game so far!",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/8e3c71d19d115b6907e1035e.mp3"
+          },
+          "rookie-es": {
+            "text": "El marcador actual es 51 a 34, con el equipo blanco liderando. El último evento fue un triple del equipo blanco.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/30dfe3479c953ec2c84bf29c.mp3"
+          },
+          "booth-en": {
+            "text": "The score is now 51 to 34 in favor of the white team after a made three-pointer.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/6b27e655e4261a458a3dd454.mp3"
+          },
+          "fantasy-en": {
+            "text": "The score is now 51 to 34 in favor of the white team.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/c8407138f4468230144e2d7b.mp3"
+          },
+          "rookie-hi": {
+            "text": "व्हाइट टीम 51 और मैरोन टीम 34 पर है। आखिरी प्ले में व्हाइट ने थ्री-पॉइंटर लगाया।",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2fb827bd0f44b556259fa691.mp3"
+          },
+          "rookie-zh": {
+            "text": "目前比分是白队51分，棕队34分。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/e38d67e7862a1e1161741492.mp3"
+          }
+        }
+      }
+    ]
+  },
+  "roster": [],
+  "recaps": [
+    {
+      "t": 60,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/db4941c557445336b9bd12e3.mp3",
+      "text": "White scored a free throw, and the score is now 39 to 30 in favor of White."
+    },
+    {
+      "t": 120,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/f762f875bcc15eabeec4d9b4.mp3",
+      "text": "White made a free throw, and Maroon missed a shot. The score is now White 39, Maroon 30."
+    },
+    {
+      "t": 300,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/2df9151ecb53f5d8b59f7cf2.mp3",
+      "text": "White scored a three-pointer, then Maroon answered with a two-pointer; the score is now 44 to 32 in favor of White."
+    },
+    {
+      "t": 360,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/178cfd650458799e001b7ab3.mp3",
+      "text": "The maroon team made two baskets, then the white team made a free throw; the score is white 45, maroon 34."
+    },
+    {
+      "t": 420,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/5315dbf5a7f6f3f356dec595.mp3",
+      "text": "The white team scored a two-pointer and two free throws, then another two-pointer; maroon made a two-pointer. The score is white 48, maroon 34."
+    },
+    {
+      "t": 480,
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-girls-spaulding/audio/0a946bde28151c5769464bc8.mp3",
+      "text": "White scored a free throw, a two-pointer, and a three-pointer; Maroon missed a free throw. The score is now White 51, Maroon 34."
+    }
+  ],
+  "talk": {
+    "wsUrl": "wss://d38etaw7xiqv3j.cloudfront.net"
+  },
+  "party": {
+    "wsUrl": "wss://4math2ry83.execute-api.us-east-1.amazonaws.com/dev"
+  }
+}

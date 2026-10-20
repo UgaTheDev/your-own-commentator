@@ -17,7 +17,7 @@ to get their own broadcast, without the commentator ever making things up.
 - **Ask "why?"** Pause, and the Why card offers questions about the play on screen. Or hold a button on your
   phone and ask out loud. The commentator answers about *that* play, in its own voice, in about 3 seconds.
 - **Catch me up:** minute-mark recaps of what you missed.
-- **Replays and minimap:** slow-motion replays of key plays with the shooter ringed, and a live court minimap,
+- **Replays and minimap:** slow-motion replays of key plays with every tracked player marked, and a live court minimap,
   both from our own computer-vision engine.
 - **Highlight reel:** a 64-second reel of every verified basket, narrated.
 - **Watch party:** friends in other homes join with a code, each with their own commentator, and call the next

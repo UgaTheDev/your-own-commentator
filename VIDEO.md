@@ -23,7 +23,7 @@ The rules require the app running on a Fire TV or the simulator. We use the **Ve
 | 0:30–0:55 | Play from 0:25: the free throw at 0:31 and the three at 1:03. Rookie explains the free-throw rule | "Rookie explains each rule the moment it matters." |
 | 0:55–1:20 | Same moment, switch with the D-pad: **Kid** → **Spanish** → **Hindi** | "Same game, same play, a different commentator. Seven of them, in four languages." |
 | 1:20–1:35 | **Booth** (two voices), then **Fantasy** after the three | "A two-voice booth, or a fantasy analyst tracking points." |
-| 1:35–1:50 | **Why?** → pick a question → spoken answer card. Then **Replay** (slow motion, shooter ringed) and **Map** | "Pause and ask why. Replays and the minimap come from our own computer vision." |
+| 1:35–1:50 | **Why?** → pick a question → spoken answer card. Then **Replay** (slow motion, tracked players marked) and **Map** | "Pause and ask why. Replays and the minimap come from our own computer vision." |
 | 1:50–2:00 | **Catch me up** → recap. **Watch party** code shown | "Missed a minute? Catch up. Friends join from their own homes and call the next basket." |
 | 2:00–2:30 | Screen recording of README diagram + accuracy table (or slides): Nova Pro → score graphic → review → gates → Polly | "Under the hood: Amazon Nova Pro reads the game, Nova 2 Lite writes, Nova Sonic hears your question, Polly speaks. Every line passes fact gates in code. Video-only AI was right 5 times in 182, so we anchor every score to the broadcast graphic. Zero invented plays in 494 lines." |
 | 2:30–2:45 | Highlights reel playing | "Most amateur games have no commentary at all. Now every viewer gets their own broadcast." |

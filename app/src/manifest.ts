@@ -1,5 +1,6 @@
 // Types mirror pipeline/publish.py build_manifest.
-export type Team = 'pink' | 'blue';
+// Team colours as the clip names them (pink/blue, white/maroon, white/green…).
+export type Team = string;
 
 export interface Track {
   id: string;
@@ -100,6 +101,18 @@ const NAMES: Record<string, string> = {
 };
 export const trackName = (tr: Track) => NAMES[tr.id] ?? tr.label;
 
+// One line under each commentator on Home.
+const TAGLINES: Record<string, string> = {
+  'rookie-en': 'Explains every rule as it happens',
+  'kid-en': 'Short, fun, easy words',
+  'booth-en': 'Play-by-play and analyst, two voices',
+  'fantasy-en': 'Tracks the points that matter',
+  'rookie-es': 'Rookie, in Spanish',
+  'rookie-hi': 'Rookie, in Hindi',
+  'rookie-zh': 'Rookie, in Mandarin',
+};
+export const trackTagline = (tr: Track) => TAGLINES[tr.id] ?? '';
+
 export const WHY_WINDOW_SECS = 10;
 
 // The latest event with questions, if it happened at most WHY_WINDOW_SECS ago.
@@ -130,6 +143,9 @@ export interface Game {
   title: string;
   manifestUrl: string;
   attribution?: string;
+  poster?: string;
+  teams?: string[];
+  final?: Record<string, number>;
 }
 
 // Entries the app can open (Vega media is HTTPS-only); throws on a malformed or empty index.

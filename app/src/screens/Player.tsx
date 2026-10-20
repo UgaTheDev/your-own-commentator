@@ -6,6 +6,7 @@ import {
   VideoPlayer,
 } from '@amazon-devices/react-native-w3cmedia';
 import {FocusButton} from '../components/FocusButton';
+import {C, eyebrow, s, team} from '../theme';
 import {AUTOPILOT, TALK_WS_URL} from '../config';
 import {TalkAnswer, connectTalk} from '../talk';
 import {PartyView} from './Home';
@@ -26,11 +27,11 @@ const CAPTION_SECS = 6;
 const TOAST_MS = 2500;
 const ROLE = {pbp: 'PLAY-BY-PLAY', analyst: 'ANALYST'};
 const COURT = {w: 28.65, h: 15.24}; // meters, C3 minimap units
-const MAP_W = 330;
+const MAP_W = s(330);
 const MAP_H = (MAP_W * COURT.h) / COURT.w;
-const TEAM_COLOR = {pink: '#ff4fa3', blue: '#4f8dff'};
 // console.warn: info level is suppressed for the first seconds after launch
-const log = (msg: string) => console.warn(`YOC: ${msg}`);
+// @epoch ms lets scripts/demo rebuild the soundtrack of a screen recording from this log
+const log = (msg: string) => console.warn(`YOC: @${Date.now()} ${msg}`);
 const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
 type Media = VideoPlayer | AudioPlayer;
@@ -442,6 +443,7 @@ export const Player = ({
     // ponytail: pause rather than duck, same as recap
     v.pause();
     setOverlay({kind: 'answer', text: a.text});
+    log(`talk answer -> ${a.audioUrl}`);
     speak(a.audioUrl, 'talk');
   };
 
@@ -483,11 +485,11 @@ export const Player = ({
       log(`predict open t=${tRef.current.toFixed(2)}`);
     }
   };
-  const predict = (value: 'pink' | 'blue') => {
+  const predict = (value: string) => {
     party?.send({type: 'predict', kind: 'next_score_team', value});
     log(`predict ${value} t=${tRef.current.toFixed(2)}`);
     closeOverlay('predict');
-    showToast(`You called ${value === 'pink' ? 'Pink' : 'Blue'}`);
+    showToast(`You called ${value[0].toUpperCase()}${value.slice(1)}`);
   };
 
   // Autopilot calls through a ref so it always sees the latest render's state.
@@ -591,7 +593,11 @@ export const Player = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [replayHere]);
 
-  const scoreText = score ? `pink ${score.pink} - ${score.blue} blue` : '';
+  const scoreText = score
+    ? Object.entries(score)
+        .map(([k, v]) => `${k} ${v}`)
+        .join(' - ')
+    : '';
   useEffect(() => {
     log(`score ${scoreText || 'none'} t=${t.toFixed(2)}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -624,8 +630,16 @@ export const Player = ({
       />
       {score && (
         <View style={styles.scoreBug}>
-          <Text style={[styles.team, styles.pink]}>PINK {score.pink}</Text>
-          <Text style={[styles.team, styles.blue]}>BLUE {score.blue}</Text>
+          {Object.entries(score).map(([k, v]) => (
+            <Text
+              key={k}
+              style={[
+                styles.team,
+                {backgroundColor: team(k).bg, color: team(k).ink},
+              ]}>
+              {k.toUpperCase()} {v}
+            </Text>
+          ))}
         </View>
       )}
       {code && (
@@ -655,9 +669,9 @@ export const Player = ({
               style={[
                 styles.dot,
                 {
-                  left: (p.x / COURT.w) * MAP_W - 8,
-                  top: (p.y / COURT.h) * MAP_H - 8,
-                  backgroundColor: TEAM_COLOR[p.team] ?? '#ccc',
+                  left: (p.x / COURT.w) * MAP_W - s(8),
+                  top: (p.y / COURT.h) * MAP_H - s(8),
+                  backgroundColor: team(p.team).bg,
                 },
               ]}
             />
@@ -667,8 +681,8 @@ export const Player = ({
               style={[
                 styles.ball,
                 {
-                  left: (frame.ball.x / COURT.w) * MAP_W - 6,
-                  top: (frame.ball.y / COURT.h) * MAP_H - 6,
+                  left: (frame.ball.x / COURT.w) * MAP_W - s(6),
+                  top: (frame.ball.y / COURT.h) * MAP_H - s(6),
                 },
               ]}
             />
@@ -711,12 +725,14 @@ export const Player = ({
           </Text>
           {overlay.kind === 'predict' ? (
             <View style={styles.row}>
-              <FocusButton
-                label="Pink"
-                onPress={() => predict('pink')}
-                hasTVPreferredFocus
-              />
-              <FocusButton label="Blue" onPress={() => predict('blue')} />
+              {Object.keys(manifest.state[0]?.score ?? {}).map((k, i) => (
+                <FocusButton
+                  key={k}
+                  label={`${k[0].toUpperCase()}${k.slice(1)}`}
+                  onPress={() => predict(k)}
+                  hasTVPreferredFocus={i === 0}
+                />
+              ))}
             </View>
           ) : overlay.kind === 'why' && !overlay.answer ? (
             overlay.questions.map((q, i) => (
@@ -809,60 +825,66 @@ const styles = StyleSheet.create({
     top: '5%',
     left: '5%',
     flexDirection: 'row',
-    backgroundColor: 'rgba(0,0,0,0.8)',
-    borderRadius: 12,
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
+    borderRadius: s(12),
     overflow: 'hidden',
   },
   team: {
-    color: '#FFFFFF',
-    fontSize: 40,
+    color: C.text,
+    fontSize: s(40),
     fontWeight: '800',
-    paddingVertical: 10,
-    paddingHorizontal: 24,
+    paddingVertical: s(10),
+    paddingHorizontal: s(24),
   },
-  pink: {backgroundColor: '#d6247a'},
-  blue: {backgroundColor: '#1f5fd6'},
   card: {
     position: 'absolute',
     top: '5%',
     right: '5%',
     width: '38%',
-    padding: 28,
-    borderRadius: 16,
-    backgroundColor: 'rgba(10,14,26,0.9)',
-    borderLeftWidth: 8,
-    borderLeftColor: '#FFD400',
+    padding: s(28),
+    borderRadius: s(16),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
+    borderLeftWidth: s(8),
+    borderLeftColor: C.accent,
   },
   cardLow: {top: '32%'},
   badge: {
     position: 'absolute',
     top: '14%',
     left: '5%',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 10,
-    backgroundColor: 'rgba(0,0,0,0.75)',
+    paddingVertical: s(8),
+    paddingHorizontal: s(16),
+    borderRadius: s(10),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
   },
   party: {
     position: 'absolute',
     top: '21%',
     left: '5%',
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 10,
-    backgroundColor: 'rgba(0,0,0,0.75)',
+    paddingVertical: s(8),
+    paddingHorizontal: s(16),
+    borderRadius: s(10),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
   },
   banner: {
     position: 'absolute',
     top: '30%',
     alignSelf: 'center',
-    paddingVertical: 20,
-    paddingHorizontal: 40,
-    borderRadius: 16,
+    paddingVertical: s(20),
+    paddingHorizontal: s(40),
+    borderRadius: s(16),
     backgroundColor: 'rgba(214,36,122,0.92)',
   },
-  row: {flexDirection: 'row', marginTop: 16},
-  badgeText: {color: '#FFFFFF', fontSize: 26, fontWeight: '600'},
+  row: {flexDirection: 'row', marginTop: s(16)},
+  badgeText: {color: C.text, fontSize: s(26), fontWeight: '600'},
   map: {
     position: 'absolute',
     top: '5%',
@@ -870,8 +892,9 @@ const styles = StyleSheet.create({
     width: MAP_W,
     height: MAP_H,
     borderWidth: 3,
-    borderColor: '#FFFFFF',
-    backgroundColor: 'rgba(24,70,40,0.85)',
+    borderColor: C.lineStrong,
+    backgroundColor: 'rgba(12,40,28,0.88)',
+    borderRadius: s(12),
     overflow: 'hidden',
   },
   midline: {
@@ -879,15 +902,15 @@ const styles = StyleSheet.create({
     left: MAP_W / 2 - 1,
     top: 0,
     bottom: 0,
-    width: 2,
+    width: s(2),
     backgroundColor: '#FFFFFF',
   },
-  dot: {position: 'absolute', width: 16, height: 16, borderRadius: 8},
+  dot: {position: 'absolute', width: s(16), height: s(16), borderRadius: s(8)},
   ball: {
     position: 'absolute',
-    width: 12,
-    height: 12,
-    borderRadius: 6,
+    width: s(12),
+    height: s(12),
+    borderRadius: s(6),
     backgroundColor: '#FF9900',
     borderWidth: 1,
     borderColor: '#000',
@@ -896,52 +919,60 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: '5%',
     alignSelf: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 20,
-    borderRadius: 10,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    paddingVertical: s(8),
+    paddingHorizontal: s(20),
+    borderRadius: s(10),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
   },
   panel: {
     position: 'absolute',
     top: '18%',
     left: '5%',
     width: '55%',
-    padding: 32,
-    borderRadius: 16,
-    backgroundColor: 'rgba(10,14,26,0.94)',
-    borderLeftWidth: 8,
-    borderLeftColor: '#FFD400',
+    padding: s(32),
+    borderRadius: s(16),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
+    borderLeftWidth: s(8),
+    borderLeftColor: C.accent,
     alignItems: 'flex-start',
   },
-  cardTitle: {color: '#FFD400', fontSize: 44, fontWeight: '700'},
+  cardTitle: {color: C.accent, fontSize: s(40), fontWeight: '800'},
   cardBody: {
-    color: '#FFFFFF',
-    fontSize: 30,
-    lineHeight: 40,
-    marginTop: 12,
-    marginBottom: 20,
+    color: C.text,
+    fontSize: s(30),
+    lineHeight: s(40),
+    marginTop: s(12),
+    marginBottom: s(20),
   },
   caption: {
     position: 'absolute',
     bottom: '20%',
     left: '10%',
     right: '10%',
-    padding: 20,
-    borderRadius: 12,
-    backgroundColor: 'rgba(0,0,0,0.8)',
+    padding: s(20),
+    borderRadius: s(12),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.line,
   },
-  role: {color: '#FFD400', fontSize: 24, fontWeight: '800', letterSpacing: 2},
-  captionText: {color: '#FFFFFF', fontSize: 34, lineHeight: 44, marginTop: 6},
+  role: {...eyebrow, color: C.accent},
+  captionText: {color: C.text, fontSize: s(34), lineHeight: s(44), marginTop: s(6)},
   switching: {
     position: 'absolute',
     top: '42%',
     alignSelf: 'center',
-    paddingVertical: 24,
-    paddingHorizontal: 48,
-    borderRadius: 16,
-    backgroundColor: 'rgba(0,0,0,0.85)',
+    paddingVertical: s(24),
+    paddingHorizontal: s(48),
+    borderRadius: s(16),
+    backgroundColor: C.glass,
+    borderWidth: 2,
+    borderColor: C.lineStrong,
   },
-  switchingText: {color: '#FFFFFF', fontSize: 48, fontWeight: '700'},
+  switchingText: {color: C.text, fontSize: s(48), fontWeight: '700'},
   bar: {
     position: 'absolute',
     bottom: '4%',

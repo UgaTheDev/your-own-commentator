@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Pressable, StyleSheet, Text} from 'react-native';
+import {Pressable, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
+import {C, s} from '../theme';
 
 interface Props {
   label: string;
@@ -7,6 +8,9 @@ interface Props {
   selected?: boolean;
   hasTVPreferredFocus?: boolean;
   onFocusChange?: (focused: boolean) => void;
+  // Cards (Home) pass their own content and box; `label` stays the log/accessibility name.
+  children?: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const FocusButton = ({
@@ -15,6 +19,8 @@ export const FocusButton = ({
   selected,
   hasTVPreferredFocus,
   onFocusChange,
+  children,
+  style,
 }: Props) => {
   const [focused, setFocused] = useState(false);
   return (
@@ -37,26 +43,36 @@ export const FocusButton = ({
       accessibilityLabel={label}
       style={[
         styles.button,
+        style,
         selected && styles.selected,
         focused && styles.focused,
       ]}>
-      <Text style={styles.label}>{label}</Text>
+      {children ?? (
+        <Text style={[styles.label, selected && styles.labelSelected]}>
+          {label}
+        </Text>
+      )}
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: 18,
-    paddingHorizontal: 36,
-    marginRight: 24,
-    marginBottom: 20,
-    borderRadius: 14,
-    borderWidth: 5,
-    borderColor: 'transparent',
-    backgroundColor: 'rgba(20,24,36,0.85)',
+    paddingVertical: s(14),
+    paddingHorizontal: s(28),
+    marginRight: s(16),
+    marginBottom: s(16),
+    borderRadius: 999,
+    borderWidth: 3,
+    borderColor: C.line,
+    backgroundColor: C.glass,
   },
-  selected: {backgroundColor: '#2446b8'},
-  focused: {borderColor: '#FFD400', transform: [{scale: 1.08}]},
-  label: {color: '#FFFFFF', fontSize: 34, fontWeight: '600'},
+  selected: {borderColor: C.lineStrong, backgroundColor: C.panel2},
+  focused: {
+    borderColor: C.accent,
+    backgroundColor: '#1d2116',
+    transform: [{scale: 1.06}],
+  },
+  label: {color: C.text, fontSize: s(28), fontWeight: '600'},
+  labelSelected: {color: C.accent},
 });

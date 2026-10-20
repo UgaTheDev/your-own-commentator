@@ -42,17 +42,37 @@ def _numbers(s):
 
 
 def allowed_numbers(facts):
+    """Numbers a line may state anywhere. Jersey values are left out: see jersey_numbers()."""
     found = set()
     if isinstance(facts, dict):
         for k, v in facts.items():
-            if k not in NOT_FACTS:
-                found |= _numbers(k) | allowed_numbers(v)
+            if k not in NOT_FACTS and k != "jersey":
+                found |= (set() if TEAM_JERSEY.match(str(k)) else _numbers(k)) | allowed_numbers(v)
     elif isinstance(facts, (list, tuple)):
         for v in facts:
             found |= allowed_numbers(v)
     elif facts is not None and not isinstance(facts, bool):
         found |= _numbers(facts)
     return found
+
+
+TEAM_JERSEY = re.compile(r"^\w+#\d+$")  # fantasy keys: "blue#5"
+
+
+def jersey_numbers(facts):
+    if isinstance(facts, dict):
+        return set().union(_numbers(facts["jersey"]) if facts.get("jersey") is not None else set(),
+                           *(_numbers(k.split("#")[1]) for k in facts if TEAM_JERSEY.match(str(k))),
+                           *(jersey_numbers(v) for k, v in facts.items() if k != "jersey"))
+    if isinstance(facts, (list, tuple)):
+        return set().union(*(jersey_numbers(v) for v in facts))
+    return set()
+
+
+# A jersey number may only be said AS a jersey: "number 5", "#5", "No. 5", "número 5", "नंबर 5", "5号".
+# Otherwise a jersey 5 in FACTS would license "blue scored 5 points" (it did, in a Lake Region recap).
+JERSEY_AFTER = re.compile(r"\s*(?:号|नंबर)")  # zh "5号", hi "५ नंबर"
+JERSEY_BEFORE = re.compile(r"(?:#|\bno\.|\bnumbers?|\bnúmero|\bdorsal|\bd?el|नंबर|जर्सी)\s*$", re.I)  # es: "el 23"
 
 
 EN_UNITS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
@@ -101,7 +121,14 @@ def spelled_numbers(text):
 
 def unsupported_digits(text, facts):
     """Numbers in `text` that appear nowhere in `facts`. Empty set = passes the gate."""
-    return (_numbers(text) | spelled_numbers(text)) - allowed_numbers(facts)
+    allowed, jerseys, bad = allowed_numbers(facts), jersey_numbers(facts), set()
+    for m in NUMBER.finditer(text):
+        n = _canon(m.group())
+        # ponytail: "Pink 5" is NOT a jersey cue: lines say scores that way ("white 51, maroon 34")
+        as_jersey = JERSEY_BEFORE.search(text[:m.start()]) or JERSEY_AFTER.match(text[m.end():])
+        if n not in allowed and not (n in jerseys and as_jersey):
+            bad.add(n)
+    return bad | (spelled_numbers(text) - allowed)
 
 
 # Third gate: every play a line names must be a play in FACTS. {lang: [(regex, event types it names)]}

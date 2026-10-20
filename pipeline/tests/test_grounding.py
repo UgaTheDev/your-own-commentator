@@ -13,7 +13,7 @@ FACTS = {
 
 def test_grounded_line_passes():
     assert unsupported_digits("Number 23 hits the 3! Red leads 31 to 28.", FACTS) == set()
-    assert unsupported_digits("That's 4.4 fantasy points for 23.", FACTS) == set()
+    assert unsupported_digits("That's 4.4 fantasy points for number 23.", FACTS) == set()
 
 
 def test_invented_number_and_wrong_jersey_rejected():
@@ -47,3 +47,19 @@ def test_spelled_numbers_are_checked_too():
     assert unsupported_digits("blanco cuarenta y cuatro, granate treinta", facts) == {"44"}
     assert unsupported_digits("比分四十四比三十", facts) == {"44"}
     assert unsupported_digits("El equipo anota una canasta", facts) == set()  # 'una' is an article, not a number
+
+
+def test_jersey_number_only_counts_as_a_jersey():
+    # Lake Region recap: jersey 5 in FACTS let "Blue scored 5 points" through when blue scored 4
+    facts = {"plays": [{"type": "ft_made", "team": "blue", "jersey": 5}, {"type": "made_3", "team": "blue", "jersey": None}],
+             "state": {"score": {"pink": 13, "blue": 6}}}
+    assert unsupported_digits("Blue scored 5 points; pink 13, blue 6.", facts) == {"5"}
+    assert unsupported_digits("Number 5 hits the free throw. Pink 13, blue 6.", facts) == set()
+    assert unsupported_digits("#5 at the line, 5号 scores.", facts) == set()
+    assert unsupported_digits("Pink 13, blue 5.", facts) == {"5"}  # a wrong score dressed as a jersey
+
+
+def test_fantasy_keys_are_jerseys_not_free_numbers():
+    facts = {"state": {"score": {"pink": 13, "blue": 6}, "fantasy": {"blue#5": 1}}}
+    assert unsupported_digits("Blue scored 5 points.", facts) == {"5"}
+    assert unsupported_digits("Number 5 has 1 fantasy point.", facts) == set()

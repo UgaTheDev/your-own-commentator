@@ -29,18 +29,18 @@ def test_speakable_keeps_only_accepted_unless_dev_flag(capsys):
 
 
 def test_booth_pbp_then_analyst_when_there_is_room(monkeypatch):
-    prompts = scripted(monkeypatch, ["Red 23 hits the 3!", OK, "Behind the arc, so it's worth 3.", OK])
+    prompts = scripted(monkeypatch, ["Number 23 hits the 3!", OK, "Behind the arc, so it's worth 3.", OK])
     lines, rej = booth.booth_event(PERSONAS, EVENT, FACTS, gap=8.0)
     assert rej == [] and [(x["role"], x["voice"], x["priority"]) for x in lines] == [("pbp", "Matthew", 3),
                                                                                        ("analyst", "Ruth", 0)]
-    assert "Red 23 hits the 3!" in prompts[2]  # the analyst reacts to the call
+    assert "Number 23 hits the 3!" in prompts[2]  # the analyst reacts to the call
 
 
 def test_booth_no_analyst_without_room_and_analyst_is_gated(monkeypatch):
-    scripted(monkeypatch, ["Red 23 hits the 3!", OK])
+    scripted(monkeypatch, ["Number 23 hits the 3!", OK])
     lines, _ = booth.booth_event(PERSONAS, EVENT, FACTS, gap=2.5)
     assert [x["role"] for x in lines] == ["pbp"]
-    scripted(monkeypatch, ["Red 23 hits the 3!", OK, "Red leads by 40!", "That's 9 in a row!"])
+    scripted(monkeypatch, ["Number 23 hits the 3!", OK, "Red leads by 40!", "That's 9 in a row!"])
     lines, rej = booth.booth_event(PERSONAS, EVENT, FACTS, gap=8.0)
     assert [x["role"] for x in lines] == ["pbp"] and rej[0]["role"] == "analyst" and "numbers" in rej[0]["reason"]
 

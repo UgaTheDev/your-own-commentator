@@ -95,7 +95,15 @@ def index(pairs):
         url = f"https://{cdn}/{clip_id}/manifest.json"
         req = urllib.request.Request(url, headers={"User-Agent": UA})
         assert urllib.request.urlopen(req).status == 200, url
-        clips.append({"clipId": clip_id, "title": title, "manifestUrl": url, "attribution": clip["attribution"]})
+        # Home's game cards: poster frame, teams and the segment's final score, without loading the manifest
+        poster = common.DATA / ".cache" / "posters" / f"{clip_id}.jpg"
+        poster.parent.mkdir(parents=True, exist_ok=True)
+        run("ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-ss", "150", "-i",
+            f"https://{cdn}/{clip_id}/render/rookie-en.mp4", "-frames:v", "1", "-vf", "scale=960:-2", "-q:v", "3", poster)
+        run("aws", "s3", "cp", poster, f"s3://{bucket}/published/{clip_id}/poster.jpg", "--content-type", "image/jpeg")
+        final = common.load(common.clip_dir(clip_id) / "state.json")[-1]["score"]
+        clips.append({"clipId": clip_id, "title": title, "manifestUrl": url, "attribution": clip["attribution"],
+                      "poster": f"https://{cdn}/{clip_id}/poster.jpg", "teams": clip["teams"], "final": final})
     doc = {"clips": clips}
     jsonschema.validate(doc, common.load(ROOT / "schemas" / "clips.schema.json"))
     out = common.DATA / "clips.json"

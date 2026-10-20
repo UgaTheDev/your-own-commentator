@@ -103,10 +103,10 @@ export const trackName = (tr: Track) => NAMES[tr.id] ?? tr.label;
 
 // One line under each commentator on Home.
 const TAGLINES: Record<string, string> = {
-  'rookie-en': 'Explains every rule as it happens',
+  'rookie-en': 'Explains every rule',
   'kid-en': 'Short, fun, easy words',
-  'booth-en': 'Play-by-play and analyst, two voices',
-  'fantasy-en': 'Tracks the points that matter',
+  'booth-en': 'Play-by-play + analyst',
+  'fantasy-en': 'Points that matter',
   'rookie-es': 'Rookie, in Spanish',
   'rookie-hi': 'Rookie, in Hindi',
   'rookie-zh': 'Rookie, in Mandarin',

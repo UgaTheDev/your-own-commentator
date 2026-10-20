@@ -24,6 +24,14 @@ interface Props {
   onSelect: (track: Track) => void;
 }
 
+// Card name without the bracketed language: the tag beside it says that.
+const shortName = (tr: Track) => trackName(tr).replace(/\s*\(.*\)$/, '');
+// "Hazen vs X (girls varsity)" -> ["Hazen vs X", "GIRLS VARSITY"]
+const splitTitle = (t: string) => {
+  const m = t.match(/^(.*?)\s*\((.*)\)$/);
+  return m ? [m[1], m[2].toUpperCase()] : [t, ''];
+};
+
 const LANG: Record<string, string> = {en: 'EN', es: 'ES', hi: 'HI', zh: 'ZH'};
 
 const Score = ({final, teams}: {final: Record<string, number>; teams: string[]}) => (
@@ -83,8 +91,16 @@ export const Home = ({
               <View style={styles.poster} />
             )}
             <View style={styles.gameInfo}>
+              <Text
+                style={[
+                  eyebrow,
+                  g.manifestUrl === gameUrl && styles.accentText,
+                ]}>
+                {g.manifestUrl === gameUrl ? '● ' : ''}
+                {splitTitle(g.title)[1]}
+              </Text>
               <Text style={styles.gameTitle} numberOfLines={1}>
-                {g.title}
+                {splitTitle(g.title)[0]}
               </Text>
               {g.final && g.teams && <Score final={g.final} teams={g.teams} />}
             </View>
@@ -114,7 +130,7 @@ export const Home = ({
               style={styles.track}>
               <View style={styles.trackTop}>
                 <Text style={styles.trackName} numberOfLines={1}>
-                  {trackName(tr)}
+                  {shortName(tr)}
                 </Text>
                 <Text style={styles.lang}>
                   {tr.kind === 'booth' ? '2 VOICES' : LANG[tr.lang] ?? tr.lang}
@@ -196,7 +212,7 @@ const styles = StyleSheet.create({
     marginRight: s(12),
   },
   statusText: {color: C.text},
-  section: {marginTop: s(28), marginBottom: s(14)},
+  section: {marginTop: s(22), marginBottom: s(12)},
   row: {flexDirection: 'row', flexWrap: 'wrap'},
   game: {
     width: s(520),
@@ -205,9 +221,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: C.panel,
   },
-  poster: {width: '100%', height: s(200), backgroundColor: C.panel2},
+  poster: {width: '100%', height: s(180), backgroundColor: C.panel2},
   gameInfo: {paddingVertical: s(14), paddingHorizontal: s(18)},
-  gameTitle: {color: C.text, fontSize: s(26), fontWeight: '700'},
+  gameTitle: {
+    color: C.text,
+    fontSize: s(30),
+    fontWeight: '700',
+    marginTop: s(4),
+  },
   scoreRow: {flexDirection: 'row', marginTop: s(10)},
   chip: {
     borderRadius: s(8),
@@ -242,7 +263,7 @@ const styles = StyleSheet.create({
     marginLeft: s(10),
   },
   tagline: {color: C.muted, fontSize: s(22), marginTop: s(6)},
-  accentCard: {backgroundColor: C.accentSoft, borderColor: '#4d4410'},
+  accentCard: {backgroundColor: C.accentSoft},
   accentText: {color: C.accent},
   footer: {
     position: 'absolute',

@@ -782,7 +782,7 @@ export const Player = ({
           {manifest.tracks.map((tr) => (
             <FocusButton
               key={tr.id}
-              label={trackName(tr)}
+              label={trackName(tr).replace(/\s*\(.*\)$/, '')}
               selected={tr.id === track.id}
               onPress={() => switchTo(tr)}
               hasTVPreferredFocus={!refocusWhy && tr.id === initial.id}
@@ -975,10 +975,17 @@ const styles = StyleSheet.create({
   switchingText: {color: C.text, fontSize: s(48), fontWeight: '700'},
   bar: {
     position: 'absolute',
-    bottom: '4%',
-    left: '5%',
-    right: '5%',
+    bottom: 0,
+    left: 0,
+    right: 0,
     flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    paddingTop: s(18),
+    paddingBottom: s(10),
+    paddingHorizontal: '3%',
+    backgroundColor: 'rgba(7,11,16,0.82)',
+    borderTopWidth: 2,
+    borderTopColor: C.line,
   },
 });

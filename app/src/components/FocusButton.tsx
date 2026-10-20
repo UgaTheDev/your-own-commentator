@@ -58,9 +58,9 @@ export const FocusButton = ({
 
 const styles = StyleSheet.create({
   button: {
-    paddingVertical: s(14),
-    paddingHorizontal: s(28),
-    marginRight: s(16),
+    paddingVertical: s(12),
+    paddingHorizontal: s(22),
+    marginRight: s(12),
     marginBottom: s(16),
     borderRadius: 999,
     borderWidth: 3,
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#1d2116',
     transform: [{scale: 1.06}],
   },
-  label: {color: C.text, fontSize: s(28), fontWeight: '600'},
+  label: {color: C.text, fontSize: s(26), fontWeight: '600'},
   labelSelected: {color: C.accent},
 });

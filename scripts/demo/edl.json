@@ -1,0 +1,32 @@
+{
+  "_note": "Final cut. Times are seconds in each take (out/<take>.mp4 + .wav, cropped from the VVD window). take2: Home, Rookie, switches, Booth, highlights. take4: Fantasy, Why?, Replay, Map. hook: phone question. catchup: re-shot after the recap fix.",
+  "out": "scripts/demo/out/demo.mp4",
+  "vo_dir": "scripts/demo/out/vo",
+  "screen": "scripts/demo/out/take2.mp4",
+  "audio": "scripts/demo/out/take2.wav",
+  "segments": [
+    {"type": "screen", "file": "scripts/demo/out/hookA.mp4", "audio": "scripts/demo/out/hookA.wav", "in": 0, "out": 7, "vo": [["hook", 0.2]]},
+    {"type": "screen", "file": "scripts/demo/out/hook.mp4", "audio": "scripts/demo/out/hook.wav", "in": 13.9, "out": 21.8},
+    {"type": "card", "file": "scripts/demo/out/cards/title.png", "in": 0, "out": 3},
+    {"type": "screen", "in": 1.0, "out": 8.0, "vo": [["pick", 0.4]]},
+    {"type": "screen", "in": 37.5, "out": 48.5, "vo": [["rules", 0.3]]},
+    {"type": "screen", "in": 54.8, "out": 56.0, "vo": [["switch", 0.2]]},
+    {"type": "screen", "in": 59.8, "out": 62.3},
+    {"type": "screen", "in": 79.0, "out": 80.4},
+    {"type": "screen", "in": 82.6, "out": 88.0},
+    {"type": "screen", "in": 95.2, "out": 96.4},
+    {"type": "screen", "in": 99.1, "out": 103.0},
+    {"type": "screen", "in": 118.5, "out": 119.6, "vo": [["booth", 0.1]]},
+    {"type": "screen", "in": 122.2, "out": 132.6},
+    {"type": "screen", "file": "scripts/demo/out/take4.mp4", "audio": "scripts/demo/out/take4.wav", "in": 219.0, "out": 226.0},
+    {"type": "screen", "file": "scripts/demo/out/take4.mp4", "audio": "scripts/demo/out/take4.wav", "in": 226.0, "out": 229.0},
+    {"type": "screen", "file": "scripts/demo/out/take4.mp4", "audio": "scripts/demo/out/take4.wav", "in": 239.6, "out": 247.2},
+    {"type": "screen", "file": "scripts/demo/out/take4.mp4", "audio": "scripts/demo/out/take4.wav", "in": 175.3, "out": 187.5, "vo": [["why", 0.4]]},
+    {"type": "screen", "file": "scripts/demo/out/take4.mp4", "audio": "scripts/demo/out/take4.wav", "in": 251.0, "out": 256.0},
+    {"type": "screen", "file": "scripts/demo/out/catchup.mp4", "audio": "scripts/demo/out/catchup.wav", "in": 0.0, "out": 13.3, "vo": [["catchup", 0.2]]},
+    {"type": "card", "file": "scripts/demo/out/cards/hood-pipeline.png", "in": 0, "out": 12.4, "vo": [["hood", 0.6]]},
+    {"type": "card", "file": "scripts/demo/out/cards/hood-numbers.png", "in": 0, "out": 12.6, "vo": [["numbers", 0.5]]},
+    {"type": "screen", "in": 140.0, "out": 148.0, "vo": [["close", 0.6]]},
+    {"type": "card", "file": "scripts/demo/out/cards/end.png", "in": 0, "out": 4.5}
+  ]
+}

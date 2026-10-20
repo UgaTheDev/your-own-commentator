@@ -6,12 +6,12 @@
 
 ## Needs Kush
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
-- **`! aws login`**: the session expired; needed to scale the talk-back relay for the phone test and the video.
-- **Walkthrough + phone test**: say "ready for phone test"; I start the VVD and relay, you watch and ask on your phone.
-- **Record the video (Oct 21)**: shot list and OBS setup in VIDEO.md; upload to YouTube/Vimeo.
-- **Submit (Oct 22)**: paste DEVPOST.md into Devpost; approve the repo going public (`gh repo edit --visibility public`).
+- **Watch the demo video** (2:29): `scripts/demo/out/YourOwnCommentator-demo.mp4` (Finder has it selected). Say what to change.
+- **Upload it** to YouTube (Public or Unlisted), title "Your Own Commentator: pick your own sports commentator on Fire TV", description = the attribution line in SOURCES.md.
+- **Submit on Devpost (by Oct 22)**: paste DEVPOST.md sections + the video link; repo https://github.com/UgaTheDev/your-own-commentator (public).
 
 ## Done since last update
+- 2026-10-20 (pm): app redesign (control-room theme, game cards, single-row controls); phone page restyle; phone talk-back test passed on the real relay; demo video recorded fully automated (ScreenCaptureKit window capture with device audio, remote keys driven by the app's playhead log, Polly narration + cards) and cut to 2:29; caught and fixed a recap that said 5 points for 4 (jersey numbers now only count as jerseys), re-audited all 3 games: 0 failures; relay scaled to 0.
 - 2026-10-20: freeze pass. Full suite green (174 pipeline, 21 CV, 24 app); fixed replay CDN URL scheme bug in cv/publish_replays.py; secret scan of history clean; published game outputs committed; DEVPOST.md and VIDEO.md drafted. Dropped by Kush: root MFA, Bedrock playground credit. Worker protocol: not added (STATUS.md already serves the orchestrator).
 - 2026-09-28: 3 licensed games live (games index https://d2og06dnam3owj.cloudfront.net/clips.json); score-graphic reader points-exact on all 3, Nova video-only 5/182 (P=0.03); verified jerseys (3/7), 64 s highlight reel, game picker, Alexa+ MCP server (local). Gate now checks spelled-out numbers (en/es/zh), spelled jerseys, pronouns; all 3 live manifests audited 0 mismatched numbers. Friction log 40 rows.
 - 2026-09-27: all v2 streams merged. Demo manifest (reviewed events only) live with 7 tracks, 9 recaps, 7 replays, minimap, talk + party URLs. Eval: scoreboard 7/7 (P=1.00), Nova video-only P=0.03.

@@ -21,3 +21,7 @@ Events matched on type and |dt| <= 2.0s, one-to-one.
 | scoreboard | 9 | 5 | 5 | 0.64 | 0.64 | 6s |
 
 Reviewed by: claude (AI review: spot-check welcome)
+
+## Faithfulness
+
+**0 unsupported / 94 lines** (a line counts as unsupported if it failed the grounding check or the judge)

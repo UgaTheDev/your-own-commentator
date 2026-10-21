@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {BackHandler, StyleSheet, Text, View} from 'react-native';
 import {
   AudioPlayer,
@@ -6,7 +6,23 @@ import {
   VideoPlayer,
 } from '@amazon-devices/react-native-w3cmedia';
 import {FocusButton} from '../components/FocusButton';
-import {C, eyebrow, s, team} from '../theme';
+import {C, SAFE, T, eyebrow, personaOf, s, team} from '../theme';
+import {PersonaIcon} from '../components/Brand';
+import {
+  Caption,
+  CodeBadge,
+  MiniMap,
+  ModeTag,
+  PausedPill,
+  PhoneRow,
+  Play,
+  RuleCard,
+  ScoreBug,
+  SwitchCard,
+  TeamChip,
+  glass,
+} from '../components/player/Overlays';
+import {PTS, eventLabel, flashAt, playLabel, teamTag} from '../components/player/labels';
 import {AUTOPILOT, TALK_WS_URL} from '../config';
 import {TalkAnswer, connectTalk} from '../talk';
 import {PartyView} from './Home';
@@ -26,9 +42,8 @@ const CARD_SECS = 6;
 const CAPTION_SECS = 6;
 const TOAST_MS = 2500;
 const ROLE = {pbp: 'PLAY-BY-PLAY', analyst: 'ANALYST'};
-const COURT = {w: 28.65, h: 15.24}; // meters, C3 minimap units
-const MAP_W = s(330);
-const MAP_H = (MAP_W * COURT.h) / COURT.w;
+// Strip / tray name without the bracketed language.
+const shortName = (tr: Track) => trackName(tr).replace(/\s*\(.*\)$/, '');
 // console.warn: info level is suppressed for the first seconds after launch
 // @epoch ms lets scripts/demo rebuild the soundtrack of a screen recording from this log
 const log = (msg: string) => console.warn(`YOC: @${Date.now()} ${msg}`);
@@ -45,7 +60,7 @@ const once = (v: Media, type: string, fn: () => void) => {
 
 // What covers the game while the video is paused.
 type Overlay =
-  | {kind: 'why'; eventId: string; questions: Question[]; answer?: string}
+  | {kind: 'why'; eventId: string; questions: Question[]; answer?: string; q?: string}
   | {kind: 'recap'; text: string}
   | {kind: 'answer'; text: string} // C4 talk-back answer, shown as an ANALYST caption
   | {kind: 'predict'}; // C6: next basket, Pink or Blue (the game keeps playing)
@@ -81,17 +96,33 @@ export const Player = ({
   const pendingSeek = useRef<number | null>(null);
   const replayingRef = useRef(false);
   const [replaying, setReplaying] = useState(false);
+  const [replayEvent, setReplayEvent] = useState<string | null>(null);
   const [reel, setReel] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [code, setCode] = useState<string | null>(null);
-  // Once a Why/recap card has closed, D-pad focus goes back to "Why?".
-  const [refocusWhy, setRefocusWhy] = useState(false);
+  // Which strip button takes D-pad focus: the commentator button at start and after the tray closes,
+  // "Why?" once a Why/recap card has closed.
+  const [refocus, setRefocus] = useState<'why' | 'voice'>('voice');
   // Bumped to remount "Why?" so it takes focus when the focused Replay button disappears.
   const [whyKey, setWhyKey] = useState(0);
+  // 3c commentator tray; bumped key remounts the strip button so focus returns to it on close.
+  const [tray, setTrayState] = useState(false);
+  const trayRef = useRef(false);
+  const [voiceKey, setVoiceKey] = useState(0);
+  const setTray = (open: boolean, refocusVoice = false) => {
+    trayRef.current = open;
+    setTrayState(open);
+    if (refocusVoice) {
+      setRefocus('voice');
+      setVoiceKey((k) => k + 1);
+    }
+  };
   const replayFocused = useRef(false);
   // A talk answer that arrives mid-replay waits here until the replay ends.
   const pendingAnswer = useRef<TalkAnswer | null>(null);
-  const [switching, setSwitching] = useState<string | null>(null);
+  const [switching, setSwitching] = useState<{from: Track; to: Track} | null>(
+    null,
+  );
   const [overlay, setOverlayState] = useState<Overlay | null>(null);
   const overlayRef = useRef<Overlay | null>(null);
   const setOverlay = (o: Overlay | null) => {
@@ -166,7 +197,7 @@ export const Player = ({
     speakId.current++;
     audio.current?.pause();
     if (overlayRef.current.kind !== 'answer') {
-      setRefocusWhy(true);
+      setRefocus('why');
     }
     setOverlay(null);
     player.current?.play();
@@ -230,7 +261,7 @@ export const Player = ({
     if (o?.kind !== 'why' || !ans) {
       return;
     }
-    setOverlay({...o, answer: ans.text});
+    setOverlay({...o, answer: ans.text, q: q.q});
     log(`why answer "${q.q}" -> ${ans.audioUrl}`);
     speak(ans.audioUrl, 'why');
   };
@@ -256,7 +287,10 @@ export const Player = ({
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       log('back');
-      if (overlayRef.current) {
+      if (trayRef.current) {
+        setTray(false, true);
+        log('tray closed (back)');
+      } else if (overlayRef.current) {
         closeOverlay('back');
       } else {
         onBack();
@@ -318,18 +352,18 @@ export const Player = ({
     setTimeout(() => finish('switch timeout'), 10000);
   };
 
-  const seek = (s: number) => {
+  const seek = (sec: number) => {
     const v = player.current;
     if (!v) {
       return;
     }
     if (switchingNow.current) {
-      pendingSeek.current = s;
-      log(`seek ${s} queued (switch in progress)`);
+      pendingSeek.current = sec;
+      log(`seek ${sec} queued (switch in progress)`);
       return;
     }
-    v.currentTime = s;
-    log(`seek ${s}`);
+    v.currentTime = sec;
+    log(`seek ${sec}`);
   };
 
   const switchTo = (next: Track) => {
@@ -339,7 +373,7 @@ export const Player = ({
     }
     const saved = v.currentTime;
     setTrack(next);
-    setSwitching(trackName(next));
+    setSwitching({from: track, to: next});
     log(`switch to ${next.id} at t=${saved.toFixed(2)}`);
     loadSrc(next.src, saved, next.id);
   };
@@ -363,6 +397,7 @@ export const Player = ({
     }
     replayingRef.current = true;
     setReplaying(true);
+    setReplayEvent(r.eventId);
     log(`replay ${r.eventId} at t=${saved.toFixed(2)} -> ${r.src}`);
     loadSrc(r.src, 0, `replay ${r.eventId}`, () =>
       setTimeout(() => {
@@ -569,6 +604,28 @@ export const Player = ({
   const replayHere =
     !!manifest.replays && (replaying || !!replayAt(manifest, t));
   const panelOpen = !!overlay && overlay.kind !== 'answer';
+  const scoring = useMemo(
+    () => manifest.events.filter((e) => PTS[e.type] && e.team),
+    [manifest],
+  );
+  const flash = flashAt(scoring, t);
+  const persona = personaOf(track.id);
+  const name = shortName(track);
+  const teams = Object.keys(manifest.state[0]?.score ?? {});
+  const evById = (id: string | null) =>
+    manifest.events.find((e) => e.id === id) ?? null;
+  const replayEv = replaying ? evById(replayEvent) : null;
+  const replayLabel = replayEv ? eventLabel(replayEv) : null;
+  // ponytail: the banner text carries no team, so its colour comes from the latest basket at the playhead
+  const lastBasket = party?.banner ? flashAt(scoring, t, Infinity) : null;
+  const trayOpen = tray && !panelOpen;
+  // Strip focus moving down/sideways out of the tray closes it (▼ closes, per 3c).
+  const stripFocus = (f: boolean) => {
+    if (f && trayRef.current) {
+      setTray(false);
+      log('tray closed (focus)');
+    }
+  };
 
   useEffect(() => {
     // ponytail: log every 10th frame (5 s at 2 Hz) as evidence the map moves
@@ -586,7 +643,7 @@ export const Player = ({
     log(`replay control ${replayHere ? 'shown' : 'hidden'} t=${t.toFixed(2)}`);
     if (!replayHere && replayFocused.current) {
       replayFocused.current = false;
-      setRefocusWhy(true);
+      setRefocus('why');
       setWhyKey((k) => k + 1);
       log('replay gone while focused, focus back to Why?');
     }
@@ -619,6 +676,28 @@ export const Player = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [caption]);
 
+  const whyEv = overlay?.kind === 'why' ? evById(overlay.eventId) : null;
+  const whyTag = whyEv ? teamTag(whyEv) : null;
+  const whyCard = whyEv?.ruleCardId ? manifest.ruleCards[whyEv.ruleCardId] : undefined;
+  // "Replay play" only when the playhead's replay is this Why's play (replay() picks by playhead).
+  const whyReplay =
+    !!whyEv && replayAt(manifest, t)?.eventId === whyEv.id;
+  const resume = (text: string, primary = true, focus = true) => (
+    <FocusButton
+      label="Back to game"
+      primary={primary}
+      onPress={() => closeOverlay('button')}
+      hasTVPreferredFocus={focus}
+      style={styles.panelBtn}>
+      <View style={styles.btnRow}>
+        <Play color={primary ? C.accentInk : C.text} />
+        <Text style={[styles.btnText, primary && {color: C.accentInk}]}>
+          {text}
+        </Text>
+      </View>
+    </FocusButton>
+  );
+
   return (
     <View style={styles.root}>
       <KeplerVideoSurfaceView
@@ -628,177 +707,321 @@ export const Player = ({
           player.current?.clearSurfaceHandle(h)
         }
       />
-      {score && (
-        <View style={styles.scoreBug}>
-          {Object.entries(score).map(([k, v]) => (
-            <Text
-              key={k}
-              style={[
-                styles.team,
-                {backgroundColor: team(k).bg, color: team(k).ink},
-              ]}>
-              {k.toUpperCase()} {v}
-            </Text>
-          ))}
-        </View>
+      {/* dim: 25% while switching (3d), 50% while Why?/Catch me up pause the game (4a-4c) */}
+      {(switching ||
+        overlay?.kind === 'why' ||
+        overlay?.kind === 'recap') && (
+        <View
+          pointerEvents="none"
+          style={[
+            styles.video,
+            {backgroundColor: `rgba(0,0,0,${switching ? 0.25 : 0.5})`},
+          ]}
+        />
       )}
-      {code && (
-        <View style={styles.badge}>
-          <Text style={styles.badgeText}>Ask on your phone: {code}</Text>
-        </View>
-      )}
-      {party && (
-        <View style={styles.party}>
-          <Text style={styles.badgeText}>
-            Party {party.code}:{' '}
-            {party.members.map((m) => `${m.name} ${m.points}`).join(' · ')}
+      {replaying && <View pointerEvents="none" style={styles.replayFrame} />}
+      {score && <ScoreBug score={score} flash={flash} />}
+      {(overlay?.kind === 'why' || overlay?.kind === 'recap') && <PausedPill />}
+      {code && !panelOpen && <CodeBadge code={code} />}
+      {party && !panelOpen && (
+        <View style={[styles.party, glass]}>
+          <Text style={styles.partyText}>
+            Party <Text style={styles.accentBold}>{party.code}</Text>
+            {party.members.length
+              ? ` · ${party.members.map((m) => `${m.name} ${m.points}`).join(' · ')}`
+              : ''}
           </Text>
-        </View>
-      )}
-      {party?.banner && (
-        <View style={styles.banner}>
-          <Text style={styles.switchingText}>{party.banner}</Text>
-        </View>
-      )}
-      {frame && (
-        <View style={styles.map}>
-          <View style={styles.midline} />
-          {frame.players.map((p) => (
-            <View
-              key={p.id}
-              style={[
-                styles.dot,
-                {
-                  left: (p.x / COURT.w) * MAP_W - s(8),
-                  top: (p.y / COURT.h) * MAP_H - s(8),
-                  backgroundColor: team(p.team).bg,
-                },
-              ]}
-            />
-          ))}
-          {frame.ball && (
-            <View
-              style={[
-                styles.ball,
-                {
-                  left: (frame.ball.x / COURT.w) * MAP_W - s(6),
-                  top: (frame.ball.y / COURT.h) * MAP_H - s(6),
-                },
-              ]}
-            />
-          )}
         </View>
       )}
       {(replaying || reel) && (
-        <View style={styles.replayTag}>
-          <Text style={styles.role}>{reel ? 'HIGHLIGHTS' : 'REPLAY'}</Text>
-        </View>
+        <ModeTag kind={reel ? 'highlights' : 'replay'} detail={replayLabel} />
       )}
-      {card && !overlay && (
-        <View style={[styles.card, frame ? styles.cardLow : null]}>
-          <Text style={styles.cardTitle}>{card.title}</Text>
-          <Text style={styles.cardBody}>{card.body}</Text>
-        </View>
+      {card && !overlay && ev && (
+        <RuleCard
+          title={card.title}
+          body={card.body}
+          left={1 - (t - ev.t) / CARD_SECS}
+        />
       )}
-      {caption && !overlay && (
-        <View style={styles.caption}>
-          {caption.role && (
-            <Text style={styles.role}>{ROLE[caption.role]}</Text>
-          )}
-          <Text style={styles.captionText}>{caption.text}</Text>
-        </View>
+      {frame && !trayOpen && <MiniMap frame={frame} />}
+      {caption && !overlay && !trayOpen && !switching && (
+        <Caption
+          persona={persona}
+          role={caption.role}
+          speaker={name}
+          text={caption.text}
+        />
       )}
-      {overlay?.kind === 'answer' && (
-        <View style={styles.caption}>
-          <Text style={styles.role}>{ROLE.analyst}</Text>
-          <Text style={styles.captionText}>{overlay.text}</Text>
-        </View>
+      {overlay?.kind === 'answer' && !trayOpen && (
+        <Caption
+          persona={persona}
+          role="analyst"
+          speaker={name}
+          text={overlay.text}
+        />
       )}
-      {overlay && overlay.kind !== 'answer' && (
-        <View style={styles.panel}>
-          <Text style={styles.cardTitle}>
-            {overlay.kind === 'why'
-              ? 'Why?'
-              : overlay.kind === 'predict'
-              ? 'Next basket:'
-              : 'Catch me up'}
-          </Text>
-          {overlay.kind === 'predict' ? (
-            <View style={styles.row}>
-              {Object.keys(manifest.state[0]?.score ?? {}).map((k, i) => (
-                <FocusButton
-                  key={k}
-                  label={`${k[0].toUpperCase()}${k.slice(1)}`}
-                  onPress={() => predict(k)}
-                  hasTVPreferredFocus={i === 0}
-                />
-              ))}
-            </View>
-          ) : overlay.kind === 'why' && !overlay.answer ? (
-            overlay.questions.map((q, i) => (
-              <FocusButton
-                key={q.q}
-                label={q.q}
-                onPress={() => pick(q)}
-                hasTVPreferredFocus={i === 0}
-              />
-            ))
+      {overlay?.kind === 'why' && (
+        <View style={[styles.side, glass]}>
+          {!overlay.answer ? (
+            <>
+              <View style={styles.eyebrowRow}>
+                <View style={styles.qDisc}>
+                  <Text style={styles.qDiscText}>?</Text>
+                </View>
+                <Text style={[eyebrow, {color: C.accent}]}>
+                  WHY? · ABOUT THIS PLAY
+                </Text>
+              </View>
+              {whyEv && (
+                <View style={styles.context}>
+                  {whyEv.team && whyTag && (
+                    <TeamChip name={whyEv.team} text={whyTag.toUpperCase()} />
+                  )}
+                  <Text style={styles.soft}>{playLabel(whyEv.type)}</Text>
+                </View>
+              )}
+              <Text style={styles.h2}>What do you want to know?</Text>
+              <View style={styles.questions}>
+                {overlay.questions.map((q, i) => (
+                  <FocusButton
+                    key={q.q}
+                    label={q.q}
+                    onPress={() => pick(q)}
+                    hasTVPreferredFocus={i === 0}
+                    style={styles.question}>
+                    <View style={styles.btnRow}>
+                      <Text style={styles.qNum}>{i + 1}</Text>
+                      <Text style={styles.qText}>{q.q}</Text>
+                    </View>
+                  </FocusButton>
+                ))}
+              </View>
+              {code && <PhoneRow code={code} />}
+              <View style={styles.bottom}>{resume('Resume game', false, false)}</View>
+            </>
           ) : (
             <>
-              <Text style={styles.cardBody}>
-                {overlay.kind === 'why' ? overlay.answer : overlay.text}
-              </Text>
-              <FocusButton
-                label="Back to game"
-                onPress={() => closeOverlay('button')}
-                hasTVPreferredFocus
-              />
+              <View style={styles.answerHead}>
+                <View style={styles.eyebrowRow}>
+                  <PersonaIcon persona={persona} size={s(56)} />
+                  <Text style={[eyebrow, {color: C.accent}]}>
+                    {name.toUpperCase()} ANSWERS
+                  </Text>
+                </View>
+                <View style={styles.wave}>
+                  {[14, 30, 40, 22, 34, 16, 26].map((h, i) => (
+                    <View key={i} style={[styles.waveBar, {height: s(h)}]} />
+                  ))}
+                </View>
+              </View>
+              {overlay.q && <Text style={styles.echo}>“{overlay.q}”</Text>}
+              <Text style={styles.answer}>{overlay.answer}</Text>
+              <View style={styles.checked}>
+                <Text style={eyebrow}>CHECKED AGAINST</Text>
+                {[
+                  'Verified play log',
+                  'Game score',
+                  ...(whyCard ? [`Rule card: ${whyCard.title}`] : []),
+                ].map((src) => (
+                  <View key={src} style={styles.btnRow}>
+                    <Text style={styles.tick}>✓</Text>
+                    <Text style={styles.sourceText}>{src}</Text>
+                  </View>
+                ))}
+              </View>
+              <View style={[styles.bottom, styles.btnRow]}>
+                {resume('Resume')}
+                {whyReplay && (
+                  <FocusButton
+                    label="Replay play"
+                    onPress={() => {
+                      closeOverlay('replay');
+                      replay();
+                    }}
+                    style={styles.panelBtn}
+                  />
+                )}
+              </View>
             </>
           )}
         </View>
       )}
+      {overlay?.kind === 'recap' && (
+        <View style={[styles.recap, glass]}>
+          <View style={styles.answerHead}>
+            <Text style={[eyebrow, {color: C.accent}]}>
+              CATCH ME UP · LAST 2 MIN
+            </Text>
+            <View style={styles.eyebrowRow}>
+              <PersonaIcon persona={persona} size={s(44)} />
+              <Text style={styles.mutedText}>{name}</Text>
+            </View>
+          </View>
+          <Text style={styles.answer}>{overlay.text}</Text>
+          <View style={styles.btnRow}>{resume('Back to live')}</View>
+        </View>
+      )}
+      {overlay?.kind === 'predict' && (
+        <View style={[styles.predict, glass]}>
+          <Text style={[eyebrow, {color: C.accent}]}>PREDICT</Text>
+          <Text style={styles.predictH}>
+            Next basket: {teams.map((k) => `${k[0].toUpperCase()}${k.slice(1)}`).join(' or ')}?
+          </Text>
+          <View style={styles.btnRow}>
+            {teams.map((k, i) => (
+              <FocusButton
+                key={k}
+                label={`${k[0].toUpperCase()}${k.slice(1)}`}
+                onPress={() => predict(k)}
+                hasTVPreferredFocus={i === 0}
+                outerStyle={styles.flex}
+                style={styles.teamBtn}>
+                <View style={[styles.teamFill, {backgroundColor: team(k).bg}]}>
+                  <Text style={[styles.teamName, {color: team(k).ink}]}>
+                    {k.toUpperCase()}
+                  </Text>
+                </View>
+              </FocusButton>
+            ))}
+          </View>
+        </View>
+      )}
+      {party?.banner && (
+        <View
+          style={[
+            styles.banner,
+            lastBasket ? {backgroundColor: team(lastBasket.team).bg} : glass,
+          ]}>
+          {lastBasket && lastBasket.pts > 0 && (
+            <View style={styles.bannerPts}>
+              <Text style={styles.bannerBig}>+{lastBasket.pts}</Text>
+              <Text style={styles.bannerTeam}>
+                {lastBasket.team.toUpperCase()}
+              </Text>
+            </View>
+          )}
+          <Text
+            style={[
+              styles.bannerText,
+              {color: lastBasket ? team(lastBasket.team).ink : C.text},
+            ]}>
+            {party.banner}
+          </Text>
+        </View>
+      )}
       {toast && (
-        <View style={styles.switching}>
-          <Text style={styles.switchingText}>{toast}</Text>
+        <View style={styles.toastWrap} pointerEvents="none">
+          <View style={[styles.toast, glass]}>
+            <Text style={styles.toastText}>{toast}</Text>
+          </View>
         </View>
       )}
       {switching && (
-        <View style={styles.switching}>
-          <Text style={styles.switchingText}>Switching to {switching}…</Text>
+        <SwitchCard
+          key={switching.to.id}
+          from={personaOf(switching.from.id)}
+          to={personaOf(switching.to.id)}
+          name={shortName(switching.to)}
+        />
+      )}
+      {trayOpen && (
+        <View style={[styles.tray, glass]}>
+          {manifest.tracks.map((tr) => {
+            const onAir = tr.id === track.id;
+            return (
+              <FocusButton
+                key={tr.id}
+                label={shortName(tr)}
+                card
+                onPress={() => {
+                  switchTo(tr);
+                  setTray(false, true);
+                }}
+                hasTVPreferredFocus={onAir}
+                outerStyle={styles.flex}
+                style={[styles.trayItem, onAir && styles.onAirItem]}>
+                <View style={styles.trayRow}>
+                  <PersonaIcon persona={personaOf(tr.id)} size={s(60)} />
+                  <View style={styles.flex}>
+                    <Text style={styles.trayName} numberOfLines={1}>
+                      {shortName(tr)}
+                    </Text>
+                    <Text
+                      style={onAir ? styles.onAirText : styles.mutedText}
+                      numberOfLines={1}>
+                      {onAir ? '● ON AIR' : tr.lang.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+              </FocusButton>
+            );
+          })}
         </View>
       )}
-      {/* next: fantasy panel */}
-      {/* ponytail: the bar unmounts while a panel is open, so D-pad focus can't leave the panel */}
+      {/* ponytail: the strip unmounts while a panel is open, so D-pad focus can't leave the panel;
+          it never auto-hides (Vega gives no reliable key event to bring it back) */}
       {!panelOpen && (
-        <View style={styles.bar}>
+        <View style={[styles.strip, glass]}>
           <FocusButton
             key={`why${whyKey}`}
             label="Why?"
+            primary
             onPress={why}
-            hasTVPreferredFocus={refocusWhy && !panelOpen}
+            onFocusChange={stripFocus}
+            hasTVPreferredFocus={refocus === 'why' && !panelOpen}
+            outerStyle={styles.stripBtn}>
+            <View style={styles.btnRow}>
+              <View style={styles.whyDisc}>
+                <Text style={styles.whyDiscText}>?</Text>
+              </View>
+              <Text style={[styles.btnText, {color: C.accentInk}]}>Why?</Text>
+            </View>
+          </FocusButton>
+          <FocusButton
+            label="Catch me up"
+            onPress={catchUp}
+            onFocusChange={stripFocus}
+            outerStyle={styles.stripBtn}
           />
-          <FocusButton label="Catch me up" onPress={catchUp} />
-          {party && <FocusButton label="Predict" onPress={openPredict} />}
-          {manifest.tracks.map((tr) => (
+          {party && (
             <FocusButton
-              key={tr.id}
-              label={trackName(tr).replace(/\s*\(.*\)$/, '')}
-              selected={tr.id === track.id}
-              onPress={() => switchTo(tr)}
-              hasTVPreferredFocus={!refocusWhy && tr.id === initial.id}
+              label="Predict"
+              onPress={openPredict}
+              onFocusChange={stripFocus}
+              outerStyle={styles.stripBtn}
             />
-          ))}
+          )}
+          <FocusButton
+            key={`voice${voiceKey}`}
+            label="Commentators"
+            selected={trayOpen}
+            onPress={() => setTray(!trayRef.current, trayRef.current)}
+            onFocusChange={stripFocus}
+            hasTVPreferredFocus={refocus === 'voice' && !trayOpen}
+            outerStyle={styles.stripBtn}
+            style={styles.voiceBtn}>
+            <View style={styles.btnRow}>
+              <PersonaIcon persona={persona} size={s(48)} />
+              <Text style={[styles.btnText, trayOpen && {color: C.accent}]}>
+                {name} ▲
+              </Text>
+            </View>
+          </FocusButton>
           {manifest.minimap && (
             <FocusButton
               label="Map"
               selected={showMap}
               onPress={() => setShowMap((on) => !on)}
+              onFocusChange={stripFocus}
+              outerStyle={styles.stripBtn}
             />
           )}
           {manifest.highlights && (
             <FocusButton
               label={reel ? 'Highlights…' : 'Highlights'}
               onPress={() => highlights()}
+              onFocusChange={stripFocus}
+              outerStyle={styles.stripBtn}
             />
           )}
           {/* ponytail: last in the bar so showing/hiding it doesn't shift the others */}
@@ -808,9 +1031,17 @@ export const Player = ({
               onPress={replay}
               onFocusChange={(f) => {
                 replayFocused.current = f;
+                stripFocus(f);
               }}
+              outerStyle={styles.stripBtn}
             />
           )}
+          <View style={styles.onAir}>
+            <View style={styles.dot} />
+            <Text style={styles.mutedText} numberOfLines={1}>
+              On air: <Text style={styles.onAirName}>{name}</Text>
+            </Text>
+          </View>
         </View>
       )}
     </View>
@@ -820,172 +1051,180 @@ export const Player = ({
 const styles = StyleSheet.create({
   root: {flex: 1, backgroundColor: '#000'},
   video: {position: 'absolute', top: 0, left: 0, right: 0, bottom: 0},
-  scoreBug: {
+  flex: {flex: 1},
+  replayFrame: {
     position: 'absolute',
-    top: '5%',
-    left: '5%',
-    flexDirection: 'row',
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
-    borderRadius: s(12),
-    overflow: 'hidden',
-  },
-  team: {
-    color: C.text,
-    fontSize: s(40),
-    fontWeight: '800',
-    paddingVertical: s(10),
-    paddingHorizontal: s(24),
-  },
-  card: {
-    position: 'absolute',
-    top: '5%',
-    right: '5%',
-    width: '38%',
-    padding: s(28),
-    borderRadius: s(16),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
-    borderLeftWidth: s(8),
-    borderLeftColor: C.accent,
-  },
-  cardLow: {top: '32%'},
-  badge: {
-    position: 'absolute',
-    top: '14%',
-    left: '5%',
-    paddingVertical: s(8),
-    paddingHorizontal: s(16),
-    borderRadius: s(10),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderWidth: s(10),
+    borderColor: 'rgba(255,212,0,0.9)',
   },
   party: {
     position: 'absolute',
-    top: '21%',
-    left: '5%',
-    paddingVertical: s(8),
-    paddingHorizontal: s(16),
-    borderRadius: s(10),
-    backgroundColor: C.glass,
-    borderWidth: 2,
+    right: SAFE.x,
+    top: s(146),
+    maxWidth: s(760),
+    height: s(64),
+    justifyContent: 'center',
+    paddingHorizontal: s(24),
+    borderRadius: s(16),
+  },
+  partyText: {fontSize: s(24), fontWeight: '700', color: C.text},
+  accentBold: {color: C.accent, fontWeight: '800', letterSpacing: s(3.4)},
+  mutedText: {...T.body, color: C.muted},
+  soft: {...T.body, color: C.textSoft},
+  btnRow: {flexDirection: 'row', alignItems: 'center', gap: s(14)},
+  btnText: {fontSize: s(26), fontWeight: '700', color: C.text},
+  panelBtn: {minHeight: s(80), paddingHorizontal: s(32)},
+  side: {
+    position: 'absolute',
+    right: SAFE.x,
+    top: SAFE.y,
+    bottom: SAFE.y,
+    width: s(760),
+    padding: s(48),
+    borderRadius: s(28),
+    gap: s(20),
+  },
+  eyebrowRow: {flexDirection: 'row', alignItems: 'center', gap: s(14)},
+  qDisc: {
+    width: s(36),
+    height: s(36),
+    borderRadius: s(18),
+    backgroundColor: C.accent,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  qDiscText: {fontSize: s(24), fontWeight: '800', color: C.accentInk},
+  context: {flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: s(10)},
+  h2: {...T.h2, color: C.text, marginTop: s(4)},
+  questions: {gap: s(12), marginTop: s(8)},
+  question: {minHeight: s(120), borderRadius: s(16)},
+  qNum: {fontSize: s(24), fontWeight: '800', color: C.accent},
+  qText: {flex: 1, fontSize: s(28), lineHeight: s(36), fontWeight: '700', color: C.text},
+  bottom: {marginTop: 'auto'},
+  answerHead: {flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'},
+  wave: {flexDirection: 'row', alignItems: 'center', gap: s(5), height: s(40)},
+  waveBar: {width: s(6), borderRadius: s(3), backgroundColor: C.accent},
+  echo: {fontSize: s(26), lineHeight: s(36), color: C.muted},
+  answer: {fontSize: s(36), lineHeight: s(50), fontWeight: '700', color: C.text},
+  checked: {
+    gap: s(14),
+    padding: s(24),
+    borderRadius: s(20),
+    backgroundColor: C.panel,
+    borderWidth: 1,
     borderColor: C.line,
   },
-  banner: {
+  tick: {fontSize: s(24), fontWeight: '800', color: C.accent},
+  sourceText: {fontSize: s(24), lineHeight: s(32), color: C.text, flexShrink: 1},
+  recap: {
     position: 'absolute',
-    top: '30%',
-    alignSelf: 'center',
-    paddingVertical: s(20),
-    paddingHorizontal: s(40),
-    borderRadius: s(16),
-    backgroundColor: 'rgba(214,36,122,0.92)',
+    left: s(400),
+    top: s(240),
+    width: s(1120),
+    paddingVertical: s(48),
+    paddingHorizontal: s(56),
+    borderRadius: s(28),
+    gap: s(28),
   },
-  row: {flexDirection: 'row', marginTop: s(16)},
-  badgeText: {color: C.text, fontSize: s(26), fontWeight: '600'},
-  map: {
+  predict: {
     position: 'absolute',
-    top: '5%',
-    right: '5%',
-    width: MAP_W,
-    height: MAP_H,
-    borderWidth: 3,
-    borderColor: C.lineStrong,
-    backgroundColor: 'rgba(12,40,28,0.88)',
-    borderRadius: s(12),
+    left: SAFE.x,
+    bottom: SAFE.y,
+    width: s(1000),
+    paddingVertical: s(36),
+    paddingHorizontal: s(40),
+    borderRadius: s(28),
+    gap: s(24),
+  },
+  predictH: {fontSize: s(48), lineHeight: s(56), fontWeight: '800', color: C.text},
+  // the fill sits inside the box so FocusButton's focused background can't repaint the team colour
+  teamBtn: {
+    minHeight: s(120),
+    paddingHorizontal: 0,
+    borderWidth: 0,
+    borderRadius: s(20),
     overflow: 'hidden',
   },
-  midline: {
+  teamFill: {flex: 1, minHeight: s(120), justifyContent: 'center', paddingHorizontal: s(32)},
+  teamName: {fontSize: s(40), fontWeight: '800', letterSpacing: s(2.4)},
+  banner: {
     position: 'absolute',
-    left: MAP_W / 2 - 1,
-    top: 0,
-    bottom: 0,
-    width: s(2),
-    backgroundColor: '#FFFFFF',
-  },
-  dot: {position: 'absolute', width: s(16), height: s(16), borderRadius: s(8)},
-  ball: {
-    position: 'absolute',
-    width: s(12),
-    height: s(12),
-    borderRadius: s(6),
-    backgroundColor: '#FF9900',
-    borderWidth: 1,
-    borderColor: '#000',
-  },
-  replayTag: {
-    position: 'absolute',
-    top: '5%',
-    alignSelf: 'center',
-    paddingVertical: s(8),
-    paddingHorizontal: s(20),
-    borderRadius: s(10),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
-  },
-  panel: {
-    position: 'absolute',
-    top: '18%',
-    left: '5%',
-    width: '55%',
-    padding: s(32),
-    borderRadius: s(16),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
-    borderLeftWidth: s(8),
-    borderLeftColor: C.accent,
-    alignItems: 'flex-start',
-  },
-  cardTitle: {color: C.accent, fontSize: s(40), fontWeight: '800'},
-  cardBody: {
-    color: C.text,
-    fontSize: s(30),
-    lineHeight: s(40),
-    marginTop: s(12),
-    marginBottom: s(20),
-  },
-  caption: {
-    position: 'absolute',
-    bottom: '20%',
-    left: '10%',
-    right: '10%',
-    padding: s(20),
-    borderRadius: s(12),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.line,
-  },
-  role: {...eyebrow, color: C.accent},
-  captionText: {color: C.text, fontSize: s(34), lineHeight: s(44), marginTop: s(6)},
-  switching: {
-    position: 'absolute',
-    top: '42%',
-    alignSelf: 'center',
-    paddingVertical: s(24),
-    paddingHorizontal: s(48),
-    borderRadius: s(16),
-    backgroundColor: C.glass,
-    borderWidth: 2,
-    borderColor: C.lineStrong,
-  },
-  switchingText: {color: C.text, fontSize: s(48), fontWeight: '700'},
-  bar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    left: SAFE.x,
+    right: SAFE.x,
+    bottom: s(166),
+    height: s(200),
+    borderRadius: s(28),
+    overflow: 'hidden',
     flexDirection: 'row',
-    flexWrap: 'nowrap',
     alignItems: 'center',
-    paddingTop: s(18),
-    paddingBottom: s(10),
-    paddingHorizontal: '3%',
-    backgroundColor: 'rgba(7,11,16,0.82)',
-    borderTopWidth: 2,
-    borderTopColor: C.line,
   },
+  bannerPts: {
+    width: s(200),
+    height: s(200),
+    backgroundColor: C.accent,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  bannerBig: {fontSize: s(72), lineHeight: s(72), fontWeight: '800', color: C.accentInk},
+  bannerTeam: {...eyebrow, color: C.accentInk, fontWeight: '800'},
+  bannerText: {
+    flex: 1,
+    paddingHorizontal: s(48),
+    fontSize: s(64),
+    lineHeight: s(72),
+    fontWeight: '800',
+  },
+  toastWrap: {position: 'absolute', top: s(162), left: 0, right: 0, alignItems: 'center'},
+  toast: {paddingVertical: s(16), paddingHorizontal: s(32), borderRadius: s(16)},
+  toastText: {...T.title, color: C.text},
+  tray: {
+    position: 'absolute',
+    left: SAFE.x,
+    right: SAFE.x,
+    bottom: s(166),
+    padding: s(16),
+    borderRadius: s(24),
+    flexDirection: 'row',
+  },
+  trayItem: {minHeight: s(104), paddingHorizontal: s(16), borderRadius: s(16)},
+  onAirItem: {borderWidth: s(3), borderColor: C.accent},
+  trayRow: {flexDirection: 'row', alignItems: 'center', gap: s(14)},
+  trayName: {fontSize: s(26), lineHeight: s(36), fontWeight: '800', color: C.text},
+  onAirText: {fontSize: s(24), fontWeight: '700', color: C.accent},
+  strip: {
+    position: 'absolute',
+    left: SAFE.x,
+    right: SAFE.x,
+    bottom: SAFE.y,
+    height: s(88),
+    paddingHorizontal: s(8),
+    borderRadius: s(20),
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  stripBtn: {marginRight: s(4), marginBottom: 0},
+  voiceBtn: {paddingLeft: s(12), paddingRight: s(24)},
+  whyDisc: {
+    width: s(34),
+    height: s(34),
+    borderRadius: s(17),
+    backgroundColor: C.accentInk,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  whyDiscText: {fontSize: s(24), fontWeight: '800', color: C.accent},
+  onAir: {
+    marginLeft: 'auto',
+    paddingRight: s(20),
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: s(12),
+    flexShrink: 1,
+  },
+  dot: {width: s(12), height: s(12), borderRadius: s(6), backgroundColor: C.accent},
+  onAirName: {color: C.text, fontWeight: '700'},
 });

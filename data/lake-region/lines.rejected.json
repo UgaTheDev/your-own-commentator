@@ -13,12 +13,6 @@
   },
   {
     "trackId": "kid-en",
-    "eventId": "e9",
-    "lastText": "Number eleven makes the free throw! The pink team leads six to fourteen!",
-    "reason": "jersey spelled as a word ('Number eleven'); write it as a digit"
-  },
-  {
-    "trackId": "kid-en",
     "eventId": "e22",
     "lastText": "The pink team calls a timeout to rest and talk strategy!",
     "reason": "credits a team-less play to a team: 'pink team'"

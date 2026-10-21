@@ -3,49 +3,49 @@
     "eventId": "e2",
     "start": 4.3,
     "text": "Blue free throw: 3 to 11.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e3101a82879722709198f301.mp3",
-    "duration": 2.184
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0767314e413095c0f040a730.mp3",
+    "duration": 2.88
   },
   {
     "eventId": "e3",
     "start": 12.3,
-    "text": "Blue makes a three-pointer, score is pink 11, blue 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e3d6f70d48d11812e87a34f4.mp3",
-    "duration": 3.624
+    "text": "Blue hits a three: 6 to 11.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c73440fa2c4e79a3dfc34a73.mp3",
+    "duration": 2.832
   },
   {
     "eventId": "e6",
     "start": 20.3,
-    "text": "Pink makes a two: 13 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3776126a32a96bdc4199ba54.mp3",
-    "duration": 2.256
+    "text": "Pink scores a two: 13 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b05a5d00ec518a5aaca1959d.mp3",
+    "duration": 3.168
   },
   {
     "eventId": "e9",
     "start": 28.3,
-    "text": "Pink free throw: 14 to 6",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f220eef6d79338e04482955e.mp3",
-    "duration": 2.28
+    "text": "Pink free throw: 14 to 6.",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0dec1eb4797a334cd6d5260b.mp3",
+    "duration": 3.048
   },
   {
     "eventId": "e13",
     "start": 36.3,
-    "text": "Pink scores a two: 16 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6246124e0cbe95f1932f3bc8.mp3",
-    "duration": 2.448
+    "text": "Pink scores a two: 16 to 6",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d9daa0a09bb87282af25879b.mp3",
+    "duration": 3.168
   },
   {
     "eventId": "e34",
     "start": 44.3,
     "text": "Pink free throw: 17 to 6",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b8e7326483063b0fb3b13829.mp3",
-    "duration": 2.376
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ad0089e71a81f81599436d13.mp3",
+    "duration": 3.096
   },
   {
     "eventId": "e42",
     "start": 52.3,
-    "text": "Pink hits a three: 20 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/657c8a8850c66c6113cffed0.mp3",
-    "duration": 2.064
+    "text": "Pink hits a three: 20 to 6",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b6987305dffb7f78c9f0fbfd.mp3",
+    "duration": 2.712
   }
 ]

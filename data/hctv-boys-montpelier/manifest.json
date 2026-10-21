@@ -282,11 +282,6 @@
         "text": "The green team leads."
       },
       {
-        "t": 423.4,
-        "eventId": "e49",
-        "text": "A timeout has been called; the teams can rest and discuss strategy now."
-      },
-      {
         "t": 545.4,
         "eventId": "e64",
         "text": "The green team misses a shot, now anyone can grab the ball."
@@ -300,7 +295,7 @@
         "role": "pbp"
       },
       {
-        "t": 7.918,
+        "t": 7.966,
         "eventId": "e1",
         "text": "That shot from inside the arc gives the green team the lead, as it counts for two points under the two-point basket rule.",
         "role": "analyst"
@@ -312,7 +307,7 @@
         "role": "pbp"
       },
       {
-        "t": 59.346,
+        "t": 59.418,
         "eventId": "e2",
         "text": "The analyst explains that free throws are worth one point each, tying the game.",
         "role": "analyst"
@@ -336,7 +331,7 @@
         "role": "pbp"
       },
       {
-        "t": 84.894,
+        "t": 85.206,
         "eventId": "e10",
         "text": "That shot from inside the arc adds two points to the green team's score.",
         "role": "analyst"
@@ -354,7 +349,7 @@
         "role": "pbp"
       },
       {
-        "t": 154.094,
+        "t": 154.334,
         "eventId": "e18",
         "text": "That's a one-point play from the free-throw line, rewarding the fouled player for the earlier foul.",
         "role": "analyst"
@@ -366,7 +361,7 @@
         "role": "pbp"
       },
       {
-        "t": 203.234,
+        "t": 203.282,
         "eventId": "e22",
         "text": "The analyst explains, \"That shot was inside the arc, so it's worth two points by the rules.",
         "role": "analyst"
@@ -378,7 +373,7 @@
         "role": "pbp"
       },
       {
-        "t": 258.582,
+        "t": 258.63,
         "eventId": "e25",
         "text": "The analyst explains, this shot from inside the arc adds two points to the white team's total.",
         "role": "analyst"
@@ -396,7 +391,7 @@
         "role": "pbp"
       },
       {
-        "t": 335.534,
+        "t": 335.87,
         "eventId": "e31",
         "text": "The free throw, worth one point, ties the game as rule states each make scores a single point.",
         "role": "analyst"
@@ -408,7 +403,7 @@
         "role": "pbp"
       },
       {
-        "t": 367.738,
+        "t": 367.786,
         "eventId": "e44",
         "text": "That free throw counts as one point because the player was fouled earlier in the play.",
         "role": "analyst"
@@ -563,11 +558,6 @@
         "t": 362.4,
         "eventId": "e44",
         "text": "The white team gets one more point with a free throw! Score is now thirty-two to thirty-one!"
-      },
-      {
-        "t": 421.9,
-        "eventId": "e50",
-        "text": "The green team leads!"
       },
       {
         "t": 545.4,
@@ -1115,11 +1105,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c1c1335aeb2af54f53e4aaa.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/78eead74fc9f8496826b8653.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d579703dca218a406015e727.mp3"
           },
           "rookie-es": {
             "text": "Por una falta cometida, el jugador de blanco lanzó un tiro libre y anotó. Cada tiro libre vale 1 punto.",
@@ -1148,11 +1138,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the white team's score just went up after the made free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/81b7803cefe489ec64f48b43.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2195ea825339b78227d06888.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/acaf3867c4333b6f42515f3c.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto. Cada vez que un jugador hace un tiro libre, su equipo suma un punto.",
@@ -1181,11 +1171,11 @@
         "answers": {
           "rookie-en": {
             "text": "The score is tied at 24 to 24 with the white team just making a free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/77b342d1511de5be6d144988.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/3044cfe67f749f28f5cc3bf2.mp3"
           },
           "kid-en": {
             "text": "The score is tied at 24 to 24! The white team just made a free throw!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e19470b6092a1cde8ef2e512.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/cdc4bd27c72b8f405d74693d.mp3"
           },
           "rookie-es": {
             "text": "El marcador está 24 a 24 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
@@ -1216,11 +1206,11 @@
         "answers": {
           "rookie-en": {
             "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/1d2d6fae0e27fccb0e924878.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/8267b15b1bc406acd259364c.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they score 1 point!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a19bb833e7b096dc9a4d66a3.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/258dfb63d3176c2416fb013d.mp3"
           },
           "rookie-es": {
             "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 29.",
@@ -1249,11 +1239,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point each. That's why the green team's score just went up after the made free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d8761b13167c9b2a0396c206.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/15232eba97b174d8906ba29d.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's a super important rule in basketball!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/10c3bfcabe923d002b13db68.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ceef1a70bfcf29e315ddeada.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto.",
@@ -1282,11 +1272,11 @@
         "answers": {
           "rookie-en": {
             "text": "The score is White 26, Green 29. The last play was a successful free throw for the Green team, worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/b5d2d65776273eba6a0118c4.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/7126871508e561d291d041bd.mp3"
           },
           "kid-en": {
             "text": "The score is White 26, Green 29! Great free throw by Green!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/5b13b2beaccc1166f15459f7.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/eb0b0c853e12be5f83c0f386.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es blanco 26, verde 29. El último evento fue un tiro libre anotado por el equipo verde.",
@@ -1317,11 +1307,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player got a free shot because of a foul, allowing them to shoot unguarded from the free-throw line for 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/2c1c1335aeb2af54f53e4aaa.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/78eead74fc9f8496826b8653.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d579703dca218a406015e727.mp3"
           },
           "rookie-es": {
             "text": "La última jugada fue Free throw del equipo green. El marcador es white 26, green 30.",
@@ -1350,11 +1340,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e947cf9262ade2d00e1c406e.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/19760671580d72b334c5fc5e.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's a great question!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ee93b9896604e25a872ef00a.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/9236a1705b147a9a2ba1ac4b.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto.",
@@ -1383,11 +1373,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is White 26, Green 30, with Green just making a free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/84e80c0b3ec7e180cb111e59.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/367a7dffa40e005ff6577ef6.mp3"
           },
           "kid-en": {
             "text": "The score is White 26, Green 30! Great free throw by Green!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d8cbdaae9c7ffd1adf13a302.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ea0c7ad9574371dc2723c4a6.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es blanco 26, verde 30. El último evento fue un tiro libre anotado por el equipo verde.",
@@ -1418,11 +1408,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player got a free shot because a foul was called against the other team, and now they get to shoot from the free-throw line without defense. Each successful free throw is worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fc9d2451997b5b069b89f118.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/195eccf7e2b3dfc980497c51.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d579703dca218a406015e727.mp3"
           },
           "rookie-es": {
             "text": "Una falta contra el equipo verde dio derecho a un tiro libre, y el jugador lo anotó. Cada tiro libre vale 1 punto.",
@@ -1451,11 +1441,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the green team's score just went up after the player made the shot.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e947cf9262ade2d00e1c406e.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/19760671580d72b334c5fc5e.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/acaf3867c4333b6f42515f3c.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto.",
@@ -1484,11 +1474,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is White 26, Green 31, with Green just making a free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/0fb2801356addd513c888c83.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/7c820b16f73859f35dd1fbcd.mp3"
           },
           "kid-en": {
             "text": "The score is White 26, Green 31! Green just made a free throw!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/59ca2459c865d4e25442edb8.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/6e5936f2aaf5464586be58ff.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es blanco 26, verde 31. El último evento fue un tiro libre anotado por el equipo verde.",
@@ -1519,11 +1509,11 @@
         "answers": {
           "rookie-en": {
             "text": "They got a free shot because a foul was called, and the rule says the fouled player gets to shoot unguarded from the free-throw line.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d4182feac0473455afa92464.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/bc410b035109246964d87b28.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d579703dca218a406015e727.mp3"
           },
           "rookie-es": {
             "text": "Obtuvieron un tiro libre porque cometieron una falta contra el jugador de blanco, y por eso él puede lanzar sin defensa desde la línea de tiros libres. Cada canasta vale 1 punto.",
@@ -1552,11 +1542,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the white team's score went up by 1 after the free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/ffcd89c0ae3ec56b6d983cbb.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e0500170ffe5147e28c9ed83.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's one point for each shot made from the line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/24055c6824b049fb0bc81670.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/acaf3867c4333b6f42515f3c.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto. Es así porque después de ciertas faltas, el jugador tira desde la línea de tiro libre sin defensa.",
@@ -1585,11 +1575,11 @@
         "answers": {
           "rookie-en": {
             "text": "The score is tied at 31 to 31. The last play was a successful free throw by the white team.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c9e63bedb4605ac1eeda61a5.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/51c3bd19b47c4393e6e8a77c.mp3"
           },
           "kid-en": {
             "text": "The score is tied at 31 to 31!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/5e954c93ed7fae1513e06afd.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/dcf60ced8d550d337f28318d.mp3"
           },
           "rookie-es": {
             "text": "El marcador está 31 a 31 entre el equipo blanco y el equipo verde. El último evento fue un tiro libre anotado por el equipo blanco.",
@@ -1620,11 +1610,11 @@
         "answers": {
           "rookie-en": {
             "text": "They got a free shot because a certain foul allowed the player to shoot unguarded from the free-throw line. Each successful free throw is worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/732a7dad78ceb9a941d40912.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/8c35080249fec27c27436f31.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they score 1 point!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a19bb833e7b096dc9a4d66a3.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/258dfb63d3176c2416fb013d.mp3"
           },
           "rookie-es": {
             "text": "El jugador de blanco recibió un tiro libre por una falta, y anotó 1 punto. Cada tiro libre vale siempre 1 punto.",
@@ -1653,11 +1643,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. The white team just made one, bringing the score to 32 to 31.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/c3809c2be5590a3d0a6981a0.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/76ace9dfa1b94fb01829e3cf.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's how players score when they get a foul and shoot from the line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/f03bdf1967709843400f732a.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/aada437d0dec1aeec4329dee.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto.",
@@ -1686,11 +1676,11 @@
         "answers": {
           "rookie-en": {
             "text": "The score is now White 32, Green 31 after a successful free throw.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d9248005da275821c8b096c0.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/4d1ec99e15ca930e501caf31.mp3"
           },
           "kid-en": {
             "text": "White is ahead, 32 to 31!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fae2b0a61254812e1c1da144.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/e89d63e8b6e7a9eae6f97236.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es blanco 32, verde 31. El último punto fue un tiro libre del equipo blanco.",
@@ -1720,22 +1710,22 @@
   "recaps": [
     {
       "t": 60,
-      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/a8454e8497646d952d66247e.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/1d0f859624cba47c73011b29.mp3",
       "text": "Green made a two-point shot, then white made a free throw; the score is now 24 to 24."
     },
     {
       "t": 300,
-      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/064d8d045d200b3f770947ce.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/3d698342e8b4ab4ceb7f99ee.mp3",
       "text": "White scored two points twice, then missed a shot; Green leads 31 to 30."
     },
     {
       "t": 480,
-      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/fc29950c9b720bc6581baf8a.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/d0ee816dbc15a4d474ef94bb.mp3",
       "text": "White scored a free throw, then green made a two-point shot, and now the score is 32 to 33."
     },
     {
       "t": 540,
-      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/73541d21b83cc63a479e7f28.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/hctv-boys-montpelier/audio/30a9ab176cb8ae26d17d0bd1.mp3",
       "text": "Green scored a two-pointer, then white responded with their own two-pointer after a timeout; the score is now white 34, green 33."
     }
   ],

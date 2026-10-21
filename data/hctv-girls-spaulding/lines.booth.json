@@ -7,7 +7,7 @@
     "text": "The player makes the free throw; the white team leads 39 to 30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -33,7 +33,7 @@
     "text": "A maroon player misses a shot, the ball is live with the score white 39, maroon 30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -46,7 +46,7 @@
     "text": "The white team makes a free throw, updating the score to 40–30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -72,7 +72,7 @@
     "text": "The white team makes a free throw, updating the score to 41 to 30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -98,7 +98,7 @@
     "text": "A white player nails a three-pointer, extending the lead to 44 to 30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -124,7 +124,7 @@
     "text": "The white team makes a free throw, now leading 45 to 34.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -150,7 +150,7 @@
     "text": "The white team makes the free throw, updating the score to 46 to 34.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -176,7 +176,7 @@
     "text": "The white team scores, now leading 48 to 34.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -202,7 +202,7 @@
     "text": "A white player nails a three-pointer, extending the lead to 51 to 34.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -228,7 +228,7 @@
     "text": "The maroon team misses a free throw, and the score remains white fifty-one, maroon thirty-four.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -241,7 +241,7 @@
     "text": "The maroon team misses the free throw, leaving the score white 51, maroon 34.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"

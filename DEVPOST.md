@@ -44,7 +44,7 @@ In an A/B test, the Bedrock judge on its own caught 0 of 2 invented plays.
   - **Nova Pro** reads the video (events in 20-second windows) and reads the broadcast score graphic as an image.
   - **Nova 2 Lite** writes every commentary line, answer and recap, and is the grounding judge.
   - **Nova 2 Sonic** (bidirectional streaming) is the speech recognizer for spoken questions.
-- **Amazon Polly:** a distinct neural or generative voice per persona and language (Matthew, Kevin, Ruth,
+- **Amazon Polly:** a distinct neural or generative voice per persona and language (Danielle, Tiffany, Matthew, Ruth,
   Stephen, Lupe, Kajal, Zhiyu).
 - **Talk-back relay:** Amazon ECS on Fargate behind an ALB and CloudFront, with an origin-secret header. A phone page
   on CloudFront captures the mic.

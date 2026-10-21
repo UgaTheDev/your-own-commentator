@@ -19,7 +19,7 @@ from mix import build_mix_args, duration_of
 from voice import voiced
 from write import build_facts, gate, speakable
 
-TRACK = "rookie-en"  # the demo's default persona, Polly Matthew
+TRACK = "rookie-en"  # the demo's default persona
 CARD_SECS = 4.0
 KEEP = 8.0  # seconds kept of each 12 s replay
 VOICE_AT = 0.3  # the line starts this long into its replay

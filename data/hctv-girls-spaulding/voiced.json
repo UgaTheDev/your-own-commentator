@@ -3,9 +3,9 @@
     "trackId": "booth-en",
     "eventId": "e1",
     "start": 8.7,
-    "duration": 3.792,
+    "duration": 3.816,
     "text": "The player makes the free throw; the white team leads 39 to 30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/19c0fda00a5b1a48d86a5286.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d78808b9d7d05b5e4fb158e4.mp3",
     "role": "pbp"
   },
   {
@@ -20,17 +20,17 @@
     "trackId": "kid-en",
     "eventId": "e1",
     "start": 8.7,
-    "duration": 3.528,
+    "duration": 3.192,
     "text": "The white team scores! Now it's thirty-nine to thirty.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/37473f1f09e33002cb18dec4.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2720c7c3a28efb470dadbd3f.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e1",
     "start": 8.7,
-    "duration": 4.608,
+    "duration": 5.616,
     "text": "The white team scores one point from a free throw, making the score 39 to 30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f57dd4d0005bffb77bf6b82d.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8869ccdafd2beaaf8d40b897.mp3"
   },
   {
     "trackId": "rookie-hi",
@@ -51,7 +51,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e1",
-    "start": 12.742,
+    "start": 12.766,
     "duration": 5.472,
     "text": "That free throw adds one point to the white team's score, following a foul according to the rules.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/52960c17a67f931cd609cfcf.mp3",
@@ -61,9 +61,9 @@
     "trackId": "booth-en",
     "eventId": "e22",
     "start": 100.9,
-    "duration": 5.184,
+    "duration": 5.424,
     "text": "A maroon player misses a shot, the ball is live with the score white 39, maroon 30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c88b679d8ce10a14c24a96e0.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ffa1c33ccafbed5335efb262.mp3",
     "role": "pbp"
   },
   {
@@ -78,17 +78,17 @@
     "trackId": "kid-en",
     "eventId": "e22",
     "start": 100.9,
-    "duration": 6.6,
+    "duration": 6.0,
     "text": "The maroon team missed a shot, and now the white team gets the ball! Score is white thirty-nine, maroon thirty.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a0bc6f0045f252e79b17a8a7.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e9f13d121ca0cbad455f5962.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e22",
     "start": 100.9,
-    "duration": 3.768,
+    "duration": 4.656,
     "text": "The player from maroon misses a shot, and now either team can grab the ball.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/66b638f604ee6cc502a9fa60.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a1f3c84c4c644959ec514ade.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -118,9 +118,9 @@
     "trackId": "booth-en",
     "eventId": "e23",
     "start": 132.9,
-    "duration": 3.648,
+    "duration": 3.936,
     "text": "The white team makes a free throw, updating the score to 40–30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f734890dddf13f5b59e9dc4b.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c266b057140cd19ca926f13f.mp3",
     "role": "pbp"
   },
   {
@@ -135,17 +135,17 @@
     "trackId": "kid-en",
     "eventId": "e23",
     "start": 132.9,
-    "duration": 4.08,
+    "duration": 3.768,
     "text": "The white team player makes the free throw! Score is forty to thirty.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/966c97ca28b82c05ad19f763.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/51be3d668b4491e0eb3315dd.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e23",
     "start": 132.9,
-    "duration": 4.104,
+    "duration": 4.92,
     "text": "The white team player makes a free throw, increasing the score to forty to thirty.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e60f790dc1c5155a4a57d874.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/44f78e2abc3b2fab45ba3d8a.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -174,7 +174,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e23",
-    "start": 136.798,
+    "start": 137.086,
     "duration": 4.752,
     "text": "That's a one-point play from the free-throw line after a foul, as per the rules.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bacf1067cfdf3bb151bcb9ee.mp3",
@@ -184,9 +184,9 @@
     "trackId": "booth-en",
     "eventId": "e24",
     "start": 147.9,
-    "duration": 3.84,
+    "duration": 4.152,
     "text": "The white team makes a free throw, updating the score to 41 to 30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/19a047a8c3f6bb2285a54c24.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a26425cb11aeae16c04fb976.mp3",
     "role": "pbp"
   },
   {
@@ -201,17 +201,17 @@
     "trackId": "kid-en",
     "eventId": "e24",
     "start": 147.9,
-    "duration": 3.504,
+    "duration": 3.216,
     "text": "The white team scores! Now it's forty-one to thirty!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6cc5698b591e7edc8f18f5b9.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3d75cab93290cd01f8595442.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e24",
     "start": 147.9,
-    "duration": 3.816,
+    "duration": 4.32,
     "text": "The player makes the free throw, adding one point to the white team's score.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b89beef9a2ddd172bcb36194.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5752abd7f46fcc614c4847db.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -240,7 +240,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e24",
-    "start": 151.99,
+    "start": 152.302,
     "duration": 5.184,
     "text": "The analyst notes that free throws are worth one point each, which explains the new score.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bc69f1b2986168bff850b2f5.mp3",
@@ -250,9 +250,9 @@
     "trackId": "booth-en",
     "eventId": "e38",
     "start": 188.4,
-    "duration": 4.008,
+    "duration": 4.272,
     "text": "A white player nails a three-pointer, extending the lead to 44 to 30.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c5abeb06b43d922e64d5167d.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3e4a833ff862dbfc573aea11.mp3",
     "role": "pbp"
   },
   {
@@ -269,15 +269,15 @@
     "start": 188.4,
     "duration": 4.128,
     "text": "The white team scores a three-pointer, making the score forty-four to thirty!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a23e134a85cbb86c6e4f3c6f.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1d9db73a4511c4cfaba3c0d9.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e38",
     "start": 188.4,
-    "duration": 3.24,
+    "duration": 3.888,
     "text": "The white team scores three points with a shot from beyond the arc.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e46588f9cc4515015d7aa340.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2ce4d46558cff8455bd98dc6.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -298,7 +298,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e38",
-    "start": 192.658,
+    "start": 192.922,
     "duration": 4.656,
     "text": "That three-pointer counts for three points because the shot was taken from behind the arc.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d4bedc452440b1851c0c0393.mp3",
@@ -316,9 +316,9 @@
     "trackId": "kid-en",
     "eventId": "e51",
     "start": 267.7,
-    "duration": 5.304,
+    "duration": 5.016,
     "text": "The maroon team scores again! Now the score is white forty-four, maroon thirty-two!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3040647e9f1b9bfdfd218b60.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a635a99402912e4790805c0c.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -348,17 +348,17 @@
     "trackId": "kid-en",
     "eventId": "e67",
     "start": 320.4,
-    "duration": 5.04,
+    "duration": 4.968,
     "text": "The maroon team scores two points, now it's white forty-four, maroon thirty-four!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3821f0054f0b015a910c15ab.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c70cda12a9dbbb03110a887f.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e67",
     "start": 320.4,
-    "duration": 4.464,
+    "duration": 5.472,
     "text": "The player makes a shot from inside the arc, adding two points to the maroon team's score.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c3f2288538ea2e37949474f1.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a15fcd79c1933986fa60613b.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -390,7 +390,7 @@
     "start": 358.4,
     "duration": 3.864,
     "text": "The white team makes a free throw, now leading 45 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0a7a272bb21b3fbe0a444efe.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3486839cad5f064928508a86.mp3",
     "role": "pbp"
   },
   {
@@ -405,17 +405,17 @@
     "trackId": "kid-en",
     "eventId": "e72",
     "start": 358.4,
-    "duration": 3.768,
+    "duration": 3.432,
     "text": "The white team scores! Now it's forty-five to thirty-four!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/855062b617611e2a47454e14.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a7fc4da3d618e8de8095e401.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e72",
     "start": 358.4,
-    "duration": 5.424,
+    "duration": 6.192,
     "text": "The white team player makes a free throw, adding one point; the score is now 45 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/86a6e532e6dcb06227a13930.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/478cff5e7bf851ceb8b97d11.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -454,9 +454,9 @@
     "trackId": "booth-en",
     "eventId": "e73",
     "start": 371.9,
-    "duration": 4.2,
+    "duration": 4.248,
     "text": "The white team makes the free throw, updating the score to 46 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f97566cf32684e03399a912c.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3caf45914d4df5b44d8f51f8.mp3",
     "role": "pbp"
   },
   {
@@ -471,17 +471,17 @@
     "trackId": "kid-en",
     "eventId": "e73",
     "start": 371.9,
-    "duration": 5.52,
+    "duration": 4.392,
     "text": "The white team scores! Free throw good! Score is forty-six to thirty-four!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/268f446f9dcd5d1639432fc6.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7a2fbaf4762ed9d7aba287ff.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e73",
     "start": 371.9,
-    "duration": 3.24,
+    "duration": 3.72,
     "text": "The white team scores one point with a successful free throw.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4a8ee705c025cb8ef464398f.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b2af9d26114962d990a2590d.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -510,7 +510,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e73",
-    "start": 376.35,
+    "start": 376.398,
     "duration": 6.288,
     "text": "That's a one-point play from the free-throw line, awarded after a foul, and it extends the white team's lead.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/10c82c9a0526e4965742bbe8.mp3",
@@ -520,9 +520,9 @@
     "trackId": "booth-en",
     "eventId": "e78",
     "start": 394.7,
-    "duration": 3.312,
+    "duration": 3.288,
     "text": "The white team scores, now leading 48 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a6cf0e95fd74968a6d6cdb25.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f943863c7e46d896c9f6e846.mp3",
     "role": "pbp"
   },
   {
@@ -537,17 +537,17 @@
     "trackId": "kid-en",
     "eventId": "e78",
     "start": 394.7,
-    "duration": 3.48,
+    "duration": 3.336,
     "text": "The white team scores again, now it's forty-eight to thirty-four!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/18bb79284222c58cce984071.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/4e2ab7ea0fd11805add20574.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e78",
     "start": 394.7,
-    "duration": 4.848,
+    "duration": 5.688,
     "text": "The white team scores two points from inside the arc; the score is now 48 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/249a952c7a6f5d0543f60153.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2bde0788bd3d1e04bd05902f.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -576,7 +576,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e78",
-    "start": 398.262,
+    "start": 398.238,
     "duration": 4.44,
     "text": "That shot was from inside the arc, so it counts as two points for the white team.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/fd02956d0d5bd8fb79cfe228.mp3",
@@ -586,9 +586,9 @@
     "trackId": "booth-en",
     "eventId": "e87",
     "start": 436.4,
-    "duration": 4.2,
+    "duration": 4.632,
     "text": "A white player nails a three-pointer, extending the lead to 51 to 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/cf38c39cb1819bc635d3942f.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/5f8dc4dc2e93c8370d6a1a13.mp3",
     "role": "pbp"
   },
   {
@@ -603,17 +603,17 @@
     "trackId": "kid-en",
     "eventId": "e87",
     "start": 436.4,
-    "duration": 4.728,
+    "duration": 4.512,
     "text": "The white team scores with a three-pointer! Now the score is fifty-one to thirty-four!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/97c56927869528ac8fdf6000.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8e2bde38c22cd25427428a34.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e87",
     "start": 436.4,
-    "duration": 3.192,
+    "duration": 3.888,
     "text": "The white team scores three points with a shot from behind the arc.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/375077a1ffd2ab99059b6b5f.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/1f579eb0e4e0404076cc5ce2.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -642,7 +642,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e87",
-    "start": 440.85,
+    "start": 441.282,
     "duration": 5.208,
     "text": "The analyst notes that the shot was taken from beyond the arc, making it worth three points.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ee44ebf2c1b911144ec9543b.mp3",
@@ -652,9 +652,9 @@
     "trackId": "booth-en",
     "eventId": "e88",
     "start": 466.7,
-    "duration": 5.232,
+    "duration": 5.424,
     "text": "The maroon team misses a free throw, and the score remains white fifty-one, maroon thirty-four.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ca5c1dba04d0ea22daf55d8a.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d7da787d997de7e68b7fadab.mp3",
     "role": "pbp"
   },
   {
@@ -669,9 +669,9 @@
     "trackId": "kid-en",
     "eventId": "e88",
     "start": 466.7,
-    "duration": 3.888,
+    "duration": 3.528,
     "text": "The maroon player missed the free throw, and now the white team gets the ball!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0967c322938fd583158c2fc8.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/71a436442af1f8a09b3eb4e1.mp3"
   },
   {
     "trackId": "rookie-hi",
@@ -693,9 +693,9 @@
     "trackId": "booth-en",
     "eventId": "e91",
     "start": 482.4,
-    "duration": 5.04,
+    "duration": 5.256,
     "text": "The maroon team misses the free throw, leaving the score white 51, maroon 34.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/04f6971d5939fcc68cc35c95.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/18d733e4ce8fc7dcb5c954ae.mp3",
     "role": "pbp"
   },
   {
@@ -710,9 +710,9 @@
     "trackId": "kid-en",
     "eventId": "e91",
     "start": 482.4,
-    "duration": 3.12,
+    "duration": 3.216,
     "text": "The player missed the free throw, and now it's anyone's ball!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/15380cfd3f589514fd3e142e.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0adf44990bf687dbeac84545.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -741,7 +741,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e91",
-    "start": 487.69,
+    "start": 487.906,
     "duration": 1.728,
     "text": "The ball is now live.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/043915b16550bc243e2fdc53.mp3",
@@ -751,17 +751,17 @@
     "trackId": "kid-en",
     "eventId": "e100",
     "start": 491.4,
-    "duration": 5.088,
+    "duration": 4.968,
     "text": "The maroon team scores two points, now it's white fifty-one, maroon thirty-six!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ff90fac4a7ac2019f1f33438.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c88289eefe3199b4e8c13578.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e100",
     "start": 491.4,
-    "duration": 4.056,
+    "duration": 5.184,
     "text": "The player makes a shot from inside the arc, adding two points for the maroon team.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8aec3f6c6551f89436f03344.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/57f68a3fd773ffec9e9a86ae.mp3"
   },
   {
     "trackId": "rookie-hi",

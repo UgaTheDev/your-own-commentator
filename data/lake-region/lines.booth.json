@@ -7,7 +7,7 @@
     "text": "A pink player sinks a two-pointer, extending the lead to 13 to 6.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -33,7 +33,7 @@
     "text": "Number 11 sinks the free throw, extending the pink team's lead to 14-6.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -59,7 +59,7 @@
     "text": "A pink player makes a two-pointer, updating the score to 16 to 6.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -72,7 +72,7 @@
     "text": "The pink player misses a shot, and the score remains 16 to 6 in favor of pink.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -85,7 +85,7 @@
     "text": "Number 3 makes the free throw, extending the pink team's lead to 17 to 6.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -111,7 +111,7 @@
     "text": "A pink player nails a three-pointer, updating the score to 20 to 6.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"

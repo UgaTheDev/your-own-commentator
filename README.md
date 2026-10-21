@@ -21,7 +21,7 @@ Built for the **Fire TV track** of the Amazon Developer Hackathon 2026, on **Veg
 | **Amazon Bedrock: Nova 2 Sonic** (`amazon.nova-2-sonic-v1:0`, bidirectional streaming) | `services/talk/sonic_asr.py` | Speech recognition for viewer questions from the phone |
 | **Amazon Bedrock: Nova Pro** | `pipeline/extract.py`, `pipeline/scoreboard.py` | Video understanding (events in 20 s windows) and reading the broadcast score graphic as an image |
 | **Amazon Bedrock: Nova 2 Lite** | `pipeline/write.py`, `answer.py`, `booth.py`, `why.py`, `recap.py` | Writing commentary, answers and recaps, and the grounding judge |
-| **Amazon Polly** (neural + generative) | `pipeline/voice.py`, `services/talk/relay.py` | A distinct voice per persona and language: Matthew, Kevin, Ruth, Stephen (en-US), Lupe (es-US), Kajal (hi-IN), Zhiyu (cmn-CN) |
+| **Amazon Polly** (neural + generative) | `pipeline/voice.py`, `services/talk/relay.py` | A distinct voice per persona and language: Danielle, Tiffany, Matthew, Ruth, Stephen (en-US, generative), Lupe (es-US, generative), Kajal (hi-IN), Zhiyu (cmn-CN) |
 | **Amazon S3 + CloudFront** (Origin Access Control) | `pipeline/publish.py` | Private storage; HTTPS delivery of tracks, audio and manifests (Vega's media player is HTTPS-only) |
 | **Amazon ECS on AWS Fargate + ALB + CloudFront** | `services/talk/template.yaml` | The talk-back relay (secure WebSocket), locked so only our CloudFront can reach the ALB |
 | **Amazon ECR** | `services/talk/Dockerfile` | The relay's container image |

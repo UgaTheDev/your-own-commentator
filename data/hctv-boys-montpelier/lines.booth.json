@@ -7,7 +7,7 @@
     "text": "The green team takes the lead at 24 to 23 with a made two-pointer.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -33,7 +33,7 @@
     "text": "The white team ties the game at 24-24 with a free throw.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -59,7 +59,7 @@
     "text": "A green player makes a two-pointer, putting the score at white twenty-four, green twenty-six.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -72,7 +72,7 @@
     "text": "A white player misses, green lead is twenty-six to twenty-four.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -85,7 +85,7 @@
     "text": "The green team takes the lead at 28 to 24 with a made two-pointer.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -111,7 +111,7 @@
     "text": "The player makes the free throw, green 29, white 26.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -124,7 +124,7 @@
     "text": "The green team extends the lead to 30–26 with a made free throw.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -150,7 +150,7 @@
     "text": "The green team makes the free throw, updating the score to white twenty-six, green thirty-one.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -176,7 +176,7 @@
     "text": "A white player makes a two-pointer, the score is now green 31, white 28.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -202,7 +202,7 @@
     "text": "A white player makes a two-pointer, now it's 30 to 31.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -228,7 +228,7 @@
     "text": "The white team misses a shot, and the score remains green 31, white 30.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -241,7 +241,7 @@
     "text": "The white team ties it at 31 to 31 with a free throw.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -267,7 +267,7 @@
     "text": "The white team player steps up and makes the free throw, extending the lead to 32–31.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -293,7 +293,7 @@
     "text": "A green player scores two.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -306,7 +306,7 @@
     "text": "The game is paused for a timeout, score is green 33, white 32.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"
@@ -332,7 +332,7 @@
     "text": "The green team misses a shot, leaving the score white 34, green 33.",
     "lang": "en",
     "voice": "Matthew",
-    "engine": "neural",
+    "engine": "generative",
     "grounded": true,
     "judge": "supported",
     "role": "pbp"

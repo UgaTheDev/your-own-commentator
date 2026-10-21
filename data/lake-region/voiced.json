@@ -19,17 +19,17 @@
     "trackId": "kid-en",
     "eventId": "e3",
     "start": 63.9,
-    "duration": 3.6,
+    "duration": 3.864,
     "text": "The blue team gets three points with a great shot from beyond the arc!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d5217d08e7b07c07f5d9ac05.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0098aa2b4029c1bf9c57f5e0.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e3",
     "start": 63.9,
-    "duration": 4.632,
+    "duration": 5.424,
     "text": "The player from the blue team makes a shot from behind the arc, adding three points to the score.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/46d5a6847e1da48d61e19d01.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2312b8a6c592c8e84bb335f7.mp3"
   },
   {
     "trackId": "rookie-hi",
@@ -51,9 +51,9 @@
     "trackId": "booth-en",
     "eventId": "e6",
     "start": 98.4,
-    "duration": 3.912,
+    "duration": 4.152,
     "text": "A pink player sinks a two-pointer, extending the lead to 13 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f28493dae8f80bfcd9a3798f.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e612d43494e1cb8f54c8f243.mp3",
     "role": "pbp"
   },
   {
@@ -68,17 +68,17 @@
     "trackId": "kid-en",
     "eventId": "e6",
     "start": 98.4,
-    "duration": 3.792,
+    "duration": 3.84,
     "text": "The pink player made a two-point shot, and now it's thirteen to six!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/644408ce7a8fce6b224b6ef5.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6b1f3aec447f0a331626aede.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e6",
     "start": 98.4,
-    "duration": 4.848,
+    "duration": 6.24,
     "text": "The pink player makes a two-point shot from inside the arc, updating the score to 13 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/178fd14fed9a3e0f830cb85a.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/0e99b29f55039c05c44066e5.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -107,7 +107,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e6",
-    "start": 102.562,
+    "start": 102.802,
     "duration": 4.536,
     "text": "That shot was from inside the arc, so it counts as two points by the rulebook.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ec1aba25332300385f5d149c.mp3",
@@ -117,9 +117,9 @@
     "trackId": "booth-en",
     "eventId": "e9",
     "start": 131.9,
-    "duration": 4.68,
+    "duration": 4.752,
     "text": "Number 11 sinks the free throw, extending the pink team's lead to 14-6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3e63c097a3f3ede2f9430cbf.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/2d4da99da97869a2f663e723.mp3",
     "role": "pbp"
   },
   {
@@ -131,12 +131,20 @@
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6293a31ccf269b3370baa8f5.mp3"
   },
   {
+    "trackId": "kid-en",
+    "eventId": "e9",
+    "start": 131.9,
+    "duration": 3.576,
+    "text": "The pink player makes the free throw! Score is fourteen to six!",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7c90f9ce9f771c7a3c01baa0.mp3"
+  },
+  {
     "trackId": "rookie-en",
     "eventId": "e9",
     "start": 131.9,
-    "duration": 4.344,
+    "duration": 5.016,
     "text": "The player in pink number 11 makes a free throw, adding one point to the score.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/238290cc40101680fe760a4d.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a8f4087029d0388a0d9b6ca8.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -165,7 +173,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e9",
-    "start": 136.83,
+    "start": 136.902,
     "duration": 5.568,
     "text": "That free throw counts as one point because the player was fouled earlier, per the free-throw rule.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b845b1c88fd8eaf650c0958e.mp3",
@@ -175,9 +183,9 @@
     "trackId": "booth-en",
     "eventId": "e13",
     "start": 257.9,
-    "duration": 3.864,
+    "duration": 3.984,
     "text": "A pink player makes a two-pointer, updating the score to 16 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/eabb6f13de3acc594fa095b0.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a7573f51d1de56e3788be329.mp3",
     "role": "pbp"
   },
   {
@@ -192,17 +200,17 @@
     "trackId": "kid-en",
     "eventId": "e13",
     "start": 257.9,
-    "duration": 3.936,
+    "duration": 3.96,
     "text": "The pink player made a two-point shot, and the score is sixteen to six!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/dc1b6f70ce04c423c03fddb5.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9e118e22d48f1196e9136fca.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e13",
     "start": 257.9,
-    "duration": 4.32,
+    "duration": 5.688,
     "text": "The pink player makes a two-point basket, increasing the score to 16 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/76096da3ad73c72e797dd4c4.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d84bad7e0f684dd76bfb7957.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -240,9 +248,9 @@
     "trackId": "rookie-en",
     "eventId": "e22",
     "start": 264.4,
-    "duration": 4.008,
+    "duration": 5.088,
     "text": "The game pauses for a timeout, allowing the teams to rest and strategize.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8db83032fa740a1b23c31c3f.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/a35e919a1cfd68ab4fbc3d5c.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -272,9 +280,9 @@
     "trackId": "booth-en",
     "eventId": "e29",
     "start": 347.4,
-    "duration": 4.512,
+    "duration": 4.632,
     "text": "The pink player misses a shot, and the score remains 16 to 6 in favor of pink.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/330a2a64ff938fdd9f6b0961.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/ea0db5cce6959d94a9c3c085.mp3",
     "role": "pbp"
   },
   {
@@ -289,17 +297,17 @@
     "trackId": "kid-en",
     "eventId": "e29",
     "start": 347.4,
-    "duration": 7.584,
+    "duration": 7.056,
     "text": "The pink player tried a shot, but it missed! Now everyone watches for the ball! Score is pink sixteen, blue six.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/f182365fd5acd7e9d80dece3.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/dedf465958e8c807b7075415.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e29",
     "start": 347.4,
-    "duration": 3.504,
+    "duration": 4.08,
     "text": "The pink player misses a shot, and now either team may grab the ball.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/16aaac020537a36ce097df58.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/e506bc6767eed308920aee20.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -321,9 +329,9 @@
     "trackId": "booth-en",
     "eventId": "e34",
     "start": 474.9,
-    "duration": 4.536,
+    "duration": 4.704,
     "text": "Number 3 makes the free throw, extending the pink team's lead to 17 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/89b7a1ede1f441a4d2bedbda.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/650b26e54bd50873aff12794.mp3",
     "role": "pbp"
   },
   {
@@ -338,17 +346,17 @@
     "trackId": "kid-en",
     "eventId": "e34",
     "start": 474.9,
-    "duration": 4.992,
+    "duration": 4.584,
     "text": "Number 3 makes the free throw! The score is now seventeen to six for the pink team!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/32ef8c437644a3c5155d2970.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6bb56da9a7c4751d63864512.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e34",
     "start": 474.9,
-    "duration": 5.04,
+    "duration": 6.072,
     "text": "The player in number 3 makes a free throw, increasing the pink team's score to 17 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/7ea137a43e717d21555457ab.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/3ae2b43fd2e4737644d30416.mp3"
   },
   {
     "trackId": "rookie-es",
@@ -377,7 +385,7 @@
   {
     "trackId": "booth-en",
     "eventId": "e34",
-    "start": 479.686,
+    "start": 479.854,
     "duration": 6.072,
     "text": "The analyst notes that free throws are worth one point each, which explains the pink team's score increase.",
     "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/8e61b0514afd200c3c53b31c.mp3",
@@ -387,9 +395,9 @@
     "trackId": "booth-en",
     "eventId": "e42",
     "start": 578.4,
-    "duration": 3.744,
+    "duration": 4.056,
     "text": "A pink player nails a three-pointer, updating the score to 20 to 6.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/c9a1ee11b3e3cb5bc4d79939.mp3",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/256fc7c5e2c9f73110a45a04.mp3",
     "role": "pbp"
   },
   {
@@ -404,17 +412,17 @@
     "trackId": "kid-en",
     "eventId": "e42",
     "start": 578.4,
-    "duration": 3.696,
+    "duration": 3.312,
     "text": "A pink player makes a three-pointer, now it's twenty to six!",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/bbdeca8d7fcbf6e310680af0.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/6535ebbf4654d4efd835089d.mp3"
   },
   {
     "trackId": "rookie-en",
     "eventId": "e42",
     "start": 578.4,
-    "duration": 3.576,
+    "duration": 4.704,
     "text": "A pink player makes a three-pointer, putting pink ahead twenty to six.",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/b1bc84263cf7b0b7112c8556.mp3"
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/9aa9d7605a9e6be662bdc7bc.mp3"
   },
   {
     "trackId": "rookie-es",

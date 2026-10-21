@@ -3,16 +3,16 @@
     "persona": "rookie",
     "lang": "en",
     "label": "Rookie",
-    "voice": "Matthew",
-    "engine": "neural",
+    "voice": "Danielle",
+    "engine": "generative",
     "style": "Calm, friendly play-by-play for someone watching basketball for the first time. When a rule matters, explain it in one plain sentence using the rule card. No jargon without explaining it."
   },
   "kid-en": {
     "persona": "kid",
     "lang": "en",
     "label": "Kid",
-    "voice": "Kevin",
-    "engine": "neural",
+    "voice": "Tiffany",
+    "engine": "generative",
     "style": "High energy and fun for a 7-year-old. Short sentences, simple words, lots of excitement. Never mean about a player."
   },
   "fantasy-en": {
@@ -55,7 +55,7 @@
     "pbp": {
       "lang": "en",
       "voice": "Matthew",
-      "engine": "neural",
+      "engine": "generative",
       "style": "Crisp play-by-play voice in a two-person booth. Call what just happened: who, what, the score. Leave the explaining to your analyst."
     },
     "analyst": {

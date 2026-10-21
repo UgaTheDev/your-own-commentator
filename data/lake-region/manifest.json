@@ -188,7 +188,7 @@
         "role": "pbp"
       },
       {
-        "t": 102.562,
+        "t": 102.802,
         "eventId": "e6",
         "text": "That shot was from inside the arc, so it counts as two points by the rulebook.",
         "role": "analyst"
@@ -200,7 +200,7 @@
         "role": "pbp"
       },
       {
-        "t": 136.83,
+        "t": 136.902,
         "eventId": "e9",
         "text": "That free throw counts as one point because the player was fouled earlier, per the free-throw rule.",
         "role": "analyst"
@@ -224,7 +224,7 @@
         "role": "pbp"
       },
       {
-        "t": 479.686,
+        "t": 479.854,
         "eventId": "e34",
         "text": "The analyst notes that free throws are worth one point each, which explains the pink team's score increase.",
         "role": "analyst"
@@ -293,6 +293,11 @@
         "t": 98.4,
         "eventId": "e6",
         "text": "The pink player made a two-point shot, and now it's thirteen to six!"
+      },
+      {
+        "t": 131.9,
+        "eventId": "e9",
+        "text": "The pink player makes the free throw! Score is fourteen to six!"
       },
       {
         "t": 257.9,
@@ -662,11 +667,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player from the blue team got a free shot because a foul was called against the pink team. Now they get to shoot from the free-throw line, and each successful shot is worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/9c16bb7c9822b9152ba0fed4.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/06445fcd80d23ed752ce9479.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they shoot from the free-throw line!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/ff4f9c71fa3eacb2970b9f64.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/d579703dca218a406015e727.mp3"
           },
           "rookie-es": {
             "text": "El jugador azul número 5 tiró un tiro libre porque cometieron una falta contra él. Cada tiro libre vale 1 punto.",
@@ -695,11 +700,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the blue team's score went up by 1.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/6f6ec98f72d263c960aff4cd.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/83ab5deedb7fa5f1af13b7ed.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's what the rules say!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/5d8fec27ce4c326ec822c509.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/1f121e732b1f665540bb8039.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto. En el último jugada, el equipo azul hizo un tiro libre.",
@@ -718,8 +723,8 @@
             "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/f45ad6bd211b2f77ee8353b9.mp3"
           },
           "rookie-zh": {
-            "text": "自由投每进一球得1分。球员5刚刚进了一球。",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/2be031332839686a3bda6c06.mp3"
+            "text": "自由球每进1分。蓝队5号球员刚刚进了1个自由球。",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/8eaef2cb9496754b7c00dc14.mp3"
           }
         }
       },
@@ -728,23 +733,23 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is Pink 11, Blue 3. The last play was a successful free throw by the blue team.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/9ffe5e5b96f51a1ddc42bdd0.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/4cc903cd18a250ef7dd198e1.mp3"
           },
           "kid-en": {
             "text": "The score is Pink 11, Blue 3!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/d1afd97cf950716f8ec9d5e9.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/e5704b2afa219113bf2d6bf8.mp3"
           },
           "rookie-es": {
             "text": "El marcador está en rosa 11, azul 3. El último evento fue un tiro libre anotado por el azul.",
             "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/33abd682b04521b5f0371cf1.mp3"
           },
           "booth-en": {
-            "text": "The score is pink 11, blue 3; the last play was a free throw made by blue jersey 5, adding 1 point to blue.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/8cef1928a037b701936401f2.mp3"
+            "text": "The last play was Free throw by the blue team. The score is pink 11, blue 3.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/fafe9f82a6f3a6b39469eac7.mp3"
           },
           "fantasy-en": {
-            "text": "The score is pink 11, blue 3. Player 5 made a free throw for blue, adding 1 fantasy point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/e5ff2807c9ffa6ada34da74d.mp3"
+            "text": "The last play was Free throw by the blue team. The score is pink 11, blue 3.",
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a7cbc924ad86254e319e7405.mp3"
           },
           "rookie-hi": {
             "text": "स्कोर है: पिंक 11, ब्लू 3। ब्लू टीम ने अभी एक फ़्री थ्रो स्कोर किया है।",
@@ -763,11 +768,11 @@
         "answers": {
           "rookie-en": {
             "text": "A shot from behind the arc is worth 3 points instead of 2, and the blue team just made one. That's why it's worth 3.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/266561f57ef6ed4a3dbc53e4.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/b97db2b769235d2f06930674.mp3"
           },
           "kid-en": {
             "text": "That shot is worth 3 because the player shot from behind the arc! That's the rule!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/7e11ed2413331981a3b5ba62.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/aed6223023fd407391a2f6d3.mp3"
           },
           "rookie-es": {
             "text": "Un triple vale 3 puntos porque el jugador hizo el tiro desde detrás del arco. Esa es la regla del triple.",
@@ -796,11 +801,11 @@
         "answers": {
           "rookie-en": {
             "text": "You shoot a 3 from behind the arc, and when you make it, it counts for 3 points instead of 2.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/68b9f7997356826c1a31947e.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/416471c8f63cec4a4ee565ad.mp3"
           },
           "kid-en": {
             "text": "You shoot a 3 from behind the arc! That’s where the magic happens!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/c5ca7d36ee6ea46fd3e6b172.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/f7743c96263046aa1839cdcd.mp3"
           },
           "rookie-es": {
             "text": "Un triple se tira desde más allá del arco, donde los pies deben estar completamente detrás de la línea del arco para que cuente como 3 puntos.",
@@ -829,11 +834,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is Pink 11, Blue 6, but the last play was a successful 3-pointer by the Blue team.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/552f9d36a951361748b519a8.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/85eebf5a1003dd76ac886672.mp3"
           },
           "kid-en": {
             "text": "The score is Pink 11, Blue 6! Blue just made a shot!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/5d271bf18d9bc7b8c78fd4a2.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/43d6aeef28c2d1bcd5adcbad.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es rosa 11, azul 6. El último evento fue un triple del equipo azul.",
@@ -864,11 +869,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player got a free shot because they were fouled during a play, and after certain fouls, the fouled player gets to shoot unguarded from the free-throw line.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/79a59b8634a65ada8329348e.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/880932fe02cb274f60e1e243.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they score 1 point!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a19bb833e7b096dc9a4d66a3.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/258dfb63d3176c2416fb013d.mp3"
           },
           "rookie-es": {
             "text": "El equipo azul cometió una falta, y por eso el jugador del equipo rosa tiró un tiro libre. Cada tiro libre vale 1 punto.",
@@ -897,11 +902,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the pink team's score just went up by 1.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/cfccce7b83f2316be7eaa477.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/ed7e9684ff5b4b5388bea2c8.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's what we saw right there!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/23b22924604d96c518a5e0fc.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/68f4b43370b67de34754f427.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto. En el último jugada, el equipo rosa hizo un tiro libre.",
@@ -930,11 +935,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is Pink 14, Blue 6, after a free throw by the pink team.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/7772780df62fc86abc8e4865.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/bccdedd1756aa646d0d39bfe.mp3"
           },
           "kid-en": {
             "text": "Pink is leading 14 to 6!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/09cdc444d5c212688250573a.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/e66379d3cd454619431d450d.mp3"
           },
           "rookie-es": {
             "text": "El marcador está en 14 a 6 a favor del equipo rosa. El último punto fue un tiro libre del equipo rosa.",
@@ -965,11 +970,11 @@
         "answers": {
           "rookie-en": {
             "text": "The player shot from the free-throw line after a foul, which gives them an unguarded shot worth 1 point.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a28593c5109d5b099382328a.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/2a202540755e080263553983.mp3"
           },
           "kid-en": {
             "text": "They got a free shot because of a foul! Now they score 1 point!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a19bb833e7b096dc9a4d66a3.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/258dfb63d3176c2416fb013d.mp3"
           },
           "rookie-es": {
             "text": "El equipo azul cometió una falta, y por eso el jugador del equipo rosa tiró un tiro libre. Cada tiro libre hecho vale 1 punto.",
@@ -998,11 +1003,11 @@
         "answers": {
           "rookie-en": {
             "text": "A free throw is worth 1 point. That's why the pink team's score went up by 1.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/bff1ef1769c77bc9c6d2bbec.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/afbb0cbb9f8ab726e73a7218.mp3"
           },
           "kid-en": {
             "text": "A free throw is worth 1 point! That's what just happened on the court!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/91c80dd95a04c3aff0d26fc9.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/9e1bf93033ecb2c173fb0c29.mp3"
           },
           "rookie-es": {
             "text": "Un tiro libre vale 1 punto. Acabamos de ver al equipo rosa hacer uno y sumar otro punto.",
@@ -1031,11 +1036,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is Pink 17, Blue 6, after a successful free throw by the player wearing jersey number 3 from the Pink team.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/3e23744e39d5e76b0ba12d18.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/553317c0ce7fb9556382d298.mp3"
           },
           "kid-en": {
             "text": "The score is Pink 17, Blue 6! Pink just made a free throw!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/0821b46c746c37f15a9d147c.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/26442d7f3b5c75012bfaf9a2.mp3"
           },
           "rookie-es": {
             "text": "El marcador está en rosa 17, azul 6. El último evento fue un tiro libre de rosa que anotó.",
@@ -1066,11 +1071,11 @@
         "answers": {
           "rookie-en": {
             "text": "That shot is worth 3 points because it was made from behind the arc, and any shot from there counts for 3 instead of 2.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/814d600859733d3759b1a98c.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/18215a840f6cd8d51358ff51.mp3"
           },
           "kid-en": {
             "text": "That shot was worth 3 because the player shot from behind the arc! That's the rule!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/8ecc8504eeb5451deb966329.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/e549c8fa4c1a67a74e198d08.mp3"
           },
           "rookie-es": {
             "text": "Porque el jugador de rosa hizo un triple, es decir, un tiro desde detrás del arco, que vale 3 puntos según la regla.",
@@ -1099,11 +1104,11 @@
         "answers": {
           "rookie-en": {
             "text": "You can shoot a 3 from anywhere beyond the arc on the court. A shot made from behind that line counts for 3 points instead of 2.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/0fe1dd74c96484a574f93d05.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/1a3b259b537bc392907cd0a6.mp3"
           },
           "kid-en": {
             "text": "You shoot a 3 from behind the arc! That’s worth 3 points!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/75f28d17be286010f0922575.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/858676ab9113d169f6b26f8d.mp3"
           },
           "rookie-es": {
             "text": "Un triple se tira desde más allá del arco, donde las líneas están marcadas en la cancha. Cada triple vale 3 puntos.",
@@ -1132,11 +1137,11 @@
         "answers": {
           "rookie-en": {
             "text": "The current score is pink 20, blue 6, after a player from pink made a three-pointer.",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/b1a3f5af06df992316924a81.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a89f0dc7ee63331778e075d2.mp3"
           },
           "kid-en": {
             "text": "The score is Pink 20, Blue 6! Wow, Pink is really flying!",
-            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/34b05568335721868df2b829.mp3"
+            "audioUrl": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/0f18cfd180d430546114a408.mp3"
           },
           "rookie-es": {
             "text": "El marcador actual es rosa 20, azul 6. El último punto fue un triple del equipo rosa.",
@@ -1182,47 +1187,47 @@
   "recaps": [
     {
       "t": 60,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/cb89b6739d41b19d246fbd7e.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/3f1822099934558b94ef9e6d.mp3",
       "text": "The blue team made a free throw, and the current score is pink 11, blue 3."
     },
     {
       "t": 120,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/36ff5d96ac7d774a70c09acf.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/ab283fd4528fb6d226530f90.mp3",
       "text": "Blue scored a free throw and a three-pointer, then pink made a two-pointer; the score is now pink 13, blue 6."
     },
     {
       "t": 180,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/715b2b828961307d6f28496b.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/597d833e4d09228f46b394f4.mp3",
       "text": "Blue scored a three-pointer, then pink scored a two-pointer and a free throw; the score is pink 14, blue 6."
     },
     {
       "t": 240,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/44710e8ca694a64a2cacc557.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/daead34ad1e25b9e036932b6.mp3",
       "text": "Pink scored a free throw, and the current score is Pink 14, Blue 6."
     },
     {
       "t": 300,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/4a5027b3b95eb3e1bffa3fa7.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/dbcb28d3eb2d1c777f51bebf.mp3",
       "text": "Pink scored a two-point shot, then there was a timeout. The current score is pink 16, blue 6."
     },
     {
       "t": 360,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/7517846703f3c6fa98bb7c14.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/cf59a85564614ddc0a53eae1.mp3",
       "text": "Pink scored a two-point shot, then there was a timeout, and pink missed a shot. The score is now Pink 16, Blue 6."
     },
     {
       "t": 420,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/c79188be0e969406d9ef3730.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/f8b7a968d863f665e0feab11.mp3",
       "text": "Pink scored 16, blue scored 6 after pink missed a shot."
     },
     {
       "t": 480,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/3dd3361f8b16af519b339b69.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a00a7081900688fdf06ea7b5.mp3",
       "text": "Pink scored a free throw, and the current score is pink 17, blue 6."
     },
     {
       "t": 540,
-      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/3dd3361f8b16af519b339b69.mp3",
+      "src": "https://d2og06dnam3owj.cloudfront.net/lake-region/audio/a00a7081900688fdf06ea7b5.mp3",
       "text": "Pink scored a free throw, and the current score is pink 17, blue 6."
     }
   ],

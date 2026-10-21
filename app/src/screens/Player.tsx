@@ -22,7 +22,13 @@ import {
   TeamChip,
   glass,
 } from '../components/player/Overlays';
-import {PTS, eventLabel, flashAt, playLabel, teamTag} from '../components/player/labels';
+import {
+  PTS,
+  eventLabel,
+  flashAt,
+  playLabel,
+  teamTag,
+} from '../components/player/labels';
 import {AUTOPILOT, TALK_WS_URL} from '../config';
 import {TalkAnswer, connectTalk} from '../talk';
 import {PartyView} from './Home';
@@ -60,7 +66,13 @@ const once = (v: Media, type: string, fn: () => void) => {
 
 // What covers the game while the video is paused.
 type Overlay =
-  | {kind: 'why'; eventId: string; questions: Question[]; answer?: string; q?: string}
+  | {
+      kind: 'why';
+      eventId: string;
+      questions: Question[];
+      answer?: string;
+      q?: string;
+    }
   | {kind: 'recap'; text: string}
   | {kind: 'answer'; text: string} // C4 talk-back answer, shown as an ANALYST caption
   | {kind: 'predict'}; // C6: next basket, Pink or Blue (the game keeps playing)
@@ -678,10 +690,11 @@ export const Player = ({
 
   const whyEv = overlay?.kind === 'why' ? evById(overlay.eventId) : null;
   const whyTag = whyEv ? teamTag(whyEv) : null;
-  const whyCard = whyEv?.ruleCardId ? manifest.ruleCards[whyEv.ruleCardId] : undefined;
+  const whyCard = whyEv?.ruleCardId
+    ? manifest.ruleCards[whyEv.ruleCardId]
+    : undefined;
   // "Replay play" only when the playhead's replay is this Why's play (replay() picks by playhead).
-  const whyReplay =
-    !!whyEv && replayAt(manifest, t)?.eventId === whyEv.id;
+  const whyReplay = !!whyEv && replayAt(manifest, t)?.eventId === whyEv.id;
   const resume = (text: string, primary = true, focus = true) => (
     <FocusButton
       label="Back to game"
@@ -708,9 +721,7 @@ export const Player = ({
         }
       />
       {/* dim: 25% while switching (3d), 50% while Why?/Catch me up pause the game (4a-4c) */}
-      {(switching ||
-        overlay?.kind === 'why' ||
-        overlay?.kind === 'recap') && (
+      {(switching || overlay?.kind === 'why' || overlay?.kind === 'recap') && (
         <View
           pointerEvents="none"
           style={[
@@ -728,7 +739,9 @@ export const Player = ({
           <Text style={styles.partyText}>
             Party <Text style={styles.accentBold}>{party.code}</Text>
             {party.members.length
-              ? ` · ${party.members.map((m) => `${m.name} ${m.points}`).join(' · ')}`
+              ? ` · ${party.members
+                  .map((m) => `${m.name} ${m.points}`)
+                  .join(' · ')}`
               : ''}
           </Text>
         </View>
@@ -797,7 +810,9 @@ export const Player = ({
                 ))}
               </View>
               {code && <PhoneRow code={code} />}
-              <View style={styles.bottom}>{resume('Resume game', false, false)}</View>
+              <View style={styles.bottom}>
+                {resume('Resume game', false, false)}
+              </View>
             </>
           ) : (
             <>
@@ -865,7 +880,11 @@ export const Player = ({
         <View style={[styles.predict, glass]}>
           <Text style={[eyebrow, {color: C.accent}]}>PREDICT</Text>
           <Text style={styles.predictH}>
-            Next basket: {teams.map((k) => `${k[0].toUpperCase()}${k.slice(1)}`).join(' or ')}?
+            Next basket:{' '}
+            {teams
+              .map((k) => `${k[0].toUpperCase()}${k.slice(1)}`)
+              .join(' or ')}
+            ?
           </Text>
           <View style={styles.btnRow}>
             {teams.map((k, i) => (
@@ -958,6 +977,22 @@ export const Player = ({
           })}
         </View>
       )}
+      {/* bottom scrim (handoff: 0 -> rgba(7,11,16,.92) over the bottom ~300 px) behind captions and the strip;
+          it also hides the broadcast's own score graphic under the strip */}
+      <View pointerEvents="none" style={styles.scrim}>
+        {Array.from({length: 40}, (_, i) => (
+          <View
+            key={i}
+            style={{
+              flex: 1,
+              backgroundColor: `rgba(7,11,16,${(
+                0.92 *
+                ((i + 0.5) / 40) ** 1.4
+              ).toFixed(3)})`,
+            }}
+          />
+        ))}
+      </View>
       {/* ponytail: the strip unmounts while a panel is open, so D-pad focus can't leave the panel;
           it never auto-hides (Vega gives no reliable key event to bring it back) */}
       {!panelOpen && (
@@ -1049,6 +1084,7 @@ export const Player = ({
 };
 
 const styles = StyleSheet.create({
+  scrim: {position: 'absolute', left: 0, right: 0, bottom: 0, height: s(320)},
   root: {flex: 1, backgroundColor: '#000'},
   video: {position: 'absolute', top: 0, left: 0, right: 0, bottom: 0},
   flex: {flex: 1},
@@ -1098,18 +1134,38 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   qDiscText: {fontSize: s(24), fontWeight: '800', color: C.accentInk},
-  context: {flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: s(10)},
+  context: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: s(10),
+  },
   h2: {...T.h2, color: C.text, marginTop: s(4)},
   questions: {gap: s(12), marginTop: s(8)},
   question: {minHeight: s(120), borderRadius: s(16)},
   qNum: {fontSize: s(24), fontWeight: '800', color: C.accent},
-  qText: {flex: 1, fontSize: s(28), lineHeight: s(36), fontWeight: '700', color: C.text},
+  qText: {
+    flex: 1,
+    fontSize: s(28),
+    lineHeight: s(36),
+    fontWeight: '700',
+    color: C.text,
+  },
   bottom: {marginTop: 'auto'},
-  answerHead: {flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'},
+  answerHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
   wave: {flexDirection: 'row', alignItems: 'center', gap: s(5), height: s(40)},
   waveBar: {width: s(6), borderRadius: s(3), backgroundColor: C.accent},
   echo: {fontSize: s(26), lineHeight: s(36), color: C.muted},
-  answer: {fontSize: s(36), lineHeight: s(50), fontWeight: '700', color: C.text},
+  answer: {
+    fontSize: s(36),
+    lineHeight: s(50),
+    fontWeight: '700',
+    color: C.text,
+  },
   checked: {
     gap: s(14),
     padding: s(24),
@@ -1119,7 +1175,12 @@ const styles = StyleSheet.create({
     borderColor: C.line,
   },
   tick: {fontSize: s(24), fontWeight: '800', color: C.accent},
-  sourceText: {fontSize: s(24), lineHeight: s(32), color: C.text, flexShrink: 1},
+  sourceText: {
+    fontSize: s(24),
+    lineHeight: s(32),
+    color: C.text,
+    flexShrink: 1,
+  },
   recap: {
     position: 'absolute',
     left: s(400),
@@ -1140,7 +1201,12 @@ const styles = StyleSheet.create({
     borderRadius: s(28),
     gap: s(24),
   },
-  predictH: {fontSize: s(48), lineHeight: s(56), fontWeight: '800', color: C.text},
+  predictH: {
+    fontSize: s(48),
+    lineHeight: s(56),
+    fontWeight: '800',
+    color: C.text,
+  },
   // the fill sits inside the box so FocusButton's focused background can't repaint the team colour
   teamBtn: {
     minHeight: s(120),
@@ -1149,7 +1215,12 @@ const styles = StyleSheet.create({
     borderRadius: s(20),
     overflow: 'hidden',
   },
-  teamFill: {flex: 1, minHeight: s(120), justifyContent: 'center', paddingHorizontal: s(32)},
+  teamFill: {
+    flex: 1,
+    minHeight: s(120),
+    justifyContent: 'center',
+    paddingHorizontal: s(32),
+  },
   teamName: {fontSize: s(40), fontWeight: '800', letterSpacing: s(2.4)},
   banner: {
     position: 'absolute',
@@ -1169,7 +1240,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  bannerBig: {fontSize: s(72), lineHeight: s(72), fontWeight: '800', color: C.accentInk},
+  bannerBig: {
+    fontSize: s(72),
+    lineHeight: s(72),
+    fontWeight: '800',
+    color: C.accentInk,
+  },
   bannerTeam: {...eyebrow, color: C.accentInk, fontWeight: '800'},
   bannerText: {
     flex: 1,
@@ -1178,8 +1254,18 @@ const styles = StyleSheet.create({
     lineHeight: s(72),
     fontWeight: '800',
   },
-  toastWrap: {position: 'absolute', top: s(162), left: 0, right: 0, alignItems: 'center'},
-  toast: {paddingVertical: s(16), paddingHorizontal: s(32), borderRadius: s(16)},
+  toastWrap: {
+    position: 'absolute',
+    top: s(162),
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  toast: {
+    paddingVertical: s(16),
+    paddingHorizontal: s(32),
+    borderRadius: s(16),
+  },
   toastText: {...T.title, color: C.text},
   tray: {
     position: 'absolute',
@@ -1193,7 +1279,12 @@ const styles = StyleSheet.create({
   trayItem: {minHeight: s(104), paddingHorizontal: s(16), borderRadius: s(16)},
   onAirItem: {borderWidth: s(3), borderColor: C.accent},
   trayRow: {flexDirection: 'row', alignItems: 'center', gap: s(14)},
-  trayName: {fontSize: s(26), lineHeight: s(36), fontWeight: '800', color: C.text},
+  trayName: {
+    fontSize: s(26),
+    lineHeight: s(36),
+    fontWeight: '800',
+    color: C.text,
+  },
   onAirText: {fontSize: s(24), fontWeight: '700', color: C.accent},
   strip: {
     position: 'absolute',
@@ -1225,6 +1316,11 @@ const styles = StyleSheet.create({
     gap: s(12),
     flexShrink: 1,
   },
-  dot: {width: s(12), height: s(12), borderRadius: s(6), backgroundColor: C.accent},
+  dot: {
+    width: s(12),
+    height: s(12),
+    borderRadius: s(6),
+    backgroundColor: C.accent,
+  },
   onAirName: {color: C.text, fontWeight: '700'},
 });

@@ -72,7 +72,8 @@ const NUM = [
   'Ten',
 ];
 
-// No gradient lib on Vega: a CSS linear-gradient becomes 24 bands of bg at alpha(p), p = 0..1 along the axis.
+// No gradient lib on Vega: a CSS linear-gradient becomes BANDS bands of bg at alpha(p), p = 0..1 along the axis.
+const BANDS = 64; // 24 showed visible steps on the VVD
 const Fade = ({
   alpha,
   down,
@@ -83,13 +84,13 @@ const Fade = ({
   <View
     pointerEvents="none"
     style={[StyleSheet.absoluteFill, down ? styles.col : styles.split]}>
-    {Array.from({length: 24}, (_, i) => (
+    {Array.from({length: BANDS}, (_, i) => (
       <View
         key={i}
         style={[
           styles.flex,
           {
-            backgroundColor: `rgba(7,11,16,${alpha((i + 0.5) / 24).toFixed(
+            backgroundColor: `rgba(7,11,16,${alpha((i + 0.5) / BANDS).toFixed(
               3,
             )})`,
           },
@@ -113,10 +114,12 @@ const GameCard = ({
   g,
   now,
   onPress,
+  onFocus,
 }: {
   g: Game;
   now: boolean;
   onPress: () => void;
+  onFocus?: () => void;
 }) => {
   const teams = g.teams ?? [];
   const final = g.final;
@@ -126,6 +129,7 @@ const GameCard = ({
     teams.every((t) => typeof final[t] === 'number');
   return (
     <FocusButton
+      onFocusChange={(f) => f && onFocus?.()}
       label={g.title}
       card
       onPress={onPress}
@@ -193,6 +197,20 @@ export const Home = ({
   const scroll = useRef<ScrollView>(null);
   const gridY = useRef(0);
   const [focusGrid, setFocusGrid] = useState(false);
+  const [focusTop, setFocusTop] = useState(true); // Watch button holds focus at launch
+  // Vega's focus engine won't move focus to views below the visible area, so the grid and the hero are two
+  // "pages": focusing the ▼ / ▲ links scrolls the other page into view and hands focus to its main item.
+  const toGrid = () => {
+    scroll.current?.scrollTo({y: gridY.current});
+    setFocusTop(false);
+    setFocusGrid(true);
+  };
+  const scrollTop = () => scroll.current?.scrollTo({y: 0});
+  const scrollGrid = () => scroll.current?.scrollTo({y: gridY.current});
+  const toTop = () => {
+    scroll.current?.scrollTo({y: 0});
+    setFocusTop(true);
+  };
   const [joinOpen, setJoinOpen] = useState(false);
 
   const openParty = () => {
@@ -261,7 +279,15 @@ export const Home = ({
               <FocusButton
                 label={`Watch with ${shortName(onAir)}`}
                 primary
-                hasTVPreferredFocus
+                hasTVPreferredFocus={focusTop}
+                // Vega re-grabs hasTVPreferredFocus on every re-render while it's true: release it once held
+                onFocusChange={(f) => {
+                  if (f) {
+                    scrollTop();
+                    setFocusTop(false);
+                    setFocusGrid(false);
+                  }
+                }}
                 onPress={() => onSelect(onAir)}
                 outerStyle={styles.btnOuter}
                 style={[styles.btn, styles.btnPrimary]}>
@@ -274,10 +300,8 @@ export const Home = ({
               </FocusButton>
               <FocusButton
                 label="Change commentator"
-                onPress={() => {
-                  scroll.current?.scrollTo({y: gridY.current});
-                  setFocusGrid(true);
-                }}
+                onPress={toGrid}
+                onFocusChange={(f) => f && scrollTop()}
                 outerStyle={styles.btnOuter}
                 style={[styles.btn, styles.btnGlass]}>
                 <Text style={styles.btnText}>Change commentator</Text>
@@ -285,6 +309,7 @@ export const Home = ({
               <FocusButton
                 label={partyLabel}
                 onPress={openParty}
+                onFocusChange={(f) => f && scrollTop()}
                 outerStyle={styles.btnOuter}
                 style={[styles.btn, styles.btnGlass]}>
                 <Text style={styles.btnText}>Watch party</Text>
@@ -295,18 +320,22 @@ export const Home = ({
 
         <View style={styles.rail}>
           <Text style={[eyebrow, styles.railHead]}>GAMES</Text>
-          <ScrollView horizontal>
+          {/* ponytail: plain row, 3 cards fit; a horizontal ScrollView trapped D-pad focus on the VVD */}
+          <View style={styles.railRow}>
             {games.map((g) => (
               <GameCard
                 key={g.clipId}
                 g={g}
                 now={g.manifestUrl === gameUrl}
                 onPress={() => onGame(g.manifestUrl)}
+                onFocus={scrollTop}
               />
             ))}
-          </ScrollView>
+          </View>
         </View>
-        <Text style={styles.downHint}>▼ Commentators</Text>
+        <View style={styles.downHint}>
+          <Text style={styles.linkText}>▼ Commentators</Text>
+        </View>
       </View>
 
       {/* 2b commentators grid */}
@@ -314,6 +343,14 @@ export const Home = ({
         <View
           style={styles.section}
           onLayout={(e) => (gridY.current = e.nativeEvent.layout.y)}>
+          <FocusButton
+            label="Games above"
+            onPress={toTop}
+            onFocusChange={(f) => f && scrollGrid()}
+            outerStyle={styles.upLink}
+            style={styles.linkBox}>
+            <Text style={styles.linkText}>▲ Games</Text>
+          </FocusButton>
           <View style={styles.gridHead}>
             <Text style={styles.h2}>Choose your commentator</Text>
             <Text style={styles.hint}>
@@ -332,7 +369,12 @@ export const Home = ({
                   card
                   onPress={() => onSelect(tr)}
                   hasTVPreferredFocus={focusGrid && live}
-                  onFocusChange={(f) => f && setFocusGrid(false)}
+                  onFocusChange={(f) => {
+                    if (f) {
+                      scrollGrid();
+                      setFocusGrid(false);
+                    }
+                  }}
                   outerStyle={styles.gridOuter}
                   style={[
                     styles.card,
@@ -498,10 +540,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: SAFE.x - s(RING),
     right: 0,
-    top: s(722),
+    top: s(690),
     gap: s(20 - RING),
   },
   railHead: {marginLeft: s(RING)},
+  railRow: {flexDirection: 'row'},
   railOuter: {marginRight: s(32 - 2 * RING), marginBottom: 0},
   game: {
     width: s(540),
@@ -567,11 +610,17 @@ const styles = StyleSheet.create({
   },
   downHint: {
     position: 'absolute',
-    right: SAFE.x,
-    bottom: SAFE.y,
-    color: C.muted,
-    fontSize: s(24),
+    left: SAFE.x - s(11),
+    right: SAFE.x - s(11),
+    bottom: s(-6),
   },
+  upLink: {alignSelf: 'flex-start', marginLeft: SAFE.x - s(11)},
+  linkBox: {
+    minHeight: s(56),
+    paddingHorizontal: s(20),
+    backgroundColor: C.panel,
+  },
+  linkText: {color: C.muted, fontSize: s(24), fontWeight: '700'},
   section: {paddingTop: SAFE.y, paddingBottom: s(40)},
   gridHead: {
     marginHorizontal: SAFE.x,

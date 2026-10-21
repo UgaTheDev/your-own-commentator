@@ -13,7 +13,7 @@ import tempfile
 from pathlib import Path
 
 MAX_S = 180
-DUCK = 0.25
+DUCK = 0.06  # one voice at a time: the commentator is all but muted under narration
 V = ["-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-r", "30"]
 A = ["-c:a", "pcm_s16le", "-ar", "48000", "-ac", "2"]
 FIT = ("scale=1920:1080:force_original_aspect_ratio=decrease,"

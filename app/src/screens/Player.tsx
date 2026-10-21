@@ -1,5 +1,6 @@
 import React, {useEffect, useMemo, useRef, useState} from 'react';
 import {BackHandler, StyleSheet, Text, View} from 'react-native';
+import {useTVEventHandler} from '@amazon-devices/react-native-kepler';
 import {
   AudioPlayer,
   KeplerVideoSurfaceView,
@@ -556,6 +557,18 @@ export const Player = ({
     highlights,
   });
   api.current = {why, pick, catchUp, switchTo, replay, hear, seek, highlights};
+  // Remote rewind: back 10 s, e.g. to hear the same play again from another commentator.
+  useTVEventHandler((e) => {
+    const v = player.current;
+    if (
+      v &&
+      (e.eventType === 'rewind' || e.eventType === 'skip_backward') &&
+      e.eventKeyAction !== 1 &&
+      !replayingRef.current
+    ) {
+      seek(Math.max(0, v.currentTime - 10));
+    }
+  });
   useEffect(() => {
     if (!AUTOPILOT) {
       return;
@@ -617,7 +630,10 @@ export const Player = ({
   const caption = cue && t - cue.t < CAPTION_SECS ? cue : null;
 
   const frame =
-    showMap && manifest.minimap ? activeAt(manifest.minimap.frames, t) : null;
+    // t is clip time during a replay or the reel, so game-time minimap frames would be the wrong play
+    showMap && manifest.minimap && !replaying && !reel
+      ? activeAt(manifest.minimap.frames, t)
+      : null;
   const replayHere =
     !!manifest.replays && (replaying || !!replayAt(manifest, t));
   const panelOpen = !!overlay && overlay.kind !== 'answer';

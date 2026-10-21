@@ -28,7 +28,15 @@ export const Play = ({color = C.text}: {color?: string}) => (
 );
 
 // Team colour chip: "PINK #23" (minors: colour + jersey only).
-export const TeamChip = ({name, text, h = 38}: {name: string; text: string; h?: number}) => (
+export const TeamChip = ({
+  name,
+  text,
+  h = 38,
+}: {
+  name: string;
+  text: string;
+  h?: number;
+}) => (
   <View style={[st.teamChip, {height: s(h), backgroundColor: team(name).bg}]}>
     <Text style={[st.teamChipText, {color: team(name).ink}]}>{text}</Text>
   </View>
@@ -93,7 +101,8 @@ export const PhoneRow = ({code}: {code: string}) => (
   <View style={st.phoneRow}>
     <Phone w={30} h={48} />
     <Text style={st.soft}>
-      Or hold to ask on your phone — code <Text style={st.codeInline}>{code}</Text>
+      Or hold to ask on your phone — code{' '}
+      <Text style={st.codeInline}>{code}</Text>
     </Text>
   </View>
 );
@@ -160,25 +169,93 @@ export const MiniMap = ({
       </View>
     </View>
     <Svg width={s(320)} height={s(180)} viewBox="0 0 320 180">
-      <Rect x="10" y="10" width="300" height="160" rx="6" fill="rgba(193,138,81,.16)" stroke={LINE} strokeWidth={2} />
+      <Rect
+        x="10"
+        y="10"
+        width="300"
+        height="160"
+        rx="6"
+        fill="rgba(193,138,81,.16)"
+        stroke={LINE}
+        strokeWidth={2}
+      />
       <Path d="M160 10 V170" stroke={LINE} strokeWidth={2} />
-      <Circle cx="160" cy="90" r="22" fill="none" stroke={LINE} strokeWidth={2} />
-      <Rect x="10" y="62" width="54" height="56" fill="none" stroke={LINE} strokeWidth={2} />
-      <Rect x="256" y="62" width="54" height="56" fill="none" stroke={LINE} strokeWidth={2} />
-      <Path d="M64 62 a28 28 0 0 1 0 56 M256 62 a28 28 0 0 0 0 56" fill="none" stroke={LINE} strokeWidth={2} />
-      <Path d="M10 22 Q 110 90 10 158 M310 22 Q 210 90 310 158" fill="none" stroke="rgba(230,237,243,.35)" strokeWidth={2} />
-      {frame.players.map((p) => (
-        <Circle key={p.id} cx={px(p.x)} cy={py(p.y)} r="8" fill={team(p.team).bg} stroke="#ffffff" strokeWidth={2} />
-      ))}
+      <Circle
+        cx="160"
+        cy="90"
+        r="22"
+        fill="none"
+        stroke={LINE}
+        strokeWidth={2}
+      />
+      <Rect
+        x="10"
+        y="62"
+        width="54"
+        height="56"
+        fill="none"
+        stroke={LINE}
+        strokeWidth={2}
+      />
+      <Rect
+        x="256"
+        y="62"
+        width="54"
+        height="56"
+        fill="none"
+        stroke={LINE}
+        strokeWidth={2}
+      />
+      <Path
+        d="M64 62 a28 28 0 0 1 0 56 M256 62 a28 28 0 0 0 0 56"
+        fill="none"
+        stroke={LINE}
+        strokeWidth={2}
+      />
+      <Path
+        d="M10 22 Q 110 90 10 158 M310 22 Q 210 90 310 158"
+        fill="none"
+        stroke="rgba(230,237,243,.35)"
+        strokeWidth={2}
+      />
+      {frame.players
+        // bench and sideline people project just off the court; only players on it belong on the map
+        .filter((p) => p.x >= 0 && p.x <= 28.65 && p.y >= 0 && p.y <= 15.24)
+        .map((p) => (
+          <Circle
+            key={p.id}
+            cx={px(p.x)}
+            cy={py(p.y)}
+            r="8"
+            fill={team(p.team).bg}
+            stroke="#ffffff"
+            strokeWidth={2}
+          />
+        ))}
       {frame.ball && (
-        <Circle cx={px(frame.ball.x)} cy={py(frame.ball.y)} r="7" fill={C.accent} stroke={C.bg} strokeWidth={2.5} />
+        <Circle
+          cx={px(frame.ball.x)}
+          cy={py(frame.ball.y)}
+          r="7"
+          fill={C.accent}
+          stroke={C.bg}
+          strokeWidth={2.5}
+        />
       )}
     </Svg>
   </View>
 );
 
 // 3b: the bar shrinks over the card's on-screen time (left = 1 → 0).
-export const RuleCard = ({title, body, left}: {title: string; body: string; left: number}) => (
+export const RuleCard = ({
+  title,
+  body,
+  left,
+}: {
+  title: string;
+  body: string;
+  left: number;
+}) => (
   <View style={[st.rule, glass]}>
     <View style={st.ruleBody}>
       <Text style={[eyebrow, {color: C.accent}]}>RULE</Text>
@@ -186,16 +263,30 @@ export const RuleCard = ({title, body, left}: {title: string; body: string; left
       <Text style={st.ruleText}>{body}</Text>
     </View>
     <View style={st.track}>
-      <View style={[st.fill, {width: `${Math.max(0, Math.min(1, left)) * 100}%`}]} />
+      <View
+        style={[st.fill, {width: `${Math.max(0, Math.min(1, left)) * 100}%`}]}
+      />
     </View>
   </View>
 );
 
 // 3d: old persona dimmed under the new one; the bar fills over the ≈1.5 s a switch takes.
-export const SwitchCard = ({from, to, name}: {from: PersonaKey; to: PersonaKey; name: string}) => {
+export const SwitchCard = ({
+  from,
+  to,
+  name,
+}: {
+  from: PersonaKey;
+  to: PersonaKey;
+  name: string;
+}) => {
   const p = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    Animated.timing(p, {toValue: 1, duration: 1500, useNativeDriver: true}).start();
+    Animated.timing(p, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true,
+    }).start();
   }, [p]);
   return (
     <View style={[st.switch, glass]}>
@@ -218,7 +309,14 @@ export const SwitchCard = ({from, to, name}: {from: PersonaKey; to: PersonaKey; 
               height: s(8),
               width: '100%',
               transformOrigin: 'left',
-              transform: [{scaleX: p.interpolate({inputRange: [0, 1], outputRange: [0, 0.9]})}],
+              transform: [
+                {
+                  scaleX: p.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 0.9],
+                  }),
+                },
+              ],
             },
           ]}
         />
@@ -228,7 +326,13 @@ export const SwitchCard = ({from, to, name}: {from: PersonaKey; to: PersonaKey; 
 };
 
 // 3e / 3f top-centre tag: REPLAY (accent fill) or HIGHLIGHTS (outlined).
-export const ModeTag = ({kind, detail}: {kind: 'replay' | 'highlights'; detail?: string | null}) => {
+export const ModeTag = ({
+  kind,
+  detail,
+}: {
+  kind: 'replay' | 'highlights';
+  detail?: string | null;
+}) => {
   const replay = kind === 'replay';
   return (
     <View style={st.tagWrap} pointerEvents="none">
@@ -236,7 +340,11 @@ export const ModeTag = ({kind, detail}: {kind: 'replay' | 'highlights'; detail?:
         <Text style={[st.tagText, {color: replay ? C.accentInk : C.accent}]}>
           {replay ? '↺ REPLAY' : '★ HIGHLIGHTS'}
         </Text>
-        {detail ? <Text style={[st.tagDetail, {color: replay ? C.accentInk : C.text}]}>{detail}</Text> : null}
+        {detail ? (
+          <Text style={[st.tagDetail, {color: replay ? C.accentInk : C.text}]}>
+            {detail}
+          </Text>
+        ) : null}
       </View>
     </View>
   );
@@ -246,15 +354,53 @@ export const st = StyleSheet.create({
   flex: {flex: 1},
   muted: {...T.body, color: C.muted},
   soft: {...T.body, color: C.textSoft, flexShrink: 1},
-  teamChip: {justifyContent: 'center', paddingHorizontal: s(10), borderRadius: s(8)},
+  teamChip: {
+    justifyContent: 'center',
+    paddingHorizontal: s(10),
+    borderRadius: s(8),
+  },
   teamChipText: {fontSize: s(24), fontWeight: '800'},
-  bugRow: {position: 'absolute', left: SAFE.x, top: SAFE.y, flexDirection: 'row', alignItems: 'center'},
-  bug: {flexDirection: 'row', height: s(76), borderRadius: s(16), overflow: 'hidden'},
-  bugTeam: {flexDirection: 'row', alignItems: 'center', paddingHorizontal: s(22)},
-  bugName: {fontSize: s(24), fontWeight: '700', letterSpacing: s(2.9), marginHorizontal: s(9)},
+  bugRow: {
+    position: 'absolute',
+    left: SAFE.x,
+    top: SAFE.y,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  bug: {
+    flexDirection: 'row',
+    height: s(76),
+    borderRadius: s(16),
+    overflow: 'hidden',
+  },
+  bugTeam: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: s(22),
+  },
+  bugName: {
+    fontSize: s(24),
+    fontWeight: '700',
+    letterSpacing: s(2.9),
+    marginHorizontal: s(9),
+  },
   bugScore: {...T.score, marginHorizontal: s(9)},
-  bugBar: {position: 'absolute', left: 0, right: 0, bottom: 0, height: s(6), backgroundColor: C.accent},
-  flash: {height: s(56), marginLeft: s(12), paddingHorizontal: s(20), borderRadius: s(28), backgroundColor: C.accent, justifyContent: 'center'},
+  bugBar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: s(6),
+    backgroundColor: C.accent,
+  },
+  flash: {
+    height: s(56),
+    marginLeft: s(12),
+    paddingHorizontal: s(20),
+    borderRadius: s(28),
+    backgroundColor: C.accent,
+    justifyContent: 'center',
+  },
   flashText: {fontSize: s(26), fontWeight: '800', color: C.accentInk},
   phone: {borderWidth: s(3), borderColor: C.text, borderRadius: s(6)},
   badge: {
@@ -268,9 +414,25 @@ export const st = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  badgeText: {fontSize: s(24), fontWeight: '700', color: C.text, marginHorizontal: s(16)},
-  codeChip: {height: s(56), paddingHorizontal: s(18), borderRadius: s(10), backgroundColor: C.accent, justifyContent: 'center'},
-  codeText: {fontSize: s(32), fontWeight: '800', letterSpacing: s(5.8), color: C.accentInk},
+  badgeText: {
+    fontSize: s(24),
+    fontWeight: '700',
+    color: C.text,
+    marginHorizontal: s(16),
+  },
+  codeChip: {
+    height: s(56),
+    paddingHorizontal: s(18),
+    borderRadius: s(10),
+    backgroundColor: C.accent,
+    justifyContent: 'center',
+  },
+  codeText: {
+    fontSize: s(32),
+    fontWeight: '800',
+    letterSpacing: s(5.8),
+    color: C.accentInk,
+  },
   codeInline: {color: C.accent, fontWeight: '800', letterSpacing: s(2.9)},
   phoneRow: {
     flexDirection: 'row',
@@ -291,8 +453,19 @@ export const st = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  pauseBar: {width: s(7), height: s(22), backgroundColor: C.text, marginRight: s(5)},
-  pausedText: {fontSize: s(24), fontWeight: '800', letterSpacing: s(3.4), color: C.text, marginLeft: s(7)},
+  pauseBar: {
+    width: s(7),
+    height: s(22),
+    backgroundColor: C.text,
+    marginRight: s(5),
+  },
+  pausedText: {
+    fontSize: s(24),
+    fontWeight: '800',
+    letterSpacing: s(3.4),
+    color: C.text,
+    marginLeft: s(7),
+  },
   caption: {
     position: 'absolute',
     left: SAFE.x,
@@ -304,8 +477,18 @@ export const st = StyleSheet.create({
     flexDirection: 'row',
     gap: s(24),
   },
-  captionHead: {flexDirection: 'row', alignItems: 'center', gap: s(14), marginBottom: s(10)},
-  role: {height: s(36), paddingHorizontal: s(12), borderRadius: s(8), justifyContent: 'center'},
+  captionHead: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: s(14),
+    marginBottom: s(10),
+  },
+  role: {
+    height: s(36),
+    paddingHorizontal: s(12),
+    borderRadius: s(8),
+    justifyContent: 'center',
+  },
   rolePbp: {borderWidth: s(2), borderColor: C.accent},
   roleText: {fontSize: s(24), fontWeight: '800', letterSpacing: s(2.9)},
   captionText: {...T.caption, color: C.text},
@@ -319,24 +502,86 @@ export const st = StyleSheet.create({
     paddingBottom: s(20),
     borderRadius: s(24),
   },
-  mapHead: {flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: s(10)},
+  mapHead: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: s(10),
+  },
   legend: {flexDirection: 'row', alignItems: 'center', gap: s(8)},
-  legendBall: {width: s(14), height: s(14), borderRadius: s(7), backgroundColor: C.accent, borderWidth: s(2), borderColor: C.bg},
+  legendBall: {
+    width: s(14),
+    height: s(14),
+    borderRadius: s(7),
+    backgroundColor: C.accent,
+    borderWidth: s(2),
+    borderColor: C.bg,
+  },
   legendText: {fontSize: s(24), fontWeight: '700', color: C.text},
-  rule: {position: 'absolute', left: SAFE.x, top: s(162), width: s(600), borderRadius: s(24), overflow: 'hidden'},
-  ruleBody: {paddingTop: s(24), paddingHorizontal: s(28), paddingBottom: s(28), gap: s(12)},
-  ruleTitle: {fontSize: s(36), lineHeight: s(44), fontWeight: '800', color: C.text},
+  rule: {
+    position: 'absolute',
+    left: SAFE.x,
+    top: s(162),
+    width: s(600),
+    borderRadius: s(24),
+    overflow: 'hidden',
+  },
+  ruleBody: {
+    paddingTop: s(24),
+    paddingHorizontal: s(28),
+    paddingBottom: s(28),
+    gap: s(12),
+  },
+  ruleTitle: {
+    fontSize: s(36),
+    lineHeight: s(44),
+    fontWeight: '800',
+    color: C.text,
+  },
   ruleText: {fontSize: s(26), lineHeight: s(38), color: C.textSoft},
   track: {height: s(6), backgroundColor: C.line},
   fill: {height: s(6), backgroundColor: C.accent},
-  switch: {position: 'absolute', left: SAFE.x, bottom: s(166), width: s(860), borderRadius: s(24), overflow: 'hidden'},
-  switchBody: {paddingVertical: s(28), paddingHorizontal: s(32), flexDirection: 'row', alignItems: 'center', gap: s(28)},
+  switch: {
+    position: 'absolute',
+    left: SAFE.x,
+    bottom: s(166),
+    width: s(860),
+    borderRadius: s(24),
+    overflow: 'hidden',
+  },
+  switchBody: {
+    paddingVertical: s(28),
+    paddingHorizontal: s(32),
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: s(28),
+  },
   switchIcons: {width: s(112), height: s(112)},
   oldIcon: {position: 'absolute', left: 0, top: 0},
-  newIcon: {position: 'absolute', right: 0, bottom: 0, borderWidth: s(4), borderColor: '#090e14', borderRadius: s(22)},
+  newIcon: {
+    position: 'absolute',
+    right: 0,
+    bottom: 0,
+    borderWidth: s(4),
+    borderColor: '#090e14',
+    borderRadius: s(22),
+  },
   switchText: {...T.h2, color: C.text, flexShrink: 1},
-  tagWrap: {position: 'absolute', top: SAFE.y, left: 0, right: 0, alignItems: 'center'},
-  tag: {height: s(76), paddingHorizontal: s(28), borderRadius: s(16), flexDirection: 'row', alignItems: 'center', gap: s(16)},
+  tagWrap: {
+    position: 'absolute',
+    top: SAFE.y,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  tag: {
+    height: s(76),
+    paddingHorizontal: s(28),
+    borderRadius: s(16),
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: s(16),
+  },
   tagReplay: {backgroundColor: C.accent},
   tagReel: {backgroundColor: C.glass, borderWidth: s(3), borderColor: C.accent},
   tagText: {fontSize: s(30), fontWeight: '800', letterSpacing: s(4.8)},

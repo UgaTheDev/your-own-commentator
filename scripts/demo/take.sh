@@ -1,25 +1,22 @@
 #!/usr/bin/env bash
 # One demo take on Lake Region, driven by remote keys timed to the game's verified events.
-# Records only the VVD window (with its audio) to out/take.mov; marks every step in out/take.marks.
+# Records the VVD display (with its audio) through the emulator console in two parts (180 s cap each):
+# out/take-a.webm, out/take-b.webm (from the Hindi step on). Marks are seconds in that part, in out/take.marks.
 # Player strip (redesign): Why?(0) Catch me up(1) <commentator> ▲(2, opens the tray; focus starts here) Map(3)
 #   Highlights(4) Replay(5, only within 10 s of an event with a replay). Tray: Rookie Kid Booth Fantasy Novato Hindi 新手,
 #   opens on the on-air one; OK switches and focus returns to the commentator button.
 set -uo pipefail
 cd "$(dirname "$0")"
 O=out/take
-mkdir -p out && rm -f out/take.mov out/take.log out/take.marks out/take.rec.txt out/take.start_ms
-[ out/winrec -nt winrec.swift ] || swiftc -O winrec.swift -o out/winrec
-WID=$(osascript -l JavaScript -e 'ObjC.import("CoreGraphics"); var l=ObjC.deepUnwrap(ObjC.castRefToObject($.CGWindowListCopyWindowInfo(0,0))); var w=l.find(w=>w.kCGWindowName=="Vega Virtual Device"); w?w.kCGWindowNumber:""')
-[ -n "$WID" ] || { echo "VVD window not found"; exit 1; }
+mkdir -p out && rm -f out/take-a.webm out/take-b.webm out/take.log out/take.marks
+. ./emurec.sh
 
 vega run-app ../../app/build/aarch64-release/commentator_aarch64.vpkg >/dev/null 2>&1
 sleep 8
 vega device start-log-stream > $O.log 2>&1 & LP=$!
-trap 'kill $LP 2>/dev/null' EXIT
+trap 'erec_stop; kill $LP 2>/dev/null' EXIT
 sleep 2
-out/winrec "$WID" $O.mov "${TAKE_SECS:-300}" > $O.rec.txt 2>&1 & RP=$!
-until grep -q start_ms $O.rec.txt 2>/dev/null; do kill -0 $RP 2>/dev/null || { cat $O.rec.txt; exit 1; }; sleep 0.1; done
-awk '/start_ms/{print $2}' $O.rec.txt > $O.start_ms; T0=$(awk '{printf "%.3f", $1/1000}' $O.start_ms)
+T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-a.webm"; echo "part a" >> $O.marks
 
 now() { python3 -c 'import time; print(time.time())'; }
 until_t() { python3 -c "import time; time.sleep(max(0, $1 - time.time()))"; }
@@ -38,16 +35,20 @@ w() { local n; n=$(grep -ac "$1" $O.log); for _ in $(seq $(( ${2:-30} * 5 ))); d
 rec 3;   mark home;       k DOWN RIGHT RIGHT LEFT LEFT
 rec 9;   mark grid;       k DOWN DOWN RIGHT RIGHT LEFT LEFT   # games -> ▲Games link -> Rookie card (grid scrolls in)
 rec 15;  mark rookie;     k ENTER
-g 40;    mark kid;        k ENTER RIGHT ENTER; w 'seeked kid' 10
-g 50;    mark spanish;    k ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10
-g 69;    mark hindi;      k ENTER RIGHT ENTER; w 'seeked rookie-hi' 10
-g 80;    mark booth;      k ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10
-g 98.4;  mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
+# Same play, four voices: Rookie calls the 98.4 two-pointer; then rewind 10 s (remote) and switch, three times.
+# After a rewind the last logged tick is still >= 103 until the next one, so wait for the clock to drop first.
+lt() { until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2; done; }
+g 103;   mark kid;        k REWIND ENTER RIGHT ENTER; w 'seeked kid' 10; lt 100
+g 103;   mark spanish;    k REWIND ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10; lt 100
+g 103;   erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-b.webm"; echo "part b" >> $O.marks
+         mark hindi;      k REWIND ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
+g 103;   mark booth;      k REWIND ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10; lt 100
+g 101;   mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
 g 108.5; mark fantasy;    k RIGHT RIGHT ENTER RIGHT ENTER; w 'seeked fantasy' 10   # focus is on Why? after Replay hides
 g 132;   mark why;        k LEFT LEFT ENTER; w 'why e9' 8; sleep 2.5; mark question; k ENTER; w 'overlay closed' 40
 sleep 1; mark map;        k RIGHT RIGHT RIGHT ENTER
 sleep 8; mark catchup;    k LEFT LEFT ENTER; w 'overlay closed' 40
 sleep 1; mark highlights; k RIGHT RIGHT RIGHT RIGHT ENTER
 sleep 18; mark end
-wait $RP   # winrec finalizes the file itself; killing it would corrupt the .mov
-echo "take saved: $O.mov"
+erec_stop; trap 'kill $LP 2>/dev/null' EXIT
+echo "take saved: out/take-a.webm out/take-b.webm"

@@ -1,6 +1,7 @@
 {
   "voice": "Danielle",
   "lines": [
+    {"id": "ask", "voice": "Stephen", "text": "Wait, why did they stop?"},
     {"id": "hook", "text": "Never watched basketball? Just ask your TV."},
     {"id": "pick", "text": "This is Your Own Commentator on Fire TV. Pick a game, then pick your commentator."},
     {"id": "rules", "text": "The Rookie commentator explains each rule the moment it matters."},

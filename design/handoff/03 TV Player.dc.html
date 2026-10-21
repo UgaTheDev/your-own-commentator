@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>
+body{margin:0;background:#020407;color:#e6edf3;font-family:system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans","Noto Sans Devanagari","Nirmala UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#FFD400;text-decoration:none}a:hover{color:#fff1a0}
+</style>
+</helmet>
+<div style="padding:120px;display:flex;flex-direction:column;gap:80px;width:4200px;">
+  <div style="display:flex;align-items:center;gap:32px;font-size:28px;font-weight:700;">
+    <span style="color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">Your Own Commentator · Player overlays</span>
+    <a href="01 Brand + Spec.dc.html">01 Brand + Spec</a>
+    <a href="02 TV Home.dc.html">02 Home</a>
+    <a href="03 TV Player.dc.html" style="color:#e6edf3;">03 Player overlays</a>
+    <a href="04 Why + Watch Party.dc.html">04 Why? + Watch party</a>
+    <a href="05 Phone Companion.dc.html">05 Phone</a>
+    <a href="06 Demo + Devpost.dc.html">06 Demo + Devpost</a>
+  </div>
+  <div style="display:flex;gap:120px;flex-wrap:wrap;">
+
+    <div id="3a" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3a · Live — full overlay set, focus on Why?</div>
+      <div data-screen-label="3a Live overlays" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:400px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.92));"></div>
+        <dc-import name="YOC Score Bug" a="58" b="54" style="position:absolute;left:96px;top:54px;" hint-size="560px,76px"></dc-import>
+        <div style="position:absolute;right:96px;top:54px;height:76px;padding:0 12px 0 24px;border-radius:16px;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.16),0 16px 40px rgba(0,0,0,.5);display:flex;align-items:center;gap:16px;">
+          <span style="width:22px;height:36px;border-radius:6px;border:3px solid #e6edf3;"></span>
+          <span style="font-size:24px;font-weight:700;white-space:nowrap;">Ask on your phone</span>
+          <span style="height:56px;padding:0 18px;border-radius:10px;background:#FFD400;color:#070b10;font-size:32px;font-weight:800;letter-spacing:.18em;display:flex;align-items:center;font-variant-numeric:tabular-nums;">4K7Q</span>
+        </div>
+        <div style="position:absolute;left:96px;bottom:166px;width:1080px;padding:24px 28px;border-radius:24px;background:rgba(9,14,20,.88);backdrop-filter:blur(24px);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.5);display:flex;gap:24px;">
+          <dc-import name="YOC Persona" persona="booth" style="width:72px;height:72px;flex:none;" hint-size="72px,72px"></dc-import>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="height:36px;padding:0 12px;border-radius:8px;box-shadow:inset 0 0 0 2px #FFD400;color:#FFD400;font-size:24px;font-weight:800;letter-spacing:.12em;display:flex;align-items:center;">PLAY-BY-PLAY</span>
+              <span style="font-size:24px;color:#8c99a8;">Booth · voice 1</span>
+            </div>
+            <div style="font-size:32px;line-height:44px;font-weight:600;text-wrap:pretty;">Pink #23 drives baseline — and there’s the whistle. Blue #4 got the arm. Two shots coming.</div>
+          </div>
+        </div>
+        <div style="position:absolute;right:96px;bottom:166px;width:360px;padding:16px 20px 20px;border-radius:24px;background:rgba(9,14,20,.88);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:24px;font-weight:700;letter-spacing:.14em;color:#8c99a8;"><span>MAP</span><span style="display:flex;align-items:center;gap:8px;color:#e6edf3;letter-spacing:0;"><span style="width:14px;height:14px;border-radius:50%;background:#FFD400;box-shadow:0 0 0 2px #070b10;"></span>ball</span></div>
+          <dc-import name="YOC Minimap" style="width:320px;height:180px;" hint-size="320px,180px"></dc-import>
+        </div>
+        <div style="position:absolute;left:96px;right:96px;bottom:54px;height:88px;padding:0 8px;border-radius:20px;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);display:flex;align-items:center;gap:12px;">
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#FFD400;color:#070b10;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:800;white-space:nowrap;transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 4px #070b10,0 0 0 10px #FFD400,0 28px 56px rgba(0,0,0,.65);"><span style="width:34px;height:34px;border-radius:50%;background:#070b10;color:#FFD400;font-size:24px;display:flex;align-items:center;justify-content:center;">?</span>Why?</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Catch me up</div>
+          <div style="height:72px;padding:0 24px 0 12px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700;white-space:nowrap;"><dc-import name="YOC Persona" persona="booth" style="width:48px;height:48px;" hint-size="48px,48px"></dc-import>7 commentators</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847,inset 0 -5px 0 #FFD400;display:flex;align-items:center;gap:10px;font-size:26px;font-weight:700;color:#FFD400;white-space:nowrap;"><span style="width:12px;height:12px;border-radius:50%;background:#FFD400;"></span>Map</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Highlights</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Replay</div>
+          <div style="margin-left:auto;padding-right:20px;display:flex;align-items:center;gap:12px;font-size:24px;color:#8c99a8;white-space:nowrap;"><span style="width:12px;height:12px;border-radius:50%;background:#FFD400;"></span>On air: <b style="color:#e6edf3;">Booth</b></div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <defs><marker id="ah3a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2ee6d6"></path></marker></defs>
+            <sc-for list="{{ fA.segs }}" as="s" hint-placeholder-count="0"><line x1="{{ s.x1 }}" y1="{{ s.y1 }}" x2="{{ s.x2 }}" y2="{{ s.y2 }}" stroke="#2ee6d6" stroke-width="5" stroke-dasharray="{{ s.dash }}" marker-end="url(#ah3a)"></line></sc-for>
+            <sc-for list="{{ fA.badges }}" as="b" hint-placeholder-count="0"><g><circle cx="{{ b.x }}" cy="{{ b.y }}" r="24" fill="#2ee6d6"></circle><text x="{{ b.x }}" y="{{ b.ty }}" text-anchor="middle" font-size="24" font-weight="800" fill="#04201d">{{ b.n }}</text></g></sc-for>
+            <text x="110" y="1066" font-size="24" font-weight="700" fill="#2ee6d6">◀ ▶ moves along the strip · Back hides it · auto-hide 6 s</text>
+          </svg>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="3b" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3b · Basket — score bug updates, rule card, analyst caption</div>
+      <div data-screen-label="3b Basket + rule card" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:320px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.9));"></div>
+        <dc-import name="YOC Score Bug" a="60" b="54" scored="a" pts="2" clock="4:09" style="position:absolute;left:96px;top:54px;" hint-size="760px,76px"></dc-import>
+        <div style="position:absolute;right:96px;top:54px;height:76px;padding:0 12px 0 24px;border-radius:16px;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.16);display:flex;align-items:center;gap:16px;">
+          <span style="width:22px;height:36px;border-radius:6px;border:3px solid #e6edf3;"></span>
+          <span style="font-size:24px;font-weight:700;white-space:nowrap;">Ask on your phone</span>
+          <span style="height:56px;padding:0 18px;border-radius:10px;background:#FFD400;color:#070b10;font-size:32px;font-weight:800;letter-spacing:.18em;display:flex;align-items:center;">4K7Q</span>
+        </div>
+        <div style="position:absolute;left:96px;top:162px;width:600px;border-radius:24px;overflow:hidden;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.5);">
+          <div style="padding:24px 28px 28px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:24px;font-weight:700;letter-spacing:.14em;color:#FFD400;">RULE</div>
+            <div style="font-size:36px;line-height:44px;font-weight:800;">Free throw</div>
+            <div style="font-size:26px;line-height:38px;color:#c4ced8;text-wrap:pretty;">Fouled while shooting = free shots from the line, 1 point each. Nobody moves in until the ball leaves the shooter’s hands.</div>
+          </div>
+          <div style="height:6px;background:#1c2733;"><div style="width:62%;height:6px;background:#FFD400;"></div></div>
+        </div>
+        <div style="position:absolute;left:96px;bottom:54px;width:1180px;padding:24px 28px;border-radius:24px;background:rgba(9,14,20,.88);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.5);display:flex;gap:24px;">
+          <dc-import name="YOC Persona" persona="booth" style="width:72px;height:72px;flex:none;" hint-size="72px,72px"></dc-import>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <span style="height:36px;padding:0 12px;border-radius:8px;background:#e6edf3;color:#070b10;font-size:24px;font-weight:800;letter-spacing:.12em;display:flex;align-items:center;">ANALYST</span>
+              <span style="font-size:24px;color:#8c99a8;">Booth · voice 2</span>
+            </div>
+            <div style="font-size:32px;line-height:44px;font-weight:600;text-wrap:pretty;">Both shots down. That’s 6 of 7 from the line for Pink tonight — and the lead is back to six.</div>
+          </div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;right:96px;bottom:54px;width:440px;padding:20px 24px;border-radius:16px;border:3px dashed #2ee6d6;background:rgba(4,32,29,.85);color:#2ee6d6;font-size:24px;line-height:34px;font-weight:700;">No focusable items. Any D-pad key brings back the strip (3a). Rule card auto-dismisses in 8 s.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="3c" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3c · 7 commentators tray — Booth on air, focus on Novato</div>
+      <div data-screen-label="3c Commentator tray" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:460px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.94));"></div>
+        <dc-import name="YOC Score Bug" a="60" b="54" clock="3:51" style="position:absolute;left:96px;top:54px;" hint-size="560px,76px"></dc-import>
+        <div style="position:absolute;left:96px;right:96px;bottom:166px;padding:16px;border-radius:24px;background:rgba(9,14,20,.92);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.5);display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;">
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="rookie" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;font-weight:800;">Rookie</span><span style="font-size:24px;color:#8c99a8;">EN</span></div></div>
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="kid" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;font-weight:800;">Kid</span><span style="font-size:24px;color:#8c99a8;">EN</span></div></div>
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 3px #FFD400;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="booth" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;font-weight:800;">Booth</span><span style="font-size:24px;color:#FFD400;font-weight:700;">● ON AIR</span></div></div>
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="fantasy" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;font-weight:800;">Fantasy</span><span style="font-size:24px;color:#8c99a8;">EN</span></div></div>
+          <div style="position:relative;z-index:2;height:104px;padding:0 16px;border-radius:16px;background:#1a2532;display:flex;align-items:center;gap:14px;transform:translateY(-8px) scale(1.06);box-shadow:0 0 0 4px #070b10,0 0 0 10px #FFD400,0 28px 56px rgba(0,0,0,.65);"><dc-import name="YOC Persona" persona="novato" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;font-weight:800;">Novato</span><span style="font-size:24px;color:#c4ced8;">ES</span></div></div>
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="hindi" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;line-height:36px;font-weight:800;">नौसिखिया</span><span style="font-size:24px;color:#8c99a8;">HI</span></div></div>
+          <div style="height:104px;padding:0 16px;border-radius:16px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:14px;"><dc-import name="YOC Persona" persona="mandarin" style="width:60px;height:60px;flex:none;" hint-size="60px,60px"></dc-import><div style="display:flex;flex-direction:column;"><span style="font-size:26px;line-height:36px;font-weight:800;">新手</span><span style="font-size:24px;color:#8c99a8;">ZH</span></div></div>
+        </div>
+        <div style="position:absolute;left:96px;right:96px;bottom:54px;height:88px;padding:0 8px;border-radius:20px;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);display:flex;align-items:center;gap:12px;">
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#FFD400;color:#070b10;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:800;white-space:nowrap;"><span style="width:34px;height:34px;border-radius:50%;background:#070b10;color:#FFD400;font-size:24px;display:flex;align-items:center;justify-content:center;">?</span>Why?</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Catch me up</div>
+          <div style="height:72px;padding:0 24px 0 12px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847,inset 0 -5px 0 #FFD400;display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700;color:#FFD400;white-space:nowrap;"><dc-import name="YOC Persona" persona="booth" style="width:48px;height:48px;" hint-size="48px,48px"></dc-import>7 commentators ▲</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Map</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Highlights</div>
+          <div style="height:72px;padding:0 28px;border-radius:14px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:26px;font-weight:700;white-space:nowrap;">Replay</div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <defs><marker id="ah3c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2ee6d6"></path></marker></defs>
+            <sc-for list="{{ fC.segs }}" as="s" hint-placeholder-count="0"><line x1="{{ s.x1 }}" y1="{{ s.y1 }}" x2="{{ s.x2 }}" y2="{{ s.y2 }}" stroke="#2ee6d6" stroke-width="5" stroke-dasharray="{{ s.dash }}" marker-end="url(#ah3c)"></line></sc-for>
+            <sc-for list="{{ fC.badges }}" as="b" hint-placeholder-count="0"><g><circle cx="{{ b.x }}" cy="{{ b.y }}" r="24" fill="#2ee6d6"></circle><text x="{{ b.x }}" y="{{ b.ty }}" text-anchor="middle" font-size="24" font-weight="800" fill="#04201d">{{ b.n }}</text></g></sc-for>
+            <text x="110" y="740" font-size="24" font-weight="700" fill="#2ee6d6">Tray opens with focus on the on-air voice · OK = switch · ▼ / Back = close</text>
+          </svg>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="3d" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3d · “Switching to Novato…” transition (≈1.5 s)</div>
+      <div data-screen-label="3d Switching" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" dim="0.25" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:360px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.9));"></div>
+        <dc-import name="YOC Score Bug" a="60" b="54" clock="3:50" style="position:absolute;left:96px;top:54px;" hint-size="560px,76px"></dc-import>
+        <div style="position:absolute;left:96px;bottom:54px;width:860px;border-radius:24px;overflow:hidden;background:rgba(9,14,20,.92);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.55);">
+          <div style="padding:28px 32px;display:flex;align-items:center;gap:28px;">
+            <div style="position:relative;width:112px;height:112px;flex:none;">
+              <dc-import name="YOC Persona" persona="booth" style="position:absolute;left:0;top:0;width:72px;height:72px;opacity:.5;" hint-size="72px,72px"></dc-import>
+              <dc-import name="YOC Persona" persona="novato" style="position:absolute;right:0;bottom:0;width:84px;height:84px;box-shadow:0 0 0 4px #090e14;border-radius:20px;" hint-size="84px,84px"></dc-import>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="font-size:40px;line-height:48px;font-weight:800;">Switching to Novato…</div>
+              <div style="font-size:26px;line-height:36px;color:#c4ced8;">Cambiando a Novato · español · same game, same facts</div>
+            </div>
+          </div>
+          <div style="height:8px;background:#1c2733;"><div style="width:70%;height:8px;background:#FFD400;"></div></div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;right:96px;bottom:54px;width:520px;padding:20px 24px;border-radius:16px;border:3px dashed #2ee6d6;background:rgba(4,32,29,.85);color:#2ee6d6;font-size:24px;line-height:34px;font-weight:700;">Non-interactive. Video keeps playing; old voice fades over 300 ms, new voice picks up at the next play.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="3e" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3e · Replay tag + expanded court map</div>
+      <div data-screen-label="3e Replay + map" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;inset:0;box-shadow:inset 0 0 0 10px rgba(255,212,0,.9);"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:320px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.9));"></div>
+        <dc-import name="YOC Score Bug" a="58" b="54" clock="4:12" style="position:absolute;left:96px;top:54px;" hint-size="560px,76px"></dc-import>
+        <div style="position:absolute;left:50%;top:54px;transform:translateX(-50%);height:76px;padding:0 28px;border-radius:16px;background:#FFD400;color:#070b10;display:flex;align-items:center;gap:16px;font-size:30px;font-weight:800;letter-spacing:.16em;box-shadow:0 16px 40px rgba(0,0,0,.5);"><span style="font-size:34px;letter-spacing:0;">↺</span>REPLAY<span style="font-size:24px;font-weight:700;letter-spacing:.04em;">Q3 · 4:12</span></div>
+        <div style="position:absolute;right:96px;top:162px;width:704px;padding:20px 24px 24px;border-radius:24px;background:rgba(9,14,20,.9);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14),0 24px 64px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:24px;font-weight:700;letter-spacing:.14em;color:#8c99a8;">COURT MAP</span>
+            <span style="display:flex;gap:16px;font-size:24px;font-weight:700;align-items:center;"><span style="display:flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;background:#d6247a;box-shadow:0 0 0 2px #fff;"></span>Pink</span><span style="display:flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;background:#1f5fd6;box-shadow:0 0 0 2px #fff;"></span>Blue</span><span style="display:flex;align-items:center;gap:8px;"><span style="width:18px;height:18px;border-radius:50%;background:#FFD400;box-shadow:0 0 0 2px #070b10;"></span>Ball</span></span>
+          </div>
+          <dc-import name="YOC Minimap" numbers="{{ true }}" style="width:656px;height:369px;" hint-size="656px,369px"></dc-import>
+          <div style="font-size:26px;line-height:36px;">Pink #23 cuts baseline; Blue #4 is a step late on the help.</div>
+        </div>
+        <div style="position:absolute;left:96px;bottom:54px;width:1080px;padding:24px 28px;border-radius:24px;background:rgba(9,14,20,.88);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);display:flex;gap:24px;">
+          <dc-import name="YOC Persona" persona="novato" style="width:72px;height:72px;flex:none;" hint-size="72px,72px"></dc-import>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:14px;"><span style="height:36px;padding:0 12px;border-radius:8px;box-shadow:inset 0 0 0 2px #FFD400;color:#FFD400;font-size:24px;font-weight:800;letter-spacing:.12em;display:flex;align-items:center;">NARRACIÓN</span><span style="font-size:24px;color:#8c99a8;">Novato</span></div>
+            <div style="font-size:32px;line-height:44px;font-weight:600;">Mira otra vez: el #4 Azul toca el brazo justo al tirar. Por eso hay tiros libres.</div>
+          </div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;right:96px;bottom:54px;width:560px;padding:20px 24px;border-radius:16px;border:3px dashed #2ee6d6;background:rgba(4,32,29,.85);color:#2ee6d6;font-size:24px;line-height:34px;font-weight:700;">Replay frame: 10 px accent border so it never reads as live. Any key → strip (3a) with Replay selected.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="3f" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">3f · Highlights mode tag + reel progress</div>
+      <div data-screen-label="3f Highlights" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="1920px,1080px"></dc-import>
+        <div style="position:absolute;left:0;right:0;bottom:0;height:320px;background:linear-gradient(180deg,rgba(7,11,16,0),rgba(7,11,16,.9));"></div>
+        <dc-import name="YOC Score Bug" a="44" b="41" period="Q2" clock="0:38" style="position:absolute;left:96px;top:54px;" hint-size="560px,76px"></dc-import>
+        <div style="position:absolute;left:50%;top:54px;transform:translateX(-50%);height:76px;padding:0 28px;border-radius:16px;background:rgba(9,14,20,.92);box-shadow:inset 0 0 0 3px #FFD400;color:#FFD400;display:flex;align-items:center;gap:16px;font-size:30px;font-weight:800;letter-spacing:.16em;">★ HIGHLIGHTS<span style="font-size:24px;font-weight:700;letter-spacing:.04em;color:#e6edf3;">3 of 12</span></div>
+        <div style="position:absolute;left:96px;bottom:54px;right:96px;display:flex;flex-direction:column;gap:20px;">
+          <div style="width:1080px;padding:24px 28px;border-radius:24px;background:rgba(9,14,20,.88);box-shadow:inset 0 0 0 1px rgba(230,237,243,.14);display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="kid" style="width:72px;height:72px;flex:none;" hint-size="72px,72px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;align-items:center;gap:14px;"><span style="height:36px;padding:0 12px;border-radius:8px;box-shadow:inset 0 0 0 2px #FFD400;color:#FFD400;font-size:24px;font-weight:800;letter-spacing:.12em;display:flex;align-items:center;">PLAY-BY-PLAY</span><span style="font-size:24px;color:#8c99a8;">Kid</span></div>
+              <div style="font-size:32px;line-height:44px;font-weight:600;">WHOA! Blue #10 steals it and runs the whole court. Nobody could catch that!</div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:8px;">
+            <div style="height:8px;border-radius:4px;background:#FFD400;"></div><div style="height:8px;border-radius:4px;background:#FFD400;"></div>
+            <div style="height:8px;border-radius:4px;background:linear-gradient(90deg,#FFD400 40%,#2a3847 40%);"></div>
+            <div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div><div style="height:8px;border-radius:4px;background:#2a3847;"></div>
+          </div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;right:96px;bottom:110px;width:560px;padding:20px 24px;border-radius:16px;border:3px dashed #2ee6d6;background:rgba(4,32,29,.85);color:#2ee6d6;font-size:24px;line-height:34px;font-weight:700;">◀ ▶ previous / next highlight · OK → strip · Back → home</div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFocus&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  flow(pts) {
+    const badges = pts.map((p, i) => ({ n: i + 1, x: p[0], y: p[1], ty: p[1] + 8 }));
+    const segs = [];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const d = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1) / d, uy = (y2 - y1) / d;
+      segs.push({ x1: x1 + ux * 30, y1: y1 + uy * 30, x2: x2 - ux * 34, y2: y2 - uy * 34, dash: pts[i + 1][2] ? '12 10' : 'none' });
+    }
+    return { badges, segs };
+  }
+  renderVals() {
+    return {
+      showFocus: this.props.showFocus ?? true,
+      fA: this.flow([[180, 926], [372, 926], [650, 926], [880, 926], [1040, 926], [1222, 926]]),
+      fC: this.flow([[716, 784], [960, 784], [1204, 776], [650, 930, 1]])
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="display:inline-flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums;">
+  <div style="display:flex;align-items:stretch;height:76px;border-radius:16px;overflow:hidden;background:rgba(9,14,20,.9);border:1px solid rgba(230,237,243,.16);box-shadow:0 16px 40px rgba(0,0,0,.5);">
+    <div style="display:flex;align-items:center;gap:18px;padding:0 22px;background:{{ aColor }};color:{{ aInk }};box-shadow:{{ aBar }};">
+      <span style="font-size:24px;font-weight:700;letter-spacing:.12em;">{{ aName }}</span>
+      <span style="font-size:42px;font-weight:800;line-height:1;">{{ a }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;padding:0 22px;background:{{ bColor }};color:{{ bInk }};box-shadow:{{ bBar }};">
+      <span style="font-size:42px;font-weight:800;line-height:1;">{{ b }}</span>
+      <span style="font-size:24px;font-weight:700;letter-spacing:.12em;">{{ bName }}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;padding:0 24px;color:#e6edf3;">
+      <span style="font-size:24px;font-weight:800;color:#FFD400;letter-spacing:.06em;">{{ period }}</span>
+      <span style="font-size:30px;font-weight:700;">{{ clock }}</span>
+    </div>
+  </div>
+  <sc-if value="{{ hasFlash }}" hint-placeholder-val="{{ false }}">
+    <div style="height:56px;padding:0 20px;display:flex;align-items:center;border-radius:999px;background:#FFD400;color:#070b10;font-size:26px;font-weight:800;letter-spacing:.04em;box-shadow:0 12px 28px rgba(0,0,0,.45);">{{ flash }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:100},&quot;a&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:58,&quot;tsType&quot;:&quot;number&quot;},&quot;b&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:54,&quot;tsType&quot;:&quot;number&quot;},&quot;scored&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;&quot;,&quot;a&quot;,&quot;b&quot;],&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pts&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:2,&quot;tsType&quot;:&quot;number&quot;},&quot;period&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Q3&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;clock&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;4:12&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;aName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;PINK&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;BLUE&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;aColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#d6247a&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;bColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1f5fd6&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;aInk&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;},&quot;bInk&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props, s = p.scored;
+    const bar = 'inset 0 -6px 0 #FFD400';
+    return {
+      a: p.a ?? 58, b: p.b ?? 54, aName: p.aName ?? 'PINK', bName: p.bName ?? 'BLUE',
+      aColor: p.aColor ?? '#d6247a', bColor: p.bColor ?? '#1f5fd6', aInk: p.aInk ?? '#ffffff', bInk: p.bInk ?? '#ffffff',
+      period: p.period ?? 'Q3', clock: p.clock ?? '4:12',
+      aBar: s === 'a' ? bar : 'none', bBar: s === 'b' ? bar : 'none',
+      hasFlash: !!s, flash: s ? `+${p.pts ?? 2} ${s === 'a' ? (p.aName ?? 'PINK') : (p.bName ?? 'BLUE')}` : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

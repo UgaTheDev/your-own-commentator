@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="position:relative;width:100%;height:100%;overflow:hidden;background:#0a0806;">
+  <div style="position:absolute;inset:-2%;filter:blur(6px);">
+    <div style="position:absolute;left:0;top:0;width:100%;height:48%;background:radial-gradient(ellipse at 22% 70%, rgba(255,214,150,.14), transparent 42%),radial-gradient(ellipse at 78% 60%, rgba(255,214,150,.10), transparent 38%),linear-gradient(180deg,#030406 0%,#0f0d0b 62%,#1c1611 100%);"></div>
+    <div style="position:absolute;left:0;top:16%;width:100%;height:26%;opacity:.55;background-image:radial-gradient(circle, rgba(255,236,200,.22) 0 3px, transparent 4px);background-size:34px 26px;"></div>
+    <div style="position:absolute;left:-30%;top:41%;width:160%;height:130%;transform:perspective(900px) rotateX(64deg);transform-origin:50% 0;background:linear-gradient(90deg,#6e4421,#a8723f 28%,#c18a51 50%,#a8723f 72%,#6e4421);">
+      <div style="position:absolute;left:14%;right:14%;top:3%;bottom:34%;border:6px solid rgba(255,255,255,.7);">
+        <div style="position:absolute;left:50%;top:0;bottom:0;width:6px;margin-left:-3px;background:rgba(255,255,255,.7);"></div>
+        <div style="position:absolute;left:50%;top:50%;width:260px;height:260px;margin:-130px 0 0 -130px;border:6px solid rgba(255,255,255,.7);border-radius:50%;"></div>
+        <div style="position:absolute;left:0;top:33%;width:16%;height:34%;border:6px solid rgba(255,255,255,.7);border-left:none;background:rgba(31,95,214,.28);"></div>
+        <div style="position:absolute;right:0;top:33%;width:16%;height:34%;border:6px solid rgba(255,255,255,.7);border-right:none;background:rgba(214,36,122,.28);"></div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;inset:0;filter:blur(9px);">
+    <div style="position:absolute;left:30%;top:47%;width:2.6%;height:17%;border-radius:999px;background:linear-gradient(180deg,#f06aa6,#d6247a 40%,#8a1450);"></div>
+    <div style="position:absolute;left:38%;top:51%;width:2.8%;height:18%;border-radius:999px;background:linear-gradient(180deg,#f06aa6,#d6247a 40%,#8a1450);"></div>
+    <div style="position:absolute;left:47%;top:46%;width:2.5%;height:16%;border-radius:999px;background:linear-gradient(180deg,#f06aa6,#d6247a 40%,#8a1450);"></div>
+    <div style="position:absolute;left:58%;top:53%;width:2.9%;height:19%;border-radius:999px;background:linear-gradient(180deg,#f06aa6,#d6247a 40%,#8a1450);"></div>
+    <div style="position:absolute;left:66%;top:48%;width:2.6%;height:17%;border-radius:999px;background:linear-gradient(180deg,#f06aa6,#d6247a 40%,#8a1450);"></div>
+    <div style="position:absolute;left:34%;top:49%;width:2.7%;height:18%;border-radius:999px;background:linear-gradient(180deg,#6f9bff,#1f5fd6 40%,#123a86);"></div>
+    <div style="position:absolute;left:43%;top:55%;width:2.9%;height:19%;border-radius:999px;background:linear-gradient(180deg,#6f9bff,#1f5fd6 40%,#123a86);"></div>
+    <div style="position:absolute;left:53%;top:47%;width:2.5%;height:16%;border-radius:999px;background:linear-gradient(180deg,#6f9bff,#1f5fd6 40%,#123a86);"></div>
+    <div style="position:absolute;left:62%;top:50%;width:2.7%;height:18%;border-radius:999px;background:linear-gradient(180deg,#6f9bff,#1f5fd6 40%,#123a86);"></div>
+    <div style="position:absolute;left:71%;top:52%;width:2.8%;height:18%;border-radius:999px;background:linear-gradient(180deg,#6f9bff,#1f5fd6 40%,#123a86);"></div>
+    <div style="position:absolute;left:50.5%;top:42%;width:1.4%;height:2.5%;border-radius:50%;background:#f08a2a;"></div>
+  </div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%, transparent 40%, rgba(0,0,0,.55) 100%);"></div>
+  <div style="position:absolute;inset:0;background:#070b10;opacity:{{ dim }};"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:960,&quot;height&quot;:540},&quot;dim&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:0.9,&quot;step&quot;:0.05,&quot;default&quot;:0,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  renderVals() { return { dim: this.props.dim ?? 0 }; }
+}
+</script>
+</body>
+</html>

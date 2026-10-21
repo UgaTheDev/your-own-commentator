@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<style>
+body{margin:0;background:#020407;color:#e6edf3;font-family:system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,"Noto Sans","Noto Sans Devanagari","Nirmala UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#FFD400;text-decoration:none}a:hover{color:#fff1a0}
+</style>
+</helmet>
+<div style="padding:120px;display:flex;flex-direction:column;gap:80px;width:4200px;">
+  <div style="display:flex;align-items:center;gap:32px;font-size:28px;font-weight:700;white-space:nowrap;">
+    <span style="color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">Your Own Commentator · Home</span>
+    <a href="01 Brand + Spec.dc.html">01 Brand + Spec</a>
+    <a href="02 TV Home.dc.html" style="color:#e6edf3;">02 Home</a>
+    <a href="03 TV Player.dc.html">03 Player overlays</a>
+    <a href="04 Why + Watch Party.dc.html">04 Why? + Watch party</a>
+    <a href="05 Phone Companion.dc.html">05 Phone</a>
+    <a href="06 Demo + Devpost.dc.html">06 Demo + Devpost</a>
+  </div>
+  <div style="display:flex;gap:120px;flex-wrap:wrap;">
+
+    <div id="2a" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">2a · Home — hero + games rail</div>
+      <div data-screen-label="2a Home hero" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <dc-import name="YOC Court" style="position:absolute;right:0;top:0;width:1320px;height:742px;" hint-size="1320px,742px"></dc-import>
+        <div style="position:absolute;right:0;top:0;width:1320px;height:742px;background:linear-gradient(90deg,#070b10 0%,rgba(7,11,16,.75) 30%,rgba(7,11,16,0) 70%),linear-gradient(180deg,rgba(7,11,16,0) 55%,#070b10 100%);"></div>
+        <div style="position:absolute;left:96px;right:96px;top:54px;height:64px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <dc-import name="YOC Mark" style="width:56px;height:56px;" hint-size="56px,56px"></dc-import>
+            <div style="font-size:30px;letter-spacing:-.01em;"><span style="font-weight:400;">Your Own </span><span style="font-weight:800;">Commentator</span></div>
+          </div>
+          <div style="height:64px;padding:0 24px;border-radius:14px;background:rgba(17,25,34,.9);box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;gap:12px;font-size:24px;font-weight:700;">English · Español · हिन्दी · 中文</div>
+        </div>
+        <div style="position:absolute;left:96px;top:196px;width:1400px;display:flex;flex-direction:column;gap:24px;">
+          <div style="display:flex;align-items:center;gap:12px;font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FFD400;"><span style="width:12px;height:12px;border-radius:50%;background:#FFD400;"></span>Now showing · Pink vs Blue</div>
+          <div style="font-size:88px;line-height:96px;font-weight:800;letter-spacing:-.025em;max-width:900px;">Pick who calls the game.</div>
+          <div style="font-size:28px;line-height:40px;color:#c4ced8;max-width:900px;text-wrap:pretty;">Seven AI commentators. Ask “why?” out loud from your phone and get answers checked against the real play log.</div>
+          <div style="display:flex;gap:24px;margin-top:16px;">
+            <div style="height:80px;padding:0 36px;border-radius:14px;background:#FFD400;color:#070b10;display:flex;align-items:center;gap:16px;font-size:28px;font-weight:800;white-space:nowrap;transform:translateY(-4px) scale(1.06);box-shadow:0 0 0 4px #070b10,0 0 0 10px #FFD400,0 28px 56px rgba(0,0,0,.65);"><span style="width:0;height:0;border-left:20px solid #070b10;border-top:13px solid transparent;border-bottom:13px solid transparent;"></span>Watch with Rookie</div>
+            <div style="height:80px;padding:0 32px;border-radius:14px;background:rgba(17,25,34,.92);box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:28px;font-weight:700;white-space:nowrap;">Change commentator</div>
+            <div style="height:80px;padding:0 32px;border-radius:14px;background:rgba(17,25,34,.92);box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;font-size:28px;font-weight:700;white-space:nowrap;">Watch party</div>
+          </div>
+        </div>
+        <div style="position:absolute;left:96px;top:722px;display:flex;flex-direction:column;gap:20px;">
+          <div style="font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8c99a8;">Games</div>
+          <div style="display:flex;gap:32px;">
+            <div style="position:relative;width:540px;height:248px;border-radius:20px;overflow:hidden;background:linear-gradient(115deg,#d6247a 0 49.8%,#1f5fd6 50.2% 100%);box-shadow:inset 0 0 0 3px #FFD400;">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,16,.35),rgba(7,11,16,.88));"></div>
+              <div style="position:absolute;left:50%;top:-40px;width:220px;height:220px;margin-left:-110px;border-radius:50%;border:3px solid rgba(255,255,255,.22);"></div>
+              <div style="position:absolute;left:20px;top:20px;height:40px;padding:0 14px;border-radius:999px;background:#FFD400;color:#070b10;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;gap:8px;">▶ NOW SHOWING</div>
+              <div style="position:absolute;left:24px;right:24px;bottom:20px;display:flex;flex-direction:column;gap:12px;">
+                <div style="font-size:30px;font-weight:800;">Pink vs Blue</div>
+                <div style="display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums;">
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#d6247a;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;gap:10px;">PINK 62</span>
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#1f5fd6;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;gap:10px;">58 BLUE</span>
+                  <span style="font-size:24px;font-weight:700;color:#c4ced8;margin-left:8px;">FINAL</span>
+                </div>
+              </div>
+            </div>
+            <div style="position:relative;width:540px;height:248px;border-radius:20px;overflow:hidden;background:linear-gradient(115deg,#e6edf3 0 49.8%,#8c1d40 50.2% 100%);transform:translateY(-8px) scale(1.05);box-shadow:0 0 0 4px #070b10,0 0 0 10px #FFD400,0 28px 56px rgba(0,0,0,.65);">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,16,.45),rgba(7,11,16,.9));"></div>
+              <div style="position:absolute;left:50%;top:-40px;width:220px;height:220px;margin-left:-110px;border-radius:50%;border:3px solid rgba(255,255,255,.22);"></div>
+              <div style="position:absolute;left:24px;right:24px;bottom:20px;display:flex;flex-direction:column;gap:12px;">
+                <div style="font-size:30px;font-weight:800;">White vs Maroon</div>
+                <div style="display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums;">
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#e6edf3;color:#070b10;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">WHITE 48</span>
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#8c1d40;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">51 MAROON</span>
+                  <span style="font-size:24px;font-weight:700;color:#c4ced8;margin-left:8px;">FINAL</span>
+                </div>
+              </div>
+            </div>
+            <div style="position:relative;width:540px;height:248px;border-radius:20px;overflow:hidden;background:linear-gradient(115deg,#1a7d44 0 49.8%,#d6247a 50.2% 100%);">
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,16,.45),rgba(7,11,16,.9));"></div>
+              <div style="position:absolute;left:50%;top:-40px;width:220px;height:220px;margin-left:-110px;border-radius:50%;border:3px solid rgba(255,255,255,.22);"></div>
+              <div style="position:absolute;left:24px;right:24px;bottom:20px;display:flex;flex-direction:column;gap:12px;">
+                <div style="font-size:30px;font-weight:800;">Green vs Pink</div>
+                <div style="display:flex;align-items:center;gap:8px;font-variant-numeric:tabular-nums;">
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#1a7d44;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">GREEN 55</span>
+                  <span style="height:44px;padding:0 14px;border-radius:10px;background:#d6247a;color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">49 PINK</span>
+                  <span style="font-size:24px;font-weight:700;color:#c4ced8;margin-left:8px;">FINAL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute;right:96px;bottom:54px;font-size:24px;color:#8c99a8;">▼ Commentators</div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <defs><marker id="ah2a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2ee6d6"></path></marker></defs>
+            <sc-for list="{{ fA.segs }}" as="s" hint-placeholder-count="0"><line x1="{{ s.x1 }}" y1="{{ s.y1 }}" x2="{{ s.x2 }}" y2="{{ s.y2 }}" stroke="#2ee6d6" stroke-width="5" stroke-dasharray="{{ s.dash }}" marker-end="url(#ah2a)"></line></sc-for>
+            <sc-for list="{{ fA.badges }}" as="b" hint-placeholder-count="0"><g><circle cx="{{ b.x }}" cy="{{ b.y }}" r="24" fill="#2ee6d6"></circle><text x="{{ b.x }}" y="{{ b.ty }}" text-anchor="middle" font-size="24" font-weight="800" fill="#04201d">{{ b.n }}</text></g></sc-for>
+          </svg>
+        </sc-if>
+      </div>
+    </div>
+
+    <div id="2b" style="display:flex;flex-direction:column;gap:24px;">
+      <div style="font-size:28px;font-weight:700;color:#8c99a8;letter-spacing:.14em;text-transform:uppercase;">2b · Home — commentators grid (scrolled), focus on नौसिखिया</div>
+      <div data-screen-label="2b Home commentators" style="position:relative;width:1920px;height:1080px;overflow:hidden;background:#070b10;">
+        <div style="position:absolute;left:96px;right:96px;top:54px;height:64px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:16px;">
+            <dc-import name="YOC Mark" style="width:56px;height:56px;" hint-size="56px,56px"></dc-import>
+            <div style="font-size:30px;letter-spacing:-.01em;"><span style="font-weight:400;">Your Own </span><span style="font-weight:800;">Commentator</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;font-size:24px;color:#8c99a8;">Watching <span style="height:40px;padding:0 12px;border-radius:10px;background:#d6247a;color:#fff;font-weight:800;display:flex;align-items:center;">PINK</span><span>vs</span><span style="height:40px;padding:0 12px;border-radius:10px;background:#1f5fd6;color:#fff;font-weight:800;display:flex;align-items:center;">BLUE</span></div>
+        </div>
+        <div style="position:absolute;left:96px;right:96px;top:150px;display:flex;align-items:baseline;justify-content:space-between;">
+          <div style="font-size:40px;font-weight:800;">Choose your commentator</div>
+          <div style="font-size:24px;color:#8c99a8;">Switch any time during the game · 7 voices, 4 languages</div>
+        </div>
+        <div style="position:absolute;left:96px;top:226px;width:1728px;display:grid;grid-template-columns:repeat(4,414px);grid-auto-rows:226px;gap:24px;">
+          <div style="position:relative;padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 3px #FFD400;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="rookie" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;font-weight:800;">Rookie</div>
+              <div style="font-size:24px;line-height:32px;color:#c4ced8;">Every call explained, zero jargon.</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">ENGLISH</span></div>
+            </div>
+            <div style="position:absolute;right:20px;top:20px;height:40px;padding:0 12px;border-radius:999px;background:#FFD400;color:#070b10;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">✓ ON AIR</div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="kid" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;font-weight:800;">Kid</div>
+              <div style="font-size:24px;line-height:32px;color:#c4ced8;">Big plays, big feelings, small words.</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">ENGLISH</span></div>
+            </div>
+          </div>
+          <div style="grid-column:span 2;padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="booth" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;flex:1;">
+              <div style="font-size:32px;font-weight:800;">Booth</div>
+              <div style="font-size:24px;line-height:32px;color:#c4ced8;">The classic two-person broadcast: one calls it, one breaks it down.</div>
+              <div style="display:flex;gap:8px;margin-top:auto;">
+                <span style="height:40px;padding:0 12px;border-radius:999px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">PLAY-BY-PLAY</span>
+                <span style="height:40px;padding:0 12px;border-radius:999px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:800;display:flex;align-items:center;white-space:nowrap;">ANALYST</span>
+                <span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">ENGLISH · 2 VOICES</span>
+              </div>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="fantasy" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;font-weight:800;">Fantasy</div>
+              <div style="font-size:24px;line-height:32px;color:#c4ced8;">Stats, streaks and who’s heating up.</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">ENGLISH</span></div>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="novato" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;font-weight:800;">Novato</div>
+              <div style="font-size:24px;line-height:32px;color:#c4ced8;">Cada jugada, explicada desde cero.</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">ESPAÑOL</span></div>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:#16202b;display:flex;gap:24px;transform:translateY(-8px) scale(1.05);box-shadow:0 0 0 4px #070b10,0 0 0 10px #FFD400,0 28px 56px rgba(0,0,0,.65);position:relative;z-index:2;">
+            <dc-import name="YOC Persona" persona="hindi" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;line-height:44px;font-weight:800;">नौसिखिया</div>
+              <div style="font-size:24px;line-height:36px;color:#c4ced8;">हर नियम, आसान शब्दों में।</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">हिन्दी</span></div>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:24px;">
+            <dc-import name="YOC Persona" persona="mandarin" style="width:96px;height:96px;flex:none;" hint-size="96px,96px"></dc-import>
+            <div style="display:flex;flex-direction:column;gap:10px;min-width:0;">
+              <div style="font-size:32px;line-height:44px;font-weight:800;">新手</div>
+              <div style="font-size:24px;line-height:36px;color:#c4ced8;">每个判罚，简单讲清楚。</div>
+              <div style="display:flex;gap:8px;margin-top:auto;"><span style="height:40px;padding:0 12px;border-radius:999px;box-shadow:inset 0 0 0 1px #2a3847;font-size:24px;font-weight:700;color:#8c99a8;display:flex;align-items:center;">中文</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="position:absolute;left:96px;top:764px;font-size:24px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8c99a8;">More ways to watch</div>
+        <div style="position:absolute;left:96px;top:808px;width:1728px;display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div style="height:200px;padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:28px;align-items:center;">
+            <div style="display:flex;gap:8px;flex:none;">
+              <div style="position:relative;width:120px;height:144px;border-radius:12px;overflow:hidden;"><dc-import name="YOC Court" style="position:absolute;inset:0;" hint-size="120px,144px"></dc-import></div>
+              <div style="position:relative;width:120px;height:144px;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#d6247a,#3a0f24);"></div>
+              <div style="position:relative;width:120px;height:144px;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#1f5fd6,#0d1f45);"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-size:32px;font-weight:800;">Highlights</div>
+              <div style="font-size:24px;line-height:34px;color:#c4ced8;">12 key plays in 4 minutes, called by your commentator.</div>
+            </div>
+          </div>
+          <div style="height:200px;padding:28px;border-radius:20px;background:#0c1218;box-shadow:inset 0 0 0 1px #1c2733;display:flex;gap:28px;align-items:center;">
+            <div style="width:144px;height:144px;flex:none;border-radius:20px;background:#111922;box-shadow:inset 0 0 0 1px #2a3847;display:flex;align-items:center;justify-content:center;gap:10px;">
+              <span style="width:36px;height:64px;border-radius:10px;border:4px solid #e6edf3;"></span>
+              <span style="width:36px;height:64px;border-radius:10px;border:4px solid #FFD400;"></span>
+              <span style="width:36px;height:64px;border-radius:10px;border:4px solid #e6edf3;"></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="font-size:32px;font-weight:800;">Watch party</div>
+              <div style="font-size:24px;line-height:34px;color:#c4ced8;">Everyone joins from their phone and calls the next basket.</div>
+            </div>
+          </div>
+        </div>
+        <sc-if value="{{ showFocus }}" hint-placeholder-val="{{ true }}">
+          <svg viewBox="0 0 1920 1080" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <defs><marker id="ah2b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#2ee6d6"></path></marker></defs>
+            <sc-for list="{{ fB.segs }}" as="s" hint-placeholder-count="0"><line x1="{{ s.x1 }}" y1="{{ s.y1 }}" x2="{{ s.x2 }}" y2="{{ s.y2 }}" stroke="#2ee6d6" stroke-width="5" stroke-dasharray="{{ s.dash }}" marker-end="url(#ah2b)"></line></sc-for>
+            <sc-for list="{{ fB.badges }}" as="b" hint-placeholder-count="0"><g><circle cx="{{ b.x }}" cy="{{ b.y }}" r="24" fill="#2ee6d6"></circle><text x="{{ b.x }}" y="{{ b.ty }}" text-anchor="middle" font-size="24" font-weight="800" fill="#04201d">{{ b.n }}</text></g></sc-for>
+          </svg>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFocus&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  flow(pts) {
+    const badges = pts.map((p, i) => ({ n: i + 1, x: p[0], y: p[1], ty: p[1] + 8 }));
+    const segs = [];
+    for (let i = 0; i < pts.length - 1; i++) {
+      const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+      const d = Math.hypot(x2 - x1, y2 - y1) || 1, ux = (x2 - x1) / d, uy = (y2 - y1) / d;
+      segs.push({ x1: x1 + ux * 30, y1: y1 + uy * 30, x2: x2 - ux * 34, y2: y2 - uy * 34, dash: pts[i + 1][2] ? '12 10' : 'none' });
+    }
+    return { badges, segs };
+  }
+  renderVals() {
+    return {
+      showFocus: this.props.showFocus ?? true,
+      fA: this.flow([[1790, 50], [110, 590, 1], [500, 590], [860, 590], [110, 774, 1], [680, 764], [1252, 774]]),
+      fB: this.flow([[110, 236], [548, 236], [986, 236], [110, 490, 1], [548, 490], [986, 480], [1424, 490], [110, 818, 1], [986, 818]])
+    };
+  }
+}
+</script>
+</body>
+</html>

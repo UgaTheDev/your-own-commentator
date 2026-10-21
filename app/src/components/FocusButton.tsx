@@ -1,26 +1,41 @@
 import React, {useState} from 'react';
-import {Pressable, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
+import {
+  Pressable,
+  StyleProp,
+  StyleSheet,
+  Text,
+  View,
+  ViewStyle,
+} from 'react-native';
 import {C, s} from '../theme';
 
 interface Props {
   label: string;
   onPress: () => void;
-  selected?: boolean;
+  selected?: boolean; // toggled on / current: accent text + underline bar
+  primary?: boolean; // the ONE primary action on a screen: accent fill
   hasTVPreferredFocus?: boolean;
   onFocusChange?: (focused: boolean) => void;
-  // Cards (Home) pass their own content and box; `label` stays the log/accessibility name.
+  // Cards pass their own content and box; `label` stays the log/accessibility name.
   children?: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>; // the visible box (inner)
+  outerStyle?: StyleProp<ViewStyle>; // margins / sizing of the focus target
+  card?: boolean; // cards use panelFocus while focused, buttons buttonFocus
 }
 
+// Focus ring (design/handoff README "Interactive states"): a dark gap then an accent ring, plus a lift.
+// RN has no multi-shadow, so the ring is the outer Pressable's border and the gap is its padding.
 export const FocusButton = ({
   label,
   onPress,
   selected,
+  primary,
   hasTVPreferredFocus,
   onFocusChange,
   children,
   style,
+  outerStyle,
+  card,
 }: Props) => {
   const [focused, setFocused] = useState(false);
   return (
@@ -42,37 +57,60 @@ export const FocusButton = ({
       accessibilityRole="button"
       accessibilityLabel={label}
       style={[
-        styles.button,
-        style,
-        selected && styles.selected,
-        focused && styles.focused,
+        styles.ring,
+        {borderRadius: s(card ? 30 : 24)},
+        outerStyle,
+        focused && styles.ringOn,
       ]}>
-      {children ?? (
-        <Text style={[styles.label, selected && styles.labelSelected]}>
-          {label}
-        </Text>
-      )}
+      <View
+        style={[
+          styles.box,
+          style,
+          primary && styles.primary,
+          selected && !primary && styles.selected,
+          focused &&
+            !primary && {backgroundColor: card ? C.panelFocus : C.buttonFocus},
+        ]}>
+        {children ?? (
+          <Text
+            style={[
+              styles.label,
+              primary && styles.primaryLabel,
+              selected && !primary && styles.selectedLabel,
+            ]}>
+            {label}
+          </Text>
+        )}
+      </View>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    paddingVertical: s(12),
-    paddingHorizontal: s(22),
-    marginRight: s(12),
-    marginBottom: s(16),
-    borderRadius: 999,
-    borderWidth: 3,
-    borderColor: C.line,
-    backgroundColor: C.glass,
+  ring: {
+    borderWidth: s(8),
+    borderColor: 'transparent',
+    padding: s(3),
+    marginRight: s(4),
+    marginBottom: s(4),
   },
-  selected: {borderColor: C.lineStrong, backgroundColor: C.panel2},
-  focused: {
+  ringOn: {
     borderColor: C.accent,
-    backgroundColor: '#1d2116',
-    transform: [{scale: 1.06}],
+    transform: [{translateY: s(-4)}, {scale: 1.04}],
+    zIndex: 10,
   },
-  label: {color: C.text, fontSize: s(26), fontWeight: '600'},
-  labelSelected: {color: C.accent},
+  box: {
+    minHeight: s(72),
+    justifyContent: 'center',
+    paddingHorizontal: s(28),
+    borderRadius: s(14),
+    borderWidth: 1,
+    borderColor: C.lineStrong,
+    backgroundColor: C.panel2,
+  },
+  primary: {backgroundColor: C.accent, borderColor: C.accent},
+  selected: {borderBottomWidth: s(5), borderBottomColor: C.accent},
+  label: {color: C.text, fontSize: s(26), fontWeight: '700'},
+  primaryLabel: {color: C.accentInk},
+  selectedLabel: {color: C.accent},
 });

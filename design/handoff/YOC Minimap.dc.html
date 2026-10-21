@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<svg viewBox="0 0 320 180" style="width:100%;height:100%;display:block;">
+  <rect x="10" y="10" width="300" height="160" rx="6" fill="rgba(193,138,81,.16)" stroke="rgba(230,237,243,.55)" stroke-width="2"></rect>
+  <path d="M160 10 V170" stroke="rgba(230,237,243,.55)" stroke-width="2"></path>
+  <circle cx="160" cy="90" r="22" fill="none" stroke="rgba(230,237,243,.55)" stroke-width="2"></circle>
+  <rect x="10" y="62" width="54" height="56" fill="rgba(31,95,214,.22)" stroke="rgba(230,237,243,.55)" stroke-width="2"></rect>
+  <rect x="256" y="62" width="54" height="56" fill="rgba(214,36,122,.22)" stroke="rgba(230,237,243,.55)" stroke-width="2"></rect>
+  <path d="M64 62 a28 28 0 0 1 0 56 M256 62 a28 28 0 0 0 0 56" fill="none" stroke="rgba(230,237,243,.55)" stroke-width="2"></path>
+  <path d="M10 22 Q 110 90 10 158 M310 22 Q 210 90 310 158" fill="none" stroke="rgba(230,237,243,.35)" stroke-width="2"></path>
+  <sc-for list="{{ dots }}" as="d" hint-placeholder-count="0">
+    <g>
+      <circle cx="{{ d.x }}" cy="{{ d.y }}" r="{{ r }}" fill="{{ d.c }}" stroke="#ffffff" stroke-width="2"></circle>
+      <sc-if value="{{ numbers }}" hint-placeholder-val="{{ false }}"><text x="{{ d.x }}" y="{{ d.ty }}" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff">{{ d.n }}</text></sc-if>
+    </g>
+  </sc-for>
+  <circle cx="{{ ball.x }}" cy="{{ ball.y }}" r="7" fill="#FFD400" stroke="#070b10" stroke-width="2.5"></circle>
+</svg>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:640,&quot;height&quot;:360},&quot;numbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const numbers = !!this.props.numbers, r = numbers ? 13 : 8;
+    const P = '#d6247a', B = '#1f5fd6';
+    const raw = [[248,84,P,23],[150,112,P,5],[205,48,P,11],[228,128,P,8],[284,58,P,14],[236,98,B,4],[190,80,B,10],[214,146,B,2],[262,128,B,7],[180,40,B,21]];
+    const dots = raw.map(([x,y,c,n]) => ({ x, y, c, n, ty: y + 4.5 }));
+    const ball = numbers ? { x: 262, y: 72 } : { x: 258, y: 76 };
+    return { dots, r, numbers, ball };
+  }
+}
+</script>
+</body>
+</html>

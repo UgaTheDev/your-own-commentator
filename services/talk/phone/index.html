@@ -1,67 +1,190 @@
 <!doctype html>
 <!-- Push-to-talk phone page (C5). Serve over HTTPS (getUserMedia needs a secure context):
-     https://<cdn>/talk-phone/index.html?ws=wss://<relay>  (locally: http://localhost:8000/?ws=ws://127.0.0.1:8765) -->
+     https://<cdn>/talk-phone/index.html?ws=wss://<relay>  (locally: http://localhost:8000/?ws=ws://127.0.0.1:8765)
+     Look follows design/handoff/05 Phone Companion (5a join, 5b idle, 5c listening, 5d thinking, 5e answer). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
 <title>Ask the Commentator</title>
 <style>
-  /* Same control-room palette as the TV app (app/src/theme.ts). */
+  /* Same control-room tokens as the TV app (design/handoff/README.md). */
   :root { color-scheme: dark; --bg: #070b10; --panel: #0c1218; --panel2: #111922; --line: #1c2733; --line2: #2a3847;
-          --fg: #e6edf3; --dim: #8c99a8; --accent: #FFD400; --live: #3ddc84; --pink: #d6247a; --blue: #1f5fd6; }
+          --fg: #e6edf3; --soft: #c4ced8; --dim: #8c99a8; --accent: #FFD400; --ink: #070b10; }
   * { box-sizing: border-box; }
-  body { margin: 0; padding: 20px 18px 28px; background: radial-gradient(120% 60% at 50% 0%, #111a24 0%, var(--bg) 60%);
-         color: var(--fg); font: 17px/1.45 system-ui, -apple-system, sans-serif; display: flex; flex-direction: column;
-         gap: 14px; max-width: 480px; margin-inline: auto; min-height: 100dvh; }
-  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--dim); margin: 0; }
-  .teams { height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--pink) 50%, var(--blue) 50%); }
-  h1 { font-size: 1.7rem; line-height: 1.15; margin: 2px 0 0; font-weight: 800; }
-  form { display: flex; gap: 10px; }
-  input { flex: 1; min-width: 0; font: 700 1.5rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .35em;
-          text-transform: uppercase; text-align: center; padding: 14px 8px; border-radius: 14px; border: 2px solid var(--line);
-          background: var(--panel); color: var(--fg); outline: none; }
-  input:focus { border-color: var(--accent); }
-  input::placeholder { color: #4a5868; letter-spacing: .2em; }
-  button { font: inherit; border: 0; border-radius: 14px; padding: 12px 18px; background: var(--panel2); color: var(--fg); }
-  form button { background: var(--accent); color: #070b10; font-weight: 800; padding-inline: 22px; }
-  #status { color: var(--dim); font-size: .92rem; min-height: 1.4em; display: flex; align-items: center; gap: 8px; }
-  #status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--line2); flex: none; }
-  body.joined #status::before { background: var(--live); box-shadow: 0 0 0 4px rgb(61 220 132 / .15); }
-  .stage { flex: 1; display: grid; place-items: center; min-height: 42dvh; }
-  #talk { width: min(70vw, 280px); aspect-ratio: 1; border-radius: 50%; font-size: 1.25rem; font-weight: 800;
-          background: radial-gradient(circle at 50% 35%, #1a2532, var(--panel)); border: 3px solid var(--accent);
-          box-shadow: 0 0 0 10px rgb(255 212 0 / .08), 0 20px 50px -20px #000; color: var(--fg);
+  [hidden] { display: none !important; }
+  html { background: var(--bg); }
+  body { margin: 0 auto; max-width: 480px; min-height: 100dvh; background: var(--bg); color: var(--fg);
+         font: 17px/24px system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+         -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+  main { min-height: 100dvh; display: flex; flex-direction: column;
+         padding: max(16px, env(safe-area-inset-top)) 20px max(34px, env(safe-area-inset-bottom)); }
+  .eyebrow { font-size: 13px; line-height: 18px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin: 0; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo svg { width: 32px; height: 32px; flex: none; }
+  .wm b { font-weight: 800; }
+  button { font: inherit; color: inherit; border: 0; cursor: pointer; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* 5a join */
+  #joinView { gap: 20px; padding-inline: 24px; }
+  #joinView .eyebrow { margin-top: 56px; color: var(--accent); }
+  h1 { font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+  .lede { color: var(--soft); margin: 0; }
+  #join { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+  .code { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; }
+  .box { height: 72px; border-radius: 16px; background: var(--panel2); box-shadow: inset 0 0 0 1px var(--line2);
+         display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 800; color: var(--accent); }
+  .box.on { box-shadow: inset 0 0 0 2px var(--accent); }
+  .box.on:empty::after { content: ""; width: 3px; height: 36px; background: var(--accent); animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  /* The real input sits over the boxes (typing, paste, mobile keyboards); the boxes only draw its value. */
+  #code { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; font-size: 16px; border: 0; padding: 0;
+          background: transparent; color: transparent; caret-color: transparent; }
+  .primary { min-height: 56px; border-radius: 14px; background: var(--accent); color: var(--ink); font-size: 17px; font-weight: 800; }
+  .primary:disabled { opacity: .4; cursor: default; }
+  #join .primary { margin-top: auto; }
+  .foot { text-align: center; font-size: 15px; color: var(--dim); margin: 0; min-height: 21px; }
+
+  /* shared header (5b–5e) */
+  #askView { padding-inline: 0; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 20px; }
+  .who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .who svg { width: 36px; height: 36px; flex: none; }
+  .who b { display: block; font-size: 15px; line-height: 20px; font-weight: 800; }
+  .who span { display: block; font-size: 13px; line-height: 18px; color: var(--dim); }
+  #state { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; letter-spacing: .06em; color: var(--accent); flex: none; }
+  #state::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  [data-state="thinking"] #state { color: var(--soft); }
+  [data-state="thinking"] #state::before { display: none; }
+
+  /* transcript + answer */
+  .feed { display: flex; flex-direction: column; gap: 12px; padding: 16px 20px 0; }
+  #said:empty, #ansText:empty, #timing:empty { display: none; }
+  #said { padding: 18px 20px; border-radius: 20px; background: var(--panel); box-shadow: inset 0 0 0 1px var(--line);
+          font-size: 22px; line-height: 30px; font-weight: 700; }
+  #said::before { content: "YOU"; display: block; font-size: 13px; line-height: 18px; letter-spacing: .14em; color: var(--dim); margin-bottom: 6px; }
+  [data-state="answer"] #said { align-self: flex-end; max-width: 85%; padding: 12px 16px; border-radius: 18px 18px 4px 18px;
+          background: var(--panel2); box-shadow: inset 0 0 0 1px var(--line2); font-size: 17px; line-height: 24px; font-weight: 400; }
+  [data-state="answer"] #said::before { display: none; }
+  [data-state="listening"] #said { display: none; }
+  #ans { border-radius: 24px; background: var(--panel); box-shadow: inset 0 0 0 2px var(--accent); overflow: hidden; }
+  #ans:has(#ansText:empty) { display: none; }
+  #ans .body { padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+  #ans .eyebrow { color: var(--accent); }
+  #ansText { font-size: 20px; line-height: 28px; font-weight: 700; }
+  #ans ul { margin: 0; padding: 14px 20px 18px; list-style: none; border-top: 1px solid var(--line); display: flex;
+            flex-direction: column; gap: 6px; font-size: 15px; line-height: 21px; color: var(--soft); }
+  #ans li b { color: var(--accent); }
+  #ans .checked { color: var(--dim); }
+  #timing { color: var(--dim); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+  /* hold button */
+  .stage { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; padding: 24px 20px; text-align: center; }
+  .hold { position: relative; width: 220px; height: 220px; flex: none; }
+  .ring { position: absolute; inset: 0; border-radius: 50%; background: var(--accent); opacity: 0; pointer-events: none; }
+  [data-state="listening"] .ring { animation: pulse 1.8s ease-out infinite; }
+  [data-state="listening"] .ring:nth-child(2) { animation-delay: .6s; }
+  [data-state="listening"] .ring:nth-child(3) { animation-delay: 1.2s; }
+  @keyframes pulse { from { transform: scale(1); opacity: .55; } to { transform: scale(1.7); opacity: 0; } }
+  #talk { position: absolute; inset: 0; border-radius: 50%; background: var(--accent); color: var(--ink);
+          display: flex; align-items: center; justify-content: center; gap: 14px;
+          box-shadow: 0 0 0 10px rgba(255,212,0,.12), 0 24px 48px rgba(0,0,0,.5);
           touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
-          transition: transform .12s, box-shadow .2s, border-color .2s; padding: 24px; }
-  #talk[aria-pressed="true"] { border-color: var(--live); transform: scale(.96); color: var(--live);
-          animation: ring 1.1s ease-out infinite; }
-  @keyframes ring { from { box-shadow: 0 0 0 0 rgb(61 220 132 / .45); } to { box-shadow: 0 0 0 28px rgb(61 220 132 / 0); } }
-  #talk:disabled { border-color: var(--line2); box-shadow: none; color: #4a5868; }
-  .said:empty, .ans:empty, #timing:empty { display: none; }
-  .said { color: var(--dim); font-style: italic; }
-  .ans { background: var(--panel); border: 2px solid var(--line); border-left: 5px solid var(--accent); border-radius: 14px;
-         padding: 14px 16px; font-size: 1.1rem; }
-  .ans::before { content: "Commentator"; display: block; font-size: 11px; font-weight: 700; letter-spacing: .18em;
-         text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  #timing { color: #4a5868; font-size: .78rem; font-family: ui-monospace, Menlo, monospace; }
-  @media (prefers-reduced-motion: reduce) { #talk { transition: none; } #talk[aria-pressed="true"] { animation: none; } }
+          transition: transform .16s ease-out, box-shadow .16s ease-out, background .16s; }
+  #talk svg { width: 84px; height: 84px; }
+  #talk:disabled { background: var(--panel2); color: var(--dim); box-shadow: inset 0 0 0 2px var(--line2); cursor: default; }
+  #talk:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--bg), 0 0 0 8px var(--fg); }
+  [data-state="listening"] #talk { transform: scale(.94); box-shadow: 0 0 0 6px var(--bg), 0 0 0 12px var(--accent); }
+  .dot { display: none; width: 18px; height: 18px; border-radius: 50%; background: var(--fg); animation: bob 1.2s ease-in-out infinite; }
+  .dot:nth-of-type(2) { animation-delay: .15s; }
+  .dot:nth-of-type(3) { animation-delay: .3s; }
+  @keyframes bob { 0%, 80%, 100% { opacity: .25; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-6px); } }
+  [data-state="thinking"] #talk { background: var(--panel2); box-shadow: inset 0 0 0 2px var(--line2); }
+  [data-state="thinking"] #talk svg { display: none; }
+  [data-state="thinking"] .dot { display: block; }
+  #lbl { font-size: 22px; line-height: 30px; font-weight: 800; }
+  #sub { display: block; margin-top: 4px; color: var(--dim); }
+  /* 5e: the hold button shrinks into a footer row under the answer */
+  [data-state="answer"] .stage { flex: 0; flex-direction: row; justify-content: flex-start; gap: 12px; margin-top: auto; text-align: left; padding-top: 16px; }
+  [data-state="answer"] .hold { width: 72px; height: 72px; }
+  [data-state="answer"] #talk { box-shadow: none; }
+  [data-state="answer"] #talk svg { width: 30px; height: 30px; }
+  [data-state="answer"] #lbl { font-size: 17px; line-height: 24px; }
+  [data-state="answer"] #sub { margin-top: 2px; font-size: 15px; }
+
+  /* 5b try chips (static examples; the protocol is audio, so they only show what to say) */
+  .try { display: flex; flex-direction: column; gap: 10px; padding: 0 20px; }
+  .try div { display: flex; flex-wrap: wrap; gap: 8px; }
+  .try button { min-height: 44px; padding: 0 14px; border-radius: 999px; background: var(--panel2);
+                box-shadow: inset 0 0 0 1px var(--line2); font-size: 15px; font-weight: 600; }
+  body:not([data-state="idle"]) .try { display: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    [data-state="listening"] .ring:first-child { opacity: .25; transform: scale(1.25); }
+    .dot { opacity: 1; }
+  }
 </style>
 </head>
-<body>
-<p class="eyebrow">Your Own Commentator · Fire TV</p>
-<div class="teams" aria-hidden="true"></div>
-<h1>Ask about the play on your TV</h1>
-<form id="join">
-  <input id="code" autocomplete="off" autocapitalize="characters" maxlength="6" pattern="[A-Za-z2-7]{6}" required
-         placeholder="TV CODE" aria-label="6-character code shown on the TV">
-  <button>Join</button>
-</form>
-<div id="status" role="status">Enter the code shown on your TV.</div>
-<div class="stage"><button id="talk" disabled aria-pressed="false">Hold to ask</button></div>
-<div class="said" id="said"></div>
-<div class="ans" id="ans" aria-live="polite"></div>
-<div id="timing"></div>
+<body data-state="join">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- YOC mark (design/handoff/YOC Mark): ball + speech tail, seams in ink, clipped to the ball -->
+  <symbol id="mark" viewBox="0 0 100 100">
+    <clipPath id="ball"><circle cx="54" cy="46" r="36"/></clipPath>
+    <circle cx="54" cy="46" r="36" fill="#FFD400"/><path d="M27 70 L14 92 L44 80 Z" fill="#FFD400"/>
+    <g clip-path="url(#ball)" fill="none" stroke="#070b10" stroke-width="4.5" stroke-linecap="round">
+      <path d="M18 46 H90"/><path d="M54 10 V82"/><path d="M30 17 C42 30 42 62 30 75"/><path d="M78 17 C66 30 66 62 78 75"/>
+    </g>
+  </symbol>
+</svg>
+
+<main id="joinView">
+  <div class="logo"><svg aria-hidden="true"><use href="#mark"/></svg><span class="wm">Your Own <b>Commentator</b></span></div>
+  <p class="eyebrow">Step 1 of 1</p>
+  <h1>Enter the code on your TV</h1>
+  <p class="lede">It’s on your TV screen while the game plays.</p>
+  <form id="join">
+    <div class="code" id="boxes">
+      <span class="box" aria-hidden="true"></span><span class="box" aria-hidden="true"></span><span class="box" aria-hidden="true"></span>
+      <span class="box" aria-hidden="true"></span><span class="box" aria-hidden="true"></span><span class="box" aria-hidden="true"></span>
+      <input id="code" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="6"
+             pattern="[A-Z2-7]{6}" required aria-label="6-character code shown on the TV">
+    </div>
+    <button class="primary" id="joinBtn" disabled>Join TV</button>
+    <p class="foot" id="status" role="status">No account needed · answers play on your TV</p>
+  </form>
+</main>
+
+<main id="askView" hidden>
+  <div class="top">
+    <div class="who"><svg aria-hidden="true"><use href="#mark"/></svg><div><b>Ask the commentator</b><span id="where">on your TV</span></div></div>
+    <div id="state">CONNECTED</div>
+  </div>
+  <div class="feed">
+    <div id="said"></div>
+    <div id="ans" aria-live="polite">
+      <div class="body"><p class="eyebrow">The commentator answers</p><div id="ansText"></div></div>
+      <ul><li class="eyebrow checked">Checked against</li><li><b>✓</b> Verified play log</li><li><b>✓</b> Game score</li></ul>
+    </div>
+    <div id="timing"></div>
+  </div>
+  <div class="stage">
+    <div class="hold">
+      <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+      <button id="talk" disabled aria-pressed="false" aria-label="Hold to ask">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="2.5" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0 M12 18v3.5 M8.5 21.5h7"/></svg>
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </button>
+    </div>
+    <div><div id="lbl">Hold to ask</div><span id="sub" role="status">Ask about what’s on your TV</span></div>
+  </div>
+  <div class="try">
+    <p class="eyebrow">Try</p>
+    <div><button type="button">Why did they stop?</button><button type="button">What’s the score?</button><button type="button">How much is a free throw worth?</button></div>
+  </div>
+</main>
 <script>
 const WS = new URLSearchParams(location.search).get("ws");
 const MAX_MS = 14500;  // C5 caps a question at 15 s; stop a little early so the last frames fit
@@ -69,6 +192,32 @@ const $ = id => document.getElementById(id);
 const status = t => { $("status").textContent = t; };
 const player = new Audio();
 let ws, ctx, node, recording = false, sending = false, stopTimer, tStop;
+
+// UI state: join | idle | listening | thinking | answer (drives all styling via body[data-state])
+const LABELS = { idle: ["CONNECTED", "Hold to ask", "Ask about what’s on your TV"],
+                 listening: ["LISTENING", "Listening…", "Let go to send"],
+                 thinking: ["THINKING", "Checking the play…", "Your answer is on its way"],
+                 answer: ["CONNECTED", "Hold to ask again", "The answer plays on your TV too"] };
+function view(s, sub) {
+  document.body.dataset.state = s;
+  $("joinView").hidden = s !== "join";
+  $("askView").hidden = s === "join";
+  if (s === "join") return;
+  const [st, lbl, def] = LABELS[s];
+  $("state").textContent = st; $("lbl").textContent = lbl; $("sub").textContent = sub || def;
+}
+
+// 6 code boxes drawn from the one real input
+const code = $("code"), boxes = [...document.querySelectorAll(".box")];
+function drawCode() {
+  const v = code.value, focused = document.activeElement === code;
+  boxes.forEach((b, i) => { b.textContent = v[i] || ""; b.classList.toggle("on", focused && i === Math.min(v.length, 5)); });
+  $("joinBtn").disabled = !/^[A-Z2-7]{6}$/.test(v);
+}
+code.addEventListener("input", () => { code.value = code.value.toUpperCase().replace(/[^A-Z2-7]/g, "").slice(0, 6); drawCode(); });
+code.addEventListener("focus", drawCode); code.addEventListener("blur", drawCode);
+document.querySelectorAll(".try button").forEach(b => b.onclick = () =>
+  { $("sub").textContent = "Hold the button and say: “" + b.textContent + "”"; });
 
 // ponytail: box-filter downsample to 16 kHz (averages each output sample's input span), fine for speech ASR.
 const WORKLET = `
@@ -102,7 +251,7 @@ async function mic() {
   node = new AudioWorkletNode(ctx, "down");
   node.port.onmessage = e => {
     if (!ws || ws.readyState !== 1) return;
-    if (e.data === "flushed") { sending = false; ws.send(JSON.stringify({ type: "stop" })); tStop = performance.now(); status("Thinking..."); }
+    if (e.data === "flushed") { sending = false; ws.send(JSON.stringify({ type: "stop" })); tStop = performance.now(); view("thinking"); }
     else if (sending) ws.send(e.data);  // recording, or the last partial frame after release
   };
   ctx.createMediaStreamSource(stream).connect(node);  // not connected to the speakers: nothing is played back
@@ -110,28 +259,32 @@ async function mic() {
 
 $("join").onsubmit = async e => {
   e.preventDefault();
-  const code = $("code").value.trim().toUpperCase();
+  const c = code.value.trim().toUpperCase();
+  if (!/^[A-Z2-7]{6}$/.test(c)) return status("The TV code is 6 letters and numbers.");
   if (!WS || !/^wss?:\/\//.test(WS)) return status("This page needs ?ws=wss://... in its address.");
   try { if (!ctx) await mic(); } catch (err) { return status("Microphone blocked: " + err.message); }
   await ctx.resume();
   player.play().catch(() => {});  // unlocks audio playback on iOS inside this tap
   if (ws) ws.close();
+  status("Connecting…");
   ws = new WebSocket(WS);
   ws.binaryType = "arraybuffer";
-  ws.onopen = () => { ws.send(JSON.stringify({ type: "join", code })); $("talk").disabled = false; document.body.classList.add("joined"); status("Joined " + code + ". Hold the button and ask."); };
-  ws.onclose = e => { $("talk").disabled = true; document.body.classList.remove("joined"); recording = sending = false; status("Disconnected" + (e.reason ? ": " + e.reason : "") + ". Join again."); };
+  ws.onopen = () => { ws.send(JSON.stringify({ type: "join", code: c })); $("talk").disabled = false;
+    $("where").textContent = "on your TV · " + c; $("said").textContent = $("ansText").textContent = $("timing").textContent = ""; view("idle"); };
+  ws.onclose = e => { $("talk").disabled = true; recording = sending = false; clearTimeout(stopTimer); $("talk").setAttribute("aria-pressed", "false");
+    view("join"); status("Disconnected" + (e.reason ? ": " + e.reason : "") + ". Join again."); };
   ws.onmessage = e => {
     const m = JSON.parse(e.data);
     const ms = Math.round(performance.now() - tStop);
     if (m.type === "transcript") {
-      $("said").textContent = m.text ? "You asked: " + m.text : "Didn't catch that, try again.";
+      $("said").textContent = m.text || "";
       $("timing").textContent = "transcript " + ms + " ms";
-      if (!m.text) status("Hold the button and ask.");
+      if (!m.text) view("idle", "Didn’t catch that, try again.");
     } else if (m.type === "answer") {
-      $("ans").textContent = m.text;
+      $("ansText").textContent = m.text;
       $("timing").textContent += ", answer " + ms + " ms";
-      status("Hold the button and ask.");
-      if (/^https:\/\//.test(m.audioUrl)) { player.src = m.audioUrl; player.play().catch(err => status("Tap to play: " + err.message)); }
+      view("answer");
+      if (/^https:\/\//.test(m.audioUrl)) { player.src = m.audioUrl; player.play().catch(err => view("answer", "Tap to play: " + err.message)); }
     }
   };
 };
@@ -146,16 +299,16 @@ function start(e) {
   recording = sending = true;
   node.port.postMessage("reset");
   ws.send(JSON.stringify({ type: "start" }));
-  $("talk").setAttribute("aria-pressed", "true"); $("talk").textContent = "Listening… release to send";
-  $("said").textContent = $("ans").textContent = $("timing").textContent = "";
-  status("Listening");
+  $("talk").setAttribute("aria-pressed", "true"); $("talk").setAttribute("aria-label", "Listening, release to send");
+  $("said").textContent = $("ansText").textContent = $("timing").textContent = "";
+  view("listening");
   stopTimer = setTimeout(stop, MAX_MS);
 }
 function stop() {
   if (!recording) return;
   recording = false;
   clearTimeout(stopTimer);
-  $("talk").setAttribute("aria-pressed", "false"); $("talk").textContent = "Hold to ask";
+  $("talk").setAttribute("aria-pressed", "false"); $("talk").setAttribute("aria-label", "Hold to ask");
   node.port.postMessage("flush");  // last partial frame, then the "flushed" reply sends stop
 }
 const talk = $("talk");

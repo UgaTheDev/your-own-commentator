@@ -172,9 +172,14 @@ export const Player = ({
         log(`play ${initial.id}`);
       }
       // ponytail: poll instead of timeupdate, which may not fire reliably
+      let ticks = 0;
       poll = setInterval(() => {
         if (!switchingNow.current && !replayingRef.current) {
           setT(v.currentTime);
+          // 1 Hz game clock for scripts/demo (works without the talk relay's playhead heartbeat)
+          if (++ticks % 4 === 0) {
+            log(`tick t=${v.currentTime.toFixed(2)}`);
+          }
         }
       }, 250);
       // Second player for Why answers and recaps (spike S2: plays over a paused video).

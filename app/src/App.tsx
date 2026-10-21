@@ -97,6 +97,10 @@ export const App = () => {
   const [indexed, setIndexed] = useState(false);
   const [gameUrl, setGameUrl] = useState(MANIFEST_URL);
   const [reel, setReel] = useState(false);
+  // The commentator picked last on Home: "Watch with", ON AIR and the highlights reel use it.
+  const [onAirId, setOnAirId] = useState<string | null>(null);
+  const onAirTrack = (m: Manifest) =>
+    m.tracks.find((tr) => tr.id === onAirId) ?? m.tracks[0];
   useEffect(() => {
     if (track || indexed) {
       return;
@@ -203,11 +207,20 @@ export const App = () => {
       onHighlights={() => {
         if (manifest?.highlights) {
           setReel(true);
-          setTrack(manifest.tracks[0]);
+          setTrack(onAirTrack(manifest));
         }
       }}
+      onAirId={onAirId}
       onParty={startParty}
-      onSelect={setTrack}
+      onPartyEnd={() => {
+        setParty(null); // the [party] effect stops the socket
+        membersRef.current = [];
+        setMembers([]);
+      }}
+      onSelect={(tr) => {
+        setOnAirId(tr.id);
+        setTrack(tr);
+      }}
     />
   );
 };

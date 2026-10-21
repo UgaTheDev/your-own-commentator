@@ -38,6 +38,13 @@ export const FocusButton = ({
   card,
 }: Props) => {
   const [focused, setFocused] = useState(false);
+  // One-shot preferred focus: Vega re-grabs hasTVPreferredFocus on every re-render while it's true, which
+  // pinned the D-pad to one button in the Player (it re-renders every playhead tick). Claim once, then let go
+  // until the caller drops the flag and raises it again.
+  const [claimed, setClaimed] = useState(false);
+  if (!hasTVPreferredFocus && claimed) {
+    setClaimed(false);
+  }
   return (
     <Pressable
       onPress={() => {
@@ -47,13 +54,16 @@ export const FocusButton = ({
       onFocus={() => {
         console.warn(`YOC: focus ${label}`);
         setFocused(true);
+        if (hasTVPreferredFocus) {
+          setClaimed(true);
+        }
         onFocusChange?.(true);
       }}
       onBlur={() => {
         setFocused(false);
         onFocusChange?.(false);
       }}
-      hasTVPreferredFocus={hasTVPreferredFocus}
+      hasTVPreferredFocus={!!hasTVPreferredFocus && !claimed}
       accessibilityRole="button"
       accessibilityLabel={label}
       style={[

@@ -24,7 +24,7 @@ now() { python3 -c 'import time; print(time.time())'; }
 until_t() { python3 -c "import time; time.sleep(max(0, $1 - time.time()))"; }
 mark() { echo "$(python3 -c "import time; print(round(time.time() - $T0, 1))") $*" | tee -a $O.marks; }
 # All keys in one device round trip (~0.3 s each instead of ~1.1 s).
-k() { local c=""; for key in "$@"; do c+="inputd-cli button_press KEY_$key; "; done; vega device run-cmd -c "$c" >/dev/null 2>&1; }
+k() { local c=""; for key in "$@"; do c+="inputd-cli button_press KEY_$key; sleep 0.35; "; done; vega device run-cmd -c "$c" >/dev/null 2>&1; }  # gap: back-to-back presses drop
 rec() { until_t "$(python3 -c "print($T0 + $1)")"; }   # wait until recording time $1
 # Game time comes from the app's 1 s playhead heartbeat, so pauses (switches, replays, cards) can't drift the script.
 gt() { grep -a 'talk playhead' $O.log | tail -1 | sed -E 's/.* t=([0-9.]+).*/\1/'; }

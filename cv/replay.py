@@ -121,8 +121,7 @@ def render(ev, tracks, Cs, src, out, W=1920, H=1080, audio=None, stills=None, hi
                     cv2.arrowedLine(img, tuple(map(int, pts[-2])), tuple(map(int, pts[-1])), (255, 255, 255), 4,
                                     cv2.LINE_AA, tipLength=0.6)
             cv2.ellipse(img, (cx, cy), (int(w * .6), int(w * .2)), 0, 0, 360, COL[team[tid]], 3, cv2.LINE_AA)
-        cv2.rectangle(img, (32, 32), (212, 84), (20, 20, 20), -1)
-        cv2.putText(img, "REPLAY", (46, 72), cv2.FONT_HERSHEY_DUPLEX, 1.2, (255, 255, 255), 2, cv2.LINE_AA)
+        # ponytail: no burned-in "REPLAY" label; the app draws its own tag over the video
         if stills and k == round((tb - 0.3 - t0) * fps):  # inside the highlight second
             cv2.imwrite(str(stills), img, [cv2.IMWRITE_JPEG_QUALITY, 88])
         ff.stdin.write(img.tobytes())

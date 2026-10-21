@@ -986,8 +986,8 @@ export const Player = ({
             style={{
               flex: 1,
               backgroundColor: `rgba(7,11,16,${(
-                0.92 *
-                ((i + 0.5) / 40) ** 1.4
+                0.97 *
+                ((i + 0.5) / 40) ** 0.9
               ).toFixed(3)})`,
             }}
           />
@@ -1084,7 +1084,7 @@ export const Player = ({
 };
 
 const styles = StyleSheet.create({
-  scrim: {position: 'absolute', left: 0, right: 0, bottom: 0, height: s(320)},
+  scrim: {position: 'absolute', left: 0, right: 0, bottom: 0, height: s(360)},
   root: {flex: 1, backgroundColor: '#000'},
   video: {position: 'absolute', top: 0, left: 0, right: 0, bottom: 0},
   flex: {flex: 1},

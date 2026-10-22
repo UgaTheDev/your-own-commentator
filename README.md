@@ -86,6 +86,38 @@ broadcast. Human spot-checks are welcome; nothing is spoken unless it is in a re
 **Jerseys:** Nova Pro reading shooters' jerseys named the wrong player in 3 of 5 proposals on Lake Region, so a
 jersey is used only after the reviewer confirms it in the frames (3 of 7 shooters verified; `jersey-notes.md`).
 
+## Run it
+
+**The Fire TV app on the Vega Virtual Device.** Needs the [Vega SDK](https://developer.amazon.com/docs/vega/latest/)
+(`vega` CLI) and Node. No AWS account is needed. The three games, their commentary tracks, replays and minimap
+stream from our CloudFront distribution.
+
+```sh
+cd app && npm install && npm run build:release
+vega virtual-device start
+vega run-app build/aarch64-release/commentator_aarch64.vpkg   # Apple silicon; x86_64 hosts: build/x86_64-release/commentator_x86_64.vpkg
+```
+
+Remote: arrows and OK. On Home, pick a game and a commentator. In the Player, the strip has Why?, Catch me up,
+the commentator tray (switch voices mid-play), Map, Highlights, and Replay (shown near a play that has one). The
+remote's rewind key goes back 10 s, for example to hear the same play from another commentator.
+
+**Talking to the TV from a phone** uses the relay in `services/talk/`, which runs on Fargate. We scale it to zero
+between demos to keep costs down. The TV shows the pairing code when the relay is up.
+`services/talk/deploy.md` covers deploying your own.
+
+**The pipeline** (turns a licensed game video into commentary tracks) needs AWS credentials with Bedrock (Nova)
+and Polly access. The tests run without any:
+
+```sh
+python3 -m venv .venv && .venv/bin/pip install -r pipeline/requirements.txt
+.venv/bin/python -m pytest pipeline/tests    # grounding gates, state, writer, manifests
+```
+
+To build a game end to end, follow the checklist in `scripts/new_game.py`. It downloads the CC BY source from
+Wikimedia Commons, cuts the segment, runs the review step, then `new_game.py pipeline <clip>` (state, write,
+booth, why, recap, voice, mix, publish, eval). The raw videos are not committed. `SOURCES.md` links each one.
+
 ## Repo map
 - `app/`: Vega OS Fire TV app (Home, Player, Why card, Catch me up, booth captions, pairing code, replays, minimap, watch party)
 - `pipeline/`: extract → review → state → write/booth/why/recap → voice → mix → publish

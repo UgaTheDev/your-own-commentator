@@ -8,7 +8,7 @@
 set -uo pipefail
 cd "$(dirname "$0")"
 O=out/take
-mkdir -p out && rm -f out/take-a.webm out/take-b.webm out/take-c.webm out/take.log out/take.marks
+mkdir -p out/prev && for f in out/take-?.webm out/take.log out/take.marks; do [ -e "$f" ] && mv "$f" out/prev/; done   # keep the last take
 . ./emurec.sh
 
 vega run-app ../../app/build/aarch64-release/commentator_aarch64.vpkg >/dev/null 2>&1
@@ -36,18 +36,19 @@ rec 3;   mark home;       k DOWN RIGHT RIGHT LEFT LEFT
 rec 9;   mark grid;       k DOWN DOWN RIGHT RIGHT LEFT LEFT   # games -> ▲Games link -> Rookie card (grid scrolls in)
 rec 15;  mark rookie;     k ENTER
 # Same play, four voices: Rookie calls the 98.0 two-pointer; each pass waits until every voice has finished (105),
-# rewinds 20 s (two presses: key latency varies by ~3 s) and switches, so the next voice gets the same call.
+# rewinds 20 s (two presses: key latency varies by ~3 s), lets playback resume (a seek freezes the picture ~2 s),
+# then switches, so the next voice gets the same call.
 # Recorder parts (180 s cap each) restart at pass boundaries, where nothing is being said.
 part() { erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-$1.webm"; echo "part $1 t0=$T0" >> $O.marks; }
 # After a rewind the last logged tick is still >= 105 until the next one, so wait for the clock to drop first.
 lt() { until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2; done; }
-g 105;            mark kid;      k REWIND REWIND ENTER RIGHT ENTER; w 'seeked kid' 10; lt 100
-g 105;   part b;  mark spanish;  k REWIND REWIND ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10; lt 100
-g 105;            mark hindi;    k REWIND REWIND ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
-g 105;   part c;  mark booth;    k REWIND REWIND ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10; lt 100
+g 105;            mark kid;      k REWIND REWIND; sleep 3; k ENTER RIGHT ENTER; w 'seeked kid' 10; lt 100
+g 105;   part b;  mark spanish;  k REWIND REWIND; sleep 3; k ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10; lt 100
+g 105;            mark hindi;    k REWIND REWIND; sleep 3; k ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
+g 105;   part c;  mark booth;    k REWIND REWIND; sleep 3; k ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10; lt 100
 g 101;   mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
 g 108.5; mark fantasy;    k RIGHT RIGHT ENTER RIGHT ENTER; w 'seeked fantasy' 10   # focus is on Why? after Replay hides
-g 132;   mark why;        k LEFT LEFT ENTER; w 'why e9' 8; sleep 2.5; mark question; k ENTER; w 'overlay closed' 40
+g 137;   mark why;        k LEFT LEFT ENTER; w 'why e9' 8; sleep 2.5; mark question; k ENTER; w 'overlay closed' 40
 sleep 1; mark map;        k RIGHT RIGHT RIGHT ENTER
 sleep 8; mark catchup;    k LEFT LEFT ENTER; w 'overlay closed' 40
 sleep 1; mark highlights; k RIGHT RIGHT RIGHT RIGHT ENTER

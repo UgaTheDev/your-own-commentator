@@ -30,6 +30,8 @@ spoken line goes through gates in code before it is voiced:
 1. **Number gate:** every number, including spelled-out numbers in English, Spanish and Mandarin, must be in the facts.
 2. **Play gate:** every play the line names must match a verified play, credited to the right team.
 3. **Style gate:** players are referred to only by jersey number and team colour (they are minors).
+   A number said as a jersey ("number 13", "नंबर १३", "13号") must be that play's verified jersey, even when the
+   same number is a real score. This caught three Hindi lines that turned the score into a player.
 4. **Bedrock judge** (Nova 2 Lite). If a line fails twice, it is dropped. Spoken answers fall back to a sentence
    built only from the facts, so the viewer always gets an answer and it never invents anything.
 
@@ -64,6 +66,8 @@ In an A/B test, the Bedrock judge on its own caught 0 of 2 invented plays.
   - **Result:** points exact on all three games, with no retuning between them.
 - **Nova 2 Lite refused basketball video** with no reason given. We moved video extraction to Nova Pro.
 - **The judge passed wrong spelled-out scores** ("forty" when the score was 39), so we added a spelled-number gate.
+- **Translation moved numbers into new roles.** A Hindi line said "with number 13" when 13 was the team's score, not
+  a player. The judge passed it, so jersey wording is now checked against the play's verified jersey.
 - **Sonic in Python needed a second, experimental SDK** with a CRT transport, a manual credential resolver and
   trailing silence before it would transcribe (details in the friction log).
 

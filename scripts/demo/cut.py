@@ -96,7 +96,7 @@ def main():
     shot(rc - 3.0, first(r"^overlay closed \(recap", rc) + 0.5, [["catchup", 0.2]])
     h = first(r"^highlights at ")
     shot(h + 0.3, h + 7.0)
-    card("hood-pipeline", 12.0, [["hood", 0.5]])
+    card("hood-pipeline", 13.2, [["hood", 0.5]])
     card("hood-numbers", 12.2, [["numbers", 0.4]])
     shot(e2 + 8.0, e2 + 15.0, [["close", 0.4]])  # Rookie is quiet between the free throw and the 3
     card("end", 4.5)

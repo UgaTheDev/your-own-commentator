@@ -24,10 +24,11 @@ def main():
     durations = {}
     for line in script["lines"]:
         voice = line.get("voice", script["voice"])  # a line may override, e.g. the viewer asking the TV
-        key = {"voice": voice, "engine": "generative", "text": line["text"]}
+        engine = line.get("engine", script.get("engine", "generative"))
+        key = {"voice": voice, "engine": engine, "text": line["text"]}
         mp3 = cache_path("demo-vo", key, "mp3")  # re-runs cost nothing unless the text changes
         if not mp3.exists():
-            r = aws("polly").synthesize_speech(Text=line["text"], VoiceId=voice, Engine="generative",
+            r = aws("polly").synthesize_speech(Text=line["text"], VoiceId=voice, Engine=engine,
                                                OutputFormat="mp3", SampleRate="24000")
             mp3.write_bytes(r["AudioStream"].read())
         wav = out / f"{line['id']}.wav"

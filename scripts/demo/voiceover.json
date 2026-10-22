@@ -1,10 +1,12 @@
 {
-  "voice": "Danielle",
+  "voice": "Gregory",
+  "engine": "long-form",
   "lines": [
     {
       "id": "ask",
       "voice": "Stephen",
-      "text": "Wait, why did they stop?"
+      "text": "Wait, why did they stop?",
+      "engine": "generative"
     },
     {
       "id": "hook",

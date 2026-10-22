@@ -71,7 +71,7 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-a.webm",
-   "in": 125.51,
+   "in": 125.86,
    "out": 128.36
   },
   {
@@ -83,7 +83,7 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-b.webm",
-   "in": 2.59,
+   "in": 4.39,
    "out": 6.89
   },
   {
@@ -95,7 +95,7 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-b.webm",
-   "in": 25.33,
+   "in": 25.63,
    "out": 28.13
   },
   {
@@ -107,7 +107,7 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-c.webm",
-   "in": 2.44,
+   "in": 3.21,
    "out": 6.71,
    "vo": [
     [
@@ -180,7 +180,7 @@
    "type": "card",
    "file": "scripts/demo/out/cards/hood-pipeline.png",
    "in": 0,
-   "out": 12.0,
+   "out": 13.2,
    "vo": [
     [
      "hood",

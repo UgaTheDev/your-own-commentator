@@ -43,17 +43,17 @@ rec 3;   mark home;       k DOWN RIGHT RIGHT LEFT LEFT
 rec 9;   mark grid;       k DOWN DOWN RIGHT RIGHT LEFT LEFT   # games -> ▲Games link -> Rookie card (grid scrolls in)
 rec 15;  mark rookie;     k ENTER
 # Same play, four voices: Rookie calls the 98.0 two-pointer; each pass waits until every voice has finished (105),
-# rewinds 20 s (two presses: key latency varies by ~3 s), lets playback resume (a seek freezes the picture ~2 s),
-# then switches, so the next voice gets the same call.
+# opens the tray over live video, then in one burst moves to the next voice, rewinds 20 s and selects it: the
+# rewind's ~2 s picture freeze falls in the switch's black gap. (Keys sent seconds after a rewind are lost.)
 # Recorder parts (180 s cap each) restart at pass boundaries, where nothing is being said.
 part() { erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-$1.webm"; echo "part $1 t0=$T0" >> $O.marks; }
 # After a rewind the last logged tick is still >= 105 until the next one, so wait for the clock to drop first.
 lt() { local i=0; until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2
          i=$((i+1)); [ $i -gt 150 ] && die "rewind never landed (clock stayed >= $1)"; done; }
-g 105;            mark kid;      kr; sleep 3; kc ENTER RIGHT ENTER; w 'seeked kid' 15 || die 'seeked kid'; lt 100
-g 105;   part b;  mark spanish;  kr; sleep 3; kc ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 15 || die 'seeked rookie-es'; lt 100
-g 105;            mark hindi;    kr; sleep 3; kc ENTER RIGHT ENTER; w 'seeked rookie-hi' 15 || die 'seeked rookie-hi'; lt 100
-g 105;   part c;  mark booth;    kr; sleep 3; kc ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 15 || die 'seeked booth'; lt 100
+g 105;            mark kid;      kc ENTER; sleep 1.5; k RIGHT REWIND REWIND ENTER; w 'seeked kid' 15 || die 'seeked kid'; lt 100
+g 105;   part b;  mark spanish;  kc ENTER; sleep 1.5; k RIGHT RIGHT RIGHT REWIND REWIND ENTER; w 'seeked rookie-es' 15 || die 'seeked rookie-es'; lt 100
+g 105;            mark hindi;    kc ENTER; sleep 1.5; k RIGHT REWIND REWIND ENTER; w 'seeked rookie-hi' 15 || die 'seeked rookie-hi'; lt 100
+g 105;   part c;  mark booth;    kc ENTER; sleep 1.5; k LEFT LEFT LEFT REWIND REWIND ENTER; w 'seeked booth' 15 || die 'seeked booth'; lt 100
 g 101;   mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
 g 108.5; mark fantasy;    k RIGHT RIGHT ENTER RIGHT ENTER; w 'seeked fantasy' 10   # focus is on Why? after Replay hides
 g 137;   mark why;        k LEFT LEFT ENTER; w 'why e9' 8; sleep 2.5; mark question; k ENTER; w 'overlay closed' 40

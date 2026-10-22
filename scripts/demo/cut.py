@@ -77,12 +77,14 @@ def main():
     after, lens = s1, {"kid-en": 4.4, "rookie-es": 6.5, "rookie-hi": 5.6}
     for tid, secs in lens.items():
         sw = first(rf"^switch to {tid} ", after)
-        shot(max(first(r"^seek \d", after) + 0.3, sw - 2.5), sw)  # the tray, at most 2.5 s
+        tray = first(r"^press ", after)  # the tray opens over live video; the rewind comes ~1.8 s later
+        shot(tray - 0.2, min(first(r"^seek \d", tray), tray + 2.5))
         s = first(r"^score pink 13 ", sw)
         shot(s - 1.0, s + secs)
         after = s
     sw = first(r"^switch to booth-en ", after)
-    shot(max(first(r"^seek \d", after) + 0.3, sw - 3.5), sw, [["booth", 0.2]])  # room for the narration
+    tray = first(r"^press ", after)
+    shot(tray - 1.7, first(r"^seek \d", tray), [["booth", 0.2]])  # 1.5 s of play first: room for the narration
     s = first(r"^score pink 13 ", sw)
     shot(s - 1.0, first(r"^caption ANALYST", s) - 0.2)  # play-by-play only: the replay cuts the analyst off
     p = first(r"^playing replay ", s)

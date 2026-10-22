@@ -11,6 +11,7 @@ O=out/take
 mkdir -p out/prev && for f in out/take-?.webm out/take.log out/take.marks; do [ -e "$f" ] && mv "$f" out/prev/; done   # keep the last take
 . ./emurec.sh
 
+pkill -f "device start-log-stream" 2>/dev/null   # a stream left by an aborted take doubles the device load
 vega run-app ../../app/build/aarch64-release/commentator_aarch64.vpkg >/dev/null 2>&1
 sleep 8
 vega device start-log-stream > $O.log 2>&1 & LP=$!
@@ -26,10 +27,16 @@ k() { local c=""; for key in "$@"; do c+="inputd-cli button_press KEY_$key; slee
 rec() { until_t "$(python3 -c "print($T0 + $1)")"; }   # wait until recording time $1
 # Game time comes from the app's 1 s playhead heartbeat, so pauses (switches, replays, cards) can't drift the script.
 gt() { grep -a 'tick t=' $O.log | tail -1 | sed -E 's/.* t=([0-9.]+).*/\1/'; }
-g() { until python3 -c "import sys; sys.exit(0 if float('$(gt)' or 0) >= $1 else 1)"; do sleep 0.2; done; }
+g() { local i=0; until python3 -c "import sys; sys.exit(0 if float('$(gt)' or 0) >= $1 else 1)"; do sleep 0.2
+        i=$((i+1)); [ $i -gt 900 ] && die "game clock never reached $1"; done; }   # 3 min
 # Wait (max $2 s) for a NEW app log line matching $1.
 w() { local n; n=$(grep -ac "$1" $O.log); for _ in $(seq $(( ${2:-30} * 5 ))); do
-        [ "$(grep -ac "$1" $O.log)" -gt "$n" ] && return 0; sleep 0.2; done; echo "  (timeout waiting for: $1)"; }
+        [ "$(grep -ac "$1" $O.log)" -gt "$n" ] && return 0; sleep 0.2; done; echo "  (timeout waiting for: $1)"; return 1; }
+die() { echo "TAKE FAILED: $*"; exit 1; }   # make.sh re-shoots
+# Keys that must land: re-send if the app logged no focus/press within 2 s (a run-cmd can be lost silently).
+kc() { local p=${KP:-'YOC: @[0-9]+ (press|focus) '} n; n=$(grep -acE "$p" $O.log); for _ in 1 2 3; do k "$@"; sleep 2
+         [ "$(grep -acE "$p" $O.log)" -gt "$n" ] && return 0; done; die "keys lost: $*"; }
+kr() { KP='YOC: @[0-9]+ seek [0-9]' kc REWIND REWIND; }   # rewind 20 s; a rewind logs a seek, not a press
 
 # Full take on the redesigned UI. Home: hero -> games -> commentator grid, then Rookie from the grid.
 rec 3;   mark home;       k DOWN RIGHT RIGHT LEFT LEFT
@@ -41,11 +48,12 @@ rec 15;  mark rookie;     k ENTER
 # Recorder parts (180 s cap each) restart at pass boundaries, where nothing is being said.
 part() { erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-$1.webm"; echo "part $1 t0=$T0" >> $O.marks; }
 # After a rewind the last logged tick is still >= 105 until the next one, so wait for the clock to drop first.
-lt() { until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2; done; }
-g 105;            mark kid;      k REWIND REWIND; sleep 3; k ENTER RIGHT ENTER; w 'seeked kid' 10; lt 100
-g 105;   part b;  mark spanish;  k REWIND REWIND; sleep 3; k ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10; lt 100
-g 105;            mark hindi;    k REWIND REWIND; sleep 3; k ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
-g 105;   part c;  mark booth;    k REWIND REWIND; sleep 3; k ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10; lt 100
+lt() { local i=0; until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2
+         i=$((i+1)); [ $i -gt 150 ] && die "rewind never landed (clock stayed >= $1)"; done; }
+g 105;            mark kid;      kr; sleep 3; kc ENTER RIGHT ENTER; w 'seeked kid' 15 || die 'seeked kid'; lt 100
+g 105;   part b;  mark spanish;  kr; sleep 3; kc ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 15 || die 'seeked rookie-es'; lt 100
+g 105;            mark hindi;    kr; sleep 3; kc ENTER RIGHT ENTER; w 'seeked rookie-hi' 15 || die 'seeked rookie-hi'; lt 100
+g 105;   part c;  mark booth;    kr; sleep 3; kc ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 15 || die 'seeked booth'; lt 100
 g 101;   mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
 g 108.5; mark fantasy;    k RIGHT RIGHT ENTER RIGHT ENTER; w 'seeked fantasy' 10   # focus is on Why? after Replay hides
 g 137;   mark why;        k LEFT LEFT ENTER; w 'why e9' 8; sleep 2.5; mark question; k ENTER; w 'overlay closed' 40

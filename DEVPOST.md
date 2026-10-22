@@ -113,14 +113,16 @@ rf-detr, opencv, ffmpeg
 - Vega CLI:
   - `vega project generate` overwrote our `.gitignore`.
   - The `copy-to` help text describes its arguments backwards.
-  - There's no screenshot command for the VVD.
+  - There's no documented way to screenshot or record the VVD. The emulator console on port 5554 has a working
+    `screenrecord` (we recorded our demo with it), but nothing in the Vega docs or CLI points to it.
   - Remote-key injection (`inputd-cli`) isn't mentioned in `--help`.
 - Vega media players are HTTPS only. That's fine, but say it in the getting-started docs: plain `http://` fails
   with no clear error.
 - Alexa+ MCP docs don't say whether an add-on can learn what a Fire TV app is playing (the playhead).
 
 ## Feature requests
-1. A `vega device screenshot` / `screenrecord` command for the VVD, to record demos and run visual tests.
+1. A `vega device screenshot` / `screenrecord` command for the VVD (wrapping the console's `screenrecord`), to record
+   demos and run visual tests.
 2. A per-app microphone capture API on Vega (we had to use the phone as the mic).
 3. Bidirectional streaming in boto3, so Nova Sonic works with the standard SDK.
 4. A transcription-only mode for Nova Sonic that returns the transcript as soon as speech ends.

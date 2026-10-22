@@ -42,6 +42,12 @@
     "reason": "judge: The line references a 'pink player,' but the FACTS only mention 'maroon' and 'white' teams. Additionally, the score update is implied but not confirmed—FACTS shows the maroon team scored, not pink."
   },
   {
+    "trackId": "rookie-hi",
+    "eventId": "e91",
+    "lastText": "नंबर 34 ने फ़्री थ्रो मिस किया, अब गेंद लाइव है।",
+    "reason": "numbers not in facts: ['34']"
+  },
+  {
     "trackId": "rookie-zh",
     "eventId": "e38",
     "lastText": "白队一名球员命中三分球，比分变为44比30。",

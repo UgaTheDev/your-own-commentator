@@ -16,7 +16,7 @@ sleep 8
 vega device start-log-stream > $O.log 2>&1 & LP=$!
 trap 'erec_stop; kill $LP 2>/dev/null' EXIT
 sleep 2
-T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-a.webm"; echo "part a" >> $O.marks
+T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-a.webm"; echo "part a t0=$T0" >> $O.marks
 
 now() { python3 -c 'import time; print(time.time())'; }
 until_t() { python3 -c "import time; time.sleep(max(0, $1 - time.time()))"; }
@@ -36,12 +36,12 @@ rec 3;   mark home;       k DOWN RIGHT RIGHT LEFT LEFT
 rec 9;   mark grid;       k DOWN DOWN RIGHT RIGHT LEFT LEFT   # games -> ▲Games link -> Rookie card (grid scrolls in)
 rec 15;  mark rookie;     k ENTER
 # Same play, four voices: Rookie calls the 98.4 two-pointer; then rewind 10 s (remote) and switch, three times.
-# After a rewind the last logged tick is still >= 103 until the next one, so wait for the clock to drop first.
+# Hindi rewinds 20 s: the recorder restart before it takes ~3 s. After a rewind the last logged tick is still >= 103 until the next one, so wait for the clock to drop first.
 lt() { until python3 -c "import sys; sys.exit(0 if 0 < float('$(gt)' or 0) < $1 else 1)"; do sleep 0.2; done; }
 g 103;   mark kid;        k REWIND ENTER RIGHT ENTER; w 'seeked kid' 10; lt 100
 g 103;   mark spanish;    k REWIND ENTER RIGHT RIGHT RIGHT ENTER; w 'seeked rookie-es' 10; lt 100
-g 103;   erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-b.webm"; echo "part b" >> $O.marks
-         mark hindi;      k REWIND ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
+g 103;   erec_stop; T0=$(python3 -c 'import time; print(time.time())'); erec_start "$PWD/out/take-b.webm"; echo "part b t0=$T0" >> $O.marks
+         mark hindi;      k REWIND REWIND ENTER RIGHT ENTER; w 'seeked rookie-hi' 10; lt 100
 g 103;   mark booth;      k REWIND ENTER LEFT LEFT LEFT ENTER; w 'seeked booth' 10; lt 100
 g 101;   mark replay;     k RIGHT RIGHT RIGHT ENTER; w 'YOC: @[0-9]* seeked .*back' 30
 g 108.5; mark fantasy;    k RIGHT RIGHT ENTER RIGHT ENTER; w 'seeked fantasy' 10   # focus is on Why? after Replay hides

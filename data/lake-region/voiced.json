@@ -92,9 +92,9 @@
     "trackId": "rookie-hi",
     "eventId": "e6",
     "start": 98.4,
-    "duration": 5.016,
-    "text": "नंबर १३ के साथ पिंक टीम ने दो पॉइंट स्कोर किए, अब स्कोर पिंक १३, ब्लू ६ है।",
-    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/466002da53846468ef218951.mp3"
+    "duration": 4.2,
+    "text": "पिंक टीम ने दो पॉइंट स्कोर किए हैं, स्कोर अब पिंक १३ और ब्लू ६ है।",
+    "audio": "/Users/kushzingade/Documents/Hackathons/Amazon/data/.cache/polly/d0f6fe86fe3107cef913d8e3.mp3"
   },
   {
     "trackId": "rookie-zh",

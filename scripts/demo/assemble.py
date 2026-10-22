@@ -57,9 +57,15 @@ def main():
                    "-f", "lavfi", "-t", dur, "-i", "anullsrc=r=48000:cl=stereo",
                    "-vf", FIT, *V, *A, "-t", dur, part)
             else:
-                ff("-ss", seg["in"], "-t", dur, "-i", seg.get("file", edl.get("screen")),
-                   "-ss", seg["in"], "-t", dur, "-i", seg.get("audio", edl.get("audio")),
-                   "-map", "0:v", "-map", "1:a", "-vf", FIT, "-af", "apad", *V, *A, "-t", dur, part)
+                src = seg.get("file", edl.get("screen"))
+                # "overlay": [png, from_s, to_s] composites a transparent 1920x1080 card (the lower third) over the shot
+                ov = seg.get("overlay")
+                vf = (["-i", ov[0], "-filter_complex",
+                       f"[0:v]{FIT}[b];[b][2:v]overlay=enable='between(t,{ov[1]},{ov[2]})'[v]", "-map", "[v]"]
+                      if ov else ["-vf", FIT, "-map", "0:v"])
+                ff("-ss", seg["in"], "-t", dur, "-i", src,
+                   "-ss", seg["in"], "-t", dur, "-i", seg.get("audio", edl.get("audio", src)),
+                   *vf, "-map", "1:a", "-af", "apad", *V, *A, "-t", dur, part)
             parts.append(part)
         lst = Path(tmp) / "list.txt"
         lst.write_text("".join(f"file '{p}'\n" for p in parts))

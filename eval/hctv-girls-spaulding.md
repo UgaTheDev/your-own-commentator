@@ -27,4 +27,4 @@ Reviewed by: claude (AI review: spot-check welcome)
 
 ## Faithfulness
 
-**0 unsupported / 75 lines** (a line counts as unsupported if it failed the grounding check or the judge)
+**0 unsupported / 74 lines** (a line counts as unsupported if it failed the grounding check or the judge)

@@ -1,16 +1,54 @@
 {
   "voice": "Danielle",
   "lines": [
-    {"id": "ask", "voice": "Stephen", "text": "Wait, why did they stop?"},
-    {"id": "hook", "text": "Never watched basketball? Just ask your TV."},
-    {"id": "pick", "text": "This is Your Own Commentator on Fire TV. Pick a game, then pick your commentator."},
-    {"id": "rules", "text": "The Rookie commentator explains each rule the moment it matters."},
-    {"id": "switch", "text": "Same game, same play, a different commentator. Seven of them, in four languages."},
-    {"id": "booth", "text": "A two-voice booth, or a fantasy analyst tracking points."},
-    {"id": "why", "text": "Pause and ask why. Replays and the minimap come from our own computer vision."},
-    {"id": "catchup", "text": "Missed a minute? Catch up. Friends join from their own homes and call the next basket."},
-    {"id": "hood", "text": "Under the hood: Amazon Nova Pro reads the game, Nova 2 Lite writes, Nova Sonic hears your question, and Polly speaks. Every line passes fact gates in code."},
-    {"id": "numbers", "text": "Video-only AI was right 5 times in 182, so every score is anchored to the broadcast score graphic. Zero invented plays in 494 lines."},
-    {"id": "close", "text": "Most amateur games have no commentary at all. Now every viewer gets their own broadcast."}
+    {
+      "id": "ask",
+      "voice": "Stephen",
+      "text": "Wait, why did they stop?"
+    },
+    {
+      "id": "hook",
+      "text": "Never watched basketball? Just ask your TV."
+    },
+    {
+      "id": "pick",
+      "text": "This is Your Own Commentator on Fire TV. Pick a game, then pick your commentator."
+    },
+    {
+      "id": "rules",
+      "text": "The Rookie commentator explains each rule the moment it matters."
+    },
+    {
+      "id": "switch",
+      "text": "Same game, same play, a different commentator. Seven of them, in four languages."
+    },
+    {
+      "id": "booth",
+      "text": "Or a two-voice booth, with play-by-play and an analyst."
+    },
+    {
+      "id": "replay",
+      "text": "Replays and the minimap come from our own computer vision, with every tracked player marked."
+    },
+    {
+      "id": "why",
+      "text": "Pause and ask why. Every answer is checked against the play log."
+    },
+    {
+      "id": "catchup",
+      "text": "Missed a minute? Catch me up."
+    },
+    {
+      "id": "hood",
+      "text": "Under the hood: Amazon Nova Pro reads the game, Nova 2 Lite writes, Nova Sonic hears your question, and Polly speaks. Every line passes fact gates in code."
+    },
+    {
+      "id": "numbers",
+      "text": "Video-only AI was right 5 times in 182, so every score is anchored to the broadcast score graphic. Zero invented plays in 494 lines."
+    },
+    {
+      "id": "close",
+      "text": "Most amateur games have no commentary at all. Now every viewer gets their own broadcast."
+    }
   ]
 }

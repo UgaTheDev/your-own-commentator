@@ -733,18 +733,6 @@
   },
   {
     "trackId": "rookie-hi",
-    "eventId": "e91",
-    "t": 482.0,
-    "priority": 1,
-    "text": "नंबर 34 ने फ़्री थ्रो मिस किया, अब गेंद लाइव है।",
-    "lang": "hi",
-    "voice": "Kajal",
-    "engine": "neural",
-    "grounded": true,
-    "judge": "supported"
-  },
-  {
-    "trackId": "rookie-hi",
     "eventId": "e100",
     "t": 491.0,
     "priority": 3,

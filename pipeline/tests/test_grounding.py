@@ -57,6 +57,10 @@ def test_jersey_number_only_counts_as_a_jersey():
     assert unsupported_digits("Number 5 hits the free throw. Pink 13, blue 6.", facts) == set()
     assert unsupported_digits("#5 at the line, 5号 scores.", facts) == set()
     assert unsupported_digits("Pink 13, blue 5.", facts) == {"5"}  # a wrong score dressed as a jersey
+    assert unsupported_digits("Number 13 scores, pink 13, blue 6.", facts) == {"13"}  # a score dressed as a jersey
+    assert unsupported_digits("नंबर १३ के साथ पिंक टीम ने दो पॉइंट स्कोर किए", facts) == {"13"}
+    assert unsupported_digits("13号得分", facts) == {"13"}
+    assert unsupported_digits("ahora el marcador es 13 a 6", facts) == set()
 
 
 def test_fantasy_keys_are_jerseys_not_free_numbers():

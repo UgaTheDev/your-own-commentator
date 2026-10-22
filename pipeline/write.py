@@ -73,6 +73,9 @@ def jersey_numbers(facts):
 # Otherwise a jersey 5 in FACTS would license "blue scored 5 points" (it did, in a Lake Region recap).
 JERSEY_AFTER = re.compile(r"\s*(?:号|नंबर)")  # zh "5号", hi "५ नंबर"
 JERSEY_BEFORE = re.compile(r"(?:#|\bno\.|\bnumbers?|\bnúmero|\bdorsal|\bd?el|नंबर|जर्सी)\s*$", re.I)  # es: "el 23"
+# Unambiguous cues ("el" also precedes scores): a number said this way must BE a jersey in the facts, even when the
+# same number is a score ("नंबर १३" for pink's 13 points made up a player 13)
+JERSEY_CUE = re.compile(r"(?:#|\bno\.|\bnumbers?|\bnúmero|\bdorsal|नंबर|जर्सी)\s*$", re.I)
 
 
 EN_UNITS = {w: i for i, w in enumerate("zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen "
@@ -127,6 +130,8 @@ def unsupported_digits(text, facts):
         # ponytail: "Pink 5" is NOT a jersey cue: lines say scores that way ("white 51, maroon 34")
         as_jersey = JERSEY_BEFORE.search(text[:m.start()]) or JERSEY_AFTER.match(text[m.end():])
         if n not in allowed and not (n in jerseys and as_jersey):
+            bad.add(n)
+        elif n not in jerseys and (JERSEY_CUE.search(text[:m.start()]) or JERSEY_AFTER.match(text[m.end():])):
             bad.add(n)
     return bad | (spelled_numbers(text) - allowed)
 

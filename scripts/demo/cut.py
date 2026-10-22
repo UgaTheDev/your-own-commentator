@@ -102,7 +102,8 @@ def main():
     shot(p + 0.2, p + 10.2, [["replay", 0.5]])
     why = first(r"^why e\d+ ")
     closed = first(r"^overlay closed \(why", why)
-    shot(closed + 2.5, closed + 7.5)  # the minimap
+    mm = first(r"^minimap t=", closed)  # timed from the first map frame: key delivery lags 1-7 s
+    shot(mm - 0.5, mm + 5.0)
     shot(why + 0.15, why + 5.5, [["why", 0.3]])  # after the press: the game pauses, so no stray end of a line
     shot(first(r"^why audio playing", why) - 1.0, closed + 0.6)
     rc = first(r"^recap t=")

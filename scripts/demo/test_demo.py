@@ -51,3 +51,23 @@ def test_starts_before_recording():
     ev = parse(["YOC: @1000000 play rookie-en"])
     (s,) = timeline(ev, T0 + 5000, TRACKS)
     assert s["start"] == -5.0 and s["offset"] == 0.0  # render() shifts it to offset 5 at time 0
+
+
+def test_qa_speech_follows_the_game_clock():
+    import qa
+    rookie = next(x for x in __import__("json").load(open(qa.CLIP / "voiced.json")) if x["trackId"] == "rookie-en")
+    s, d = rookie["start"], rookie["duration"]
+    evs = [(100.0, "play rookie-en")] + [(100.0 + i, f"tick t={s - 2 + i:.2f}") for i in range(int(d) + 5)]
+    evs += [(200.0, "why e9 at t=1"), (201.0, "why audio playing after 100ms"), (207.0, "overlay closed (why ended)")]
+    got = qa.speech(evs)
+    line = next(x for x in got if x[2].startswith("rookie-en"))
+    assert abs(line[0] - 102.0) < 0.05 and abs(line[1] - (102.0 + d)) < 0.05  # 2 s of clock before the line
+    assert (201.0, 207.0, "why answer") in got
+    assert qa.still(evs) == [(0.0, 101.0), (200.0, 207.5)]
+
+
+def test_qa_finds_a_frozen_clock():
+    import qa
+    evs = [(0.0, "play rookie-en"), (1.0, "tick t=1.00"), (2.0, "tick t=2.00"), (3.0, "tick t=2.10"),
+           (4.0, "tick t=3.10"), (5.0, "why e1 at t=3"), (6.0, "tick t=3.10"), (7.0, "overlay closed (why)")]
+    assert qa.stalls(evs) == [(2.0, 3.0)]  # the paused Why panel is not a freeze

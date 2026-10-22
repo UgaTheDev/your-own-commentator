@@ -71,11 +71,54 @@ def speech(evs):
     return merged
 
 
+def still(evs):
+    """[(start, end)] epochs where the picture is meant to hold still: Home before playback, the paused Why/recap/
+    talk panels, and the reel's title card. Frame-drop checks skip these."""
+    out, opened = [], None
+    play = next((t for t, m in evs if re.match(r"play \S+$", m)), None)
+    if play:
+        out.append((0.0, play + 1.0))
+    for t, msg in evs:
+        if re.match(r"(why e\d+ |recap t=|talk answer )", msg) and opened is None:
+            opened = t
+        elif msg.startswith("overlay closed") and opened is not None:
+            out.append((opened, t + 0.5))
+            opened = None
+        elif msg.startswith("playing highlights"):
+            out.append((t - 1.0, t + 4.0))
+    return out
+
+
+def stalls(evs):
+    """[(start, end)] epochs where playback froze: the game clock barely moved while the game was meant to play."""
+    out, prev, mode, paused = [], None, "track", False
+    for t, msg in evs:
+        if msg.startswith(("switch to ", "replay e", "highlights at")):
+            mode, prev = "other", None
+        elif msg.startswith("seeked "):
+            mode, prev = "track", None
+        elif re.match(r"(why e\d+ |recap t=|talk answer )", msg):
+            paused, prev = True, None
+        elif msg.startswith("overlay closed"):
+            paused, prev = False, None
+        elif msg.startswith("seek "):
+            prev = None
+        elif m := re.match(r"tick t=([\d.]+)", msg):
+            g = float(m.group(1))
+            if prev and mode == "track" and not paused and 0.5 < t - prev[0] < 5 and g - prev[1] < 0.5 * (t - prev[0]):
+                out.append((prev[0], t))
+            prev = (t, g)
+    return out
+
+
 def main():
     edl = json.load(open(D / "edl.json"))
     bases = edl["_bases"]
     logs = {f: ROOT / "scripts/demo/out" / ("hook.log" if "hook" in f else "take.log") for f in bases}
     talk = {f: speech(events(logs[f])) for f in bases}
+    calm = {f: still(events(logs[f])) for f in bases}
+    froze = {f: stalls(events(logs[f])) for f in bases}
+    quiet = []  # output-time intervals that are still on purpose
     durs = json.load(open(ROOT / edl["vo_dir"] / "durations.json"))
     issues, voices, T, shots = [], [], 0.0, []
 
@@ -91,6 +134,11 @@ def main():
         if seg["type"] == "screen":
             shots.append((T, T + b - a))
             base = bases[seg["file"]]
+            for s, e in froze[seg["file"]]:
+                if s - base < b and e - base > a:
+                    issues.append(f"{at(T + max(s - base, a) - a)} playback froze for {e - s:.1f}s (picture and sound)")
+            quiet += [(T + max(s - base, a) - a, T + min(e - base, b) - a) for s, e in calm[seg["file"]]
+                      if s - base < b and e - base > a]
             for s, e, who in talk[seg["file"]]:
                 fs, fe = s - base, e - base
                 if fs < a - EPS < fe - 2 * EPS:
@@ -114,7 +162,9 @@ def main():
     for x in re.findall(r"pts_time:([\d.]+)", err):
         fresh[int(float(x))] = fresh.get(int(float(x)), 0) + 1
     for sec in range(int(T)):
-        if any(s + 0.5 <= sec and sec + 1 <= e - 0.5 for s, e in shots) and fresh.get(sec, 0) < 15:
+        moving = any(s + 0.5 <= sec and sec + 1 <= e - 0.5 for s, e in shots) and not any(
+            s < sec + 1 and e > sec for s, e in quiet)
+        if moving and fresh.get(sec, 0) < 15:
             issues.append(f"{at(sec)} only {fresh.get(sec, 0)} new frames that second")
 
     print(f"{T:.1f}s, {len(edl['segments'])} segments, {len(voices)} voice intervals")

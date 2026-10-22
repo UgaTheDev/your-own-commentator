@@ -6,11 +6,12 @@
 
 ## Needs Kush
 <!-- One line each: what, why it blocks, and the exact thing to type or click. Empty = "none". -->
-- **Watch the demo video** (2:29): `scripts/demo/out/YourOwnCommentator-demo.mp4` (Finder has it selected). Say what to change.
+- **Watch the demo video with sound** (2:54): `scripts/demo/out/demo.mp4`. Say what to change (re-cut ~8 min).
 - **Upload it** to YouTube (Public or Unlisted), title "Your Own Commentator: pick your own sports commentator on Fire TV", description = the attribution line in SOURCES.md.
-- **Submit on Devpost (by Oct 22)**: paste DEVPOST.md sections + the video link; repo https://github.com/UgaTheDev/your-own-commentator (public).
+- **Submit on Devpost (target Thu Oct 22; hard deadline Fri Oct 23 12:00 PM PT)**: paste DEVPOST.md sections + the video link; repo https://github.com/UgaTheDev/your-own-commentator (public).
 
 ## Done since last update
+- 2026-10-21: demo re-recorded from the simulator's own display (emulator console screenrecord; window capture stalled when covered), steady 27-28 fps; same play called by Rookie, Kid, Spanish, Hindi and Booth via a new 10 s remote rewind; cut generated from the take log (cut.py), 2:54. Jersey-wording gate added after 3 Hindi lines named invented player numbers; all 3 games regenerated and republished, 0 flagged. Replays and highlight reel re-rendered without the burned-in label; minimap hidden during replays. Relay scaled to 0.
 - 2026-10-20 (pm): app redesign (control-room theme, game cards, single-row controls); phone page restyle; phone talk-back test passed on the real relay; demo video recorded fully automated (ScreenCaptureKit window capture with device audio, remote keys driven by the app's playhead log, Polly narration + cards) and cut to 2:29; caught and fixed a recap that said 5 points for 4 (jersey numbers now only count as jerseys), re-audited all 3 games: 0 failures; relay scaled to 0.
 - 2026-10-20: freeze pass. Full suite green (174 pipeline, 21 CV, 24 app); fixed replay CDN URL scheme bug in cv/publish_replays.py; secret scan of history clean; published game outputs committed; DEVPOST.md and VIDEO.md drafted. Dropped by Kush: root MFA, Bedrock playground credit. Worker protocol: not added (STATUS.md already serves the orchestrator).
 - 2026-09-28: 3 licensed games live (games index https://d2og06dnam3owj.cloudfront.net/clips.json); score-graphic reader points-exact on all 3, Nova video-only 5/182 (P=0.03); verified jerseys (3/7), 64 s highlight reel, game picker, Alexa+ MCP server (local). Gate now checks spelled-out numbers (en/es/zh), spelled jerseys, pronouns; all 3 live manifests audited 0 mismatched numbers. Friction log 40 rows.

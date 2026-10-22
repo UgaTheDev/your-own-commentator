@@ -156,6 +156,7 @@ export const MiniMap = ({
   frame,
 }: {
   frame: {
+    t: number;
     players: {id: number; team: string; x: number; y: number}[];
     ball: {x: number; y: number} | null;
   };
@@ -168,7 +169,8 @@ export const MiniMap = ({
         <Text style={st.legendText}>ball</Text>
       </View>
     </View>
-    <Svg width={s(320)} height={s(180)} viewBox="0 0 320 180">
+    {/* key: a fresh Svg per frame. Vega's SVG renderer doesn't erase removed circles, so dots piled up */}
+    <Svg key={frame.t} width={s(320)} height={s(180)} viewBox="0 0 320 180">
       <Rect
         x="10"
         y="10"

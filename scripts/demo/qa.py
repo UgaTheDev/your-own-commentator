@@ -6,7 +6,7 @@ From the app logs and the published line timings it rebuilds when every voice is
 the on-air track, Why/recap/talk answers, highlight-reel lines), then checks the EDL:
   1. no shot starts or ends inside someone's sentence,
   2. no narration over a voice,
-  3. no shot shorter than 1.5 s,
+  3. no shot shorter than 1.5 s, and no overlay card (the phone lower third) on top of an answer panel,
 and, on the rendered demo.mp4, 4. no second of screen footage with fewer than 15 new frames.
 """
 import json
@@ -137,6 +137,11 @@ def main():
             for s, e in froze[seg["file"]]:
                 if s - base < b and e - base > a:
                     issues.append(f"{at(T + max(s - base, a) - a)} playback froze for {e - s:.1f}s (picture and sound)")
+            if ov := seg.get("overlay"):  # an overlay card must not sit on top of an on-screen panel
+                for ps, pe in calm[seg["file"]]:
+                    lo, hi = max(ps - base, a + ov[1]), min(pe - base, a + ov[2])
+                    if hi - lo > 0.05:
+                        issues.append(f"{at(T + lo - a)} overlay card covers an on-screen panel for {hi - lo:.1f}s")
             quiet += [(T + max(s - base, a) - a, T + min(e - base, b) - a) for s, e in calm[seg["file"]]
                       if s - base < b and e - base > a]
             for s, e, who in talk[seg["file"]]:

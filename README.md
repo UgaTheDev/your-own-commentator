@@ -3,7 +3,7 @@
 **Pick your own sports commentator on Fire TV.** One game, narrated for everyone: a **Rookie**
 commentator who explains each rule the moment it matters, a **Kid** commentator, a two-voice
 **Booth** (play-by-play + analyst), a **Fantasy** analyst, and the same game in **Spanish, Hindi
-and Mandarin**. Hold a button on your phone and ask *"wait, why did they stop?"*, and the
+and Mandarin**. Hold a button on your phone and ask *"wait, why did blue just get a point?"*, and the
 commentator answers about **that** play, out loud, in seconds. Friends in other homes can join a
 **watch party**, each with their own commentator, and call the next basket.
 

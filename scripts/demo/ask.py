@@ -1,6 +1,6 @@
 """Ask the TV a spoken question exactly as the phone page does (C5), with a Polly voice instead of a person.
 
-  .venv/bin/python scripts/demo/ask.py <TV code> "Wait, why did they stop?" [--voice Joey]
+  .venv/bin/python scripts/demo/ask.py <TV code> "Wait, why did blue just get a point?" [--voice Joey]
 
 Synthesizes 16 kHz mono PCM with Polly, joins the relay with the TV's code, streams it in real time, adds the
 trailing silence Nova Sonic needs to finish the transcript, and prints the transcript and the answer.

@@ -4,7 +4,7 @@
   "scripts/demo/out/take-a.webm": 1792708034.164,
   "scripts/demo/out/take-b.webm": 1792708200.0770001,
   "scripts/demo/out/take-c.webm": 1792708276.603,
-  "scripts/demo/out/hook.webm": 1792625141.3820002
+  "scripts/demo/out/hook.webm": 1792709773.130047
  },
  "out": "scripts/demo/out/demo.mp4",
  "vo_dir": "scripts/demo/out/vo",
@@ -12,18 +12,18 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/hook.webm",
-   "in": 6.0,
-   "out": 21.0,
+   "in": 2.25,
+   "out": 22.11,
    "vo": [
     [
      "ask",
-     4.6
+     7.0
     ]
    ],
    "overlay": [
     "scripts/demo/out/cards/lowerthird.png",
-    4.2,
-    8.6
+    6.6,
+    12.46
    ]
   },
   {
@@ -41,7 +41,7 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-a.webm",
-   "in": 1.98,
+   "in": 2.98,
    "out": 13.78,
    "vo": [
     [
@@ -54,7 +54,7 @@
    "type": "screen",
    "file": "scripts/demo/out/take-a.webm",
    "in": 46.64,
-   "out": 53.24,
+   "out": 51.64,
    "vo": [
     [
      "rules",
@@ -144,13 +144,13 @@
    "type": "screen",
    "file": "scripts/demo/out/take-c.webm",
    "in": 120.14,
-   "out": 125.64
+   "out": 124.64
   },
   {
    "type": "screen",
    "file": "scripts/demo/out/take-c.webm",
    "in": 89.77,
-   "out": 95.12,
+   "out": 94.92,
    "vo": [
     [
      "why",
@@ -179,14 +179,14 @@
   {
    "type": "screen",
    "file": "scripts/demo/out/take-c.webm",
-   "in": 145.54,
+   "in": 146.54,
    "out": 155.54
   },
   {
    "type": "card",
    "file": "scripts/demo/out/cards/hood-pipeline.png",
    "in": 0,
-   "out": 13.2,
+   "out": 12.95,
    "vo": [
     [
      "hood",
@@ -222,7 +222,7 @@
    "type": "card",
    "file": "scripts/demo/out/cards/end.png",
    "in": 0,
-   "out": 4.0
+   "out": 3.5
   }
  ]
 }

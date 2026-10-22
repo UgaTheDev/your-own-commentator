@@ -121,7 +121,7 @@ def numbers():  # 6c
 
 
 def lowerthird():  # 6d: transparent, composited over 1920x1080 video, bottom-left in the safe area
-    quote, w, h = "“Wait, why did they stop?”", 760, 164
+    quote, w, h = "“Wait, why did blue just get a point?”", 980, 164
     x, y = SAFE_X, H - 96 - h
     return svg(f'<defs><clipPath id="lt"><rect x="{x}" y="{y}" width="{w}" height="{h}" rx="24"/></clipPath>'
                f'<filter id="sh" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="28"/></filter></defs>'

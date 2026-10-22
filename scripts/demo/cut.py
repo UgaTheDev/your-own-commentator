@@ -6,6 +6,7 @@ out/take.marks, so a re-take re-cuts itself. Narration is placed where no commen
 import json
 import re
 import subprocess
+from datetime import datetime, timezone
 from pathlib import Path
 
 D = Path(__file__).resolve().parent
@@ -13,9 +14,19 @@ OUT = D / "out"
 EV = re.compile(r"YOC: @(\d+) (.*)")
 
 
+SYS = re.compile(r"^(\w{3} +\d+ [\d:.]+) .*YOC: ((?:press|focus) .*)")  # FocusButton lines carry no @epoch
+
+
 def events(log=OUT / "take.log"):
-    return [(int(m.group(1)) / 1000, m.group(2)) for m in map(EV.search, log.read_text(errors="replace").splitlines())
-            if m]
+    """[(epoch s, msg)]: app lines by their @epoch, button lines by the device syslog time (UTC)."""
+    out = []
+    for line in log.read_text(errors="replace").splitlines():
+        if m := EV.search(line):
+            out.append((int(m.group(1)) / 1000, m.group(2)))
+        elif m := SYS.search(line):
+            when = datetime.strptime(f"{datetime.now(timezone.utc).year} {m.group(1)}", "%Y %b %d %H:%M:%S.%f")
+            out.append((when.replace(tzinfo=timezone.utc).timestamp(), m.group(2)))
+    return sorted(out)
 
 
 def parts():

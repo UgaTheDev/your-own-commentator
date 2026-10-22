@@ -34,7 +34,7 @@ w() { local n; n=$(grep -ac "$1" $O.log); for _ in $(seq $(( ${2:-30} * 5 ))); d
         [ "$(grep -ac "$1" $O.log)" -gt "$n" ] && return 0; sleep 0.2; done; echo "  (timeout waiting for: $1)"; return 1; }
 die() { echo "TAKE FAILED: $*"; exit 1; }   # make.sh re-shoots
 # Keys that must land: re-send if the app logged no focus/press within 2 s (a run-cmd can be lost silently).
-kc() { local p=${KP:-'YOC: @[0-9]+ (press|focus) '} n; n=$(grep -acE "$p" $O.log); for _ in 1 2 3; do k "$@"; sleep 2
+kc() { local p=${KP:-'YOC: (press|focus) '} n; n=$(grep -acE "$p" $O.log); for _ in 1 2 3; do k "$@"; sleep 2
          [ "$(grep -acE "$p" $O.log)" -gt "$n" ] && return 0; done; die "keys lost: $*"; }
 kr() { KP='YOC: @[0-9]+ seek [0-9]' kc REWIND REWIND; }   # rewind 20 s; a rewind logs a seek, not a press
 
